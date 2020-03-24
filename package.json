@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jlbroughton88/eCommerce-WebApp#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "path": "^0.12.7"
   }
 }
