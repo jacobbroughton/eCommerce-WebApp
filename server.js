@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
+app.get("/", (req, res) => {
+    res.send("Hello from server");
+})
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
     app.get("*", (req, res) => {
@@ -11,5 +15,5 @@ if (process.env.NODE_ENV === "production") {
 
 const port = process.env.PORT || 5000
 app.listen(port, () => {
-    console.log("Server listening at port 3000");
+    console.log("Server listening at port 5000");
 })
