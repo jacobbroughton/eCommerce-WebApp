@@ -1,0 +1,20 @@
+const mysql = require("mysql");
+require("dotenv").config();
+const connection = mysql.createConnection(process.env.CONN_STRING);
+connection.connect();
+
+exports.findUser = (req, res) => {
+    console.log(req.params);
+    connection.query(`SELECT * FROM users WHERE email = "${req.params.email}"`, (err, rows, fields) => {
+        if (err) throw err;
+        res.send(rows[0]);
+    })
+}
+
+exports.addUser = (req, res) => {
+    console.log(req);
+    let r = req.body;
+    connection.query(`INSERT INTO users (user_uid, email, nickname, first_name, last_name, town, state, country, date_created, time_created) VALUES ("${r.user_uid}", "${r.email}", "${r.nickname}", "${r.first_name}", "${r.last_name}", "${r.town}", "${r.state}", "${r.country}", "${r.date_created}", "${r.time_created}")`, (err, rows, fields) => {
+        if (err) throw err;
+    })
+}
