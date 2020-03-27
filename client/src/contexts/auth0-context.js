@@ -24,7 +24,7 @@ export class Auth0Provider extends Component {
     this.initializeAuth0();
   }
 
-  createRandomInt = (min, max) => {
+  createRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() + (max - min)) + min
@@ -100,7 +100,7 @@ export class Auth0Provider extends Component {
     if(user) {
            axios
         .get(`http://localhost:5000/api/finduser/${user.email}`)
-        .then(response => this.setState({ dbUser: response.data, isLoading: false }))
+        .then(response => this.setState({ dbUser: response.data, isLoading: false }, () => { console.log(this.state.dbUser) }))
         .catch(err => console.log(err)); 
     } else {
         console.log("No user, cant do it.");

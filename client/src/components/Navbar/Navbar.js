@@ -5,11 +5,11 @@ import "./Navbar.scss";
 
 const Navbar = () => {
   const { isLoading, loginWithRedirect, logout, user, dbUser } = useAuth0();
-  console.log(user);
 
-  if (isLoading) {
-      return ( <div>Loading</div> )
-  }
+  useEffect(() => {
+    console.log("Lets try that again!")
+  }, [dbUser])
+
 
   return (
     <nav>
