@@ -84,23 +84,22 @@ export class Auth0Provider extends Component {
             let time_created = time.replace(/\s/g, "");
             let date_created = date.replace(/\//g, "-");
             this.addUser(newUser, uid, time_created, date_created);
-            this.findUserAgain(newUser)
+            this.findUserAgain()
             this.setState({ isLoading: false });
         } else {
             console.log("User exists!")
-            console.log(response.data);
-
             this.setState({ dbUser: response.data, isLoading: false });
         }
       })
       .catch(err => console.log(err));
   };
 
-  findUserAgain = newUser => {
+  findUserAgain = () => {
+    this.setState({ isLoading: true })
     const user = this.state.user;
     if(user) {
            axios
-        .get(`http://localhost:5000/api/finduser/${newUser.email}`)
+        .get(`http://localhost:5000/api/finduser/${user.email}`)
         .then(response => this.setState({ dbUser: response.data, isLoading: false }))
         .catch(err => console.log(err)); 
     } else {
@@ -124,6 +123,8 @@ export class Auth0Provider extends Component {
     const user = isAuthenticated ? await auth0Client.getUser() : null;
 
     this.setState({ isAuthenticated, user });
+
+    this.findUserAgain();
   };
 
   // Handles the authentication callback

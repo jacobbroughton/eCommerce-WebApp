@@ -6,9 +6,9 @@ const Navbar = () => {
   const { isLoading, loginWithRedirect, logout, user, dbUser } = useAuth0();
   console.log(user);
 
-  useEffect(() => {
-    console.log("refreshing for dbUser");
-  }, [dbUser])
+  if (isLoading) {
+      return ( <div>Loading</div> )
+  }
 
   return (
     <nav>
