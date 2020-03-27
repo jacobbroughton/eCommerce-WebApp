@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { Link } from "react-router-dom";
+import "./Navbar.scss";
 
 const Navbar = () => {
   const { isLoading, loginWithRedirect, logout, user, dbUser } = useAuth0();
@@ -12,7 +13,10 @@ const Navbar = () => {
 
   return (
     <nav>
-      <button onClick={loginWithRedirect}>Log In</button>
+        { !user && (
+            <button onClick={loginWithRedirect}>Log In</button>
+        )}
+     
       {user && (
         <div>
           <button onClick={logout}>Logout</button>

@@ -18,3 +18,12 @@ exports.addUser = (req, res) => {
         if (err) throw err;
     })
 }
+
+exports.updateProfile = (req, res) => {
+    let r = req.body;
+    connection.query(`UPDATE users SET first_name = "${r.firstName}", last_name = "${r.lastName}", town = "${r.townCity}", state = "${r.state}", country = "${r.country}" WHERE user_uid = "${req.params.useruid}" `, 
+        (err, rows, fields) => {
+            if(err) throw err;
+        }
+    );
+}

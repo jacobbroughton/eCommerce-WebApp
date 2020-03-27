@@ -4,7 +4,7 @@ import ProfileEditModal from "../ProfileEditModal/ProfileEditModal";
 const Profile = () => {
 
     const handleEditModal = e => {
-        let modalParent = document.getElementById("modalParent")
+        let modalParent = document.getElementById("modalParent"); 
         let style = modalParent.style;
         style.display = "inline-block";
     }
