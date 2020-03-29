@@ -16,16 +16,27 @@ nav{
     background: lightgrey;
     .homeLink{
         position: absolute;
-        left: 20px;
+        left: 0;
         align-self: center;
+        margin-left: 20px;
     }
-    .signedInRight{
+    .loggedIn, .loggedOut{
         position: absolute;
         right: 0;
         display: flex;
         align-items: center;
         padding-right: 20px;
         height: 100%;
+    }
+    .loggedOut{
+            .homeLink{
+        position: absolute;
+        left: 20px;
+        align-self: center;
+    }
+    }
+
+    .loggedIn{
         .logOutBtn{}
         .profileLink{
             margin-left: 10px;

@@ -15,11 +15,14 @@ const Navbar = () => {
     <nav>
       <Link to="/" className="homeLink">Home</Link>
         { !user && (
+          <div className="loggedOut">
             <button onClick={loginWithRedirect} className="logInBtn">Log In</button>
+          </div>
+            
         )}
      
       {user && (
-        <div className="signedInRight">
+        <div className="loggedIn">
           <button onClick={logout} className="logOutBtn">Logout</button>
       {/* { dbUser && (
         <h1>{dbUser.nickname}</h1>
