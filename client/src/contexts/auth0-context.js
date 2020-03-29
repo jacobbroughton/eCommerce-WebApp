@@ -8,7 +8,7 @@ export const useAuth0 = () => useContext(Auth0Context);
 export class Auth0Provider extends Component {
   state = {
     auth0Client: null,
-    isLoading: null,
+    isLoading: true,
     isAuthenticated: null,
     user: null, 
     dbUser: null
@@ -95,12 +95,12 @@ export class Auth0Provider extends Component {
   };
 
   findUserAgain = () => {
-    this.setState({ isLoading: true })
+    // this.setState({ isLoading: true });
     const user = this.state.user;
     if(user) {
            axios
         .get(`http://localhost:5000/api/finduser/${user.email}`)
-        .then(response => this.setState({ dbUser: response.data, isLoading: false }, () => { console.log(this.state.dbUser) }))
+        .then(response => this.setState({ dbUser: response.data, isLoading: false }))
         .catch(err => console.log(err)); 
     } else {
         console.log("No user, cant do it.");

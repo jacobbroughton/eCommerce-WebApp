@@ -13,18 +13,18 @@ const Navbar = () => {
 
   return (
     <nav>
+      <Link to="/" className="homeLink">Home</Link>
         { !user && (
-            <button onClick={loginWithRedirect}>Log In</button>
+            <button onClick={loginWithRedirect} className="logInBtn">Log In</button>
         )}
      
       {user && (
-        <div>
-          <button onClick={logout}>Logout</button>
-      { dbUser && (
+        <div className="signedInRight">
+          <button onClick={logout} className="logOutBtn">Logout</button>
+      {/* { dbUser && (
         <h1>{dbUser.nickname}</h1>
-      )}
-          <Link to="/">Home</Link>
-          <Link to="/profile">Profile</Link>
+      )} */}
+          <Link to="/profile" className="profileLink">Profile</Link>
         </div>
       )}
     </nav>

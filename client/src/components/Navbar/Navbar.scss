@@ -1,4 +1,35 @@
+a{
+    text-decoration: none;
+    color: black;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+
 nav{
     display: flex;
+    position: relative;
     justify-content: space-evenly;
+    height: 50px;
+    background: lightgrey;
+    .homeLink{
+        position: absolute;
+        left: 20px;
+        align-self: center;
+    }
+    .signedInRight{
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        padding-right: 20px;
+        height: 100%;
+        .logOutBtn{}
+        .profileLink{
+            margin-left: 10px;
+        }
+
+    }
 }

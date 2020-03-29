@@ -27,3 +27,5 @@ Created by Jacob Broughton
     - Categories List 
     - { Category }
     - Listing
+- Set up stripe payment processor
+    - Use stripe API quickstart guide
