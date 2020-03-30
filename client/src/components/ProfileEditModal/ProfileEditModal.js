@@ -39,7 +39,6 @@ const handleFormSubmit = (e) => {
   return (
     <div id="editModalMother">
       <h1>Profile Edit Modal</h1>
-      {dbUser.user_uid}
       <button className="closeButton" onClick={() => { handleModalClose(); }} > X </button>
       <form className="editForm" onSubmit={(e) => handleFormSubmit(e)}>
         <label>

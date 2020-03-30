@@ -2,6 +2,9 @@
 Created by Jacob Broughton
 
 
+# Priotiry
+- Figure out why dbUser does not fetch correctly after initial sign up
+
 # The Plan
 * Create basic server
 * Get files/folder structured correctly

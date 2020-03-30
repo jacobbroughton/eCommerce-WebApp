@@ -27,7 +27,7 @@ export class Auth0Provider extends Component {
   createRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() + (max - min)) + min
+    return Math.floor(Math.random() * (max - min)) + min;
   };
 
   addUser = (newUser, randomNum, date, time) => {
@@ -84,18 +84,17 @@ export class Auth0Provider extends Component {
             let time_created = time.replace(/\s/g, "");
             let date_created = date.replace(/\//g, "-");
             this.addUser(newUser, uid, time_created, date_created);
-            this.findUserAgain()
+            this.findUserAgain();
             this.setState({ isLoading: false });
         } else {
             console.log("User exists!")
             this.setState({ dbUser: response.data, isLoading: false });
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.toJSON()));
   };
 
   findUserAgain = () => {
-    // this.setState({ isLoading: true });
     const user = this.state.user;
     if(user) {
            axios

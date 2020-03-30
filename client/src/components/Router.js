@@ -2,12 +2,14 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Index from "./pages/Index";
 import Profile from "./pages/Profile";
+import SellPage from "./pages/SellPage";
 import { useAuth0 } from "../contexts/auth0-context.js";
 
 const AppRouter = () => (
     <Switch>
         <Route exact path="/" component={Index}/>
         <PrivateRoute path="/profile" component={Profile}/>
+        <PrivateRoute path="/sell" component={SellPage}/>
     </Switch>
 );
 
