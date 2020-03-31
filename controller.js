@@ -27,3 +27,8 @@ exports.updateProfile = (req, res) => {
         }
     );
 }
+
+exports.sell = (req, res) => {
+    let r = req.body;
+    connection.query(`INSERT INTO listings (listing_uid, seller_uid, email, seller_nickname, title, description, price, condition, category, ship_status, date_created, time_created) VALUES ("${r.listing_uid}", "${r.seller_uid}", "${r.email}", "${r.seller_nickname}", "${r.title}", "${r.description}", "${r.price}", "${r.condition}", "${r.category}", "${r.ship_status}", "${r.date_created}", "${r.time_created}")`)
+}

@@ -1,0 +1,36 @@
+.sellFormMother{
+    .sellForm{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 500px;
+        margin: 0 auto;
+        column-gap: .5em;
+        row-gap: .4em;
+        .titleInput{
+            grid-column: 1/5;
+        }
+        .priceInput{
+            grid-column: 1/3;
+        }
+        .conditionInput{
+            grid-column: 3/5;
+        }
+        .shippingInput{
+            grid-column: 1/3;
+        }
+        .categoryInput{
+            grid-column: 3/5;
+        }
+
+        input, select, textarea{
+            padding: .4em;
+            font-size: 1rem;
+        }
+
+        textarea{
+            grid-column: 1/5;
+            height: 250px;
+            resize: none;
+        }
+    }
+}
