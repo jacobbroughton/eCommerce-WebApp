@@ -1,0 +1,16 @@
+.profileListingsMother{
+    padding-left: 20px;
+    padding-top: 20px;
+    .listingItem{
+        width: 300px;
+        background: lightgrey;
+        margin-bottom: 20px;
+        border: #333 solid 1px;
+        padding: 10px 20px;
+
+        h1, h2, h3, h4, h5, h6, p{ 
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
