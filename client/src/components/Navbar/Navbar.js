@@ -24,9 +24,10 @@ const Navbar = () => {
       {user && (
         <div className="loggedIn">
           <button onClick={logout} className="logOutBtn">Logout</button>
-      {/* { dbUser && (
-        <h1>{dbUser.nickname}</h1>
-      )} */}
+          { dbUser.first_name !== "null" && (
+            <Link to="/sell" className="sellLink">Sell</Link>
+          )}
+         
           <Link to="/profile" className="profileLink">Profile</Link>
         </div>
       )}

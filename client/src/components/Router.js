@@ -9,7 +9,7 @@ const AppRouter = () => (
     <Switch>
         <Route exact path="/" component={Index}/>
         <PrivateRoute path="/profile" component={Profile}/>
-        <PrivateRoute path="/sell" component={SellPage}/>
+        <PrivateRouteSell path="/sell" component={SellPage}/>
     </Switch>
 );
 
@@ -25,6 +25,22 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                 ( <Component {...props}/> )
                 :
                 ( <Redirect to={{ pathname: "/" }}/> )
+            }
+        />
+    )
+}
+
+const PrivateRouteSell = ({ component: Component, ...rest }) => {
+    const {dbUser} = useAuth0();
+
+    return (
+        <Route
+            {...rest}
+            render={props => 
+                dbUser.first_name !== "null" ?
+                ( <Component {...props}/> )
+                :
+                ( <Redirect to={{pathname: "/"}} /> )
             }
         />
     )

@@ -18,9 +18,9 @@ Created by Jacob Broughton
     * More to come...
 * Get users added to database after being authenticated
 * Add profile edit section for adding extra info (name, town, state, etc.)
-- Add listing functionality
-    - Use same values as on listings DB table
-- Make profile edit mandatory before creating a listing
+* Add listing functionality
+    * Use same values as on listings DB table
+* Make profile edit mandatory before creating a listing
     - Make it USA only and convert state input to a selection menu
 - Add categories section / page
 - Design site mockup on affinity designer... Pages: 
