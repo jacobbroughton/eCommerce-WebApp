@@ -10,7 +10,7 @@ export class Auth0Provider extends Component {
     auth0Client: null,
     isLoading: true,
     isAuthenticated: null,
-    user: null, 
+    user: null,
     dbUser: null
   };
 
@@ -28,85 +28,93 @@ export class Auth0Provider extends Component {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
-  };
+  }
 
   addUser = (newUser, randomNum, date, time) => {
-      console.log("Adding user!")
-    if(newUser.given_name) { 
-        axios
+    console.log("Adding user!");
+    if (newUser.given_name) {
+      axios
         .post(`http://localhost:5000/api/adduser`, {
-            user_uid: randomNum,
-            email: newUser.email,
-            nickname: newUser.nickname,
-            first_name: newUser.given_name,
-            last_name: newUser.family_name,
-            town: "null",
-            state: "null",
-            country: "null",
-            date_created: date,
-            time_created: time
-        })
+          user_uid: randomNum,
+          email: newUser.email,
+          nickname: newUser.nickname,
+          first_name: newUser.given_name,
+          last_name: newUser.family_name,
+          town: null,
+          state: null,
+          date_created: date,
+          time_created: time
+        }, { timeout: 200 })
         .then(response => console.log(response))
         .catch(err => console.log(err));
-     } else { 
-        axios
-        .post(`http://localhost:5000/api/adduser`, {
-            user_uid: randomNum,
-            email: newUser.email,
-            nickname: newUser.nickname,
-            first_name: "null",
-            last_name: "null",
-            town: "null",
-            state: "null",
-            country: "null",
-            date_created: date,
-            time_created: time
-        })
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
-     }
-  };
-  
+        console.log("Added user!")
 
+        this.findUserAgain();
+
+    } else if (newUser.email) {
+      axios
+        .post(`http://localhost:5000/api/adduser`, {
+          user_uid: randomNum,
+          email: newUser.email,
+          nickname: newUser.nickname,
+          first_name: null,
+          last_name: null,
+          town: null,
+          state: null,
+          date_created: date,
+          time_created: time
+        }, { timeout: 200 })
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
+        console.log("Added user!")
+
+        this.findUserAgain();
+    }
+  };
 
   // Add user to database || Find user
   findUser = newUser => {
-      this.setState({ isLoading: true });
+    this.setState({ isLoading: true });
     axios
       .get(`http://localhost:5000/api/finduser/${newUser.email}`)
       .then(response => {
+        console.log("Finduser response is below")
         console.log(response);
         if (response.data === "") {
-            console.log("response.data is empty!")
-            let uid = this.createRandomInt(1000000000, 10000000000);
-            let time = moment().format("LT");
-            let date = moment().format("L");
-            let time_created = time.replace(/\s/g, "");
-            let date_created = date.replace(/\//g, "-");
-            this.addUser(newUser, uid, time_created, date_created);
-            this.findUserAgain();
-            this.setState({ isLoading: false });
+          console.log("response.data is empty!");
+          let uid = this.createRandomInt(1000000000, 10000000000);
+          let time = moment().format("LT");
+          let date = moment().format("L");
+          let time_created = time.replace(/\s/g, "");
+          let date_created = date.replace(/\//g, "-");
+          this.addUser(newUser, uid, time_created, date_created);
+          this.findUserAgain();
+          // this.setState({ isLoading: false });
         } else {
-            console.log("User exists!")
-            this.setState({ dbUser: response.data, isLoading: false });
+          console.log("User exists!");
+          this.setState({ dbUser: response.data, isLoading: false });
         }
       })
       .catch(err => console.log(err.toJSON()));
   };
 
   findUserAgain = () => {
+    // this.setState({ isLoading: true });
     const user = this.state.user;
-    if(user) {
-           axios
+    if (user) {
+      console.log("there is a user, finding in database now")
+      axios
         .get(`http://localhost:5000/api/finduser/${user.email}`)
-        .then(response => this.setState({ dbUser: response.data, isLoading: false }))
-        .catch(err => console.log(err)); 
+        .then(response =>
+          this.setState({ dbUser: response.data }, () => console.log(this.state))
+        )
+        .catch(err => console.log(err.toJSON()));
+      this.setState({ isLoading: false });
     } else {
-        console.log("No user, cant do it.");
-        this.setState({ isLoading: false });
+      console.log("No user, cant do it.");
+      this.setState({ isLoading: false });
     }
-
-  }
+  };
   // Initialize the auth0 library
   initializeAuth0 = async () => {
     const auth0Client = await createAuth0Client(this.config);
@@ -132,15 +140,23 @@ export class Auth0Provider extends Component {
 
     await this.state.auth0Client.handleRedirectCallback();
     const user = await this.state.auth0Client.getUser();
-    this.setState({ user, isAuthenticated: true, isLoading: false });
+    this.setState({ user, isAuthenticated: true }); // There was an isLoading : false here
 
+    console.log("findUser from handleRedirectCallback")
     this.findUser(user);
 
     window.history.replaceState({}, document.title, window.location.pathname);
   };
 
   render() {
-    const { auth0Client, isLoading, isAuthenticated, user, dbUser } = this.state;
+    const {
+      auth0Client,
+      isLoading,
+      isAuthenticated,
+      user,
+      dbUser
+    } = this.state;
+
     const { children } = this.props;
 
     const configObject = {

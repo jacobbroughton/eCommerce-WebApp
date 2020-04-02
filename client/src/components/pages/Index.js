@@ -1,11 +1,9 @@
 import React from "react";
-import ListingPost from "../ListingPost/ListingPost";
 
 const Index = () => {
     return (
         <div>
-            <p>Home</p>
-            <ListingPost/>
+           <h1>Home</h1>
         </div>
     )
 }

@@ -63,10 +63,6 @@ const ProfileTopSect = () => {
    'Wyoming'
 ]
 
-useEffect(() => {
-    console.log("refreshing for dbUser")
-    console.log(dbUser)
-  }, [dbUser])
 
 const handleFormSubmit = (e) => {
 
@@ -80,14 +76,12 @@ const handleFormSubmit = (e) => {
       })
       .then(response => console.log(response))
       .catch(err => console.log(err))
-
-  e.preventDefault()
 }
 
   return (
     <div className="profileTopSectMother">
     {/* Not verified section */}
-      {dbUser.first_name === "null" && (
+      {dbUser.first_name === null && (
         <div className="notVerifiedDiv">
           <h2 className="profileEmailHead">{dbUser.email}</h2>
           <div className="profileFormDiv">
@@ -124,7 +118,7 @@ const handleFormSubmit = (e) => {
       )}
 
       {/* Verified section */}
-      {dbUser.first_name !== "null" && (
+      {dbUser.first_name && (
         <div className="verifiedDiv">
             <h1>{dbUser.email}</h1>
           <h2>{dbUser.first_name + " " + dbUser.last_name}</h2>

@@ -15,7 +15,6 @@ const AppRouter = () => (
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const { user } = useAuth0();
-    console.log(user);
 
     return (
         <Route
@@ -32,12 +31,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const PrivateRouteSell = ({ component: Component, ...rest }) => {
     const {dbUser} = useAuth0();
+    console.log(dbUser)
 
     return (
         <Route
             {...rest}
             render={props => 
-                dbUser.first_name !== "null" ?
+                dbUser.first_name !== null ?
                 ( <Component {...props}/> )
                 :
                 ( <Redirect to={{pathname: "/"}} /> )

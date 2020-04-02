@@ -7,8 +7,8 @@ const Navbar = () => {
   const { isLoading, loginWithRedirect, logout, user, dbUser } = useAuth0();
 
   useEffect(() => {
-    console.log("Lets try that again!")
-  }, [dbUser])
+    console.log("isLoading: " + isLoading)
+  }, [isLoading])
 
 
   return (
@@ -24,7 +24,7 @@ const Navbar = () => {
       {user && (
         <div className="loggedIn">
           <button onClick={logout} className="logOutBtn">Logout</button>
-          { dbUser.first_name !== "null" && (
+          { dbUser && dbUser.first_name && (
             <Link to="/sell" className="sellLink">Sell</Link>
           )}
          

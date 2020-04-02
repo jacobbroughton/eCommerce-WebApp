@@ -7,16 +7,12 @@ const ProfileListings = () => {
   const { dbUser } = useAuth0();
   const [listings, setListings] = useState([]);
 
-  const getListings = () => {
-    axios
+  useEffect(() => {
+       axios
       .get(`http://localhost:5000/api/personallistings/${dbUser.user_uid}`)
       .then(response => setListings([...response.data]))
       .catch(err => console.log(err));
-  };
-
-  useEffect(() => {
-    getListings();
-  }, [listings]);
+  }, [dbUser]);
 
   return (
     <div className="profileListingsMother">
