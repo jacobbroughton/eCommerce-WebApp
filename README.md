@@ -22,6 +22,9 @@ Created by Jacob Broughton
     * Use same values as on listings DB table
 * Make profile edit mandatory before creating a listing
     - Make it USA only and convert state input to a selection menu
+* Get image preview working (client side)
+* Upload image to database 
+* Include and load images in listings
 - Add categories section / page
 - Design site mockup on affinity designer... Pages: 
     - Logged-Out Home

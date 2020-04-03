@@ -6,6 +6,26 @@
         margin: 0 auto;
         column-gap: .5em;
         row-gap: .4em;
+
+        .imgPreviewContainer{
+            width: 300px;
+             min-height: 100px;
+             border: 2px solid lightgrey;
+             margin-top: 15px;            
+             
+             // Default 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #cccccc;
+            
+            .imgPreview{
+                display: none;
+                width: 100%;
+            }
+        }
+
         .titleInput{
             grid-column: 1/5;
         }

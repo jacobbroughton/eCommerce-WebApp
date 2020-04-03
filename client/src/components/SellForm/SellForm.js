@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useAuth0} from "../../contexts/auth0-context";
 import axios from "axios";
 import moment from "moment";
@@ -25,6 +25,30 @@ const SellForm = () => {
         return Math.floor(Math.random() * (max - min)) + min;
       };
     
+    const handleImgChange = (e) => {
+        const previewImage = document.getElementById("imgPreview");
+        const previewDefaultText = document.getElementById("defaultPreviewText")
+        const file = e.target.files[0]; // Only allows one file, shows undefined if window is closed
+
+        if(file) {
+            const reader = new FileReader();
+
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+
+            reader.addEventListener("load", () => {
+
+                console.log(reader.result);
+                previewImage.setAttribute("src", reader.result);
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            previewDefaultText.style.display = null;
+            previewImage.style.display = null;
+            previewImage.setAttribute("src", "");
+        }
+    }
 
     const handleSubmit = e => {
     
@@ -59,6 +83,11 @@ const SellForm = () => {
             <h3>Selling Something?</h3>
             <form onSubmit={e => handleSubmit(e)} className="sellForm">
                 <input required placeholder="What is the item you're selling?" onChange={(e) => setTitle(e.target.value)} className="titleInput"/>
+                <input type="file" placeholder="Browse Files" onChange={e => handleImgChange(e)} accept="image/png, image/jpeg, image/jpg"/>
+                <div className="imgPreviewContainer" id="imgPreviewContainer">
+                    <img src="" alt="Image Preview" id="imgPreview" className="imgPreview"/>
+                    <span id="defaultPreviewText">Image Preview</span>
+                </div>
                 <input required placeholder="Price" onChange={(e) => setPrice(parseInt(e.target.value))} className="priceInput"/>
                 <select onChange={(e) => setCondition(e.target.value)} className="conditionInput"> 
                 {conditionArr.map(con => <option key={con} value={con}>{con}</option>)}
