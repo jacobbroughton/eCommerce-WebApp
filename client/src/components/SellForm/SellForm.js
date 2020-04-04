@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useAuth0} from "../../contexts/auth0-context";
+import PhotoTest from "../PhotoTest/PhotoTest";
 import axios from "axios";
 import moment from "moment";
 import "./SellForm.scss";
@@ -38,7 +39,7 @@ const SellForm = () => {
 
             reader.addEventListener("load", () => {
 
-                console.log(reader.result);
+                console.log(reader);
                 previewImage.setAttribute("src", reader.result);
             });
 
@@ -65,6 +66,7 @@ const SellForm = () => {
                 seller_nickname: dbUser.nickname,
                 title,
                 description,
+                image: null,
                 price,
                 item_condition: condition,
                 category, 
@@ -80,10 +82,11 @@ const SellForm = () => {
     
     return (
         <div className="sellFormMother">
+            <PhotoTest/>
             <h3>Selling Something?</h3>
-            <form onSubmit={e => handleSubmit(e)} className="sellForm">
+            <form onSubmit={e => handleSubmit(e)} className="sellForm" encType="multipart/form-data">
                 <input required placeholder="What is the item you're selling?" onChange={(e) => setTitle(e.target.value)} className="titleInput"/>
-                <input type="file" placeholder="Browse Files" onChange={e => handleImgChange(e)} accept="image/png, image/jpeg, image/jpg"/>
+                <input type="file" name="myFile" placeholder="Browse Files" className="imageInput" onChange={e => handleImgChange(e)} accept="image/png, image/jpeg, image/jpg"/>
                 <div className="imgPreviewContainer" id="imgPreviewContainer">
                     <img src="" alt="Image Preview" id="imgPreview" className="imgPreview"/>
                     <span id="defaultPreviewText">Image Preview</span>

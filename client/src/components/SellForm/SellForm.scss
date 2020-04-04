@@ -7,11 +7,21 @@
         column-gap: .5em;
         row-gap: .4em;
 
+
+
+        .titleInput{
+            grid-column: 1/5;
+        }        
+        
+        .imageInput{
+            grid-column: 1/5;
+        }
+
         .imgPreviewContainer{
-            width: 300px;
+            grid-column: 1/5;
+            // width: 300px;
              min-height: 100px;
-             border: 2px solid lightgrey;
-             margin-top: 15px;            
+             border: 2px solid lightgrey;    
              
              // Default 
             display: flex;
@@ -19,16 +29,13 @@
             justify-content: center;
             font-weight: bold;
             color: #cccccc;
-            
+
             .imgPreview{
                 display: none;
                 width: 100%;
             }
         }
 
-        .titleInput{
-            grid-column: 1/5;
-        }
         .priceInput{
             grid-column: 1/3;
         }
