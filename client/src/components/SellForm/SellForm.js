@@ -67,6 +67,7 @@ const SellForm = () => {
   };
 
   const handleSubmit = e => {
+
     e.preventDefault();
 
     const formData = new FormData();
@@ -117,7 +118,7 @@ const SellForm = () => {
     .all([sendTextInputValues(), sendImageInputValues()])
     .then(axios.spread((acct, perms) => {}))
 
-    // e.preventDefault();
+    // window.location.reload();
   };
 
   return (

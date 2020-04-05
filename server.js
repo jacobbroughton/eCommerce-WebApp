@@ -20,6 +20,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api", routes);
+app.use("/uploads", express.static('uploads'))
 
 
 // app.post('/api/upload', (req, res, next) => {

@@ -17,10 +17,15 @@ const ProfileListings = () => {
   return (
     <div className="profileListingsMother">
       {listings.map(listing => (
+        console.log(listing),
         <div key={listing.id} className="listingItem">
           <h3>{listing.title}</h3>
           <p>{listing.category}</p>
           <p>{listing.price}</p>
+          { listing.image !== null && (
+            <img src={"http://localhost:5000/" + listing.image} alt={""}/>
+          )}
+          
         </div>
       ))}
     </div>
