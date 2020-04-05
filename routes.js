@@ -8,7 +8,8 @@ const upload = multer({ dest: "uploads/" });
 router.get("/finduser/:email", controller.findUser);
 router.post("/adduser", controller.addUser);
 router.post("/updateprofile/:useruid", controller.updateProfile);
-router.post("/sell", controller.sell);
+router.post("/sell/text",  controller.sellText);
+router.post("/sell/images/:listinguid", upload.single('myFile'), controller.sellImages);
 router.get("/personallistings/:selleruid", controller.getPersonalListings);
 router.post("/upload", upload.single('myFile'), controller.uploadTest);
 

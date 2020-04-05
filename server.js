@@ -22,17 +22,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api", routes);
 
 
-app.post('/api/upload', (req, res, next) => {
-  const form = formidable({ multiples: true });
+// app.post('/api/upload', (req, res, next) => {
+//   const form = formidable({ multiples: true });
  
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.json({ fields, files });
-  });
-});
+//   form.parse(req, (err, fields, files) => {
+//     if (err) {
+//       next(err);
+//       return;
+//     }
+//     res.json({ fields, files });
+//   });
+// });
 
 
 if (process.env.NODE_ENV === "production") {
