@@ -4,7 +4,7 @@ import axios from "axios";
 import "./ProfileTopSect.scss";
 
 const ProfileTopSect = () => {
-  const { dbUser, user } = useAuth0();
+  const { dbUser, user, statusUrl } = useAuth0();
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
   const [townCityValue, setTownCityValue] = useState("");
@@ -67,7 +67,7 @@ const ProfileTopSect = () => {
 const handleFormSubmit = (e) => {
 
   axios
-      .post(`http://localhost:5000/api/updateprofile/${dbUser.user_uid}`, {
+      .post(`${statusUrl}api/updateprofile/${dbUser.user_uid}`, {
           firstName: firstNameValue,
           lastName: lastNameValue,
           townCity: townCityValue,
@@ -120,8 +120,7 @@ const handleFormSubmit = (e) => {
       {/* Verified section */}
       {dbUser.first_name && (
         <div className="verifiedDiv">
-            <h1>{dbUser.email}</h1>
-          <h2>{dbUser.first_name + " " + dbUser.last_name}</h2>
+          <h1>{dbUser.first_name + " " + dbUser.last_name}</h1>
         </div>
       )}
     </div>

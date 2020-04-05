@@ -23,9 +23,11 @@ Created by Jacob Broughton
 * Make profile edit mandatory before creating a listing
     - Make it USA only and convert state input to a selection menu
 * Get image preview working (client side)
-- Upload image to database 
-- Include and load images in listings
-- Add categories section / page
+* Upload image to database 
+* Include and load images in listings
+* Work on styles
+- Add statusUrl to context
+- Add categories filtering functionality
 - Design site mockup on affinity designer... Pages: 
     - Logged-Out Home
     - Logged-In Home

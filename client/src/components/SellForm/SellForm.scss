@@ -59,5 +59,13 @@
             height: 250px;
             resize: none;
         }
+
+        .postForSaleBtn{
+            background: red;
+            color: #ffffff;
+            font-weight: bolder;
+            font-size: 1.1rem;
+            grid-column: 4/5;
+        }
     }
 }

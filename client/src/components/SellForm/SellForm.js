@@ -26,7 +26,7 @@ const SellForm = () => {
     "Local Only (Meet up)",
     "Local Only (Pickup)"
   ];
-  const { dbUser } = useAuth0();
+  const { dbUser, statusUrl } = useAuth0();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0); // Consider type
   const [condition, setCondition] = useState(conditionArr[0]);
@@ -88,7 +88,7 @@ const SellForm = () => {
 
     let sendTextInputValues = () => {
       axios
-        .post(`http://localhost:5000/api/sell/text`, {
+        .post(`${statusUrl}api/sell/text`, {
           listing_uid: randomNum,
           seller_uid: dbUser.user_uid,
           email: dbUser.email,
@@ -109,7 +109,7 @@ const SellForm = () => {
 
     let sendImageInputValues = () => {
         axios
-        .post(`http://localhost:5000/api/sell/images/${randomNum}`, formData, config)
+        .post(`${statusUrl}api/sell/images/${randomNum}`, formData, config)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     };
@@ -123,7 +123,6 @@ const SellForm = () => {
 
   return (
     <div className="sellFormMother">
-      <PhotoTest />
       <h3>Selling Something?</h3>
       <form
         onSubmit={e => handleSubmit(e)}
@@ -195,7 +194,7 @@ const SellForm = () => {
           onChange={e => setDescription(e.target.value)}
           className="descriptionInput"
         />
-        <input placeholder="Post" type="submit" />
+        <input className="postForSaleBtn" placeholder="Post" type="submit" />
       </form>
     </div>
   );

@@ -11,7 +11,8 @@ export class Auth0Provider extends Component {
     isLoading: true,
     isAuthenticated: null,
     user: null,
-    dbUser: null
+    dbUser: null,
+    statusUrl: ""
   };
 
   config = {
@@ -21,6 +22,13 @@ export class Auth0Provider extends Component {
   };
 
   componentDidMount() {
+
+    if(process.env.NODE_ENV === "development") {
+      this.setState({ statusUrl : "http://localhost:5000/" })
+    } else if (process.env.NODE_ENV === "production") {
+      this.setState({ statusUrl: "https://ecommerce-webapp-jb.herokuapp.com/" })
+    }
+
     this.initializeAuth0();
   }
 
@@ -34,7 +42,7 @@ export class Auth0Provider extends Component {
     console.log("Adding user!");
     if (newUser.given_name) {
       axios
-        .post(`http://localhost:5000/api/adduser`, {
+        .post(`${this.state.statusUrl}api/adduser`, {
           user_uid: randomNum,
           email: newUser.email,
           nickname: newUser.nickname,
@@ -53,7 +61,7 @@ export class Auth0Provider extends Component {
 
     } else if (newUser.email) {
       axios
-        .post(`http://localhost:5000/api/adduser`, {
+        .post(`${this.state.statusUrl}api/adduser`, {
           user_uid: randomNum,
           email: newUser.email,
           nickname: newUser.nickname,
@@ -76,7 +84,7 @@ export class Auth0Provider extends Component {
   findUser = newUser => {
     this.setState({ isLoading: true });
     axios
-      .get(`http://localhost:5000/api/finduser/${newUser.email}`)
+      .get(`${this.state.statusUrl}api/finduser/${newUser.email}`)
       .then(response => {
         console.log("Finduser response is below")
         console.log(response);
@@ -104,7 +112,7 @@ export class Auth0Provider extends Component {
     if (user) {
       console.log("there is a user, finding in database now")
       axios
-        .get(`http://localhost:5000/api/finduser/${user.email}`)
+        .get(`${this.state.statusUrl}api/finduser/${user.email}`)
         .then(response =>
           this.setState({ dbUser: response.data }, () => console.log(this.state))
         )
@@ -154,7 +162,8 @@ export class Auth0Provider extends Component {
       isLoading,
       isAuthenticated,
       user,
-      dbUser
+      dbUser,
+      statusUrl
     } = this.state;
 
     const { children } = this.props;
@@ -164,6 +173,7 @@ export class Auth0Provider extends Component {
       isAuthenticated,
       user,
       dbUser,
+      statusUrl,
       loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
       getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
       getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),

@@ -1,7 +1,10 @@
-.profileMother{
+.profileMother{        
+    background: #fbfbfb;
+        height: calc(100% - 50px);
     .profileMain{
         max-width: 1200px;
         margin: 0 auto;
+
 
         hr {
             margin: 0 auto;

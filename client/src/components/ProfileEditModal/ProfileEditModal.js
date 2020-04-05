@@ -5,7 +5,7 @@ import {useAuth0} from "../../contexts/auth0-context";
 
 const ProfileEditModal = () => {
 
-    const { dbUser, user, isLoading } = useAuth0();
+    const { dbUser, user, isLoading, statusUrl } = useAuth0();
     const [firstNameValue, setFirstNameValue] = useState("");
     const [lastNameValue, setLastNameValue] = useState("");
     const [townCityValue, setTownCityValue] = useState("");
@@ -21,7 +21,7 @@ const ProfileEditModal = () => {
 const handleFormSubmit = (e) => {
 
     axios
-        .post(`http://localhost:5000/api/updateprofile/${dbUser.user_uid}`, {
+        .post(`${statusUrl}api/updateprofile/${dbUser.user_uid}`, {
             firstName: firstNameValue,
             lastName: lastNameValue,
             townCity: townCityValue,
