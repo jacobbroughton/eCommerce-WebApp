@@ -4,12 +4,12 @@ import axios from "axios";
 import "./ProfileListings.scss";
 
 const ProfileListings = () => {
-  const { dbUser } = useAuth0();
+  const { dbUser, statusUrl } = useAuth0();
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
        axios
-      .get(`http://localhost:5000/api/personallistings/${dbUser.user_uid}`)
+      .get(`${statusUrl}api/personallistings/${dbUser.user_uid}`)
       .then(response => setListings([...response.data]))
       .catch(err => console.log(err));
   }, [dbUser]);
@@ -20,7 +20,7 @@ const ProfileListings = () => {
         console.log(listing),
         <div key={listing.id} className="listingItem">
                     { listing.image !== null && (
-            <img src={"http://localhost:5000/" + listing.image} alt={""}/>
+            <img src={statusUrl + listing.image} alt={""}/>
           )}
           <div className="listingsTextContainer">
             <h3 className="listingsTitle">{listing.title}</h3>

@@ -67,6 +67,13 @@ exports.getPersonalListings = (req, res) => {
   );
 };
 
+exports.browseAll = (req, res) => {
+  connection.query(`SELECT * FROM listings`, (err, rows, fields) => {
+    if(err) throw err;
+    res.send(rows);
+  })
+}
+
 exports.uploadTest = (req, res) => {
   console.log("upload route hit")
   console.log(req.body);

@@ -29,6 +29,6 @@ router.post("/updateprofile/:useruid", controller.updateProfile);
 router.post("/sell/text",  controller.sellText);
 router.post("/sell/images/:listinguid", upload.single('myFile'), controller.sellImages);
 router.get("/personallistings/:selleruid", controller.getPersonalListings);
-router.post("/upload", upload.single('myFile'), controller.uploadTest);
+router.get("/browse/all", controller.browseAll);
 
 module.exports = router;

@@ -1,0 +1,58 @@
+.browsePMother{
+    .browsePMain{
+        .browsePHead{
+            text-align: left;
+            margin-left: 10px;
+        }
+        .browsePListings{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            justify-items: center;
+            // width: 70%;
+            max-width: 1000px;
+            row-gap: 20px;
+
+            .listItem{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                padding: 12px;
+                position: relative;
+
+                img, h2, h3, h4, p{
+                    margin: 0;
+                    padding: 0;
+                }
+
+                border: 2px #333 solid;
+                .itemImage{
+                    height: 125px;
+                    width: 200px;
+                    object-fit: cover;
+                    margin-bottom: 10px;
+                }
+                .itemTextParent{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    margin-bottom: 15px;
+                    
+                }
+                .itemTitle{
+                    font-size: 1.2em;
+                }
+                .itemCategory{
+                    font-size: 1em;
+                }
+                .itemPrice{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    padding: 3px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

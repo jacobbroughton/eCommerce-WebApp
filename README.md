@@ -22,18 +22,22 @@ Created by Jacob Broughton
     * Use same values as on listings DB table
 * Make profile edit mandatory before creating a listing
     - Make it USA only and convert state input to a selection menu
-* Get image preview working (client side)
-* Upload image to database 
-* Include and load images in listings
-* Work on styles
-- Add statusUrl to context
-- Add categories filtering functionality
-- Design site mockup on affinity designer... Pages: 
+* Design site mockup on affinity designer... Pages: 
     - Logged-Out Home
     - Logged-In Home
     - Profile
     - Categories List 
     - { Category }
     - Listing
+* Get image preview working (client side)
+* Upload image to database 
+* Include and load images in listings
+* Work on styles
+* Add statusUrl to context
+- Create "Browse" page
+- Adjust styling on sell page so the image does not take up so much space.
+- Let users add up to 4 images
+- Create single listing modals / pages
+- Add categories filtering functionality
 - Set up stripe payment processor
     - Use stripe API quickstart guide
