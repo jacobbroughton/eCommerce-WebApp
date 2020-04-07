@@ -30,5 +30,6 @@ router.post("/sell/text",  controller.sellText);
 router.post("/sell/images/:listinguid", upload.single('myFile'), controller.sellImages);
 router.get("/personallistings/:selleruid", controller.getPersonalListings);
 router.get("/browse/all", controller.browseAll);
+router.get("/browse/:category", controller.browseCategory);
 
 module.exports = router;

@@ -74,8 +74,11 @@ exports.browseAll = (req, res) => {
   })
 }
 
-exports.uploadTest = (req, res) => {
-  console.log("upload route hit")
-  console.log(req.body);
-  console.log(req.file);
+exports.browseCategory = (req, res) => {
+  let origCat = req.params.category;
+  console.log(origCat)
+  connection.query(`SELECT * FROM listings WHERE category = "${req.params.category}"`, (err, rows, field) => {
+    if(err) throw err;
+    res.send(rows);
+  })
 }

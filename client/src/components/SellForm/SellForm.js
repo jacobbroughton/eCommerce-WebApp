@@ -7,16 +7,16 @@ import "./SellForm.scss";
 
 const SellForm = () => {
   let categoryArr = [
-    "Computers / Accessories",
+    "Computers & Accessories",
     "Video Games",
-    "Outdoors / Sports",
-    "Cameras / Photography",
+    "Outdoors & Sports",
+    "Cameras & Equipment",
     "Musical Instruments",
     "Office Supplies",
     "Cell Phones",
-    "Fashion / Jewelry",
-    "Home / Garden",
-    "Toys / Games",
+    "Fashion & Jewelry",
+    "Home & Garden",
+    "Toys & Games",
     "Books",
     "Beauty"
   ];

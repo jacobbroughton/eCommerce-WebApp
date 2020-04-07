@@ -34,7 +34,10 @@ Created by Jacob Broughton
 * Include and load images in listings
 * Work on styles
 * Add statusUrl to context
-- Create "Browse" page
+* Create "Browse" page
+- Add category filter
+    - Consider using props from parent category/browse element
+- Add loading for when images are loading on pages
 - Adjust styling on sell page so the image does not take up so much space.
 - Let users add up to 4 images
 - Create single listing modals / pages

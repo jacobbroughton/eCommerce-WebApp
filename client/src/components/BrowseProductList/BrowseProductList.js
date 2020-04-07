@@ -3,18 +3,25 @@ import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
 import "./BrowseProductList.scss";
 
-const BrowseProductList = () => {
+const BrowseProductList = props => {
   const { statusUrl } = useAuth0();
+  const { category } = props;
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
-    // if (window.location.href === "/browse") {
+      console.log(category)
+    if (category === "") {
     axios
       .get(`${statusUrl}api/browse/all`)
       .then(response => setListings([...response.data]))
       .catch(err => console.log(err));
-    // }
-  }, []);
+    } else {
+        axios
+        .get(`${statusUrl}api/browse/${category}`)
+        .then(response => setListings([...response.data]))
+        .catch(err => console.log(err));
+    }
+  }, [category]);
 
   return (
     <div className="browsePMother">
