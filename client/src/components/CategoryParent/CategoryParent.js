@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ProductList from "../BrowseProductList/BrowseProductList";
-import "./BrowseCategoryParent";
+import ProductList from "../ProductList/ProductList";
+import "./CategoryParent.scss";
 
 const BrowseCategoryParent = () => {
   const [cat, setCat] = useState("");
@@ -18,16 +18,18 @@ const BrowseCategoryParent = () => {
     "Books",
     "Beauty"
   ];
-  const linkFriendlyCatArr = [];
 
   return (
-    <div>
-      <h1>Categories</h1>
-      <ul>
-        {categoryArr.map(cate => (
-          <li onClick={e => setCat(cate)}>{cate}</li>
-        ))}
-      </ul>
+    <div className="browseViewMother">
+        <div className="catParent">
+            <h3 className="catHead">Categories</h3>
+            <ul className="catList">
+                {categoryArr.map(cate => (
+                <li className="catItem" key={cate} onClick={e => setCat(cate)}>{cate}</li>
+                ))}
+            </ul>
+        </div>
+
       <ProductList category={cat} />
     </div>
   );

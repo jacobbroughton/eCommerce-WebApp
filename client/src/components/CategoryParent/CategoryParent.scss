@@ -1,0 +1,27 @@
+.browseViewMother{
+    display: flex;
+
+    .catParent{
+        padding-left: 30px;
+        padding-right: 30px;
+
+        .catHead{
+            text-align: left;
+            font-size: 1.25em;
+        }
+        .catList{
+            margin: 0;
+            padding: 0;
+            .catItem{
+                list-style: none;
+                text-align: left;
+                margin-bottom: 10px;
+                cursor: pointer;
+
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

@@ -1,11 +1,11 @@
 import React from "react";
 // import BrowseProductList from "../BrowseProductList/BrowseProductList"
-import BrowseCategoryParent from "../BrowseCategoryParent/BrowseCategoryParent"
+import CategoryParent from "../CategoryParent/CategoryParent"
 
 const Browse = () => {
     return (
         <div>
-            <BrowseCategoryParent/>
+            <CategoryParent/>
         </div>
     )
 }
