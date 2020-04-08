@@ -27,7 +27,7 @@ router.get("/finduser/:email", controller.findUser);
 router.post("/adduser", controller.addUser);
 router.post("/updateprofile/:useruid", controller.updateProfile);
 router.post("/sell/text",  controller.sellText);
-router.post("/sell/images/:listinguid", upload.single('myFile'), controller.sellImages);
+router.post("/sell/images/:listinguid", upload.array('myFile', 4), controller.sellImages);
 router.get("/personallistings/:selleruid", controller.getPersonalListings);
 router.get("/browse/all", controller.browseAll);
 router.get("/browse/:category", controller.browseCategory);

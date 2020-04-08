@@ -34,6 +34,7 @@ const SellForm = () => {
   const [category, setCategory] = useState(categoryArr[0]);
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
+  const [files, setFiles] = useState();
 
   const createRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -45,20 +46,23 @@ const SellForm = () => {
     const previewImage = document.getElementById("imgPreview");
     const previewDefaultText = document.getElementById("defaultPreviewText");
     const selectedFile = e.target.files[0]; // Only allows one file, shows undefined if window is closed
+    const selectedFiles = e.target.files;
     setFile(selectedFile);
+    setFiles(selectedFiles)
+
+
+    console.log(selectedFiles)
+    // Add some kind of loop here that renders each picture out the same
 
     if (selectedFile) {
       const reader = new FileReader();
-
       previewDefaultText.style.display = "none";
       previewImage.style.display = "block";
-
       reader.addEventListener("load", () => {
-        console.log(reader);
         previewImage.setAttribute("src", reader.result);
       });
-
       reader.readAsDataURL(selectedFile);
+
     } else {
       previewDefaultText.style.display = null;
       previewImage.style.display = null;
@@ -69,16 +73,20 @@ const SellForm = () => {
   const handleSubmit = e => {
 
     e.preventDefault();
+    console.log(file)
+    console.log(files)
 
     const formData = new FormData();
-    formData.append("myFile", file);
+    formData.append("myFile", files[0]);
+    if(files[1]){ formData.append("myFile", files[1]); }
+    if(files[2]){ formData.append("myFile", files[2]); }
+    if(files[3]){ formData.append("myFile", files[3]); }
+    
     const config = {
       headers: {
         "content-type": "multipart/form-data"
       }
     };
-
-    console.log(formData);
 
     let time = moment().format("LT");
     let date = moment().format("L");
@@ -142,6 +150,7 @@ const SellForm = () => {
           className="imageInput"
           onChange={e => handleImgChange(e)}
           accept="image/png, image/jpeg, image/jpg"
+          multiple
         />
         <div className="imgPreviewContainer" id="imgPreviewContainer">
           <img

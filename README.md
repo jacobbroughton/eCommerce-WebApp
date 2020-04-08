@@ -35,11 +35,16 @@ Created by Jacob Broughton
 * Work on styles
 * Add statusUrl to context
 * Create "Browse" page
-- Add category filter
-    - Consider using props from parent category/browse element
+* Add category filter
+    * Consider using props from parent category/browse element
+* Adjust styling on sell page so the image does not take up so much space.
+* Let users add up to 4 images
+    - Use multer array (i think)
+    - Consider appending image url strings with a comma in database field (up to 4)
+- Load all images on single listing view
+    - Split image string
+- Add "Firmness ()" "Trade" field to product listing
 - Add loading for when images are loading on pages
-- Adjust styling on sell page so the image does not take up so much space.
-- Let users add up to 4 images
 - Create single listing modals / pages
 - Add categories filtering functionality
 - Set up stripe payment processor

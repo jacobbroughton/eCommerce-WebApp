@@ -45,12 +45,13 @@ exports.sellText = (req, res) => {
 };
 
 exports.sellImages = (req, res) => {
-  console.log(req.body);
-  console.log(req.file)
-  console.log("updating images field with " + req.file.path )
-  let r = req.body;
+  let uploadStr = ""; 
+  for(let i = 0; i < req.files.length; i++) {
+    uploadStr += req.files[i].path + " ";
+  }
+
   connection.query(
-    `UPDATE listings SET image = "${req.file.path}" WHERE listing_uid = "${req.params.listinguid}"`,
+    `UPDATE listings SET image = "${uploadStr}" WHERE listing_uid = "${req.params.listinguid}"`,
     (err, rows, fields) => {
       if (err) throw err;
     }
