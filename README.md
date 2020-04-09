@@ -39,11 +39,13 @@ Created by Jacob Broughton
     * Consider using props from parent category/browse element
 * Adjust styling on sell page so the image does not take up so much space.
 * Let users add up to 4 images
-    - Use multer array (i think)
-    - Consider appending image url strings with a comma in database field (up to 4)
+    * Use multer array (i think)
+    * Consider appending image url strings with a comma in database field (up to 4)
+* Add "Firmness ()" "Trade" field to product listing
 - Load all images on single listing view
     - Split image string
-- Add "Firmness ()" "Trade" field to product listing
+- Make all selling fields required
+    - Cannot be the "select" option
 - Add loading for when images are loading on pages
 - Create single listing modals / pages
 - Add categories filtering functionality

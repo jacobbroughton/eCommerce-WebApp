@@ -7,6 +7,7 @@ import "./SellForm.scss";
 
 const SellForm = () => {
   let categoryArr = [
+    "Select Category",
     "Computers & Accessories",
     "Video Games",
     "Outdoors & Sports",
@@ -20,18 +21,24 @@ const SellForm = () => {
     "Books",
     "Beauty"
   ];
-  let conditionArr = ["Used (fair)", "Used (good)", "Used (like new)", "New"];
+  let conditionArr = ["Select Condition", "Used (fair)", "Used (good)", "Used (like new)", "New"];
   let shippingArr = [
+    "Select Shipping",
     "Will Ship Within US",
     "Local Only (Meet up)",
     "Local Only (Pickup)"
   ];
+  let priceOfferArr = ["Select offer options", "Firm", "Reasonable offers only", "Any offer"];
+  let tradeArr = ["Select trade options", "No Trades", "Will consider category related Trades", "Will consider any Trade"]
+
   const { dbUser, statusUrl } = useAuth0();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0); // Consider type
   const [condition, setCondition] = useState(conditionArr[0]);
   const [shipping, setShipping] = useState(shippingArr[0]);
   const [category, setCategory] = useState(categoryArr[0]);
+  const [trades, setTrades] = useState(tradeArr[0]);
+  const [priceOffer, setPriceOffer] = useState(priceOfferArr[0]);
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const [files, setFiles] = useState();
@@ -81,7 +88,7 @@ const SellForm = () => {
     if(files[1]){ formData.append("myFile", files[1]); }
     if(files[2]){ formData.append("myFile", files[2]); }
     if(files[3]){ formData.append("myFile", files[3]); }
-    
+
     const config = {
       headers: {
         "content-type": "multipart/form-data"
@@ -108,6 +115,8 @@ const SellForm = () => {
           item_condition: condition,
           category,
           ship_status: shipping,
+          firmness: priceOffer,
+          trades,
           date_created,
           time_created
         })
@@ -192,6 +201,26 @@ const SellForm = () => {
           onChange={e => setCategory(e.target.value)}
         >
           {categoryArr.map(cat => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+        <select
+          className="priceOfferInput"
+          onChange={e => setPriceOffer(e.target.value)}
+        >
+          {priceOfferArr.map(cat => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+        <select
+          className="tradeInput"
+          onChange={e => setTrades(e.target.value)}
+        >
+          {tradeArr.map(cat => (
             <option key={cat} value={cat}>
               {cat}
             </option>
