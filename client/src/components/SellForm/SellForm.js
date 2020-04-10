@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
-import PhotoTest from "../PhotoTest/PhotoTest";
 import axios from "axios";
 import moment from "moment";
 import "./SellForm.scss";

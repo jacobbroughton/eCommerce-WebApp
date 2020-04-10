@@ -10,6 +10,7 @@ const AppRouter = () => (
     <Switch>
         <Route exact path="/" component={Index}/>
         <Route path="/browse" component={Browse}/>
+        <Route path="/browse/single/:listinguid"/>
         <PrivateRoute path="/profile" component={Profile}/>
         <PrivateRoute path="/sell" component={SellPage}/>
     </Switch>

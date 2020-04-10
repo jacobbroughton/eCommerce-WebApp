@@ -20,6 +20,7 @@
                 position: relative;
                 border: 1px lightgrey solid;
                 border-radius: 2px;
+                cursor: pointer;
 
                 img, h2, h3, h4, p{
                     margin: 0;
@@ -59,6 +60,9 @@
                     font-weight: bold;
                     border-radius: 3px;
                 }
+            }
+            .toggleDiv{
+                display: none;
             }
         }
     }

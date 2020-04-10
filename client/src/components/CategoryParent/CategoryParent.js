@@ -5,6 +5,7 @@ import "./CategoryParent.scss";
 const BrowseCategoryParent = () => {
   const [cat, setCat] = useState("");
   const categoryArr = [
+    "All", 
     "Video Games",
     "Computers & Accessories",
     "Outdoors & Sports",
@@ -25,6 +26,10 @@ const BrowseCategoryParent = () => {
             <h3 className="catHead">Categories</h3>
             <ul className="catList">
                 {categoryArr.map(cate => (
+                cate === "All" 
+                ? 
+                <li className="catItem" key={cate} onClick={e => setCat(cate)}>All For Sale</li>
+                :
                 <li className="catItem" key={cate} onClick={e => setCat(cate)}>{cate}</li>
                 ))}
             </ul>

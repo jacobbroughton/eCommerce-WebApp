@@ -5,7 +5,7 @@ Created by Jacob Broughton
 # Bug Report
 - Sometimes or initial listings show twice on profile.
 
-# The Plan
+# Completed
 * Create basic server
 * Get files/folder structured correctly
 * Connect to heroku
@@ -42,8 +42,12 @@ Created by Jacob Broughton
     * Use multer array (i think)
     * Consider appending image url strings with a comma in database field (up to 4)
 * Add "Firmness ()" "Trade" field to product listing
+
+# Incomplete
 - Load all images on single listing view
     - Split image string
+    - Only load first on listings page
+- Fix duplicate SQL rows issue
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
@@ -51,3 +55,4 @@ Created by Jacob Broughton
 - Add categories filtering functionality
 - Set up stripe payment processor
     - Use stripe API quickstart guide
+- Set up direct messaging
