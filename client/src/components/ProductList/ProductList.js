@@ -56,12 +56,15 @@ const BrowseProductList = (props) => {
             //   to={`/browse/single/${list.listing_uid}`}
             // >
               <div onClick={() => handleModalView(list)} className="listItem">
-                <img
-                  onLoad={() => setLoadCounter(loadCounter++)}
-                  className="itemImage"
-                  src={statusUrl + list.image.split(" ")[0]}
-                  alt=""
-                />
+                { list.image && (
+                  <img
+                    onLoad={() => setLoadCounter(loadCounter++)}
+                    className="itemImage"
+                    src={statusUrl + list.image.split(" ")[0]}
+                    alt=""
+                  />
+                )}
+
                 <div className="itemTextParent">
                   {list.title.length > 20 ? (
                     <p className="itemTitle">{list.title.slice(0, 20)}...</p>

@@ -47,6 +47,7 @@ Created by Jacob Broughton
 - Load all images on single listing view
     - Split image string
     - Only load first on listings page
+- Finish first draft for single listing
 - Fix duplicate SQL rows issue
 - Make all selling fields required
     - Cannot be the "select" option
@@ -56,3 +57,4 @@ Created by Jacob Broughton
 - Set up stripe payment processor
     - Use stripe API quickstart guide
 - Set up direct messaging
+- Add blog / video review section for each listing

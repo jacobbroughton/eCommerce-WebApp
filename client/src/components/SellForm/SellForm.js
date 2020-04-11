@@ -107,6 +107,8 @@ const SellForm = () => {
           seller_uid: dbUser.user_uid,
           email: dbUser.email,
           seller_nickname: dbUser.nickname,
+          city: dbUser.town,
+          state: dbUser.state,
           title,
           description,
           image: null,

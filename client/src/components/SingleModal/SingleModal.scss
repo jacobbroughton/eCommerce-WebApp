@@ -1,12 +1,98 @@
-.modalMother{
-    position: absolute;
-    // width: 80vw;
-    // height: 80vh;
-    left: 10%;
-    right: 10%;
-    top: 10%;
-    bottom: 10%;
-    background: lightgrey;
-    border: #333 solid 2px;
-    border-radius: 3px;
+.modalMother {
+  position: absolute;
+  left: 13%;
+  right: 13%;
+  top: 13%;
+  bottom: 13%;
+  background: #ffffff;
+  border: #333 solid 2px;
+  border-radius: 3px;
+  .modalMain {
+    padding: 2em;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .imagesGenInfoDiv {
+      display: flex;
+      .imagesParent {
+        display: flex;
+        .singleImage {
+          height: auto;
+          width: 350px;
+        }
+      }
+      .listingGenInfoParent {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        .title{
+            text-align: left;
+            color: #333;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        .listingGenInfo {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          row-gap: 1em;
+          column-gap: 1.5em;
+          .listingGenItem {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .genInfoLabel {
+              color: #333;
+              opacity: 0.9;
+              font-size: 0.95rem;
+            }
+            .genInfoP {
+              font-size: 1.1rem;
+            }
+          }
+        }
+
+      }        
+
+    }      
+    hr{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .listingDescInfo{
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            .description{
+                text-align: left;
+                margin-bottom: 20px;
+            }
+            .dateTime{
+                text-align: left;
+                background: #cccccc;
+                align-self: flex-start;
+                padding: 5px;
+
+            }
+        }
+  }
+  .closeBtn{
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: red;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #ffffff;
+      margin: 0;
+      border: none;
+      cursor: pointer;
+  }
 }
