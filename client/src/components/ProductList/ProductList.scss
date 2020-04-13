@@ -11,12 +11,14 @@
             justify-items: center;
             max-width: 1000px;
             row-gap: 20px;
+            column-gap: 20px;
 
             .listItem{
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
-                // padding: 12px;
+                max-width: 180px;
+                max-height: 150px;
                 position: relative;
                 border: 1px lightgrey solid;
                 border-radius: 2px;
@@ -37,20 +39,25 @@
                     justify-content: flex-start;
                     align-items: flex-start;
                     flex-direction: column;
-                    margin-bottom: 15px;
+                    max-width: 160px;
                     padding: 8px;
                     
                 }
                 .itemTitle{
                     font-size: 1em;
                     font-weight: bold;
+                    white-space: nowrap;
+                    max-width: 160px;
+                }
+                .itemCityState{
+                    font-size: 0.9rem;
                 }
                 .itemCategory{
                     font-size: 1em;
                 }
                 .itemPrice{
                     position: absolute;
-                    top: 50%;
+                    top: 46%;
                     left: 10px;
                     padding: 2px;
                     font-size:  0.9em;
@@ -63,6 +70,7 @@
             }
             .toggleDiv{
                 display: none;
+                // position: absolute;
             }
         }
     }

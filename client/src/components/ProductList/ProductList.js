@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./ProductList.scss";
 import SingleModal from "../SingleModal/SingleModal";
+import placeholderImg from "../../assets/download.jpg";
 
 const BrowseProductList = (props) => {
   const { statusUrl } = useAuth0();
@@ -56,22 +57,31 @@ const BrowseProductList = (props) => {
             //   to={`/browse/single/${list.listing_uid}`}
             // >
               <div onClick={() => handleModalView(list)} className="listItem">
-                { list.image && (
+                { list.image !== "null" && list.image !== null ? 
                   <img
                     onLoad={() => setLoadCounter(loadCounter++)}
                     className="itemImage"
                     src={statusUrl + list.image.split(" ")[0]}
                     alt=""
                   />
-                )}
+                :
+                <img
+                onLoad={() => setLoadCounter(loadCounter++)}
+                className="itemImage"
+                src={placeholderImg}
+                alt=""
+              />
+                }
 
                 <div className="itemTextParent">
                   {list.title.length > 20 ? (
                     <p className="itemTitle">{list.title.slice(0, 20)}...</p>
                   ) : (
                     <p className="itemTitle">{list.title}</p>
-                  )}
+                  )} 
+                  <p className="itemCityState">{list.city}, {list.state}</p>
                 </div>
+                 
                 <p className="itemPrice">${list.price}</p>          
                 
   

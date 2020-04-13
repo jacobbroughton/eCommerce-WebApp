@@ -19,7 +19,7 @@ const ProfileListings = () => {
       {listings.map(listing => (
         console.log(listing),
         <div key={listing.id} className="listingItem">
-                    { listing.image !== null && (
+            { listing.image !== null && (
             <img src={statusUrl + listing.image} alt={""}/>
           )}
           <div className="listingsTextContainer">

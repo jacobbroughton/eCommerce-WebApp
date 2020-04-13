@@ -42,19 +42,26 @@ Created by Jacob Broughton
     * Use multer array (i think)
     * Consider appending image url strings with a comma in database field (up to 4)
 * Add "Firmness ()" "Trade" field to product listing
+* Create single listing modals / pages
+* Finish first draft for single listing
+* Load all images on single listing view
+    * Split image string
+    * Only load first on listings page
 
 # Incomplete
-- Load all images on single listing view
-    - Split image string
-    - Only load first on listings page
-- Finish first draft for single listing
+
+- Polish styles
 - Fix duplicate SQL rows issue
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
-- Create single listing modals / pages
 - Add categories filtering functionality
 - Set up stripe payment processor
     - Use stripe API quickstart guide
-- Set up direct messaging
+- Set up direct messaging (Socket.io)
+- Some images are getting "null" as their source
 - Add blog / video review section for each listing
+- Add state / city filters
+- Add "wanted" section
+- Add "automotive parts" category
+- Let users save listings
