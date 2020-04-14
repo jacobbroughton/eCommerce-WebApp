@@ -2,4 +2,68 @@
     padding-left: 20px;
     padding-top: 20px;
     margin-left: 20px;
+
+    h2{
+        text-align: left;
+    }
+.listingItem{
+    max-width: 400px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 3px 3px 15px rgba(0, 181, 204, 0.05);
+
+    h1, h2, h3, h4, h5, h6, p{ 
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+    img{
+        width: 120px;
+        height: 85px;
+        object-fit: cover;
+    }
+
+    .listingsTextContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0 0 10px;
+
+
+    }            
+    .listingsPrice{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background: #f8f8f8;
+            border-top: #cccccc solid 1px;
+            border-left: #cccccc solid 1px;
+            padding: 5px;
+        }
+}
+.toggleDiv{
+    display: none;
+    // position: absolute;
+}
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+    z-index: 2;
+  }
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
 }

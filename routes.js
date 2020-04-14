@@ -32,7 +32,7 @@ router.get("/personallistings/:selleruid", controller.getPersonalListings);
 router.get("/browse/all", controller.browseAll);
 router.get("/browse/single/:listinguid", controller.browseSingle);
 router.get("/browse/:category", controller.browseCategory);
-router.post("/save/post", controller.saveListing);
+router.get("/save/post/:listinguid/:useruid", controller.saveListing);
 router.get("/save/get/:useruid", controller.getSaved);
 
 module.exports = router;

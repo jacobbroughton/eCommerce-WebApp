@@ -45,8 +45,8 @@ exports.sellText = (req, res) => {
 };
 
 exports.sellImages = (req, res) => {
-  let uploadStr = ""; 
-  for(let i = 0; i < req.files.length; i++) {
+  let uploadStr = "";
+  for (let i = 0; i < req.files.length; i++) {
     uploadStr += req.files[i].path + " ";
   }
 
@@ -63,57 +63,81 @@ exports.getPersonalListings = (req, res) => {
     `SELECT * FROM listings WHERE seller_uid = "${req.params.selleruid}"`,
     (err, rows, fields) => {
       if (err) throw err;
-      res.send(rows)
+      res.send(rows);
     }
   );
 };
 
 exports.browseAll = (req, res) => {
   connection.query(`SELECT * FROM listings`, (err, rows, fields) => {
-    if(err) throw err;
+    if (err) throw err;
     res.send(rows);
-  })
-}
+  });
+};
 
 exports.browseCategory = (req, res) => {
   let origCat = req.params.category;
-  console.log(origCat)
-  connection.query(`SELECT * FROM listings WHERE category = "${req.params.category}"`, (err, rows, field) => {
-    if(err) throw err;
-    res.send(rows);
-  })
-}
+  console.log(origCat);
+  connection.query(
+    `SELECT * FROM listings WHERE category = "${req.params.category}"`,
+    (err, rows, field) => {
+      if (err) throw err;
+      res.send(rows);
+    }
+  );
+};
 
 exports.browseSingle = (req, res) => {
   let listinguid = req.params.listinguid;
-  connection.query(`SELECT * FROM listings WHERE listing_uid = "${listinguid}"`, (err, rows, field) => {
-    if(err) throw err;
-    res.send(rows[0]);
-  })
-}
-
+  connection.query(
+    `SELECT * FROM listings WHERE listing_uid = "${listinguid}"`,
+    (err, rows, field) => {
+      if (err) throw err;
+      res.send(rows[0]);
+    }
+  );
+};
 
 exports.saveListing = (req, res) => {
   let r = req.body;
-  connection.query(`INSERT INTO saved_listings (listing_uid, user_uid, time_saved, date_saved) VALUES ("${r.listing_uid}", "${r.user_uid}", "${r.time_saved}", "${r.date_saved}")`, (err, rows, fields) => {
-    if(err) throw err;
-  })
-}
+  connection.query(
+    `SELECT saved_posts FROM users WHERE user_uid = "${req.params.useruid}"`,
+    (err, rows1, fields) => {
+      if (err) throw err;
+
+      if (rows1[0].saved_posts === null) {
+        connection.query(
+          `UPDATE users SET saved_posts = "${
+            req.params.listinguid
+          }" WHERE user_uid = "${req.params.useruid}"`,
+          (err, rows2, fields) => {
+            if (err) throw err;
+          }
+        );
+      } else {
+        connection.query(
+          `UPDATE users SET saved_posts = "${
+            rows1[0].saved_posts + "," + req.params.listinguid
+          }" WHERE user_uid = "${req.params.useruid}"`,
+          (err, rows2, fields) => {
+            if (err) throw err;
+          }
+        );
+      }
+    }
+  );
+};
 
 exports.getSaved = (req, res) => {
   let useruid = req.params.useruid;
-  let test;
-
-  connection.query(`SELECT * FROM saved_listings WHERE user_uid = "${useruid}"`, (err, rows1, fields) => {
-    if(err) throw err;  
-    // let sendRows;
-    // for(let i = 0; i < rows1.length; i++) {
-    //   connection.query(`SELECT * FROM listings WHERE listing_uid = "${rows1[i].listing_uid}"`, (err, rows2, field) => {
-    //     if(err) throw err;
-    //    sendRows = rows2;
-    //    return sendRows;
-    //   }) 
-    // }
-    res.send(rows1);
-  })
-}
+  connection.query(
+    `SELECT saved_posts FROM users WHERE user_uid = "${useruid}"`,
+    (err, rows, fields) => {
+      if (err) throw err;
+      connection.query(`SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts})`, (err, rows2, fields) => {
+        if(err) throw err;
+        res.send(rows2);
+      })
+    }
+  );
+};

@@ -65,7 +65,7 @@ const BrowseProductList = (props) => {
             //   key={list.listing_uid}
             //   to={`/browse/single/${list.listing_uid}`}
             // >
-              <div onClick={() => handleModalView(list)} className="listItem">
+              <div key={list.id} onClick={() => handleModalView(list)} className="listItem">
                 { list.image !== "null" && list.image !== null ? 
                   <img
                     onLoad={() => setLoadCounter(loadCounter++)}

@@ -29,12 +29,7 @@ const SingleModal = (props) => {
     let date_saved = date.replace(/\//g, "-");
 
     axios
-    .post(`${statusUrl}api/save/post`, {
-      listing_uid: item.listing_uid,
-      user_uid: dbUser.user_uid,
-      time_saved,
-      date_saved
-    })
+    .get(`${statusUrl}api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }
@@ -79,6 +74,7 @@ const SingleModal = (props) => {
                       className="sideImage"
                       src={statusUrl + image}
                       alt=""
+                      key={image}
                     />
                   ))}
                 </div>
