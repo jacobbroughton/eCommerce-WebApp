@@ -4,9 +4,7 @@ import CategoryParent from "../CategoryParent/CategoryParent"
 
 const Browse = () => {
     return (
-        <div>
             <CategoryParent/>
-        </div>
     )
 }
 

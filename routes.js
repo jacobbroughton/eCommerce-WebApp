@@ -31,5 +31,6 @@ router.post("/sell/images/:listinguid", upload.array('myFile', 4), controller.se
 router.get("/personallistings/:selleruid", controller.getPersonalListings);
 router.get("/browse/all", controller.browseAll);
 router.get("/browse/:category", controller.browseCategory);
+router.post("/save/post", controller.saveListing);
 
 module.exports = router;

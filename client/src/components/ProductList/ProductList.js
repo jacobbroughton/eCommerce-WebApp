@@ -37,7 +37,16 @@ const BrowseProductList = (props) => {
   const handleModalView = (props) => {
     setCurrentItem(props);
     document.getElementById("toggleDiv").style.display = "block";
+    const overlay = document.getElementById("overlay");
+    overlay.classList.add("active")
   }
+  
+  const overlayClose = e => {
+    const overlay = document.getElementById("overlay");
+    document.getElementById("toggleDiv").style.display = "none";
+    overlay.classList.remove("active")
+    // closeModal(e, modal, null);
+  };
 
   return (
     <div className="browsePMother">
@@ -91,6 +100,7 @@ const BrowseProductList = (props) => {
               <div id="toggleDiv" className="toggleDiv">
             <SingleModal item={currentItem}/>
           </div>
+          <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
       </div>
     </div>

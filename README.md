@@ -49,19 +49,16 @@ Created by Jacob Broughton
     * Only load first on listings page
 
 # Incomplete
-
+- Let users save listings
 - Polish styles
 - Fix duplicate SQL rows issue
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
 - Add categories filtering functionality
-- Set up stripe payment processor
-    - Use stripe API quickstart guide
 - Set up direct messaging (Socket.io)
 - Some images are getting "null" as their source
 - Add blog / video review section for each listing
 - Add state / city filters
 - Add "wanted" section
-- Add "automotive parts" category
-- Let users save listings
+- Add "automotive parts", "tools" categories

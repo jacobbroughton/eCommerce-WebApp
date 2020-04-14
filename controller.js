@@ -83,3 +83,11 @@ exports.browseCategory = (req, res) => {
     res.send(rows);
   })
 }
+
+
+exports.saveListing = (req, res) => {
+  let r = req.body;
+  connection.query(`INSERT INTO saved_listings (listing_uid, user_uid, time_saved, date_saved) VALUES ("${r.listing_uid}", "${r.user_uid}", "${r.time_saved}", "${r.date_saved}")`, (err, rows, fields) => {
+    if(err) throw err;
+  })
+}

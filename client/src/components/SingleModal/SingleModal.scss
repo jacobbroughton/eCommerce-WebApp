@@ -2,12 +2,13 @@
   position: absolute;
   left: 13%;
   right: 13%;
-  top: 13%;
-  bottom: 13%;
+  top: 10%;
+  // bottom: 13%;
   height: auto;
   background: #ffffff;
   border: #333 solid 2px;
   border-radius: 3px;
+  z-index: 3;
   .modalMain {
     padding: 2em;
     h1,
@@ -32,8 +33,8 @@
         .sideImagesParent{
           display: flex;
           flex-direction: column;
-          height: 70px;
-          width: 70px;
+          height: 55px;
+          width: 55px;
           margin-left: 10px;
           .sideImage{
             height: 100%;
@@ -71,6 +72,19 @@
               font-size: 1.1rem;
             }
           }
+          .saveBtnParent{
+            display: flex;
+            justify-content: flex-start;
+            .saveBtn{
+              font-size: 1rem;
+              appearance: none;
+              background: lightblue;
+              color: black;
+              font-weight: bold;
+              border-radius: 3px;
+              cursor: pointer;
+            }
+          }
         }
 
       }        
@@ -87,6 +101,7 @@
             .description{
                 text-align: left;
                 margin-bottom: 20px;
+                white-space: pre-wrap;
             }
             .dateTime{
                 text-align: left;

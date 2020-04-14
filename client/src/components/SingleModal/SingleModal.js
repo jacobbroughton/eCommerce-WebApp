@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import placeholderImg from "../../assets/download.jpg";
+import axios from "axios";
+import moment from "moment";
 import "./SingleModal.scss";
 
 const SingleModal = (props) => {
   let { item } = props;
-  const { statusUrl } = useAuth0();
+  const { statusUrl, dbUser } = useAuth0();
   let imageArr = [];
   const [image, setImage] = useState("");
   
@@ -15,8 +17,27 @@ const SingleModal = (props) => {
 
   const handleClose = (e) => {
     document.getElementById("modalMother").parentNode.style = "none";
+    document.getElementById("overlay").classList.remove("active");
     setImage("")
   };
+
+  const handleSave = () => {
+
+    let time = moment().format("LT");
+    let date = moment().format("L");
+    let time_saved = time.replace(/\s/g, "");
+    let date_saved = date.replace(/\//g, "-");
+
+    axios
+    .post(`${statusUrl}api/save/post`, {
+      listing_uid: item.listing_uid,
+      user_uid: dbUser.user_uid,
+      time_saved,
+      date_saved
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
 
   if (item !== null) {
     imageArr = item.image.split(" ");
@@ -41,9 +62,9 @@ const SingleModal = (props) => {
                 />
                ) : (
                 item.image !== "null" &&
- (
-   <img className="singleImage" src={image} alt="" />
- )              
+              (
+                <img className="singleImage" src={image} alt="" />
+              )              
               )} 
               {item.image === "null" && (
                 <img className="singleImage" src={placeholderImg}/>
@@ -92,6 +113,9 @@ const SingleModal = (props) => {
                 <div className="listingGenItem">
                   <p className="genInfoLabel">Listed By</p>
                   <p className="genInfoP">{item.seller_nickname}</p>
+                </div>
+                <div className="saveBtnParent">
+                  <button className="saveBtn" onClick={() => handleSave()}>Save</button>
                 </div>
               </div>
             </div>
