@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import ProfileEditModal from "../ProfileEditModal/ProfileEditModal";
 import ProfileTopSect from "../ProfileTopSect/ProfileTopSect";
 import ProfileListings from "../ProfileListings/ProfileListings";
+import ProfileSaved from "../ProfileSaved/ProfileSaved";
 import Loading from "../Loading/Loading";
 import { useAuth0 } from "../../contexts/auth0-context";
 import "./styles/Profile.scss";
@@ -35,7 +36,10 @@ const Profile = () => {
       <div className="profileMain">
         <ProfileTopSect />
         <hr/>
-        <ProfileListings/>
+        <div className="profilePrimary">
+           <ProfileListings/>
+           <ProfileSaved/>
+        </div>
         <button onClick={e => handleEditModal(e)}>Open Modal</button>
         <div style={style1} id="modalParent">
           <ProfileEditModal />

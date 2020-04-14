@@ -84,10 +84,36 @@ exports.browseCategory = (req, res) => {
   })
 }
 
+exports.browseSingle = (req, res) => {
+  let listinguid = req.params.listinguid;
+  connection.query(`SELECT * FROM listings WHERE listing_uid = "${listinguid}"`, (err, rows, field) => {
+    if(err) throw err;
+    res.send(rows[0]);
+  })
+}
+
 
 exports.saveListing = (req, res) => {
   let r = req.body;
   connection.query(`INSERT INTO saved_listings (listing_uid, user_uid, time_saved, date_saved) VALUES ("${r.listing_uid}", "${r.user_uid}", "${r.time_saved}", "${r.date_saved}")`, (err, rows, fields) => {
     if(err) throw err;
+  })
+}
+
+exports.getSaved = (req, res) => {
+  let useruid = req.params.useruid;
+  let test;
+
+  connection.query(`SELECT * FROM saved_listings WHERE user_uid = "${useruid}"`, (err, rows1, fields) => {
+    if(err) throw err;  
+    // let sendRows;
+    // for(let i = 0; i < rows1.length; i++) {
+    //   connection.query(`SELECT * FROM listings WHERE listing_uid = "${rows1[i].listing_uid}"`, (err, rows2, field) => {
+    //     if(err) throw err;
+    //    sendRows = rows2;
+    //    return sendRows;
+    //   }) 
+    // }
+    res.send(rows1);
   })
 }
