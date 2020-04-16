@@ -27,9 +27,9 @@ const ProfileSaved = () => {
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
+    document.getElementById("toggleDiv").style.display = "none";
     document.getElementById("toggleDiv2").style.display = "none";
     overlay.classList.remove("active");
-    // closeModal(e, modal, null);
   };
 
   return (

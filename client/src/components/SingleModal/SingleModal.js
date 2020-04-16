@@ -21,8 +21,8 @@ const SingleModal = (props) => {
 
   const handleClose = (e) => {
     console.log(document.getElementById("modalMother").parentNode)
-    document.getElementById("toggleDiv").style = "none";
-    document.getElementById("toggleDiv2").style = "none";
+    document.getElementById("toggleDiv").style.display = "none";
+    document.getElementById("toggleDiv2").style.display = "none";
     document.getElementById("overlay").classList.remove("active");
     setImage("")
   };

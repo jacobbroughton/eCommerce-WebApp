@@ -17,15 +17,6 @@ const Profile = () => {
     }, 300)
   }, [loading, dbUser])
 
-  const handleEditModal = e => {
-    let modalParent = document.getElementById("modalParent");
-    let style = modalParent.style;
-    style.display = "inline-block";
-  };
-
-  const style1 = {
-    display: "none"
-  };
 
   if (isLoading || loading) {
     return <Loading />;
@@ -39,10 +30,6 @@ const Profile = () => {
         <div className="profilePrimary">
            <ProfileListings/>
            <ProfileSaved/>
-        </div>
-        <button onClick={e => handleEditModal(e)}>Open Modal</button>
-        <div style={style1} id="modalParent">
-          <ProfileEditModal />
         </div>
       </div>
     </div>
