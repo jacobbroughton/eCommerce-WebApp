@@ -20,14 +20,14 @@ const ProfileSaved = () => {
 
   const handleModalView = (props) => {
     setCurrentItem2(props);
-    document.getElementById("toggleDiv").style.display = "block";
+    document.getElementById("toggleDiv2").style.display = "block";
     const overlay = document.getElementById("overlay");
     overlay.classList.add("active");
   };
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
-    document.getElementById("toggleDiv").style.display = "none";
+    document.getElementById("toggleDiv2").style.display = "none";
     overlay.classList.remove("active");
     // closeModal(e, modal, null);
   };
@@ -61,8 +61,7 @@ const ProfileSaved = () => {
           
         )
       )}
-      <div id="toggleDiv" className="toggleDiv">
-        {console.log(currentItem2)}
+      <div id="toggleDiv2" className="toggleDiv">
         <SingleModal item={currentItem2} />
       </div>
       <div onClick={() => overlayClose()} className="" id="overlay"></div>

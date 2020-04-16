@@ -20,7 +20,9 @@ const SingleModal = (props) => {
   }, [item])
 
   const handleClose = (e) => {
-    document.getElementById("modalMother").parentNode.style = "none";
+    console.log(document.getElementById("modalMother").parentNode)
+    document.getElementById("toggleDiv").style = "none";
+    document.getElementById("toggleDiv2").style = "none";
     document.getElementById("overlay").classList.remove("active");
     setImage("")
   };
@@ -48,6 +50,7 @@ const SingleModal = (props) => {
 
   return (
     <div id="modalMother" className="modalMother">
+      {console.log(item)}
       {item && (
         <div className="modalMain">
           <div className="imagesGenInfoDiv">
