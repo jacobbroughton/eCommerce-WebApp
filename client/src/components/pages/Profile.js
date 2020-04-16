@@ -8,7 +8,7 @@ import { useAuth0 } from "../../contexts/auth0-context";
 import "./styles/Profile.scss";
 
 const Profile = () => {
-  const { dbUser, user, isLoading } = useAuth0();
+  const { dbUser, isLoading } = useAuth0();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

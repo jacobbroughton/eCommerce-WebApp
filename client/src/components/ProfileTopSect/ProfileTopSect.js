@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
 import "./ProfileTopSect.scss";
 
 const ProfileTopSect = () => {
-  const { dbUser, user, statusUrl } = useAuth0();
+  const { dbUser, statusUrl } = useAuth0();
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
   const [townCityValue, setTownCityValue] = useState("");
   const [stateValue, setStateValue] = useState("");
-  const [countryValue, setCountryValue] = useState("");
   const stateList = [
     "AK",
     "AL",
@@ -70,8 +69,7 @@ const handleFormSubmit = (e) => {
           firstName: firstNameValue,
           lastName: lastNameValue,
           townCity: townCityValue,
-          state: stateValue,
-          country: countryValue
+          state: stateValue
       })
       .then(response => console.log(response))
       .catch(err => console.log(err))

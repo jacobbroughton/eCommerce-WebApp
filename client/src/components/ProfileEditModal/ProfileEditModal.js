@@ -5,7 +5,7 @@ import {useAuth0} from "../../contexts/auth0-context";
 
 const ProfileEditModal = () => {
 
-    const { dbUser, user, isLoading, statusUrl } = useAuth0();
+    const { dbUser, statusUrl } = useAuth0();
     const [firstNameValue, setFirstNameValue] = useState("");
     const [lastNameValue, setLastNameValue] = useState("");
     const [townCityValue, setTownCityValue] = useState("");

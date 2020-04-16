@@ -1,12 +1,12 @@
-.savedMother{
-    padding-left: 20px;
-    padding-top: 20px;
-    margin-left: 20px;
+.savedMother {
+  padding-left: 20px;
+  padding-top: 20px;
+  margin-left: 20px;
 
-    h2{
-        text-align: left;
-    }
-.listingItem{
+  h2 {
+    text-align: left;
+  }
+  .listingItem {
     max-width: 400px;
     margin-bottom: 20px;
     background: #ffffff;
@@ -15,42 +15,44 @@
     position: relative;
     box-shadow: 3px 3px 15px rgba(0, 181, 204, 0.05);
 
-    h1, h2, h3, h4, h5, h6, p{ 
-        margin: 0;
-        padding: 0;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      margin: 0;
+      padding: 0;
     }
 
-
-
-    img{
-        width: 120px;
-        height: 85px;
-        object-fit: cover;
+    img {
+      width: 120px;
+      height: 85px;
+      object-fit: cover;
     }
 
-    .listingsTextContainer{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 0 0 10px;
-
-
-    }            
-    .listingsPrice{
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            background: #f8f8f8;
-            border-top: #cccccc solid 1px;
-            border-left: #cccccc solid 1px;
-            padding: 5px;
-        }
-}
-.toggleDiv{
+    .listingsTextContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 0 0 10px;
+    }
+    .listingsPrice {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background: #f8f8f8;
+      border-top: #cccccc solid 1px;
+      border-left: #cccccc solid 1px;
+      padding: 5px;
+    }
+  }
+  .toggleDiv {
     display: none;
     // position: absolute;
-}
-#overlay {
+  }
+  #overlay {
     position: fixed;
     opacity: 0;
     top: 0;

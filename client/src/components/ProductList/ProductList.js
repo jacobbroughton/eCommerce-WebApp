@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
-import Loading from "../Loading/Loading";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "./ProductList.scss";
 import SingleModal from "../SingleModal/SingleModal";
@@ -12,15 +10,10 @@ const BrowseProductList = (props) => {
   const { category } = props;
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
-  const [imageArr, setImageArr] = useState([]);
+  // const [imageArr, setImageArr] = useState([]);
   let [loadCounter, setLoadCounter] = useState(0);
 
   useEffect(() => {
-    handleDataFetch();
-    // handleImageSplitting()
-  }, [category]);
-
-  const handleDataFetch = () => {
     if (category === "") {
       axios
         .get(`${statusUrl}api/browse/all`)
@@ -32,7 +25,7 @@ const BrowseProductList = (props) => {
         .then((response) => setListings([...response.data].reverse()))
         .catch((err) => console.log(err));
     }
-  };
+  }, [category, statusUrl]);
 
   const handleModalView = (props) => {
     setCurrentItem(props);

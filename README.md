@@ -47,9 +47,10 @@ Created by Jacob Broughton
 * Load all images on single listing view
     * Split image string
     * Only load first on listings page
+* Let users save listings
 
 # Incomplete
-- Let users save listings
+- Let users delete saved listings
 - Polish styles
 - Fix duplicate SQL rows issue
 - Make all selling fields required
@@ -62,3 +63,4 @@ Created by Jacob Broughton
 - Add state / city filters
 - Add "wanted" section
 - Add "automotive parts", "tools" categories
+- Add notifications

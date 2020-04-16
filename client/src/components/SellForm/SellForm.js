@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
 import moment from "moment";
@@ -165,7 +165,7 @@ const SellForm = () => {
         <div className="imgPreviewContainer" id="imgPreviewContainer">
           <img
             src=""
-            alt="Image Preview"
+            alt=""
             id="imgPreview"
             className="imgPreview"
           />

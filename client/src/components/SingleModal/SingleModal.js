@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import placeholderImg from "../../assets/download.jpg";
 import axios from "axios";
-import moment from "moment";
+// import moment from "moment";
 import "./SingleModal.scss";
 
 const SingleModal = (props) => {
@@ -12,8 +12,12 @@ const SingleModal = (props) => {
   const [image, setImage] = useState("");
   
   useEffect(() => {
-    console.log(image)
-  }, [image])
+    if(item === null) {
+      console.log("This bitch null ")
+    } else {
+      console.log("Not null")
+    }
+  }, [item])
 
   const handleClose = (e) => {
     document.getElementById("modalMother").parentNode.style = "none";
@@ -22,11 +26,10 @@ const SingleModal = (props) => {
   };
 
   const handleSave = () => {
-
-    let time = moment().format("LT");
-    let date = moment().format("L");
-    let time_saved = time.replace(/\s/g, "");
-    let date_saved = date.replace(/\//g, "-");
+    // let time = moment().format("LT");
+    // let date = moment().format("L");
+    // let time_saved = time.replace(/\s/g, "");
+    // let date_saved = date.replace(/\//g, "-");
 
     axios
     .get(`${statusUrl}api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
@@ -62,7 +65,7 @@ const SingleModal = (props) => {
               )              
               )} 
               {item.image === "null" && (
-                <img className="singleImage" src={placeholderImg}/>
+                <img className="singleImage" src={placeholderImg} alt=""/>
               )}
 
               {/* Side Images */}
