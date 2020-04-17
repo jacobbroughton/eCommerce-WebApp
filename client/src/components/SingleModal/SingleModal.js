@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import placeholderImg from "../../assets/download.jpg";
 import axios from "axios";
-// import moment from "moment";
+import moment from "moment";
 import "./SingleModal.scss";
 
 const SingleModal = (props) => {
@@ -12,6 +12,7 @@ const SingleModal = (props) => {
   const [image, setImage] = useState("");
   
   useEffect(() => {
+    console.log(item)
     if(item === null) {
       console.log("This bitch null ")
     } else {
@@ -22,16 +23,16 @@ const SingleModal = (props) => {
   const handleClose = (e) => {
     console.log(document.getElementById("modalMother").parentNode)
     document.getElementById("toggleDiv").style.display = "none";
-    document.getElementById("toggleDiv2").style.display = "none";
+    // document.getElementById("toggleDiv2").style.display = "none";
     document.getElementById("overlay").classList.remove("active");
     setImage("")
   };
 
   const handleSave = () => {
-    // let time = moment().format("LT");
-    // let date = moment().format("L");
-    // let time_saved = time.replace(/\s/g, "");
-    // let date_saved = date.replace(/\//g, "-");
+    let time = moment().format("LT");
+    let date = moment().format("L");
+    let time_saved = time.replace(/\s/g, "");
+    let date_saved = date.replace(/\//g, "-");
 
     axios
     .get(`${statusUrl}api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
@@ -50,7 +51,6 @@ const SingleModal = (props) => {
 
   return (
     <div id="modalMother" className="modalMother">
-      {console.log(item)}
       {item && (
         <div className="modalMain">
           <div className="imagesGenInfoDiv">

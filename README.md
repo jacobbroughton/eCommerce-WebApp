@@ -50,6 +50,7 @@ Created by Jacob Broughton
 * Let users save listings
 
 # Incomplete
+- Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings
 - Polish styles
 - Fix duplicate SQL rows issue

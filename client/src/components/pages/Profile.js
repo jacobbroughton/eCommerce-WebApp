@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
-import ProfileEditModal from "../ProfileEditModal/ProfileEditModal";
 import ProfileTopSect from "../ProfileTopSect/ProfileTopSect";
 import ProfileListings from "../ProfileListings/ProfileListings";
-import ProfileSaved from "../ProfileSaved/ProfileSaved";
 import Loading from "../Loading/Loading";
 import { useAuth0 } from "../../contexts/auth0-context";
 import "./styles/Profile.scss";
@@ -28,8 +26,7 @@ const Profile = () => {
         <ProfileTopSect />
         <hr/>
         <div className="profilePrimary">
-           <ProfileListings/>
-           <ProfileSaved/>
+          <ProfileListings/>
         </div>
       </div>
     </div>
