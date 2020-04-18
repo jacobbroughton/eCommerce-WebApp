@@ -1,22 +1,35 @@
 import React from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
+import axios from "axios";
 import placeholderImg from "../../assets/download.jpg";
 import "../ProfileListingItem/ProfileListingItem";
 
 const ProfileListingItem = (props) => {
 
-    const { statusUrl } = useAuth0();
-    const {listing} = props;
+    const { statusUrl, dbUser } = useAuth0();
+    const {status, listing} = props;
 
-    const handleModalView = (props) => {
+    const handleUnsave = (listing) => {
+        axios
+        .get(`${statusUrl}api/save/update/${listing.listing_uid}/${dbUser.user_uid}`)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+        
+    }
+
+    const handleModalView = (e, listing) => {
+       if(e.target.tagName === "BUTTON") {
+        handleUnsave(listing);
+       } else {
         document.getElementById("toggleDiv").style.display = "block";
         const overlay = document.getElementById("overlay");
         overlay.classList.add("active");
+       }     
     };
 
     return (
         <div
-        onClick={() => handleModalView(listing)}
+        onClick={(e) => handleModalView(e, listing)}
         key={listing.id}
         className="listingItem"
       >
@@ -34,6 +47,9 @@ const ProfileListingItem = (props) => {
           <p>{listing.category}</p>
         </div>
         <p className="listingsPrice">{"$" + listing.price}</p>
+        {status === "saved" && (
+            <button className="unsaveBtn" >Unsave</button>
+        )}
       </div>
     )
 }

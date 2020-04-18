@@ -10,15 +10,6 @@ const SingleModal = (props) => {
   const { statusUrl, dbUser } = useAuth0();
   let imageArr = [];
   const [image, setImage] = useState("");
-  
-  useEffect(() => {
-    console.log(item)
-    if(item === null) {
-      console.log("This bitch null ")
-    } else {
-      console.log("Not null")
-    }
-  }, [item])
 
   const handleClose = (e) => {
     console.log(document.getElementById("modalMother").parentNode)

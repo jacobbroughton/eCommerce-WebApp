@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
 import placeholderImg from "../../assets/download.jpg";
@@ -17,6 +17,14 @@ const ProfileListings = () => {
     fetchSavedListings();
   }, [dbUser, statusUrl]);
 
+  const fetchSavedListings = () => {
+    axios
+      .get(`${statusUrl}api/save/get/${dbUser.user_uid}`)
+      .then((response) => setSavedListings([...response.data]))
+      .catch((err) => console.log(err));
+  };
+
+
   const fetchActiveListings = () => {
     axios
       .get(`${statusUrl}api/personallistings/${dbUser.user_uid}`)
@@ -24,12 +32,9 @@ const ProfileListings = () => {
       .catch((err) => console.log(err));
   };
 
-  const fetchSavedListings = () => {
-    axios
-      .get(`${statusUrl}api/save/get/${dbUser.user_uid}`)
-      .then((response) => setSavedListings([...response.data]))
-      .catch((err) => console.log(err));
-  };
+  const handleSavedClick = (e, listing) => {
+    setCurrentItem(listing)
+  }
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
@@ -46,7 +51,7 @@ const ProfileListings = () => {
           <h2>Your Listings</h2>
           {activeListings.map((listing) => (
               <div key={listing.id} onClick={() => setCurrentItem(listing)}>
-              <ProfileListingItem key={listing.id} onClick={() => setCurrentItem(listing)}  listing={listing}/>
+              <ProfileListingItem status={"active"} listing={listing}/>
               </div>
           ))}
         </div>
@@ -55,8 +60,8 @@ const ProfileListings = () => {
         <div className="savedListingsParent">
           <h2>Saved Listings</h2>
           {savedListings.map((listing) => (
-              <div key={listing.id} onClick={() => setCurrentItem(listing)}>
-              <ProfileListingItem   listing={listing}/>
+              <div key={listing.id}   onClick={(e) => handleSavedClick(e, listing)}>
+                <ProfileListingItem status={"saved"} listing={listing}/>
               </div>
           ))}
         </div>

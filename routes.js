@@ -34,5 +34,6 @@ router.get("/browse/single/:listinguid", controller.browseSingle);
 router.get("/browse/:category", controller.browseCategory);
 router.get("/save/post/:listinguid/:useruid", controller.saveListing);
 router.get("/save/get/:useruid", controller.getSaved);
+router.get("/save/update/:listinguid/:useruid", controller.updateSaved)
 
 module.exports = router;

@@ -105,7 +105,7 @@ exports.saveListing = (req, res) => {
     (err, rows1, fields) => {
       if (err) throw err;
 
-      if (rows1[0].saved_posts === null) {
+      if (rows1[0].saved_posts === null || rows1[0].saved_posts === "") {
         connection.query(
           `UPDATE users SET saved_posts = "${
             req.params.listinguid
@@ -133,11 +133,40 @@ exports.getSaved = (req, res) => {
   connection.query(
     `SELECT saved_posts FROM users WHERE user_uid = "${useruid}"`,
     (err, rows, fields) => {
+      console.log(rows[0].saved_posts)
       if (err) throw err;
-      connection.query(`SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts})`, (err, rows2, fields) => {
-        if(err) throw err;
-        res.send(rows2);
-      })
+      if(rows[0].saved_posts === null || rows[0].saved_posts === "") {
+        res.send([]);
+      } else {
+                connection.query(`SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts})`, (err, rows2, fields) => {
+          if(err) throw err;
+          res.send(rows2);
+        })
+      }
     }
   );
 };
+
+exports.updateSaved = (req, res) => {
+  let useruid = req.params.useruid;
+  let listinguid = req.params.listinguid;
+  connection.query(`SELECT * FROM users WHERE user_uid = "${useruid}"`, (err, rows, fields) => {
+    if(err) throw err;
+    console.log(rows[0]);
+
+    if(rows[0].saved_posts.includes(",")) {
+      connection.query(`UPDATE users SET saved_posts = "${
+        rows[0].saved_posts.replace(listinguid + ",", "")
+        }" WHERE user_uid = "${useruid}"`, (err, rows, field) => {
+        if(err) throw err;
+      })
+    } else {
+      connection.query(`UPDATE users SET saved_posts = "${
+        rows[0].saved_posts.replace(listinguid, "")
+        }" WHERE user_uid = "${useruid}"`, (err, rows, field) => {
+        if(err) throw err;
+      })
+    }
+  })
+  // connection.query(`UPDATE users SET saved_posts = "$"`)
+}
