@@ -34,7 +34,7 @@ exports.updateProfile = (req, res) => {
 };
 
 exports.sellText = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   let r = req.body;
   connection.query(
     `INSERT INTO listings (listing_uid, seller_uid, email, seller_nickname, city, state, title, description, image, price, item_condition, category, ship_status, firmness, trades, sold_status, date_created, time_created) VALUES ("${r.listing_uid}", "${r.seller_uid}", "${r.email}", "${r.seller_nickname}", "${r.city}", "${r.state}", "${r.title}", "${r.description}", "${r.image}", ${r.price}, "${r.item_condition}", "${r.category}", "${r.ship_status}", "${r.firmness}", "${r.trades}", ${r.sold_status}, "${r.date_created}", "${r.time_created}")`,
@@ -45,6 +45,7 @@ exports.sellText = (req, res) => {
 };
 
 exports.sellImages = (req, res) => {
+  console.log(req.files)
   let uploadStr = "";
   for (let i = 0; i < req.files.length; i++) {
     uploadStr += req.files[i].path + " ";
@@ -77,7 +78,7 @@ exports.browseAll = (req, res) => {
 
 exports.browseCategory = (req, res) => {
   let origCat = req.params.category;
-  console.log(origCat);
+  // console.log(origCat);
   connection.query(
     `SELECT * FROM listings WHERE category = "${req.params.category}"`,
     (err, rows, field) => {
@@ -133,7 +134,7 @@ exports.getSaved = (req, res) => {
   connection.query(
     `SELECT saved_posts FROM users WHERE user_uid = "${useruid}"`,
     (err, rows, fields) => {
-      console.log(rows[0].saved_posts)
+      // console.log(rows[0].saved_posts)
       if (err) throw err;
       if(rows[0].saved_posts === null || rows[0].saved_posts === "") {
         res.send([]);
@@ -152,8 +153,9 @@ exports.updateSaved = (req, res) => {
   let listinguid = req.params.listinguid;
   connection.query(`SELECT * FROM users WHERE user_uid = "${useruid}"`, (err, rows, fields) => {
     if(err) throw err;
-    console.log(rows[0]);
+    // console.log(rows[0]);
 
+    // Need to consider if there is a comma in the middle, but not on the last one.
     if(rows[0].saved_posts.includes(",")) {
       connection.query(`UPDATE users SET saved_posts = "${
         rows[0].saved_posts.replace(listinguid + ",", "")

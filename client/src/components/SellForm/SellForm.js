@@ -137,7 +137,7 @@ const SellForm = () => {
     .all([sendTextInputValues(), sendImageInputValues()])
     .then(axios.spread((acct, perms) => {}))
 
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (

@@ -29,6 +29,8 @@ const SingleModal = (props) => {
     .get(`${statusUrl}api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
     .then(res => console.log(res))
     .catch(err => console.log(err))
+
+    window.location.reload();
   }
 
   if (item !== null) {
@@ -107,9 +109,12 @@ const SingleModal = (props) => {
                   <p className="genInfoLabel">Listed By</p>
                   <p className="genInfoP">{item.seller_nickname}</p>
                 </div>
-                <div className="saveBtnParent">
-                  <button className="saveBtn" onClick={() => handleSave()}>Save</button>
-                </div>
+                { !dbUser.saved_posts.includes(item.listing_uid) && item.seller_uid !== dbUser.user_uid && (
+                  <div className="saveBtnParent">
+                    <button className="saveBtn" onClick={() => handleSave()}>Save</button>
+                  </div>
+                )}
+
               </div>
             </div>
           </div>

@@ -5,7 +5,7 @@ const controller = require("./controller.js");
 const multer = require("multer");
 const upload = multer(
     { 
-        dest: "uploads/" ,
+        dest: "./uploads/" ,
         filename: (req, file, cb) => {
             let filename = Date.now();
             switch(file.mimetype) {
@@ -14,7 +14,7 @@ const upload = multer(
                     break;
                 case "image/jpeg":
                     filename = filename + ".jpeg";
-                    break
+                    break;
                 default:
                 break;
             };

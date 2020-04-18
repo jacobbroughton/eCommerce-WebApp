@@ -51,7 +51,8 @@ export class Auth0Provider extends Component {
           town: null,
           state: null,
           date_created: date,
-          time_created: time
+          time_created: time,
+          saved_posts: ""
         }, { timeout: 200 })
         .then(response => console.log(response))
         .catch(err => console.log(err));
@@ -70,7 +71,8 @@ export class Auth0Provider extends Component {
           town: null,
           state: null,
           date_created: date,
-          time_created: time
+          time_created: time,
+          saved_posts: ""
         }, { timeout: 200 })
         .then(response => console.log(response))
         .catch(err => console.log(err));

@@ -50,6 +50,17 @@ Created by Jacob Broughton
 * Let users save listings
 
 # Incomplete
+S
+
+- Fix unsave issue
+    - Unsave SOMETIMES doesn't work
+    - Need to consider when user is trying to delete last one in string without a comma after it.
+
+- Fix photos not being found issue
+    - Multer is uploading the file locally, but the string is not being sent to the database.
+    - Empty image request body too
+    - Works occasionally, both arrays and singles
+
 - Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings
 - Polish styles
