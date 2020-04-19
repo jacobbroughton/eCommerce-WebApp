@@ -51,29 +51,48 @@ const SellForm = () => {
   const handleImgChange = e => {
     const previewImage = document.getElementById("imgPreview");
     const previewDefaultText = document.getElementById("defaultPreviewText");
-    const selectedFile = e.target.files[0]; // Only allows one file, shows undefined if window is closed
-    const selectedFiles = e.target.files;
+
+    let previewTextArr = [].slice.call(document.getElementsByClassName("defaultPreviewText"))
+    let previewArr = [].slice.call(document.getElementsByClassName("imgPreview"));
+    console.log(previewArr)
+
+    let selectedFile = e.target.files[0]; // Only allows one file, shows undefined if window is closed
+    let selectedFiles = e.target.files;
     setFile(selectedFile);
     setFiles(selectedFiles)
+    const reader1 = new FileReader();
+    const reader2 = new FileReader();
+    const reader3 = new FileReader();
+    const reader4 = new FileReader();
+    let readerArr = [reader1, reader2, reader3, reader4];
 
+    // for(let i = 0; i < selectedFiles.length; i++) {
+    //   if(selectedFiles[i].size > 999999){
+    //     alert("Too much! Please select a smaller file. (Under 1MB)")
+    //     // selectedFiles = null;
+    //     break;
+    //   } else {
 
-    console.log(selectedFiles)
+    //   }
+    // }
+    // console.log(selectedFiles[0].size)
     // Add some kind of loop here that renders each picture out the same
+      // consider putting code below into for loop
+    // if (selectedFile) {
+      for(let i = 0; i < selectedFiles.length; i++) {
+        previewTextArr[i].style.display = "none";
+        previewArr[i].style.display = "block";
+        readerArr[i].addEventListener("load", () => {
+          previewArr[i].setAttribute("src", readerArr[i].result);
+        });
+        readerArr[i].readAsDataURL(selectedFiles[i]);
+      }
 
-    if (selectedFile) {
-      const reader = new FileReader();
-      previewDefaultText.style.display = "none";
-      previewImage.style.display = "block";
-      reader.addEventListener("load", () => {
-        previewImage.setAttribute("src", reader.result);
-      });
-      reader.readAsDataURL(selectedFile);
-
-    } else {
-      previewDefaultText.style.display = null;
-      previewImage.style.display = null;
-      previewImage.setAttribute("src", "");
-    }
+    // } else {
+      // previewDefaultText.style.display = null;
+      // previewImage.style.display = null;
+      // previewImage.setAttribute("src", "");
+    // }
   };
 
   const handleSubmit = e => {
@@ -128,14 +147,20 @@ const SellForm = () => {
 
     let sendImageInputValues = () => {
         axios
-        .post(`${statusUrl}api/sell/images/${randomNum}`, formData, config)
+        .post(`${statusUrl}api/sell/images/${randomNum}`, formData)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     };
 
     axios
     .all([sendTextInputValues(), sendImageInputValues()])
-    .then(axios.spread((acct, perms) => {}))
+    .then(axios.spread((acct, perms) => {
+      console.log("====================================")
+      console.log(acct);
+      console.log("====================================")
+      console.log(perms);
+      console.log("====================================")
+    }))
 
     window.location.reload();
   };
@@ -163,15 +188,46 @@ const SellForm = () => {
           accept="image/png, image/jpeg, image/jpg"
           multiple
         />
-        <div className="imgPreviewContainer" id="imgPreviewContainer">
-          <img
-            src=""
-            alt=""
-            id="imgPreview"
-            className="imgPreview"
-          />
-          <span id="defaultPreviewText">Image Preview</span>
+
+        <div className="previewGrid">
+          <div className="imgPreviewContainer" id="imgPreviewContainer">
+            <img
+              src=""
+              alt=""
+              id="imgPreview"
+              className="imgPreview"
+            />
+            <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
+          </div>
+          <div className="imgPreviewContainer" id="imgPreviewContainer">
+            <img
+              src=""
+              alt=""
+              id="imgPreview"
+              className="imgPreview"
+            />
+            <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
+          </div>
+          <div className="imgPreviewContainer" id="imgPreviewContainer">
+            <img
+              src=""
+              alt=""
+              id="imgPreview"
+              className="imgPreview"
+            />
+            <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
+          </div>
+          <div className="imgPreviewContainer" id="imgPreviewContainer">
+            <img
+              src=""
+              alt=""
+              id="imgPreview"
+              className="imgPreview"
+            />
+            <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
+          </div>
         </div>
+
         <input
           required
           placeholder="Price"

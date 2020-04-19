@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
 import placeholderImg from "../../assets/download.jpg";
-import "../ProfileListingItem/ProfileListingItem";
+import "../ProfileListingItem/ProfileListingItem.scss";
 
 const ProfileListingItem = (props) => {
 

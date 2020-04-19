@@ -48,13 +48,14 @@ Created by Jacob Broughton
     * Split image string
     * Only load first on listings page
 * Let users save listings
+* Fix unsave issue
+    * Unsave SOMETIMES doesn't work
+    * Need to consider when user is trying to delete last one in string without a comma after it.
 
 # Incomplete
 S
 
-- Fix unsave issue
-    - Unsave SOMETIMES doesn't work
-    - Need to consider when user is trying to delete last one in string without a comma after it.
+
 
 - Fix photos not being found issue
     - Multer is uploading the file locally, but the string is not being sent to the database.

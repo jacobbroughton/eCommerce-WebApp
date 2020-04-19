@@ -45,7 +45,7 @@ exports.sellText = (req, res) => {
 };
 
 exports.sellImages = (req, res) => {
-  console.log(req.files)
+  console.log(req)
   let uploadStr = "";
   for (let i = 0; i < req.files.length; i++) {
     uploadStr += req.files[i].path + " ";
@@ -156,38 +156,13 @@ exports.updateSaved = (req, res) => {
     const savedArr = rows[0].saved_posts.split(",");
     const matching = (string) => string == listinguid;
     for(let i = 0; i < savedArr.length; i++) {
-        console.log(savedArr)
-        savedArr.splice(savedArr.findIndex(matching), 1);
-        const stringArr = savedArr.join(",");
-        // console.log(savedArr)
-        // console.log(stringArr)
-        // console.log("------")
-        // console.log("------")
-        connection.query(`UPDATE users SET saved_posts = "${savedArr}" WHERE user_uid = "${useruid}"`, (err, rows, field) => {
-      if(err) throw err;
-    })
-
-        break;    
+      console.log(savedArr)
+      savedArr.splice(savedArr.findIndex(matching), 1);
+      const stringArr = savedArr.join(",");
+      connection.query(`UPDATE users SET saved_posts = "${savedArr}" WHERE user_uid = "${useruid}"`, (err, rows, field) => {
+        if(err) throw err;
+      })
+      break;    
     }
-
-
-
-
-
-    // Need to consider if there is a comma in the middle, but not on the last one.
-    // if(rows[0].saved_posts.includes(",")) {
-    //   connection.query(`UPDATE users SET saved_posts = "${
-    //     rows[0].saved_posts.replace(listinguid + ",", "")
-    //     }" WHERE user_uid = "${useruid}"`, (err, rows, field) => {
-    //     if(err) throw err;
-    //   })
-    // } else {
-    //   connection.query(`UPDATE users SET saved_posts = "${
-    //     rows[0].saved_posts.replace(listinguid, "")
-    //     }" WHERE user_uid = "${useruid}"`, (err, rows, field) => {
-    //     if(err) throw err;
-    //   })
-    // }
   })
-  // connection.query(`UPDATE users SET saved_posts = "$"`)
 }
