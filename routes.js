@@ -5,7 +5,10 @@ const controller = require("./controller.js");
 const multer = require("multer");
 const upload = multer(
     { 
-        dest: "./uploads/" ,
+        dest: "./uploads/" ,        
+        limits: {
+            fieldSize: 50 * 1024 * 1024,
+        },
         filename: (req, file, cb) => {
             let filename = Date.now();
             switch(file.mimetype) {
@@ -19,7 +22,8 @@ const upload = multer(
                 break;
             };
             cb(null, filename);
-        }
+        },
+
 }
     );
 

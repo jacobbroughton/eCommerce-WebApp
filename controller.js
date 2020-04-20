@@ -1,5 +1,7 @@
 const mysql = require("mysql");
 require("dotenv").config();
+let multer = require("multer");
+let upload = multer().array("myFile", 4);
 const connection = mysql.createConnection(process.env.CONN_STRING);
 connection.connect();
 
@@ -45,18 +47,24 @@ exports.sellText = (req, res) => {
 };
 
 exports.sellImages = (req, res) => {
-  console.log(req)
-  let uploadStr = "";
-  for (let i = 0; i < req.files.length; i++) {
-    uploadStr += req.files[i].path + " ";
-  }
+  
+  connection.query(`SELECT * FROM listings WHERE listing_uid = "${req.params.listinguid}"`, (err, rows, fields) => {
+    if(err) throw err;
+    console.log(rows[0]);
 
-  connection.query(
-    `UPDATE listings SET image = "${uploadStr}" WHERE listing_uid = "${req.params.listinguid}"`,
-    (err, rows, fields) => {
-      if (err) throw err;
+    let uploadStr = "";
+    for (let i = 0; i < req.files.length; i++) {
+      uploadStr += req.files[i].path + " ";
     }
-  );
+
+    connection.query(
+      `UPDATE listings SET image = "${uploadStr}" WHERE listing_uid = "${req.params.listinguid}"`,
+      (err, rows, fields) => {
+        if (err) throw err;
+      }
+    );
+  })
+
 };
 
 exports.getPersonalListings = (req, res) => {

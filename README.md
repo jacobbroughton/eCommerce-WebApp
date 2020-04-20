@@ -53,10 +53,7 @@ Created by Jacob Broughton
     * Need to consider when user is trying to delete last one in string without a comma after it.
 
 # Incomplete
-S
-
-
-
+- After posting a listing, make modal with link to profile with product pulled up
 - Fix photos not being found issue
     - Multer is uploading the file locally, but the string is not being sent to the database.
     - Empty image request body too

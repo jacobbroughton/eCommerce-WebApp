@@ -95,7 +95,7 @@ const SellForm = () => {
     // }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
 
     e.preventDefault();
     console.log(file)
@@ -147,22 +147,21 @@ const SellForm = () => {
 
     let sendImageInputValues = () => {
         axios
-        .post(`${statusUrl}api/sell/images/${randomNum}`, formData)
+        .post(`${statusUrl}api/sell/images/${randomNum}`, formData, config)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     };
 
-    axios
-    .all([sendTextInputValues(), sendImageInputValues()])
-    .then(axios.spread((acct, perms) => {
-      console.log("====================================")
-      console.log(acct);
-      console.log("====================================")
-      console.log(perms);
-      console.log("====================================")
-    }))
+    // axios
+    // .all([sendTextInputValues(), sendImageInputValues()])
+    // .then(axios.spread(function(acct, perms) {
 
-    window.location.reload();
+    // }))
+    Promise.all([ sendTextInputValues(), sendImageInputValues() ])
+    .then(([one, two]) =>  console.log(one, two))
+    .catch(error => console.log(error));
+
+    // window.location.reload();
   };
 
   return (
