@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import "./SellForm.scss";
@@ -161,6 +162,7 @@ const SellForm = () => {
     .then(([one, two]) =>  console.log(one, two))
     .catch(error => console.log(error));
 
+    document.getElementById("sellModalParent").style.display = "block";
     // window.location.reload();
   };
 
@@ -291,6 +293,9 @@ const SellForm = () => {
         />
         <input className="postForSaleBtn" placeholder="Post" type="submit" />
       </form>
+      <div className="sellModalParent" id="sellModalParent">
+        <Link to="/profile">View Product</Link>
+      </div>
     </div>
   );
 };

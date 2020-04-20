@@ -85,4 +85,13 @@
             cursor: pointer;
         }
     }
+    .sellModalParent{
+        display: none;
+        position: absolute;
+        margin: 0 auto;
+        height: 100px;
+        width: 100px;
+        background: lightblue;
+        
+    }
 }

@@ -27,8 +27,9 @@
       .imagesParent {
         display: flex;
         .singleImage {
-          height: auto;
-          width: 250px;
+          height: 234px;
+          width: 300px;
+          object-fit: cover;
         }
         .sideImagesParent{
           display: flex;
@@ -39,8 +40,9 @@
           .sideImage{
             height: 100%;
             width: 100%;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             cursor: pointer;
+            object-fit: cover;
           }
         }
       }
