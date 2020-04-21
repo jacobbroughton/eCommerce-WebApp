@@ -51,18 +51,20 @@ Created by Jacob Broughton
 * Fix unsave issue
     * Unsave SOMETIMES doesn't work
     * Need to consider when user is trying to delete last one in string without a comma after it.
+* Fix photos not being found issue
+    * Multer is uploading the file locally, but the string is not being sent to the database.
+    * Empty image request body too
+    * Works occasionally, both arrays and singles
 
 # Incomplete
 - After posting a listing, make modal with link to profile with product pulled up
-- Fix photos not being found issue
-    - Multer is uploading the file locally, but the string is not being sent to the database.
-    - Empty image request body too
-    - Works occasionally, both arrays and singles
+- Fix duplicate listings / SQL rows issue
+    - Images occasionally on duplicate also
 - Make picture full screen on click
 - Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings
 - Polish styles
-- Fix duplicate SQL rows issue
+
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages

@@ -87,11 +87,29 @@
     }
     .sellModalParent{
         display: none;
+        z-index: 3;
+        padding: 10px 20px;
         position: absolute;
-        margin: 0 auto;
-        height: 100px;
-        width: 100px;
+        top: calc(50% - 50px);
+        left: calc(50% - 125px);
         background: lightblue;
         
     }
+
+    #sellOverlay {
+        position: fixed;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+        transition: 200ms ease-in-out;
+        z-index: 2;
+      }
+      #sellOverlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
 }

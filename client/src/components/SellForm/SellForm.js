@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import ListedModal from "../ListedModal/ListedModal";
 import "./SellForm.scss";
 
 const SellForm = () => {
@@ -42,6 +43,9 @@ const SellForm = () => {
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const [files, setFiles] = useState();
+  const [num, setNum] = useState("");
+
+  useEffect(() => {}, [num])
 
   const createRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -50,13 +54,8 @@ const SellForm = () => {
   };
 
   const handleImgChange = e => {
-    const previewImage = document.getElementById("imgPreview");
-    const previewDefaultText = document.getElementById("defaultPreviewText");
-
     let previewTextArr = [].slice.call(document.getElementsByClassName("defaultPreviewText"))
     let previewArr = [].slice.call(document.getElementsByClassName("imgPreview"));
-    console.log(previewArr)
-
     let selectedFile = e.target.files[0]; // Only allows one file, shows undefined if window is closed
     let selectedFiles = e.target.files;
     setFile(selectedFile);
@@ -67,41 +66,18 @@ const SellForm = () => {
     const reader4 = new FileReader();
     let readerArr = [reader1, reader2, reader3, reader4];
 
-    // for(let i = 0; i < selectedFiles.length; i++) {
-    //   if(selectedFiles[i].size > 999999){
-    //     alert("Too much! Please select a smaller file. (Under 1MB)")
-    //     // selectedFiles = null;
-    //     break;
-    //   } else {
-
-    //   }
-    // }
-    // console.log(selectedFiles[0].size)
-    // Add some kind of loop here that renders each picture out the same
-      // consider putting code below into for loop
-    // if (selectedFile) {
-      for(let i = 0; i < selectedFiles.length; i++) {
-        previewTextArr[i].style.display = "none";
-        previewArr[i].style.display = "block";
-        readerArr[i].addEventListener("load", () => {
-          previewArr[i].setAttribute("src", readerArr[i].result);
-        });
-        readerArr[i].readAsDataURL(selectedFiles[i]);
-      }
-
-    // } else {
-      // previewDefaultText.style.display = null;
-      // previewImage.style.display = null;
-      // previewImage.setAttribute("src", "");
-    // }
+    for(let i = 0; i < selectedFiles.length; i++) {
+      previewTextArr[i].style.display = "none";
+      previewArr[i].style.display = "block";
+      readerArr[i].addEventListener("load", () => {
+        previewArr[i].setAttribute("src", readerArr[i].result);
+      });
+      readerArr[i].readAsDataURL(selectedFiles[i]);
+    }
   };
 
   const handleSubmit = async e => {
-
     e.preventDefault();
-    console.log(file)
-    console.log(files)
-
     const formData = new FormData();
     formData.append("myFile", files[0]);
     if(files[1]){ formData.append("myFile", files[1]); }
@@ -119,6 +95,7 @@ const SellForm = () => {
     let time_created = time.replace(/\s/g, "");
     let date_created = date.replace(/\//g, "-");
     let randomNum = createRandomInt(1000000000, 10000000000).toString();
+    setNum(randomNum);
 
     let sendTextInputValues = () => {
       axios
@@ -153,17 +130,11 @@ const SellForm = () => {
         .catch(err => console.log(err))
     };
 
-    // axios
-    // .all([sendTextInputValues(), sendImageInputValues()])
-    // .then(axios.spread(function(acct, perms) {
-
-    // }))
     Promise.all([ sendTextInputValues(), sendImageInputValues() ])
     .then(([one, two]) =>  console.log(one, two))
     .catch(error => console.log(error));
-
     document.getElementById("sellModalParent").style.display = "block";
-    // window.location.reload();
+    document.getElementById("sellOverlay").classList.add("active");
   };
 
   return (
@@ -294,8 +265,10 @@ const SellForm = () => {
         <input className="postForSaleBtn" placeholder="Post" type="submit" />
       </form>
       <div className="sellModalParent" id="sellModalParent">
-        <Link to="/profile">View Product</Link>
+       <ListedModal/>
       </div>
+      {/* Add overlay here */}
+      <div className="" id="sellOverlay"></div>
     </div>
   );
 };
