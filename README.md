@@ -55,16 +55,16 @@ Created by Jacob Broughton
     * Multer is uploading the file locally, but the string is not being sent to the database.
     * Empty image request body too
     * Works occasionally, both arrays and singles
+* After posting a listing, make modal with link to profile with product pulled up
 
 # Incomplete
-- After posting a listing, make modal with link to profile with product pulled up
+
 - Fix duplicate listings / SQL rows issue
     - Images occasionally on duplicate also
 - Make picture full screen on click
 - Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings
 - Polish styles
-
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
