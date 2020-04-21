@@ -10,9 +10,11 @@ a{
 
 nav{
     display: flex;
-    position: relative;
+    position: fixed;
+    z-index: 2;
     justify-content: space-evenly;
     height: 50px;
+    width: 100%;
     background: lightgrey;
     .homeLink{
         position: absolute;
