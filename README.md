@@ -55,24 +55,28 @@ Created by Jacob Broughton
     * Multer is uploading the file locally, but the string is not being sent to the database.
     * Empty image request body too
     * Works occasionally, both arrays and singles
+    * Some images are getting "null" as their source
 * After posting a listing, make modal with link to profile with product pulled up
 
 # Incomplete
-
 - Fix duplicate listings / SQL rows issue
     - Images occasionally on duplicate also
 - Make picture full screen on click
 - Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings
 - Polish styles
+- Make 'load more' functionality, maybe 20 - 30 per load
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
-- Add categories filtering functionality
+- Add filtering
+    - By state / town / price
+    - Sort by price
 - Set up direct messaging (Socket.io)
-- Some images are getting "null" as their source
 - Add blog / video review section for each listing
 - Add state / city filters
 - Add "wanted" section
 - Add "automotive parts", "tools" categories
 - Add notifications
+- Add dark mode
+    - Consider using context api and styled components for dynamic styling
