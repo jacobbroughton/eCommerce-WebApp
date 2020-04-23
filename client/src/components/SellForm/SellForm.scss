@@ -6,7 +6,7 @@
         margin: 0 auto;
         column-gap: .5em;
         row-gap: .4em;
-
+        margin-top: 50px;
 
 
         .titleInput{
@@ -72,7 +72,7 @@
 
         textarea{
             grid-column: 1/5;
-            height: 250px;
+            height: 200px;
             resize: none;
         }
 

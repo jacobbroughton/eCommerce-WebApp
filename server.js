@@ -21,19 +21,6 @@ app.use("/api", routes);
 app.use("/uploads", express.static('uploads'))
 
 
-// app.post('/api/upload', (req, res, next) => {
-//   const form = formidable({ multiples: true });
- 
-//   form.parse(req, (err, fields, files) => {
-//     if (err) {
-//       next(err);
-//       return;
-//     }
-//     res.json({ fields, files });
-//   });
-// });
-
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {

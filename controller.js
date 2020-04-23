@@ -99,12 +99,23 @@ exports.getPersonalListings = (req, res) => {
   );
 };
 
+// Add query that takes a url parameter as the latest count, that then adds 20 to that and returns results
+
+// exports.browseAll = (req, res) => {
+//   connection.query(`SELECT * FROM listings`, (err, rows, fields) => {
+//     if (err) throw err;
+//     res.send(rows);
+//   });
+// };
+
 exports.browseAll = (req, res) => {
-  connection.query(`SELECT * FROM listings`, (err, rows, fields) => {
+  connection.query(`SELECT * FROM listings ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
     if (err) throw err;
+    console.log(rows)
     res.send(rows);
   });
 };
+
 
 exports.browseCategory = (req, res) => {
   let origCat = req.params.category;

@@ -10,22 +10,36 @@ const BrowseProductList = (props) => {
   const { category } = props;
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
-  // const [imageArr, setImageArr] = useState([]);
+  const [resultNum, setResultNum] = useState(20);
   let [loadCounter, setLoadCounter] = useState(0);
+
+  // useEffect(() => {
+  //   if (category === "") {
+  //     axios
+  //       .get(`${statusUrl}api/browse/all`)
+  //       .then((response) => setListings([...response.data].reverse()))
+  //       .catch((err) => console.log(err));
+  //   } else {
+  //     axios
+  //       .get(`${statusUrl}api/browse/${category}`)
+  //       .then((response) => setListings([...response.data].reverse()))
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [category, statusUrl]);
 
   useEffect(() => {
     if (category === "") {
       axios
-        .get(`${statusUrl}api/browse/all`)
+        .get(`${statusUrl}api/browse/all/${resultNum}`)
         .then((response) => setListings([...response.data].reverse()))
         .catch((err) => console.log(err));
     } else {
       axios
-        .get(`${statusUrl}api/browse/${category}`)
+        .get(`${statusUrl}api/browse/${category}/${resultNum}`)
         .then((response) => setListings([...response.data].reverse()))
         .catch((err) => console.log(err));
     }
-  }, [category, statusUrl]);
+  }, [category, statusUrl, resultNum]);
 
   const handleModalView = (props) => {
     setCurrentItem(props);
@@ -41,9 +55,15 @@ const BrowseProductList = (props) => {
     // closeModal(e, modal, null);
   };
 
+  const handleLoadMore = e => {
+    setResultNum(resultNum + 20)
+  }
+
   return (
     <div className="browsePMother">
       <div className="browsePMain">
+        {resultNum}
+      <button onClick={(e) => handleLoadMore(e)}>Load More</button>
         {category === "All" && <h3 className="browsePHead">All for Sale</h3>}
         {category === "" ? (
           <h3 className="browsePHead">Recent Listings</h3>
@@ -96,6 +116,7 @@ const BrowseProductList = (props) => {
           <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
       </div>
+      
     </div>
   );
 };
