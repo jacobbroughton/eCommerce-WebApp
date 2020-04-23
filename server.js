@@ -4,8 +4,6 @@ const path = require("path");
 const routes = require("./routes");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
 require("dotenv").config();
 
 app.use(cors());

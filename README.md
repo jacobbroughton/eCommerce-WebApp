@@ -57,10 +57,12 @@ Created by Jacob Broughton
     * Works occasionally, both arrays and singles
     * Some images are getting "null" as their source
 * After posting a listing, make modal with link to profile with product pulled up
+* Fix duplicate listings / SQL rows issue
+    * Images occasionally on duplicate also
 
 # Incomplete
-- Fix duplicate listings / SQL rows issue
-    - Images occasionally on duplicate also
+- Optimize images
+    - Use sharp NPM or something similar
 - Make picture full screen on click
 - Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings

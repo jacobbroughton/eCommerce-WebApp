@@ -2,6 +2,7 @@ const mysql = require("mysql");
 require("dotenv").config();
 let multer = require("multer");
 let upload = multer().array("myFile", 4);
+const sharp = require("sharp") // image manipulation
 const connection = mysql.createConnection(process.env.CONN_STRING);
 connection.connect();
 
@@ -50,11 +51,32 @@ exports.sellImages = (req, res) => {
   
   connection.query(`SELECT * FROM listings WHERE listing_uid = "${req.params.listinguid}"`, (err, rows, fields) => {
     if(err) throw err;
-    console.log(rows[0]);
-
     let uploadStr = "";
+    let width = 1000;
+    let height = 1000;  
     for (let i = 0; i < req.files.length; i++) {
-      uploadStr += req.files[i].path + " ";
+
+      switch (req.files[i].mimetype) {
+        case "image/jpeg":      
+          sharp(req.files[i].path)
+            .resize(width, height)
+            .toFile(`./${req.files[i].path}.jpeg`, (err, info) => {
+              if(err) throw err;
+              console.log('file uploaded successfully')
+            })
+          uploadStr += req.files[i].path + ".jpeg" + " ";
+          break;
+
+        case "image/png":
+          sharp(req.files[i].path)
+            .resize(width, height)
+            .toFile(`./${req.files[i].path}.png`, (err, info) => {
+              if(err) throw err;
+              console.log('file uploaded successfully')
+            })
+          uploadStr += req.files[i].path + ".png" + " ";
+          break;
+      }
     }
 
     connection.query(
