@@ -111,7 +111,6 @@ exports.getPersonalListings = (req, res) => {
 exports.browseAll = (req, res) => {
   connection.query(`SELECT * FROM listings ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
     if (err) throw err;
-    console.log(rows)
     res.send(rows);
   });
 };

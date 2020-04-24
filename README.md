@@ -62,11 +62,11 @@ Created by Jacob Broughton
 * Optimize images
     * Use sharp NPM or something similar
 * Make 'load more' functionality, maybe 20 - 30 per load
+* Give "load more" button some style
+* Make product listing grid more dynamic
+    * Add / remove columns
 
 # Incomplete
-- Give "load more" button some style
-- Make product listing grid more dynamic
-    - Add / remove columns
 - Find out why images need to be (slowly) repainted to dom after scrolling away
 - Delete all rows and adjust image resize
 - Make picture full screen on click

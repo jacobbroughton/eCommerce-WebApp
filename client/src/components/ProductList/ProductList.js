@@ -114,7 +114,10 @@ const BrowseProductList = (props) => {
           <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
         {console.log(listings.length)}
-        <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>Load More</button>
+        { listings.length > 0 && (
+          <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>Load More</button>
+        )}
+        
       </div>
       
     </div>
