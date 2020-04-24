@@ -59,15 +59,20 @@ Created by Jacob Broughton
 * After posting a listing, make modal with link to profile with product pulled up
 * Fix duplicate listings / SQL rows issue
     * Images occasionally on duplicate also
+* Optimize images
+    * Use sharp NPM or something similar
+* Make 'load more' functionality, maybe 20 - 30 per load
 
 # Incomplete
-- Optimize images
-    - Use sharp NPM or something similar
+- Give "load more" button some style
+- Make product listing grid more dynamic
+    - Add / remove columns
+- Find out why images need to be (slowly) repainted to dom after scrolling away
+- Delete all rows and adjust image resize
 - Make picture full screen on click
 - Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings
 - Polish styles
-- Make 'load more' functionality, maybe 20 - 30 per load
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages

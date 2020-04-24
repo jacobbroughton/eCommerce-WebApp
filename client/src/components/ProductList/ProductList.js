@@ -31,12 +31,12 @@ const BrowseProductList = (props) => {
     if (category === "") {
       axios
         .get(`${statusUrl}api/browse/all/${resultNum}`)
-        .then((response) => setListings([...response.data].reverse()))
+        .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err));
     } else {
       axios
         .get(`${statusUrl}api/browse/${category}/${resultNum}`)
-        .then((response) => setListings([...response.data].reverse()))
+        .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err));
     }
   }, [category, statusUrl, resultNum]);
@@ -62,8 +62,6 @@ const BrowseProductList = (props) => {
   return (
     <div className="browsePMother">
       <div className="browsePMain">
-        {resultNum}
-      <button onClick={(e) => handleLoadMore(e)}>Load More</button>
         {category === "All" && <h3 className="browsePHead">All for Sale</h3>}
         {category === "" ? (
           <h3 className="browsePHead">Recent Listings</h3>
@@ -115,6 +113,8 @@ const BrowseProductList = (props) => {
           </div>
           <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
+        {console.log(listings.length)}
+        <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>Load More</button>
       </div>
       
     </div>
