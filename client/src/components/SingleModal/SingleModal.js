@@ -2,24 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import placeholderImg from "../../assets/download.jpg";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import "./SingleModal.scss";
 
+
+
 const SingleModal = (props) => {
   let { item } = props;
+  const availArr = ["Available", "Pending", "Sold"];
   const { statusUrl, dbUser } = useAuth0();
   let imageArr = [];
   const [image, setImage] = useState("");
-  const availArr = ["Available", "Pending", "Sold"];
-  let [status, setStatus] = useState(item.status);  
-    
-// useEffect(() => {
-//   console.log(status)
-//   axios
-//   .post(`${statusUrl}api/updatestatus/${item.listing_uid}`, { status })
-//   .then(r => console.log(r)).catch(err => console.log(err))
-// }, [status])
-  
+  const [status, setStatus] = useState(item.status);  
+
 
 
   const handleClose = (e) => {
@@ -73,118 +69,117 @@ const SingleModal = (props) => {
 
 
   return (
-    <div id="modalMother" className={`${item.status}Modal modalMother`}>
-      {item && (
-        <div className="modalMain">
-          <div className="imagesGenInfoDiv">
-            <div className="imagesParent">
-              {image === "" && item.image !== "null" ? (
-                <img
-                  className="singleImage"
-                  src={statusUrl + imageArr[0]}
-                  alt=""
-                />
-               ) : (
-                item.image !== "null" &&
-              (
-                <img className="singleImage" src={image} alt="" />
-              )              
-              )} 
-              {item.image === "null" && (
-                <img className="singleImage" src={placeholderImg} alt=""/>
-              )}
-
-              {/* Side Images */}
-              {imageArr.length > 1 && (
-                <div className="sideImagesParent">
-                  {imageArr.map((image) => (
-                    <img
-                      onClick={(e) => setImage(e.target.src)}
-                      className="sideImage"
-                      src={statusUrl + image}
-                      alt=""
-                      key={image}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="listingGenInfoParent">
-              <h1 className="title">{item.title}</h1>
-              <p className={`${item.status} soldStatus`} >{item.status}</p>
-              <div className="availabilityDiv">
-                <p>Change availability?</p>
-                { item.status !== "Available" && (
-                  <button className="availableBtn" value="Available" onClick={(e) => setStatus(e.target.value)}>Available</button>
+    <Link to={`/browse/single/${item.listing_uid}`}>
+      <div id="modalMother" className={`${item.status}Modal modalMother`}>
+          <div className="modalMain">
+            <div className="imagesGenInfoDiv">
+              <div className="imagesParent">
+                {image === "" && item.image !== "null" ? (
+                  <img
+                    className="singleImage"
+                    src={statusUrl + imageArr[0]}
+                    alt=""
+                  />
+                ) : (
+                  item.image !== "null" &&
+                (
+                  <img className="singleImage" src={image} alt="" />
+                )              
+                )} 
+                {item.image === "null" && (
+                  <img className="singleImage" src={placeholderImg} alt=""/>
                 )}
 
-                { item.status !== "Pending" && (
-                  <button className="pendingBtn" value="Pending" onClick={(e) => setStatus(e.target.value)}>Pending</button>
-                )}
-
-                { item.status !== "Sold" && (
-                  <button className="soldBtn" value="Sold" onClick={(e) => setStatus(e.target.value)}>Sold</button>
-                )}
-              </div>
-              
-
-              
-              
-              
-              <div className="listingGenInfo">
-                <div className="listingGenItem">
-                  <p className="genInfoLabel">Price</p>
-                  <p className="genInfoP">${item.price}</p>
-                </div>
-                <div className="listingGenItem">
-                  <p className="genInfoLabel">Condition</p>
-                  <p className="genInfoP">{item.item_condition}</p>
-                </div>
-                <div className="listingGenItem">
-                  <p className="genInfoLabel">Shipping</p>
-                  <p className="genInfoP">{item.ship_status}</p>
-                </div>
-                <div className="listingGenItem">
-                  <p className="genInfoLabel">Category</p>
-                  <p className="genInfoP">{item.category}</p>
-                </div>
-                <div className="listingGenItem">
-                  <p className="genInfoLabel">Located In</p>
-                  <p className="genInfoP">
-                    {item.city}, {item.state}
-                  </p>
-                </div>
-                <div className="listingGenItem">
-                  <p className="genInfoLabel">Listed By</p>
-                  <p className="genInfoP">{item.seller_nickname}</p>
-                </div>
-                { !dbUser.saved_posts.includes(item.listing_uid) && item.seller_uid !== dbUser.user_uid && (
-                  <div className="saveBtnParent">
-                    <button className="saveBtn" onClick={() => handleSave()}>Save</button>
+                {/* Side Images */}
+                {imageArr.length > 1 && (
+                  <div className="sideImagesParent">
+                    {imageArr.map((image) => (
+                      <img
+                        onClick={(e) => setImage(e.target.src)}
+                        className="sideImage"
+                        src={statusUrl + image}
+                        alt=""
+                        key={image}
+                      />
+                    ))}
                   </div>
                 )}
+              </div>
 
+              <div className="listingGenInfoParent">
+                <h1 className="title">{item.title}</h1>
+                <p className={`${item.status} soldStatus`} >{item.status}</p>
+                <div className="availabilityDiv">
+                  <p>Change availability?</p>
+                  { item.status !== "Available" && (
+                    <button className="availableBtn" value="Available" onClick={(e) => setStatus(e.target.value)}>Available</button>
+                  )}
+
+                  { item.status !== "Pending" && (
+                    <button className="pendingBtn" value="Pending" onClick={(e) => setStatus(e.target.value)}>Pending</button>
+                  )}
+
+                  { item.status !== "Sold" && (
+                    <button className="soldBtn" value="Sold" onClick={(e) => setStatus(e.target.value)}>Sold</button>
+                  )}
+                </div>
+                
+
+                
+                
+                
+                <div className="listingGenInfo">
+                  <div className="listingGenItem">
+                    <p className="genInfoLabel">Price</p>
+                    <p className="genInfoP">${item.price}</p>
+                  </div>
+                  <div className="listingGenItem">
+                    <p className="genInfoLabel">Condition</p>
+                    <p className="genInfoP">{item.item_condition}</p>
+                  </div>
+                  <div className="listingGenItem">
+                    <p className="genInfoLabel">Shipping</p>
+                    <p className="genInfoP">{item.ship_status}</p>
+                  </div>
+                  <div className="listingGenItem">
+                    <p className="genInfoLabel">Category</p>
+                    <p className="genInfoP">{item.category}</p>
+                  </div>
+                  <div className="listingGenItem">
+                    <p className="genInfoLabel">Located In</p>
+                    <p className="genInfoP">
+                      {item.city}, {item.state}
+                    </p>
+                  </div>
+                  <div className="listingGenItem">
+                    <p className="genInfoLabel">Listed By</p>
+                    <p className="genInfoP">{item.seller_nickname}</p>
+                  </div>
+                  { !dbUser.saved_posts.includes(item.listing_uid) && item.seller_uid !== dbUser.user_uid && (
+                    <div className="saveBtnParent">
+                      <button className="saveBtn" onClick={() => handleSave()}>Save</button>
+                    </div>
+                  )}
+
+                </div>
               </div>
             </div>
-          </div>
 
-          <hr />
+            <hr />
 
-          <div className="listingDescInfo">
-            {/* <p>{item.city}, {item.state}</p> */}
-            <p className="description">{item.description}</p>
-            {/* <p>Listed by {item.seller_nickname}</p> */}
-            <p className="dateTime">
-              Listed {item.date_created} {item.time_created}
-            </p>
+            <div className="listingDescInfo">
+              <p className="description">{item.description}</p>
+              <p className="dateTime">
+                Listed {item.date_created} {item.time_created}
+              </p>
+            </div>
           </div>
-        </div>
-      )}
-      <button className="closeBtn" onClick={(e) => handleClose(e)}>
-        Close
-      </button>
-    </div>
+        <button className="closeBtn" onClick={(e) => handleClose(e)}>
+          Close
+        </button>
+      </div>
+    </Link>
+    
   );
 };
 

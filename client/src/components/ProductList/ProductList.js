@@ -8,7 +8,7 @@ import placeholderImg from "../../assets/download.jpg";
 
 const BrowseProductList = (props) => {
   const { statusUrl } = useAuth0();
-  const { selectedProduct, category } = props;
+  const { category } = props;
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   const [resultNum, setResultNum] = useState(20);
@@ -18,7 +18,6 @@ const BrowseProductList = (props) => {
 
 
   useEffect(() => {
-    console.log(selectedProduct)
     if (category === "") {
       axios
         .get(`${statusUrl}api/browse/all/${resultNum}`)
@@ -30,7 +29,7 @@ const BrowseProductList = (props) => {
         .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err));
     }
-  }, [category, statusUrl, resultNum, selectedProduct]);
+  }, [category, statusUrl, resultNum]);
 
 
 
@@ -40,7 +39,7 @@ const BrowseProductList = (props) => {
     document.getElementById("toggleDiv").style.display = "block";
     const overlay = document.getElementById("overlay");
     overlay.classList.add("active");
-    window.history.pushState("", "", `/single/${selectedProduct.listing_url}`)
+    // window.history.pushState("", "", `/single/${selectedProduct.listing_url}`)
   }
   
 

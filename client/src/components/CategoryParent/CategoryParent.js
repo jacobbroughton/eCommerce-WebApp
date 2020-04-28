@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ProductList from "../ProductList/ProductList";
+import SinglePage from "../SinglePage/SinglePage";
 import "./CategoryParent.scss";
 
 const BrowseCategoryParent = props => {
   const [cat, setCat] = useState("");
-  const { selectedProduct } = props 
+  const { single } = props;
 
   const categoryArr = [
     "All", 
@@ -26,12 +27,6 @@ const BrowseCategoryParent = props => {
 
 
 
-  useEffect(() => {
-    console.log(selectedProduct)
-  }, [props])
-
-
-
   return (
     <div className="browseViewMother">
         <div className="catParent">
@@ -46,8 +41,13 @@ const BrowseCategoryParent = props => {
                 ))}
             </ul>
         </div>
-
-      <ProductList selectedProduct={selectedProduct} category={cat} />
+      { !single && (
+        <ProductList category={cat} />
+      )}
+      { single && (
+        <SinglePage/>
+      )}
+      
     </div>
   );
 };

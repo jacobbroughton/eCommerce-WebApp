@@ -21,7 +21,7 @@ const Single = props => {
 
     return (
         <div>
-            <CategoryParent selectedProduct={item}/>
+            <CategoryParent single selectedProduct={item}/>
         </div>
     )
 }
