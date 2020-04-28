@@ -53,6 +53,8 @@ const SellForm = () => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
+  
+
   const handleImgChange = e => {
     let previewTextArr = [].slice.call(document.getElementsByClassName("defaultPreviewText"))
     let previewArr = [].slice.call(document.getElementsByClassName("imgPreview"));
@@ -76,6 +78,8 @@ const SellForm = () => {
     }
   };
 
+
+
   const handleSubmit = async e => {
     e.preventDefault();
     const formData = new FormData();
@@ -90,12 +94,16 @@ const SellForm = () => {
       }
     };
 
+
+
     let time = moment().format("LT");
     let date = moment().format("L");
     let time_created = time.replace(/\s/g, "");
     let date_created = date.replace(/\//g, "-");
     let randomNum = createRandomInt(1000000000, 10000000000).toString();
     setNum(randomNum);
+
+
 
     let sendTextInputValues = () => {
       axios
@@ -123,6 +131,8 @@ const SellForm = () => {
         .catch(err => console.log(err));
     };
 
+
+
     let sendImageInputValues = () => {
         axios
         .post(`${statusUrl}api/sell/images/${randomNum}`, formData, config)
@@ -130,12 +140,16 @@ const SellForm = () => {
         .catch(err => console.log(err))
     };
 
+
+
     Promise.all([ sendTextInputValues(), sendImageInputValues() ])
     .then(([one, two]) =>  console.log(one, two))
     .catch(error => console.log(error));
     document.getElementById("sellModalParent").style.display = "block";
     document.getElementById("sellOverlay").classList.add("active");
   };
+
+
 
   return (
     <div className="sellFormMother">

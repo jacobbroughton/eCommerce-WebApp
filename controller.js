@@ -206,3 +206,9 @@ exports.updateSaved = (req, res) => {
     }
   })
 }
+
+exports.updateStatus = (req, res) => {
+  connection.query(`UPDATE listings SET status = "${req.body.status}" WHERE listing_uid = "${req.params.listinguid}"`, (err, rows, field) => {
+    if(err) throw err;
+  })
+}

@@ -55,6 +55,26 @@
             opacity: 0.9;
             margin-bottom: 20px;
         }
+        .availabilityDiv{
+          display: flex;
+
+          .availableBtn{
+            background: lightgreen;
+            color: black;
+            font-weight: 500;
+          }
+          .pendingBtn{
+            background: yellow;
+            color: black;
+            font-weight: 500;
+          }
+          .soldBtn{
+            background: rgb(237, 97, 97);
+            color: black;
+            font-weight: 500;
+          }
+        }
+
         .listingGenInfo {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -125,4 +145,12 @@
       border: none;
       cursor: pointer;
   }
+}
+
+
+.PendingModal{
+  border: yellow solid 2px;
+}
+.SoldModal{
+  border: red solid 2px;
 }

@@ -10,14 +10,40 @@ const SingleModal = (props) => {
   const { statusUrl, dbUser } = useAuth0();
   let imageArr = [];
   const [image, setImage] = useState("");
+  const availArr = ["Available", "Pending", "Sold"];
+  let [status, setStatus] = useState(item.status);  
+    
+// useEffect(() => {
+//   console.log(status)
+//   axios
+//   .post(`${statusUrl}api/updatestatus/${item.listing_uid}`, { status })
+//   .then(r => console.log(r)).catch(err => console.log(err))
+// }, [status])
+  
+
 
   const handleClose = (e) => {
-    console.log(document.getElementById("modalMother").parentNode)
     document.getElementById("toggleDiv").style.display = "none";
-    // document.getElementById("toggleDiv2").style.display = "none";
     document.getElementById("overlay").classList.remove("active");
-    setImage("")
+    setImage("");
+
+    // Window location testing, removes product url
+    console.log(window.location.pathname)
+    let winP = window.location.pathname
+    winP.substr(0, winP.lastIndexOf("/single/") + 1);
   };
+
+
+
+  const handleAvailability = (e) => {
+    setStatus(e.target.value);
+    console.log(status)
+    axios
+    .post(`${statusUrl}api/updatestatus/${item.listing_uid}`, { status })
+    .then(r => console.log(r)).catch(err => console.log(err))
+  }
+
+
 
   const handleSave = () => {
     let time = moment().format("LT");
@@ -33,6 +59,8 @@ const SingleModal = (props) => {
     window.location.reload();
   }
 
+
+
   if (item !== null) {
     imageArr = item.image.split(" ");
     for (let i = 0; i < imageArr.length; i++) {
@@ -42,8 +70,10 @@ const SingleModal = (props) => {
     }
   }
 
+
+
   return (
-    <div id="modalMother" className="modalMother">
+    <div id="modalMother" className={`${item.status}Modal modalMother`}>
       {item && (
         <div className="modalMain">
           <div className="imagesGenInfoDiv">
@@ -82,6 +112,26 @@ const SingleModal = (props) => {
 
             <div className="listingGenInfoParent">
               <h1 className="title">{item.title}</h1>
+              <p className={`${item.status} soldStatus`} >{item.status}</p>
+              <div className="availabilityDiv">
+                <p>Change availability?</p>
+                { item.status !== "Available" && (
+                  <button className="availableBtn" value="Available" onClick={(e) => setStatus(e.target.value)}>Available</button>
+                )}
+
+                { item.status !== "Pending" && (
+                  <button className="pendingBtn" value="Pending" onClick={(e) => setStatus(e.target.value)}>Pending</button>
+                )}
+
+                { item.status !== "Sold" && (
+                  <button className="soldBtn" value="Sold" onClick={(e) => setStatus(e.target.value)}>Sold</button>
+                )}
+              </div>
+              
+
+              
+              
+              
               <div className="listingGenInfo">
                 <div className="listingGenItem">
                   <p className="genInfoLabel">Price</p>

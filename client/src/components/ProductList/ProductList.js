@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
+import {Link} from "react-router-dom";
 import "./ProductList.scss";
 import SingleModal from "../SingleModal/SingleModal";
 import placeholderImg from "../../assets/download.jpg";
 
 const BrowseProductList = (props) => {
   const { statusUrl } = useAuth0();
-  const { category } = props;
+  const { selectedProduct, category } = props;
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   const [resultNum, setResultNum] = useState(20);
   let [loadCounter, setLoadCounter] = useState(0);
+  let [toggle, setToggle] = useState(0);
 
-  // useEffect(() => {
-  //   if (category === "") {
-  //     axios
-  //       .get(`${statusUrl}api/browse/all`)
-  //       .then((response) => setListings([...response.data].reverse()))
-  //       .catch((err) => console.log(err));
-  //   } else {
-  //     axios
-  //       .get(`${statusUrl}api/browse/${category}`)
-  //       .then((response) => setListings([...response.data].reverse()))
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [category, statusUrl]);
+
 
   useEffect(() => {
+    console.log(selectedProduct)
     if (category === "") {
       axios
         .get(`${statusUrl}api/browse/all/${resultNum}`)
@@ -39,25 +30,35 @@ const BrowseProductList = (props) => {
         .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err));
     }
-  }, [category, statusUrl, resultNum]);
+  }, [category, statusUrl, resultNum, selectedProduct]);
+
+
 
   const handleModalView = (props) => {
     setCurrentItem(props);
+    setToggle(1);
     document.getElementById("toggleDiv").style.display = "block";
     const overlay = document.getElementById("overlay");
-    overlay.classList.add("active")
+    overlay.classList.add("active");
+    window.history.pushState("", "", `/single/${selectedProduct.listing_url}`)
   }
   
+
+
   const overlayClose = e => {
     const overlay = document.getElementById("overlay");
     document.getElementById("toggleDiv").style.display = "none";
-    overlay.classList.remove("active")
+    overlay.classList.remove("active");
     // closeModal(e, modal, null);
   };
+
+
 
   const handleLoadMore = e => {
     setResultNum(resultNum + 20)
   }
+
+
 
   return (
     <div className="browsePMother">
@@ -109,11 +110,13 @@ const BrowseProductList = (props) => {
             // </Link>
           ))}
               <div id="toggleDiv" className="toggleDiv">
-            <SingleModal item={currentItem}/>
+                { toggle === 1 && (
+                  <SingleModal item={currentItem}/>
+                )}
+            
           </div>
           <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
-        {console.log(listings.length)}
         { listings.length > 0 && (
           <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>Load More</button>
         )}

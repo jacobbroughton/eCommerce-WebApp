@@ -30,6 +30,7 @@ const upload = multer(
 router.get("/finduser/:email", controller.findUser);
 router.post("/adduser", controller.addUser);
 router.post("/updateprofile/:useruid", controller.updateProfile);
+router.post("/updatestatus/:listinguid", controller.updateStatus);
 router.post("/sell/text",  controller.sellText);
 router.post("/sell/images/:listinguid", upload.array('myFile', 4), controller.sellImages);
 router.get("/personallistings/:selleruid", controller.getPersonalListings);

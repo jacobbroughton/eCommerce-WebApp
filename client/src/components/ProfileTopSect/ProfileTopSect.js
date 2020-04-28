@@ -63,6 +63,7 @@ const ProfileTopSect = () => {
 ]
 
 
+
 const handleFormSubmit = (e) => {
   axios
       .post(`${statusUrl}api/updateprofile/${dbUser.user_uid}`, {
@@ -74,6 +75,8 @@ const handleFormSubmit = (e) => {
       .then(response => console.log(response))
       .catch(err => console.log(err))
 }
+
+
 
   return (
     <div className="profileTopSectMother">

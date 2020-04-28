@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductList from "../ProductList/ProductList";
 import "./CategoryParent.scss";
 
-const BrowseCategoryParent = () => {
+const BrowseCategoryParent = props => {
   const [cat, setCat] = useState("");
+  const { selectedProduct } = props 
+
   const categoryArr = [
     "All", 
     "Video Games",
     "Computers & Accessories",
     "Outdoors & Sports",
+    "Automotive Parts", 
+    "Tools & Hardware",
     "Cameras & Equipment",
     "Musical Instruments",
     "Office Supplies",
@@ -19,6 +23,14 @@ const BrowseCategoryParent = () => {
     "Books",
     "Beauty"
   ];
+
+
+
+  useEffect(() => {
+    console.log(selectedProduct)
+  }, [props])
+
+
 
   return (
     <div className="browseViewMother">
@@ -35,7 +47,7 @@ const BrowseCategoryParent = () => {
             </ul>
         </div>
 
-      <ProductList category={cat} />
+      <ProductList selectedProduct={selectedProduct} category={cat} />
     </div>
   );
 };

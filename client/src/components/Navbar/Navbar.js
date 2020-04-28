@@ -6,9 +6,12 @@ import "./Navbar.scss";
 const Navbar = () => {
   const { isLoading, loginWithRedirect, logout, user, dbUser } = useAuth0();
 
+
+  
   useEffect(() => {
     console.log("isLoading: " + isLoading)
   }, [isLoading])
+
 
 
   return (

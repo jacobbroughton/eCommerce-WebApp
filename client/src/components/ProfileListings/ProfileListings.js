@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
+import {Link} from "react-router-dom"; 
 import placeholderImg from "../../assets/download.jpg";
 import SingleModal from "../SingleModal/SingleModal";
 import ProfileListingItem from "../ProfileListingItem/ProfileListingItem";
@@ -12,10 +13,14 @@ const ProfileListings = () => {
   const [activeListings, setActiveListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
 
+
+
   useEffect(() => {
     fetchActiveListings();
     fetchSavedListings();
   }, [dbUser, statusUrl]);
+
+
 
   const fetchSavedListings = () => {
     axios
@@ -25,6 +30,7 @@ const ProfileListings = () => {
   };
 
 
+
   const fetchActiveListings = () => {
     axios
       .get(`${statusUrl}api/personallistings/${dbUser.user_uid}`)
@@ -32,9 +38,13 @@ const ProfileListings = () => {
       .catch((err) => console.log(err));
   };
 
+
+
   const handleSavedClick = (e, listing) => {
     setCurrentItem(listing)
   }
+
+
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
@@ -42,6 +52,8 @@ const ProfileListings = () => {
     overlay.classList.remove("active");
   };
 
+
+  
   return (
     <div className="profileListingsMother">
       <div className="listingsParent">
@@ -50,9 +62,12 @@ const ProfileListings = () => {
         <div className="activeListingsParent">
           <h2>Your Listings</h2>
           {activeListings.map((listing) => (
-              <div key={listing.id} onClick={() => setCurrentItem(listing)}>
-              <ProfileListingItem status={"active"} listing={listing}/>
+            // <Link key={listing.id} to={`/browse/single/${listing.listing_uid}`}>
+              <div  onClick={() => setCurrentItem(listing)}>
+                <ProfileListingItem status={"active"} listing={listing}/>
               </div>
+            // </Link>
+
           ))}
         </div>
 
@@ -60,16 +75,19 @@ const ProfileListings = () => {
         <div className="savedListingsParent">
           <h2>Saved Listings</h2>
           {savedListings.map((listing) => (
-              <div key={listing.id}   onClick={(e) => handleSavedClick(e, listing)}>
+            // <Link key={listing.id} to={`/browse/single/${listing.listing_uid}`}>
+              <div onClick={(e) => handleSavedClick(e, listing)}>
                 <ProfileListingItem status={"saved"} listing={listing}/>
               </div>
+            // </Link>
+   
           ))}
         </div>
       </div>
 
-      <div id="toggleDiv" className="toggleDiv">
+      {/* <div id="toggleDiv" className="toggleDiv">
         <SingleModal item={currentItem} />
-      </div>
+      </div> */}
       <div onClick={() => overlayClose()} className="" id="overlay"></div>
     </div>
   );

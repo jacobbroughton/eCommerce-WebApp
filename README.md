@@ -67,8 +67,13 @@ Created by Jacob Broughton
     * Add / remove columns
 
 # Incomplete
-- Find out why images need to be (slowly) repainted to dom after scrolling away
-- Delete all rows and adjust image resize
+- Add availability status...."Still available", "pending", and "sold"
+- Add search functionality
+- Adjust image resize
+- Add filtering
+    - By state / town / price
+    - Sort by price
+- Let sellers create "stores"
 - Make picture full screen on click
 - Condense repeated code in a more sensable / scalable way
 - Let users delete saved listings
@@ -76,11 +81,7 @@ Created by Jacob Broughton
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
-- Add filtering
-    - By state / town / price
-    - Sort by price
-- Set up direct messaging (Socket.io)
-- Add blog / video review section for each listing
+
 - Add state / city filters
 - Add "wanted" section
 - Add "automotive parts", "tools" categories
