@@ -67,7 +67,10 @@ Created by Jacob Broughton
     * Add / remove columns
 
 # Incomplete
-- Add availability status...."Still available", "pending", and "sold"
+- Make categories searchable / link correctly 
+- Add share button
+    - Have link pop up in modal under button (input)
+- Let users edit their profile info, and add new info
 - Add search functionality
 - Adjust image resize
 - Add filtering
@@ -81,7 +84,6 @@ Created by Jacob Broughton
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
-
 - Add state / city filters
 - Add "wanted" section
 - Add "automotive parts", "tools" categories

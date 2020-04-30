@@ -27,7 +27,7 @@ const Navbar = () => {
       {user && (
         <div className="loggedIn">
           <button onClick={logout} className="logOutBtn">Logout</button>
-          <Link to="/browse" className="browseLink">Browse</Link>
+          <Link to="/browse/category/All-For-Sale" className="browseLink">Browse</Link>
           { dbUser && dbUser.first_name && (
             <Link to="/sell" className="sellLink">Sell</Link>
           )}

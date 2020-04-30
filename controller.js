@@ -40,7 +40,7 @@ exports.sellText = (req, res) => {
   // console.log(req.body);
   let r = req.body;
   connection.query(
-    `INSERT INTO listings (listing_uid, seller_uid, email, seller_nickname, city, state, title, description, image, price, item_condition, category, ship_status, firmness, trades, sold_status, date_created, time_created) VALUES ("${r.listing_uid}", "${r.seller_uid}", "${r.email}", "${r.seller_nickname}", "${r.city}", "${r.state}", "${r.title}", "${r.description}", "${r.image}", ${r.price}, "${r.item_condition}", "${r.category}", "${r.ship_status}", "${r.firmness}", "${r.trades}", ${r.sold_status}, "${r.date_created}", "${r.time_created}")`,
+    `INSERT INTO listings (listing_uid, seller_uid, email, seller_nickname, city, state, title, description, image, price, item_condition, category, ship_status, firmness, trades, status, date_created, time_created) VALUES ("${r.listing_uid}", "${r.seller_uid}", "${r.email}", "${r.seller_nickname}", "${r.city}", "${r.state}", "${r.title}", "${r.description}", "${r.image}", ${r.price}, "${r.item_condition}", "${r.category}", "${r.ship_status}", "${r.firmness}", "${r.trades}", ${r.sold_status}, "${r.date_created}", "${r.time_created}")`,
     (err, rows, fields) => {
       if (err) throw err;
     }
@@ -118,9 +118,9 @@ exports.browseAll = (req, res) => {
 
 exports.browseCategory = (req, res) => {
   let origCat = req.params.category;
-  // console.log(origCat);
+  let newCategory = origCat.split("-").join(" ");
   connection.query(
-    `SELECT * FROM listings WHERE category = "${req.params.category}"`,
+    `SELECT * FROM listings WHERE category = "${newCategory}"`,
     (err, rows, field) => {
       if (err) throw err;
       res.send(rows);

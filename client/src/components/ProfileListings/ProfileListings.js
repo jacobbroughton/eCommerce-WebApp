@@ -62,8 +62,8 @@ const ProfileListings = () => {
         <div className="activeListingsParent">
           <h2>Your Listings</h2>
           {activeListings.map((listing) => (
-            // <Link key={listing.id} to={`/browse/single/${listing.listing_uid}`}>
-              <div  onClick={() => setCurrentItem(listing)}>
+            // <Link  to={`/browse/single/${listing.listing_uid}`}>
+              <div key={listing.id} onClick={() => setCurrentItem(listing)}>
                 <ProfileListingItem status={"active"} listing={listing}/>
               </div>
             // </Link>
@@ -75,8 +75,8 @@ const ProfileListings = () => {
         <div className="savedListingsParent">
           <h2>Saved Listings</h2>
           {savedListings.map((listing) => (
-            // <Link key={listing.id} to={`/browse/single/${listing.listing_uid}`}>
-              <div onClick={(e) => handleSavedClick(e, listing)}>
+            // <Link  to={`/browse/single/${listing.listing_uid}`}>
+              <div key={listing.id} onClick={(e) => handleSavedClick(e, listing)}>
                 <ProfileListingItem status={"saved"} listing={listing}/>
               </div>
             // </Link>

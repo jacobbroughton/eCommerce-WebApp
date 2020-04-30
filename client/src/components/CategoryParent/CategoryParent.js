@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ProductList from "../ProductList/ProductList";
+import { Link } from "react-router-dom";
 import SinglePage from "../SinglePage/SinglePage";
 import "./CategoryParent.scss";
 
 const BrowseCategoryParent = props => {
   const [cat, setCat] = useState("");
-  const { single } = props;
+  const { category, categoryItems, single } = props;
 
   const categoryArr = [
-    "All", 
+    "All For Sale", 
     "Video Games",
     "Computers & Accessories",
     "Outdoors & Sports",
@@ -25,8 +26,6 @@ const BrowseCategoryParent = props => {
     "Beauty"
   ];
 
-
-
   return (
     <div className="browseViewMother">
         <div className="catParent">
@@ -35,14 +34,24 @@ const BrowseCategoryParent = props => {
                 {categoryArr.map(cate => (
                 cate === "All" 
                 ? 
-                <li className="catItem" key={cate} onClick={e => setCat(cate)}>All For Sale</li>
+                <Link  to={`/browse/category/all`} key={cate}>
+                  <li className="catItem"  onClick={e => setCat(cate)}>All For Sale</li>
+                </Link>
+                
                 :
-                <li className="catItem" key={cate} onClick={e => setCat(cate)}>{cate}</li>
+                <Link to={`/browse/category/${cate.replace(/ /g, "-")}`} key={cate}>
+                  <li className="catItem"  onClick={e => setCat(cate)}>{cate}</li>
+                </Link>
+                
                 ))}
             </ul>
         </div>
+      {/* { category && (
+        
+        <ProductList/> // Work on it starting from here
+      )} */}
       { !single && (
-        <ProductList category={cat} />
+        <ProductList category={category} incomingListings={categoryItems} />
       )}
       { single && (
         <SinglePage/>

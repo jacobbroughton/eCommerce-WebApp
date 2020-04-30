@@ -8,7 +8,7 @@ import placeholderImg from "../../assets/download.jpg";
 
 const BrowseProductList = (props) => {
   const { statusUrl } = useAuth0();
-  const { category } = props;
+  const { category, incomingListings } = props;
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   const [resultNum, setResultNum] = useState(20);
@@ -17,21 +17,23 @@ const BrowseProductList = (props) => {
 
 
 
-  useEffect(() => {
-    if (category === "") {
-      axios
-        .get(`${statusUrl}api/browse/all/${resultNum}`)
-        .then((response) => setListings([...response.data]))
-        .catch((err) => console.log(err));
-    } else {
-      axios
-        .get(`${statusUrl}api/browse/${category}/${resultNum}`)
-        .then((response) => setListings([...response.data]))
-        .catch((err) => console.log(err));
-    }
-  }, [category, statusUrl, resultNum]);
+  // useEffect(() => {
+  //   if (category === "") {
+  //     axios
+  //       .get(`${statusUrl}api/browse/all/${resultNum}`)
+  //       .then((response) => setListings([...response.data]))
+  //       .catch((err) => console.log(err));
+  //   } else {
+  //     axios
+  //       .get(`${statusUrl}api/browse/${category}/${resultNum}`)
+  //       .then((response) => setListings([...response.data]))
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [category, statusUrl, resultNum]);
 
-
+useEffect(() => {
+  setListings([...incomingListings])
+}, [category, incomingListings])
 
   const handleModalView = (props) => {
     setCurrentItem(props);

@@ -52,7 +52,7 @@ const SinglePage = () => {
     if(single === null) return <Loading/>
     else {
     return (
-        <div id="singlePageMother" className={`${single.status}Modal singlePageMother`}>
+        <div id="singlePageMother" className={`singlePageMother`}>
         <div className="singlePageMain">
           <div className="imagesGenInfoDiv">
             <div className="imagesParent">
