@@ -69,7 +69,6 @@ const SingleModal = (props) => {
 
 
   return (
-    <Link to={`/browse/single/${item.listing_uid}`}>
       <div id="modalMother" className={`${item.status}Modal modalMother`}>
           <div className="modalMain">
             <div className="imagesGenInfoDiv">
@@ -109,7 +108,8 @@ const SingleModal = (props) => {
               <div className="listingGenInfoParent">
                 <h1 className="title">{item.title}</h1>
                 <p className={`${item.status} soldStatus`} >{item.status}</p>
-                <div className="availabilityDiv">
+                { dbUser.user_uid === item.seller_uid && (
+                  <div className="availabilityDiv">
                   <p>Change availability?</p>
                   { item.status !== "Available" && (
                     <button className="availableBtn" value="Available" onClick={(e) => setStatus(e.target.value)}>Available</button>
@@ -122,7 +122,9 @@ const SingleModal = (props) => {
                   { item.status !== "Sold" && (
                     <button className="soldBtn" value="Sold" onClick={(e) => setStatus(e.target.value)}>Sold</button>
                   )}
-                </div>
+                </div> 
+                )}
+
                 
 
                 
@@ -160,6 +162,7 @@ const SingleModal = (props) => {
                       <button className="saveBtn" onClick={() => handleSave()}>Save</button>
                     </div>
                   )}
+                   <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
 
                 </div>
               </div>
@@ -178,7 +181,6 @@ const SingleModal = (props) => {
           Close
         </button>
       </div>
-    </Link>
     
   );
 };

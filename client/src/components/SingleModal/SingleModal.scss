@@ -54,9 +54,31 @@
             color: #333;
             opacity: 0.9;
             margin-bottom: 20px;
+        }          
+        .soldStatus{
+          font-weight: 600;
+          text-align: left;
+          padding: 5px 8px;
+          margin-bottom: 1em; 
+          border: 1px solid #333;
         }
+
+        .Sold{
+            background: red;
+            // color: white;
+          }
+          .Pending{
+            background: yellow;
+           
+          }
+          .Available{
+            background: green;
+            color: white;
+          }
         .availabilityDiv{
           display: flex;
+          
+
 
           .availableBtn{
             background: lightgreen;
@@ -106,6 +128,12 @@
               cursor: pointer;
             }
           }
+          .viewListing{
+            display: flex;
+            justify-content: flex-start;
+            font-size: 1em;
+            font-weight: bold;
+          }
         }
 
       }        
@@ -148,9 +176,9 @@
 }
 
 
-.PendingModal{
-  border: yellow solid 2px;
-}
-.SoldModal{
-  border: red solid 2px;
-}
+// .PendingModal{
+//   border: yellow solid 2px;
+// }
+// .SoldModal{
+//   border: red solid 2px;
+// }

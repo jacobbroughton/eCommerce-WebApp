@@ -123,7 +123,7 @@ const SellForm = () => {
           ship_status: shipping,
           firmness: priceOffer,
           trades,
-          sold_status : 0,
+          sold_status : "Available",
           date_created,
           time_created
         })
