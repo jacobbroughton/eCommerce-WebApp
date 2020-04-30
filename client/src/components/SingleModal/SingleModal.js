@@ -108,7 +108,7 @@ const SingleModal = (props) => {
               <div className="listingGenInfoParent">
                 <h1 className="title">{item.title}</h1>
                 <p className={`${item.status} soldStatus`} >{item.status}</p>
-                { dbUser.user_uid === item.seller_uid && (
+                {/* { dbUser.user_uid === item.seller_uid && (
                   <div className="availabilityDiv">
                   <p>Change availability?</p>
                   { item.status !== "Available" && (
@@ -123,7 +123,7 @@ const SingleModal = (props) => {
                     <button className="soldBtn" value="Sold" onClick={(e) => setStatus(e.target.value)}>Sold</button>
                   )}
                 </div> 
-                )}
+                )} */}
 
                 
 
@@ -177,6 +177,7 @@ const SingleModal = (props) => {
               </p>
             </div>
           </div>
+          {/* <input autofocus disabled value={`http://localhost:3000/browse/single/${item.listing_uid}`}/> */}
         <button className="closeBtn" onClick={(e) => handleClose(e)}>
           Close
         </button>

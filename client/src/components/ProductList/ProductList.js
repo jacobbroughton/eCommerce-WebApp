@@ -19,10 +19,10 @@ const BrowseProductList = (props) => {
 
   // useEffect(() => {
   //   if (category === "") {
-  //     axios
-  //       .get(`${statusUrl}api/browse/all/${resultNum}`)
-  //       .then((response) => setListings([...response.data]))
-  //       .catch((err) => console.log(err));
+      // axios
+      //   .get(`${statusUrl}api/browse/all/${resultNum}`)
+      //   .then((response) => setListings([...response.data]))
+      //   .catch((err) => console.log(err));
   //   } else {
   //     axios
   //       .get(`${statusUrl}api/browse/${category}/${resultNum}`)
@@ -35,13 +35,28 @@ useEffect(() => {
   setListings([...incomingListings])
 }, [category, incomingListings])
 
+useEffect(() => {
+  let newCategory = category.replace(/ /g, "-");
+  if (category === "All For Sale") {
+    axios
+    .get(`${statusUrl}api/browse/all/${resultNum}`)
+    .then((response) => setListings([...response.data]))
+    .catch((err) => console.log(err));
+  } else {
+  axios
+    .get(`${statusUrl}api/browse/${newCategory}/${resultNum}`)
+    .then((response) => console.log(response.data))
+    .catch((err) => console.log(err));
+  }
+
+}, [resultNum])
+
   const handleModalView = (props) => {
     setCurrentItem(props);
     setToggle(1);
     document.getElementById("toggleDiv").style.display = "block";
     const overlay = document.getElementById("overlay");
     overlay.classList.add("active");
-    // window.history.pushState("", "", `/single/${selectedProduct.listing_url}`)
   }
   
 

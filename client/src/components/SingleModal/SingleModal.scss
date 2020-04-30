@@ -26,9 +26,10 @@
       .imagesParent {
         display: flex;
         .singleImage {
-          height: 234px;
+          height: 100%;
           width: 300px;
           object-fit: cover;
+          box-shadow: 4px 4px 7px rgba(58, 58, 58, 0.2);
         }
         .sideImagesParent{
           display: flex;

@@ -66,9 +66,9 @@ Created by Jacob Broughton
 * Make product listing grid more dynamic
     * Add / remove columns
 * Make categories searchable / link correctly 
+* Fix close modal button bug (Opens single page)
 
 # Incomplete
-- Fix close modal button bug (Opens single page)
 - Add share button
     - Have link pop up in modal under button (input)
 - Turn scroll events off for listings page when modal is opened
