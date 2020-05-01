@@ -135,6 +135,40 @@
             font-size: 1em;
             font-weight: bold;
           }
+
+          #copyText{
+            position: absolute;
+            top: 0;
+            opacity: 0;
+            cursor: default;
+          }
+          div{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            button{
+              font-size: 1rem;
+              appearance: none;
+              border: none;
+              font-weight: bold;
+              text-align: left;
+              padding: 0;
+            }
+            .copiedPrompt{
+              display: none;
+              position: absolute;
+              margin-top: 20px;
+              text-align: left;
+              font-size: 0.85rem;
+              // position: absolute;
+            }
+            .copiedPrompt.active{
+              display: block;
+            }
+          }
+
+
+
         }
 
       }        

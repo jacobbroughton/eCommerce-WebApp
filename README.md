@@ -67,11 +67,15 @@ Created by Jacob Broughton
     * Add / remove columns
 * Make categories searchable / link correctly 
 * Fix close modal button bug (Opens single page)
+* Add "automotive parts", "tools" categories
+* Let users delete saved listings
 
 # Incomplete
 - Add share button
     - Have link pop up in modal under button (input)
+- Hide "Load More" button when there is no more to show
 - Turn scroll events off for listings page when modal is opened
+- Add delete button for each listing
 - Let users edit their profile info, and add new info
 - Add search functionality
 - Adjust image resize
@@ -81,14 +85,12 @@ Created by Jacob Broughton
 - Let sellers create "stores"
 - Make picture full screen on click
 - Condense repeated code in a more sensable / scalable way
-- Let users delete saved listings
 - Polish styles
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
 - Add state / city filters
 - Add "wanted" section
-- Add "automotive parts", "tools" categories
 - Add notifications
 - Add dark mode
     - Consider using context api and styled components for dynamic styling

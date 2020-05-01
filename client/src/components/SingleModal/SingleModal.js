@@ -39,6 +39,20 @@ const SingleModal = (props) => {
     .then(r => console.log(r)).catch(err => console.log(err))
   }
 
+  const handleShare = () => {
+    let copyText = document.getElementById("copyText");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+
+    document.execCommand('copy');
+
+    let copiedPrompt = document.getElementById("copiedPrompt")
+    copiedPrompt.classList.add("active");
+    setTimeout(() => {
+      copiedPrompt.classList.remove("active");
+    }, 3000)
+  }
+
 
 
   const handleSave = () => {
@@ -163,6 +177,12 @@ const SingleModal = (props) => {
                     </div>
                   )}
                    <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
+                    <input type="text" id='copyText' value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
+                    
+                    <div>
+                      <button onClick={(e) => handleShare(e)}>Share</button>
+                      <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
+                    </div>
 
                 </div>
               </div>
