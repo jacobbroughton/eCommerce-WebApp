@@ -142,11 +142,11 @@
             opacity: 0;
             cursor: default;
           }
-          div{
+          .shareDiv{
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            button{
+            .shareBtn{
               font-size: 1rem;
               appearance: none;
               border: none;

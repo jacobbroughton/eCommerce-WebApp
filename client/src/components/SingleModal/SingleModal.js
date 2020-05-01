@@ -179,8 +179,8 @@ const SingleModal = (props) => {
                    <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
                     <input type="text" id='copyText' value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
                     
-                    <div>
-                      <button onClick={(e) => handleShare(e)}>Share</button>
+                    <div className="shareDiv">
+                      <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>
                       <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
                     </div>
 
