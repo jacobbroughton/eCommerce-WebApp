@@ -115,12 +115,27 @@ exports.browseAll = (req, res) => {
   });
 };
 
+exports.allNumRows = (req, res) => {
+  connection.query(`SELECT COUNT(*) as "COUNT" FROM listings`, (err, rows, fields) => {
+    if(err) throw err;
+    res.send(rows[0])
+  })
+}
+
+exports.categoryNumRows = (req, res) => {
+  let origCat = req.params.category;
+  let newCategory = origCat.split("-").join(" ");
+  connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE category = "${newCategory}"`, (err, rows, fields) => {
+    if(err) throw err;
+    res.send(rows[0])
+  })
+}
 
 exports.browseCategory = (req, res) => {
   let origCat = req.params.category;
   let newCategory = origCat.split("-").join(" ");
   connection.query(
-    `SELECT * FROM listings WHERE category = "${newCategory}"`,
+    `SELECT * FROM listings WHERE category = "${newCategory}" ORDER BY id DESC LIMIT ${req.params.resultnum}`,
     (err, rows, field) => {
       if (err) throw err;
       res.send(rows);

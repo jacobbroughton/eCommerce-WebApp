@@ -14,6 +14,7 @@ const BrowseProductList = (props) => {
   const [resultNum, setResultNum] = useState(20);
   let [loadCounter, setLoadCounter] = useState(0);
   let [toggle, setToggle] = useState(0);
+  const [limit, setLimit] = useState(0);
 
 
 
@@ -32,9 +33,24 @@ const BrowseProductList = (props) => {
   // }, [category, statusUrl, resultNum]);
 
 useEffect(() => {
+  let newCategory = category.replace(/ /g, "-");
   setListings([...incomingListings])
+  if (category === "All For Sale") {
+    axios
+    .get(`${statusUrl}api/browsecount/all`)
+    .then(res => setLimit(res.data.COUNT))
+    .catch(err => console.log(err))
+  } else {
+    axios
+    .get(`${statusUrl}api/browsecount/${newCategory}`)
+    .then(res => setLimit(res.data.COUNT))
+    .catch(err => console.log(err))
+  }
 }, [category, incomingListings])
 
+
+
+// Runs each time load more is clicked
 useEffect(() => {
   let newCategory = category.replace(/ /g, "-");
   if (category === "All For Sale") {
@@ -48,8 +64,9 @@ useEffect(() => {
     .then((response) => console.log(response.data))
     .catch((err) => console.log(err));
   }
-
 }, [resultNum])
+
+
 
   const handleModalView = (props) => {
     setCurrentItem(props);
@@ -133,7 +150,7 @@ useEffect(() => {
           </div>
           <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
-        { listings.length > 0 && (
+        { listings.length !== limit && (
           <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>Load More</button>
         )}
         

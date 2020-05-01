@@ -37,6 +37,8 @@ router.get("/personallistings/:selleruid", controller.getPersonalListings);
 router.get("/browse/all/:resultnum", controller.browseAll);
 router.get("/browse/single/:listinguid", controller.browseSingle);
 router.get("/browse/:category/:resultnum", controller.browseCategory);
+router.get("/browsecount/all", controller.allNumRows);
+router.get("/browsecount/:category", controller.categoryNumRows);
 router.get("/save/post/:listinguid/:useruid", controller.saveListing);
 router.get("/save/get/:useruid", controller.getSaved);
 router.get("/save/update/:listinguid/:useruid", controller.updateSaved)

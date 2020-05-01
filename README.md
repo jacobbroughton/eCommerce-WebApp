@@ -69,12 +69,12 @@ Created by Jacob Broughton
 * Fix close modal button bug (Opens single page)
 * Add "automotive parts", "tools" categories
 * Let users delete saved listings
+* Add share button
+* Hide "Load More" button when there is no more to show
 
 # Incomplete
-- Add share button
-    - Have link pop up in modal under button (input)
-- Hide "Load More" button when there is no more to show
 - Turn scroll events off for listings page when modal is opened
+- Make page load at top when switching categories
 - Add delete button for each listing
 - Let users edit their profile info, and add new info
 - Add search functionality
