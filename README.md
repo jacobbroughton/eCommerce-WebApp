@@ -73,9 +73,11 @@ Created by Jacob Broughton
 * Hide "Load More" button when there is no more to show
 
 # Incomplete
+- Add delete button for each listing
+- Adjust profile page style / functionality
+    - Add a sold section
 - Turn scroll events off for listings page when modal is opened
 - Make page load at top when switching categories
-- Add delete button for each listing
 - Let users edit their profile info, and add new info
 - Add search functionality
 - Adjust image resize

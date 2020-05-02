@@ -227,3 +227,10 @@ exports.updateStatus = (req, res) => {
     if(err) throw err;
   })
 }
+
+exports.deleteListing = (req, res) => {
+  connection.query(`DELETE FROM listings WHERE listing_uid = "${req.params.listinguid}"`, (err, rows, fields) => {
+    if(err) throw err;
+    console.log(`Listing ${req.params.listinguid} deleted`);
+  })
+}

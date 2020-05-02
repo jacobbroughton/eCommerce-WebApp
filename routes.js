@@ -41,6 +41,7 @@ router.get("/browsecount/all", controller.allNumRows);
 router.get("/browsecount/:category", controller.categoryNumRows);
 router.get("/save/post/:listinguid/:useruid", controller.saveListing);
 router.get("/save/get/:useruid", controller.getSaved);
-router.get("/save/update/:listinguid/:useruid", controller.updateSaved)
+router.get("/save/update/:listinguid/:useruid", controller.updateSaved);
+router.get("/delete/:listinguid", controller.deleteListing);
 
 module.exports = router;

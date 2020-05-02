@@ -16,8 +16,6 @@ const SingleModal = (props) => {
   const [image, setImage] = useState("");
   const [status, setStatus] = useState(item.status);  
 
-
-
   const handleClose = (e) => {
     document.getElementById("toggleDiv").style.display = "none";
     document.getElementById("overlay").classList.remove("active");
@@ -67,6 +65,15 @@ const SingleModal = (props) => {
     .catch(err => console.log(err))
 
     window.location.reload();
+  }
+
+
+
+  const handleDelete = () => {
+    axios
+    .get(`${statusUrl}api/delete/${item.listing_uid}`)
+    .then(r => console.log(r)).catch(e => console.log(e))
+    window.location.reload()
   }
 
 
@@ -122,7 +129,7 @@ const SingleModal = (props) => {
               <div className="listingGenInfoParent">
                 <h1 className="title">{item.title}</h1>
                 <p className={`${item.status} soldStatus`} >{item.status}</p>
-                {/* { dbUser.user_uid === item.seller_uid && (
+               {/* { dbUser.user_uid === item.seller_uid && (
                   <div className="availabilityDiv">
                   <p>Change availability?</p>
                   { item.status !== "Available" && (
@@ -139,10 +146,6 @@ const SingleModal = (props) => {
                 </div> 
                 )} */}
 
-                
-
-                
-                
                 
                 <div className="listingGenInfo">
                   <div className="listingGenItem">
@@ -183,7 +186,9 @@ const SingleModal = (props) => {
                       <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>
                       <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
                     </div>
-
+                    { dbUser.user_uid === item.seller_uid && (
+                <button className="deleteBtn" onClick={(e) => handleDelete(e)}>Delete</button>
+                )}
                 </div>
               </div>
             </div>
