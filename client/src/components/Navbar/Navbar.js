@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 const Navbar = () => {
-  const { isLoading, loginWithRedirect, logout, user, dbUser } = useAuth0();
-
-
-  
-  useEffect(() => {
-    console.log("isLoading: " + isLoading)
-  }, [isLoading])
+  const { loginWithRedirect, logout, user, dbUser } = useAuth0();
 
 
 

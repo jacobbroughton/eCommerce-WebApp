@@ -49,7 +49,7 @@ const SinglePage = () => {
     
     
 
-    if(single === null) return <Loading/>
+    if(single === null) return <Loading partial/>
     else {
     return (
         <div id="singlePageMother" className={`singlePageMother`}>

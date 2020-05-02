@@ -1,9 +1,12 @@
 .loadingMother{
     height: 100vh;
-    .loadingMain{
+    .loadingMain, .loadingMainPartial{
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .loadingMainPartial{
+        margin-left: 250px;
     }
 }
