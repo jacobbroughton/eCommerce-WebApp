@@ -20,9 +20,9 @@ const Single = props => {
 
 
     return (
-        <div>
+        <>
             <CategoryParent single selectedProduct={item}/>
-        </div>
+        </>
     )
 }
 

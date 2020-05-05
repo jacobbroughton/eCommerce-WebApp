@@ -26,10 +26,10 @@ const CategoryView = props => {
 
 
     return (
-        <div>
+        <>
             {console.log(items)}
             <CategoryParent category={newCategory} categoryItems={items}/>
-        </div>
+        </>
     )
 }
 

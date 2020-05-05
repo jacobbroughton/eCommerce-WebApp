@@ -97,6 +97,8 @@ Created by Jacob Broughton
 - Add loading for when images are loading on pages
 - Add state / city filters
 - Add "wanted" section
+- Add "As of 3:45pm 3/4/20" next to the sold status on listing
+    - Update whenever the user has checked the site again
 - Add dark mode
     - Consider using context api and styled components for dynamic styling
 - Consider utilizing cookies for temporary buyers accounts, or something else

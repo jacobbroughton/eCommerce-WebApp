@@ -29,27 +29,24 @@ const BrowseCategoryParent = props => {
   return (
     <div className="browseViewMother">
         <div className="catParent">
-            <h3 className="catHead">Categories</h3>
-            <ul className="catList">
-                {categoryArr.map(cate => (
-                cate === "All" 
-                ? 
-                <Link  to={`/browse/category/all`} key={cate}>
-                  <li className="catItem"  onClick={e => setCat(cate)}>All For Sale</li>
-                </Link>
-                
-                :
-                <Link to={`/browse/category/${cate.replace(/ /g, "-")}`} key={cate}>
-                  <li className="catItem"  onClick={e => setCat(cate)}>{cate}</li>
-                </Link>
-                
-                ))}
-            </ul>
-        </div>
-      {/* { category && (
-        
-        <ProductList/> // Work on it starting from here
-      )} */}
+          <h3 className="catHead">Categories</h3>
+          <ul className="catList">
+            {categoryArr.map(cate => (
+            cate === "All" 
+            ? 
+            <Link  to={`/browse/category/all`} key={cate}>
+              <li className="catItem"  onClick={e => setCat(cate)}>All For Sale</li>
+            </Link>
+            
+            :
+            <Link to={`/browse/category/${cate.replace(/ /g, "-")}`} key={cate}>
+              <li className="catItem"  onClick={e => setCat(cate)}>{cate}</li>
+            </Link>
+            
+            ))}
+          </ul>
+      </div>
+      {/* <input className="searchInput" placeholder="Search"/> */}
       { !single && (
         <ProductList category={category} incomingListings={categoryItems} />
       )}

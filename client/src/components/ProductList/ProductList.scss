@@ -5,6 +5,10 @@
     width: 100%;
     .browsePMain{
         max-width: 950px;
+        .searchInput{
+            position: fixed;
+            
+        }
         .browsePHead{
             text-align: left;
             margin-left: 10px;

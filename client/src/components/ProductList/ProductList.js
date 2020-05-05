@@ -18,20 +18,6 @@ const BrowseProductList = (props) => {
 
 
 
-  // useEffect(() => {
-  //   if (category === "") {
-      // axios
-      //   .get(`${statusUrl}api/browse/all/${resultNum}`)
-      //   .then((response) => setListings([...response.data]))
-      //   .catch((err) => console.log(err));
-  //   } else {
-  //     axios
-  //       .get(`${statusUrl}api/browse/${category}/${resultNum}`)
-  //       .then((response) => setListings([...response.data]))
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [category, statusUrl, resultNum]);
-
 useEffect(() => {
   let newCategory = category.replace(/ /g, "-");
   setListings([...incomingListings])
@@ -98,6 +84,7 @@ useEffect(() => {
   return (
     <div className="browsePMother">
       <div className="browsePMain">
+      {/* <input className="searchInput" placeholder="Search"/> */}
         {category === "All" && <h3 className="browsePHead">All for Sale</h3>}
         {category === "" ? (
           <h3 className="browsePHead">Recent Listings</h3>
@@ -108,10 +95,7 @@ useEffect(() => {
         )}
         <div className="browsePListings">
           {listings.map((list) => (
-            // <Link
-            //   key={list.listing_uid}
-            //   to={`/browse/single/${list.listing_uid}`}
-            // >
+
               <div key={list.id} onClick={() => handleModalView(list)} className="listItem">
                 { list.image !== "null" && list.image !== null ? 
                   <img
@@ -139,10 +123,8 @@ useEffect(() => {
                 </div>
                  
                 <p className="itemPrice">${list.price}</p>          
-                
-  
+      
               </div>
-            // </Link>
           ))}
               <div id="toggleDiv" className="toggleDiv">
                 { toggle === 1 && (
