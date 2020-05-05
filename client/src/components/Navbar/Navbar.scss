@@ -16,7 +16,11 @@ nav{
     justify-content: space-evenly;
     height: 50px;
     width: 100%;
-    background: lightgrey;
+    background: #4167b2;
+    a{
+        color: #fff;
+    }
+    
     .homeLink{
         position: absolute;
         left: 0;
@@ -45,5 +49,11 @@ nav{
             margin-left: 10px;
         }
 
+    }
+    button{
+        font-weight: 600;
+        font-size: 0.8rem;
+        border-radius: 3px;
+        padding: .2em;
     }
 }

@@ -24,7 +24,25 @@ const SinglePage = () => {
         .catch(err => console.log(err))
     }, [])
 
-    const handleSave = () => {
+
+
+      const handleShare = () => {
+        let copyText = document.getElementById("copyText");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+    
+        document.execCommand('copy');
+    
+        let copiedPrompt = document.getElementById("copiedPrompt")
+        copiedPrompt.classList.add("active");
+        setTimeout(() => {
+          copiedPrompt.classList.remove("active");
+        }, 3000)
+      }
+
+
+
+      const handleSave = () => {
         let time = moment().format("LT");
         let date = moment().format("L");
         let time_saved = time.replace(/\s/g, "");
@@ -37,6 +55,17 @@ const SinglePage = () => {
     
         window.location.reload();
       }
+
+
+
+      const handleDelete = () => {
+        axios
+        .get(`${statusUrl}api/delete/${single.listing_uid}`)
+        .then(r => console.log(r)).catch(e => console.log(e))
+        window.location.reload()
+      }
+
+
 
       if (single !== null) {
         imageArr = single.image.split(" ");
@@ -142,7 +171,15 @@ const SinglePage = () => {
                     <button className="saveBtn" onClick={() => handleSave()}>Save</button>
                   </div>
                 )}
-
+                    <input type="text" id='copyText' value={`http://localhost:3000/browse/single/${single.listing_uid}`}/>
+                    
+                    <div className="shareDiv">
+                      <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>
+                      <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
+                    </div>
+                    { dbUser.user_uid === single.seller_uid && (
+                <button className="deleteBtn" onClick={(e) => handleDelete(e)}>Delete</button>
+                )}
               </div>
             </div>
           </div>

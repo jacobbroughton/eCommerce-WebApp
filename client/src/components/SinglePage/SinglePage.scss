@@ -109,6 +109,53 @@
                 cursor: pointer;
               }
             }
+
+            .viewListing{
+              display: flex;
+              justify-content: flex-start;
+              font-size: 1em;
+              font-weight: bold;
+            }
+  
+            #copyText{
+              position: absolute;
+              top: 0;
+              opacity: 0;
+              cursor: default;
+            }
+            .shareDiv{
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              .shareBtn{
+                font-size: 1rem;
+                appearance: none;
+                border: none;
+                font-weight: bold;
+                text-align: left;
+                padding: 0;
+              }
+              .copiedPrompt{
+                display: none;
+                position: absolute;
+                margin-top: 20px;
+                text-align: left;
+                font-size: 0.85rem;
+                // position: absolute;
+              }
+              .copiedPrompt.active{
+                display: block;
+              }
+            }
+            .deleteBtn{
+              appearance: none;
+              border: none;
+              text-align: left;
+              font-size: 1rem;
+              font-weight: bold;
+              padding: 0;
+              color: red;
+            }
           }
   
         }        

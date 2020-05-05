@@ -46,6 +46,8 @@ useEffect(() => {
     .then(res => setLimit(res.data.COUNT))
     .catch(err => console.log(err))
   }
+  window.scroll(0,0);
+  
 }, [category, incomingListings])
 
 

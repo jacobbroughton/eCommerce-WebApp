@@ -71,28 +71,34 @@ Created by Jacob Broughton
 * Let users delete saved listings
 * Add share button
 * Hide "Load More" button when there is no more to show
+* Add delete button for each listing
 
 # Incomplete
-- Add delete button for each listing
+- Add tags in each listing (for search)
+- Add search functionality
 - Adjust profile page style / functionality
     - Add a sold section
+- Add notifications
+    - Use web-sockets
 - Turn scroll events off for listings page when modal is opened
 - Make page load at top when switching categories
 - Let users edit their profile info, and add new info
-- Add search functionality
 - Adjust image resize
 - Add filtering
     - By state / town / price
     - Sort by price
 - Let sellers create "stores"
 - Make picture full screen on click
-- Condense repeated code in a more sensable / scalable way
+- Condense repeated code in a more sensable / scalable wayß
 - Polish styles
+- Split up components into more consise, smaller, reusable components
 - Make all selling fields required
     - Cannot be the "select" option
 - Add loading for when images are loading on pages
 - Add state / city filters
 - Add "wanted" section
-- Add notifications
 - Add dark mode
     - Consider using context api and styled components for dynamic styling
+- Consider utilizing cookies for temporary buyers accounts, or something else
+
+# Break up components

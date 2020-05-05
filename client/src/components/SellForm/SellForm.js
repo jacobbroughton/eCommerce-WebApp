@@ -41,9 +41,11 @@ const SellForm = () => {
   const [trades, setTrades] = useState(tradeArr[0]);
   const [priceOffer, setPriceOffer] = useState(priceOfferArr[0]);
   const [description, setDescription] = useState("");
+  const [tags, setTags] = useState("");
   const [file, setFile] = useState(null);
   const [files, setFiles] = useState();
   const [num, setNum] = useState("");
+  const imagePrevNum = ["", "", "", ""];
 
   useEffect(() => {}, [num])
 
@@ -123,6 +125,7 @@ const SellForm = () => {
           ship_status: shipping,
           firmness: priceOffer,
           trades,
+          tags,
           sold_status : "Available",
           date_created,
           time_created
@@ -159,12 +162,18 @@ const SellForm = () => {
         className="sellForm"
         encType="multipart/form-data"
       >
+
+
+        {/* Title */}
         <input
           required
           placeholder="What is the item you're selling?"
           onChange={e => setTitle(e.target.value)}
           className="titleInput"
         />
+
+
+        {/* File input */}
         <input
           type="file"
           name="myFile"
@@ -175,8 +184,11 @@ const SellForm = () => {
           multiple
         />
 
+
+        {/* Preview Grid */}
         <div className="previewGrid">
-          <div className="imgPreviewContainer" id="imgPreviewContainer">
+          { imagePrevNum.map(imgPrev => 
+                      <div className="imgPreviewContainer" id="imgPreviewContainer">
             <img
               src=""
               alt=""
@@ -185,41 +197,20 @@ const SellForm = () => {
             />
             <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
           </div>
-          <div className="imgPreviewContainer" id="imgPreviewContainer">
-            <img
-              src=""
-              alt=""
-              id="imgPreview"
-              className="imgPreview"
-            />
-            <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
-          </div>
-          <div className="imgPreviewContainer" id="imgPreviewContainer">
-            <img
-              src=""
-              alt=""
-              id="imgPreview"
-              className="imgPreview"
-            />
-            <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
-          </div>
-          <div className="imgPreviewContainer" id="imgPreviewContainer">
-            <img
-              src=""
-              alt=""
-              id="imgPreview"
-              className="imgPreview"
-            />
-            <span className="defaultPreviewText" id="defaultPreviewText">Image</span>
-          </div>
+          )}
         </div>
 
+
+        {/* Price */}
         <input
           required
           placeholder="Price"
           onChange={e => setPrice(parseInt(e.target.value))}
           className="priceInput"
         />
+
+
+        {/* Condition */}
         <select
           onChange={e => setCondition(e.target.value)}
           className="conditionInput"
@@ -230,6 +221,9 @@ const SellForm = () => {
             </option>
           ))}
         </select>
+
+
+        {/* Shipping */}
         <select
           className="shippingInput"
           onChange={e => setShipping(e.target.value)}
@@ -240,6 +234,9 @@ const SellForm = () => {
             </option>
           ))}
         </select>
+
+
+        {/* Category */}
         <select
           className="categoryInput"
           onChange={e => setCategory(e.target.value)}
@@ -250,6 +247,9 @@ const SellForm = () => {
             </option>
           ))}
         </select>
+
+
+        {/* Offers */}
         <select
           className="priceOfferInput"
           onChange={e => setPriceOffer(e.target.value)}
@@ -260,6 +260,8 @@ const SellForm = () => {
             </option>
           ))}
         </select>
+
+        {/* Trades */}
         <select
           className="tradeInput"
           onChange={e => setTrades(e.target.value)}
@@ -270,13 +272,25 @@ const SellForm = () => {
             </option>
           ))}
         </select>
+
+
+        {/* Description */}
         <textarea
           required
           placeholder="Describe the item you're selling..."
           onChange={e => setDescription(e.target.value)}
           className="descriptionInput"
         />
+
+        {/* Tags */}
+        <input className="tagsInput" placeholder="Tags (e.g. 'mountain bike mtb biking')" maxLength="100" onChange={e => setTags(e.target.value)}/>
+
+
+        {/* Submit */}
         <input className="postForSaleBtn" placeholder="Post" type="submit" />
+
+          
+
       </form>
       <div className="sellModalParent" id="sellModalParent">
        <ListedModal/>
