@@ -8,8 +8,8 @@ import "./SingleModal.scss";
 
 
 
-const SingleModal = (props) => {
-  let { item } = props;
+const SingleModal = ({ item, handleToggle }) => {
+  // let { item, handleModelView } = props;
   const availArr = ["Available", "Pending", "Sold"];
   const { statusUrl, dbUser } = useAuth0();
   let imageArr = [];
@@ -17,9 +17,10 @@ const SingleModal = (props) => {
   const [status, setStatus] = useState(item.status);  
 
   const handleClose = (e) => {
-    document.getElementById("toggleDiv").style.display = "none";
+    // document.getElementById("itemParent").style.display = "none";
     document.getElementById("overlay").classList.remove("active");
     setImage("");
+    handleToggle();
 
     // Window location testing, removes product url
     console.log(window.location.pathname)
@@ -180,7 +181,7 @@ const SingleModal = (props) => {
                     </div>
                   )}
                    <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
-                    <input type="text" id='copyText' value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
+                    <input type="text" id='copyText' disabled value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
                     
                     <div className="shareDiv">
                       <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>

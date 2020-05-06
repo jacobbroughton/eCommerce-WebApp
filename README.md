@@ -102,5 +102,7 @@ Created by Jacob Broughton
 - Add dark mode
     - Consider using context api and styled components for dynamic styling
 - Consider utilizing cookies for temporary buyers accounts, or something else
+- Add menu/options on rightclick of mouse
+    - Similar to Spotify's
 
 # Break up components

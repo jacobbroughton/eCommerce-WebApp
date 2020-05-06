@@ -27,7 +27,6 @@ const CategoryView = props => {
 
     return (
         <>
-            {console.log(items)}
             <CategoryParent category={newCategory} categoryItems={items}/>
         </>
     )

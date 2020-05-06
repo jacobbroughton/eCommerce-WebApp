@@ -7,7 +7,7 @@
         max-width: 950px;
         .searchInput{
             position: fixed;
-            
+
         }
         .browsePHead{
             text-align: left;
@@ -65,7 +65,7 @@
                 }
                 .itemPrice{
                     position: absolute;
-                    top: 46%;
+                    top: 55%;
                     left: 10px;
                     padding: 2px;
                     font-size:  0.9em;
@@ -79,6 +79,9 @@
             .toggleDiv{
                 display: none;
                 // position: absolute;
+            }
+            .toggleDiv.active{
+                display: block;
             }
             #overlay {
                 position: fixed;
