@@ -98,6 +98,28 @@ const BrowseProductList = ({ category, incomingListings }) => {
     e.preventDefault()
   }
 
+  if(listings === null || listings === {} || listings === "") {
+    return  <div className="browsePMother">
+    <div className="browsePMain">
+      <div className="browsePHeadDiv">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            value={ search }
+            onChange={(e) => handleSearch(e)}
+            className="searchInput"
+            placeholder="Search"
+          />
+          <input type="submit" placeholder="Search" className="searchBtn"/>
+        </form>
+      </div>
+      <div className="browsePListingsNull">
+          <h2 className="noListingsH">No listings available...</h2>
+          <p>Please try different search terms</p>
+      </div>
+    </div>
+  </div>
+  }
+
   return (
     <div className="browsePMother">
       <div className="browsePMain">
@@ -110,6 +132,7 @@ const BrowseProductList = ({ category, incomingListings }) => {
               className="searchInput"
               placeholder="Search"
             />
+            <input type="submit" placeholder="Search" className="searchBtn"/>
           </form>
 
           {category === "All" && <h3 className="browsePHead">All for Sale</h3>}

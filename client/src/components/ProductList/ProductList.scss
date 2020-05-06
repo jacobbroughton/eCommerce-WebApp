@@ -22,7 +22,19 @@
             border: lightgrey solid 1px;
             border-radius: 3px;
             font-size: 1rem;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
         }
+        .searchBtn{
+            padding: .3em .6em;
+            appearance: none; 
+            font-size: 1rem;
+            border: lightgrey solid 1px;
+            border-radius: 3px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
         .browsePHeadDiv{
             display: flex;
             flex-direction: row;
@@ -38,6 +50,22 @@
             margin-left: 20px;
             // padding-top: 50px;
         }
+        .browsePListingsNull{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-top: 20px;
+
+            h2, p{
+                padding: 0;
+                margin: 0;
+            }
+            h2{
+                font-size: 1.7rem;
+                margin-bottom: 10px;
+            }
+        }
         .browsePListings{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -47,6 +75,9 @@
             // margin-top: 25px;
             margin-top: 20px;
 
+            .noListingsH{
+                align-self: flex-start;
+            }
             .listItem{
                 display: flex;
                 justify-content: center;

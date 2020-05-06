@@ -243,14 +243,23 @@ exports.search = (req, res) => {
           uidArr.push(item.listing_uid);
           return uidArr;
         }
-        return uidArr;
       }
-      return uidArr;
     })
-    console.log(uidArr.toString)
+
+    console.log(uidArr)
+    console.log(typeof(uidArr))
+    uidArr === {} ?
+      console.log("uidArr is null")    
+    :
     connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
-      if(err) throw err;
-      res.send(rows);
+      if(err) console.log(err) ;
+      if(uidArr === null) {
+        console.log("this is null")
+        res.send(null)
+      } else {
+        console.log("Not null")
+        res.send(rows);
+      }
     })
   })
   
