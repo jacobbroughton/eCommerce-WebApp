@@ -1,14 +1,7 @@
 import React from "react";
 import "./Loading.scss";
 
-const Loading = (props) => {
-
-    console.log(props)
-
-    const { full, partial } = props;
-
-    console.log("Full: " + full)
-    console.log("Partial: " + partial)
+const Loading = ({ full, partial }) => {
 
     return (
         <div className="loadingMother">

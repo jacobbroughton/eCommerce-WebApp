@@ -9,7 +9,6 @@ import "./SingleModal.scss";
 
 
 const SingleModal = ({ item, handleToggle }) => {
-  // let { item, handleModelView } = props;
   const availArr = ["Available", "Pending", "Sold"];
   const { statusUrl, dbUser } = useAuth0();
   let imageArr = [];
@@ -17,7 +16,6 @@ const SingleModal = ({ item, handleToggle }) => {
   const [status, setStatus] = useState(item.status);  
 
   const handleClose = (e) => {
-    // document.getElementById("itemParent").style.display = "none";
     document.getElementById("overlay").classList.remove("active");
     setImage("");
     handleToggle();
@@ -38,7 +36,7 @@ const SingleModal = ({ item, handleToggle }) => {
     .then(r => console.log(r)).catch(err => console.log(err))
   }
 
-  const handleShare = () => {
+  const shareListing = () => {
     let copyText = document.getElementById("copyText");
     copyText.select();
     copyText.setSelectionRange(0, 99999);
@@ -54,12 +52,7 @@ const SingleModal = ({ item, handleToggle }) => {
 
 
 
-  const handleSave = () => {
-    let time = moment().format("LT");
-    let date = moment().format("L");
-    let time_saved = time.replace(/\s/g, "");
-    let date_saved = date.replace(/\//g, "-");
-
+  const saveListing = () => {
     axios
     .get(`${statusUrl}api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
     .then(res => console.log(res))
@@ -70,7 +63,7 @@ const SingleModal = ({ item, handleToggle }) => {
 
 
 
-  const handleDelete = () => {
+  const deleteListing = () => {
     axios
     .get(`${statusUrl}api/delete/${item.listing_uid}`)
     .then(r => console.log(r)).catch(e => console.log(e))
@@ -177,18 +170,18 @@ const SingleModal = ({ item, handleToggle }) => {
                   </div>
                   { !dbUser.saved_posts.includes(item.listing_uid) && item.seller_uid !== dbUser.user_uid && (
                     <div className="saveBtnParent">
-                      <button className="saveBtn" onClick={() => handleSave()}>Save</button>
+                      <button className="saveBtn" onClick={() => saveListing()}>Save</button>
                     </div>
                   )}
                    <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
                     <input type="text" id='copyText' disabled value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
                     
                     <div className="shareDiv">
-                      <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>
+                      <button className="shareBtn" onClick={(e) => shareListing(e)}>Share</button>
                       <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
                     </div>
                     { dbUser.user_uid === item.seller_uid && (
-                <button className="deleteBtn" onClick={(e) => handleDelete(e)}>Delete</button>
+                <button className="deleteBtn" onClick={(e) => deleteListing(e)}>Delete</button>
                 )}
                 </div>
               </div>

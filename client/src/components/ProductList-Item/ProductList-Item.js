@@ -4,11 +4,10 @@ import Loading from "../Loading/Loading";
 import placeholderImg from "../../assets/download.jpg";
 import "./ProductList-Item.scss";
 
-const ProductListItem = (props) => {
+const ProductListItem = ({ item, toggled }) => {
   const [currentItem, setCurrentItem] = useState(null);
   let [loadCounter, setLoadCounter] = useState(0);
   const [toggle, setToggle] = useState(0);
-  let { item, toggled } = props;
   const { statusUrl } = useAuth0();
 
   if (item === null || item === undefined) {

@@ -99,14 +99,6 @@ exports.getPersonalListings = (req, res) => {
   );
 };
 
-// Add query that takes a url parameter as the latest count, that then adds 20 to that and returns results
-
-// exports.browseAll = (req, res) => {
-//   connection.query(`SELECT * FROM listings`, (err, rows, fields) => {
-//     if (err) throw err;
-//     res.send(rows);
-//   });
-// };
 
 exports.browseAll = (req, res) => {
   connection.query(`SELECT * FROM listings ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
@@ -194,7 +186,8 @@ exports.getSaved = (req, res) => {
       if(rows[0].saved_posts === null || rows[0].saved_posts === "") {
         res.send([]);
       } else {
-                connection.query(`SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts})`, (err, rows2, fields) => {
+        // console.log(rows[0].saved_posts)
+        connection.query(`SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts})`, (err, rows2, fields) => {
           if(err) throw err;
           res.send(rows2);
         })
@@ -233,4 +226,32 @@ exports.deleteListing = (req, res) => {
     if(err) throw err;
     console.log(`Listing ${req.params.listinguid} deleted`);
   })
+}
+
+exports.search = (req, res) => {
+  console.log("------")
+  let searchVal = req.body.searchValue;
+  let searchArr = searchVal.split(" ");
+  let uniqSet = new Set([...searchArr]);
+  let uniqArr = Array.from(uniqSet);
+  let uidArr = [];
+  connection.query(`SELECT listing_uid, tags FROM listings`, (err, rows, fields) => {
+    if(err) throw err; 
+    rows.forEach(item => {
+      for(let i = 0; i < uniqArr.length; i++) {
+        if(item.tags.includes(uniqArr[i])) {
+          uidArr.push(item.listing_uid);
+          return uidArr;
+        }
+        return uidArr;
+      }
+      return uidArr;
+    })
+    console.log(uidArr.toString)
+    connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
+      if(err) throw err;
+      res.send(rows);
+    })
+  })
+  
 }

@@ -108,6 +108,10 @@ const SellForm = () => {
 
 
     let sendTextInputValues = () => {
+
+      let formattedTags = tags.replace(/\s/g, ",").split(",").toString();
+      console.log(formattedTags)
+
       axios
         .post(`${statusUrl}api/sell/text`, {
           listing_uid: randomNum,
@@ -125,7 +129,7 @@ const SellForm = () => {
           ship_status: shipping,
           firmness: priceOffer,
           trades,
-          tags,
+          tags: formattedTags,
           sold_status : "Available",
           date_created,
           time_created

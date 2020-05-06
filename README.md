@@ -104,5 +104,7 @@ Created by Jacob Broughton
 - Consider utilizing cookies for temporary buyers accounts, or something else
 - Add menu/options on rightclick of mouse
     - Similar to Spotify's
+- Change all instances of statusUrl so it includes '/api' from context
+- Add basic "Report Listing" functionality
 
 # Break up components
