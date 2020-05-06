@@ -3,7 +3,7 @@ Created by Jacob Broughton
 
 
 # Bug Report
-- Sometimes or initial listings show twice on profile.
+- 
 
 # Completed
 * Create basic server
@@ -72,10 +72,13 @@ Created by Jacob Broughton
 * Add share button
 * Hide "Load More" button when there is no more to show
 * Add delete button for each listing
+* Add tags in each listing (for search)
 
 # Incomplete
-- Add tags in each listing (for search)
+
 - Add search functionality
+- Reflect search bar value instead of category
+    - Also make the URL different
 - Adjust profile page style / functionality
     - Add a sold section
 - Add notifications
@@ -106,5 +109,7 @@ Created by Jacob Broughton
     - Similar to Spotify's
 - Change all instances of statusUrl so it includes '/api' from context
 - Add basic "Report Listing" functionality
+- Add "similar" section for each listing, maybe 3 or 4.
+
 
 # Break up components

@@ -36,13 +36,14 @@ const SingleModal = ({ item, handleToggle }) => {
     .then(r => console.log(r)).catch(err => console.log(err))
   }
 
-  const shareListing = () => {
-    let copyText = document.getElementById("copyText");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-
+  const shareListing = (str) => {
+    let textArea = document.createElement('textarea');
+    textArea.value = `http://localhost:3000/browse/single/${item.listing_uid}`;
+    document.body.appendChild(textArea);
+    textArea.select();
     document.execCommand('copy');
-
+    document.body.removeChild(textArea);
+    
     let copiedPrompt = document.getElementById("copiedPrompt")
     copiedPrompt.classList.add("active");
     setTimeout(() => {
@@ -174,7 +175,7 @@ const SingleModal = ({ item, handleToggle }) => {
                     </div>
                   )}
                    <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
-                    <input type="text" id='copyText' disabled value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
+                    <textarea type="text" id='copyText' disabled value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
                     
                     <div className="shareDiv">
                       <button className="shareBtn" onClick={(e) => shareListing(e)}>Share</button>
