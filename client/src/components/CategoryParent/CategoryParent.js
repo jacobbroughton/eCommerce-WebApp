@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import SinglePage from "../SinglePage/SinglePage";
 import "./CategoryParent.scss";
 
-const BrowseCategoryParent = props => {
+const BrowseCategoryParent = ({ category, categoryItems, single, searchProp }) => {
   const [cat, setCat] = useState("");
-  const { category, categoryItems, single } = props;
 
   const categoryArr = [
     "All For Sale", 

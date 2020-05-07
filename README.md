@@ -79,6 +79,8 @@ Created by Jacob Broughton
 - Add search functionality
 - Reflect search bar value instead of category
     - Also make the URL different
+- Limit search results just like in categories
+    - Return to search page
 - Adjust profile page style / functionality
     - Add a sold section
 - Add notifications

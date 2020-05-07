@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./ProductList.scss";
 import SingleModal from "../SingleModal/SingleModal";
 import ProductListItem from "../ProductList-Item/ProductList-Item";
 import placeholderImg from "../../assets/download.jpg";
 
-const BrowseProductList = ({ category, incomingListings }) => {
+const BrowseProductList = ({ searchProp, category, incomingListings }) => {
   const { statusUrl } = useAuth0();
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
@@ -16,31 +16,35 @@ const BrowseProductList = ({ category, incomingListings }) => {
   let [toggled, setToggled] = useState(false);
   const [limit, setLimit] = useState(0);
   const [searched, setSearched] = useState([]);
+
+
   useEffect(() => {
-    let newCategory = category.replace(/ /g, "-");
+    console.log(searchProp)
     setListings([...incomingListings]);
-    if (category === "All For Sale") {
-      axios
-        .get(`${statusUrl}api/browsecount/all`)
-        .then((res) => setLimit(res.data.COUNT))
-        .catch((err) => console.log(err));
-    } else {
-      axios
-        .get(`${statusUrl}api/browsecount/${newCategory}`)
-        .then((res) => setLimit(res.data.COUNT))
-        .catch((err) => console.log(err));
-    }
+    
+    // if(!window.location.includes("search")) {
+      let newCategory = category.replace(/ /g, "-");
+      if (category === "All For Sale") {
+        axios
+          .get(`${statusUrl}api/browsecount/all`)
+          .then((res) => setLimit(res.data.COUNT))
+          .catch((err) => console.log(err));
+      } else {
+        axios
+          .get(`${statusUrl}api/browsecount/${newCategory}`)
+          .then((res) => setLimit(res.data.COUNT))
+          .catch((err) => console.log(err));
+      }
+    // }
+
     window.scroll(0, 0);
   }, [category, incomingListings]);
 
 
 
   useEffect(() => {
-    console.log(listings)
-    console.log(listings.length)
     setLimit(listings.length)
   }, [listings])
-
 
 
   // Runs each time load more is clicked
@@ -59,18 +63,19 @@ const BrowseProductList = ({ category, incomingListings }) => {
     }
   }, [resultNum]);
 
+
   const handleModalView = (props) => {
-    console.log("Handling modal view");
-    console.log(props);
     setCurrentItem(props);
     setToggled(true);
     const overlay = document.getElementById("overlay");
     overlay.classList.add("active");
   };
 
+
   const handleToggle = () => {
     toggled ? setToggled(false) : setToggled(true);
   };
+
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
@@ -78,23 +83,26 @@ const BrowseProductList = ({ category, incomingListings }) => {
     overlay.classList.remove("active");
   };
 
+
   const handleLoadMore = (e) => {
     setResultNum(resultNum + 20);
   };
+
 
   const handleSearch = e => {
     setSearch(e.target.value);
   }
 
+
   const handleSubmit = e => {
-    // let searchArr = search.split(" ");
-    // let uniqueSearchArr = [...new Set(searchArr)];
     axios
     .post(`${statusUrl}api/search`, {
       searchValue : search
     })
     .then(response => setListings(response.data))
     .catch(error => console.log(error))
+
+    // this.props.history.push(`/browse/search/${search}`) // This works for 'enter' and click submit
     e.preventDefault()
   }
 
@@ -109,7 +117,8 @@ const BrowseProductList = ({ category, incomingListings }) => {
             className="searchInput"
             placeholder="Search"
           />
-          <input type="submit" placeholder="Search" className="searchBtn"/>
+          
+           <button type="submit" placeholder="Search" className="searchBtn">Search</button>
         </form>
       </div>
       <div className="browsePListingsNull">
@@ -132,7 +141,10 @@ const BrowseProductList = ({ category, incomingListings }) => {
               className="searchInput"
               placeholder="Search"
             />
-            <input type="submit" placeholder="Search" className="searchBtn"/>
+            <Link to={`/browse/search/${search}`}>
+              <input type="submit" placeholder="Search" className="searchBtn"/>
+            </Link>
+            
           </form>
 
           {category === "All" && <h3 className="browsePHead">All for Sale</h3>}
@@ -175,4 +187,4 @@ const BrowseProductList = ({ category, incomingListings }) => {
   );
 };
 
-export default BrowseProductList;
+export default withRouter(BrowseProductList);

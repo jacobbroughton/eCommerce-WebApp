@@ -171,7 +171,7 @@ const SinglePage = () => {
                     <button className="saveBtn" onClick={() => handleSave()}>Save</button>
                   </div>
                 )}
-                    <input type="text" id='copyText' value={`http://localhost:3000/browse/single/${single.listing_uid}`}/>
+                    <input type="text" id='copyText' onChange={() => {}} value={`http://localhost:3000/browse/single/${single.listing_uid}`}/>
                     
                     <div className="shareDiv">
                       <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>

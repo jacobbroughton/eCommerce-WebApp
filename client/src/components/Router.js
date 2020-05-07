@@ -6,6 +6,7 @@ import SellPage from "./pages/SellPage";
 import Browse from "./pages/Browse";
 import Single from "./pages/Single";
 import CategoryView from "./pages/CategoryView";
+import Search from "./pages/Search";
 import { useAuth0 } from "../contexts/auth0-context.js";
 
 
@@ -16,6 +17,7 @@ const AppRouter = () => (
         <Route exact path="/browse" component={Browse}/>
         <Route path="/browse/single/:listinguid" component={Single}/>
         <Route path="/browse/category/:category" component={CategoryView}/>
+        <Route path="/browse/search/:searchvalue" component={Search}/>
         <PrivateRoute path="/profile" component={Profile}/>
         <PrivateRoute path="/sell" component={SellPage}/>
     </Switch>
