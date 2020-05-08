@@ -96,7 +96,8 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
 
   
   const handleSubmit = e => {
-    let formattedSearch = search.replace(/\s/g, "-")
+    let formattedSearch = search.replace(/\s/g, "-").toLowerCase();
+    console.log(formattedSearch);
     axios
     .get(`${statusUrl}api/search/${formattedSearch}`)
     .then(res => setListings(res.data))
@@ -111,7 +112,7 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
     // this.props.history.push(`/browse/search/${search}`) // This works for 'enter' and click submit
     e.preventDefault()
   }
-console.log(listings)
+
   if(listings === null || listings === {} || listings === "" || listings === []) {
     
     return  <div className="browsePMother">
