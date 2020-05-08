@@ -45,5 +45,6 @@ router.get("/save/get/:useruid", controller.getSaved);
 router.get("/save/update/:listinguid/:useruid", controller.updateSaved);
 router.get("/delete/:listinguid", controller.deleteListing);
 router.post("/search", controller.search);
+router.get("/search/:searchval", controller.search2);
 
 module.exports = router;

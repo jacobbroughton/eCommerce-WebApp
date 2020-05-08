@@ -113,5 +113,4 @@ Created by Jacob Broughton
 - Add basic "Report Listing" functionality
 - Add "similar" section for each listing, maybe 3 or 4.
 
-
 # Break up components

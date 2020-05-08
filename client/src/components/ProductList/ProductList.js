@@ -15,9 +15,9 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
   let [search, setSearch] = useState("");
   let [toggled, setToggled] = useState(false);
   const [limit, setLimit] = useState(0);
-  const [searched, setSearched] = useState([]);
+  // const [searched, setSearched] = useState([]);
 
-
+ // 
   useEffect(() => {
     console.log(searchProp)
     setListings([...incomingListings]);
@@ -94,19 +94,26 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
   }
 
 
+  
   const handleSubmit = e => {
+    let formattedSearch = search.replace(/\s/g, "-")
     axios
-    .post(`${statusUrl}api/search`, {
-      searchValue : search
-    })
-    .then(response => setListings(response.data))
-    .catch(error => console.log(error))
+    .get(`${statusUrl}api/search/${formattedSearch}`)
+    .then(res => setListings(res.data))
+    .catch(err => console.log(err))
+
+    // .post(`${statusUrl}api/search`, {
+    //   searchValue : search
+    // })
+    // .then(response => setListings([response.data]))
+    // .catch(error => console.log(error))
 
     // this.props.history.push(`/browse/search/${search}`) // This works for 'enter' and click submit
     e.preventDefault()
   }
-
-  if(listings === null || listings === {} || listings === "") {
+console.log(listings)
+  if(listings === null || listings === {} || listings === "" || listings === []) {
+    
     return  <div className="browsePMother">
     <div className="browsePMain">
       <div className="browsePHeadDiv">
@@ -127,7 +134,7 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
       </div>
     </div>
   </div>
-  }
+  } 
 
   return (
     <div className="browsePMother">
@@ -141,9 +148,9 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
               className="searchInput"
               placeholder="Search"
             />
-            <Link to={`/browse/search/${search}`}>
+            {/* <Link to={`/browse/search/${search}`}> */}
               <input type="submit" placeholder="Search" className="searchBtn"/>
-            </Link>
+            {/* </Link> */}
             
           </form>
 

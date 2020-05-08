@@ -261,6 +261,36 @@ exports.search = (req, res) => {
         res.send(rows);
       }
     })
+  }) 
+}
+
+exports.search2 = (req, res) => {
+  let searchVal = (req.params.searchval.replace(/-/g, " "))
+  let searchArr = searchVal.split(" ");
+  let uniqSet = new Set([...searchArr]);
+  let uniqArr = Array.from(uniqSet);
+  let uidArr = [];
+  console.log(uniqArr)
+
+  connection.query(`SELECT listing_uid, tags FROM listings`, (err, rows, fields) => {
+    if(err) throw err;
+    rows.forEach(item => {
+      for(let i = 0; i < uniqArr.length; i++) {
+        if(item.tags.includes(uniqArr[i])) {
+          // console.log("Yepp, getting through")
+          uidArr.push(item.listing_uid);
+          return uidArr;
+        }
+      }
+    })
+
+    console.log(uidArr)
+    uidArr === {} ?
+    console.log("uidArr is null")
+    :
+    connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
+      if(err) console.log(err);
+      uidArr === null ? res.send(null) : res.send(rows);
+    })
   })
-  
 }
