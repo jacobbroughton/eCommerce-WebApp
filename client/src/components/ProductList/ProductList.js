@@ -15,12 +15,14 @@ const ProductList = ({ searchProp, category, incomingListings }) => {
   let [search, setSearch] = useState("");
   let [toggled, setToggled] = useState(false);
   const [limit, setLimit] = useState(0);
+  let [loadBtn, setLoadBtn] = useState(false);
   // const [searched, setSearched] = useState([]);
 
  // 
   useEffect(() => {
     console.log(searchProp)
     setListings([...incomingListings]);
+    
     
     // if(!window.location.includes("search")) {
       let newCategory = category.replace(/ /g, "-");
@@ -36,6 +38,10 @@ const ProductList = ({ searchProp, category, incomingListings }) => {
           .catch((err) => console.log(err));
       }
     // }
+
+    setTimeout(() => {
+      setLoadBtn(true);
+    }, 400)
 
     window.scroll(0, 0);
   }, [category, incomingListings]);
@@ -109,7 +115,7 @@ const ProductList = ({ searchProp, category, incomingListings }) => {
     // .then(response => setListings([response.data]))
     // .catch(error => console.log(error))
 
-    this.props.history.push(`/browse/search/${search}`) // This works for 'enter' and click submit
+    // this.props.history.push(`/browse/search/${search}`)
     e.preventDefault()
   }
 
@@ -183,7 +189,8 @@ const ProductList = ({ searchProp, category, incomingListings }) => {
           )}
           <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
-        {listings.length !== limit && (
+        {/* {console.log(count === listings.length)} */}
+        {listings.length !== limit && loadBtn && (
           <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>
             Load More
           </button>
