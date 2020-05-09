@@ -12,7 +12,7 @@ const Loading = ({ full, partial }) => {
             )}
             { partial && (
                 <div className="loadingMainPartial">
-                <h1>Loading...</h1>
+
             </div>
             )}
 

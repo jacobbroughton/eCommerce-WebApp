@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import Loading from "../Loading/Loading";
 import placeholderImg from "../../assets/download.jpg";
@@ -6,9 +6,22 @@ import "./ProductList-Item.scss";
 
 const ProductListItem = ({ item, toggled }) => {
   const [currentItem, setCurrentItem] = useState(null);
-  let [loadCounter, setLoadCounter] = useState(0);
-  const [toggle, setToggle] = useState(0);
+  let [loadCount, setLoadCount] = useState(0);
+  let [placeHolder, setPlaceHolder] = useState(true);
+  // const [toggle, setToggle] = useState(0);
   const { statusUrl } = useAuth0();
+
+  useEffect(() => {
+    console.log(loadCount)
+  }, [loadCount])
+
+  const handleLoad = () => {
+
+  }
+  
+  setTimeout(() => {
+    setPlaceHolder(false);
+  }, 1000)
 
   if (item === null || item === undefined) {
     return <Loading />;
@@ -17,16 +30,16 @@ const ProductListItem = ({ item, toggled }) => {
   return (
     <>
       <div key={item.id} className="listItem">
-        {item.image !== "null" && item.image !== null ? (
+        {item.image !== "null" && item.image !== null && !placeHolder ? (
           <img
-            onLoad={() => setLoadCounter(loadCounter++)}
+            onLoad={() => handleLoad()}
             className="itemImage"
             src={statusUrl + item.image.split(" ")[0]}
             alt=""
           />
         ) : (
           <img
-            onLoad={() => setLoadCounter(loadCounter++)}
+            onLoad={() => handleLoad()}
             className="itemImage"
             src={placeholderImg}
             alt=""

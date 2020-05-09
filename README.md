@@ -112,5 +112,6 @@ Created by Jacob Broughton
 - Change all instances of statusUrl so it includes '/api' from context
 - Add basic "Report Listing" functionality
 - Add "similar" section for each listing, maybe 3 or 4.
-
+- Add admin panel
+- Come up with a name
 # Break up components
