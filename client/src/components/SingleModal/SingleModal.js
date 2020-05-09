@@ -169,7 +169,7 @@ const SingleModal = ({ item, handleToggle }) => {
                     <p className="genInfoLabel">Listed By</p>
                     <p className="genInfoP">{item.seller_nickname}</p>
                   </div>
-                  { !dbUser.saved_posts.includes(item.listing_uid) && item.seller_uid !== dbUser.user_uid && (
+                  { dbUser && !dbUser.saved_posts.includes(item.listing_uid) && item.seller_uid !== dbUser.user_uid && (
                     <div className="saveBtnParent">
                       <button className="saveBtn" onClick={() => saveListing()}>Save</button>
                     </div>
@@ -181,7 +181,7 @@ const SingleModal = ({ item, handleToggle }) => {
                       <button className="shareBtn" onClick={(e) => shareListing(e)}>Share</button>
                       <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
                     </div>
-                    { dbUser.user_uid === item.seller_uid && (
+                    { dbUser && dbUser.user_uid === item.seller_uid && (
                 <button className="deleteBtn" onClick={(e) => deleteListing(e)}>Delete</button>
                 )}
                 </div>

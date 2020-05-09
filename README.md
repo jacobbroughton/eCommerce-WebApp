@@ -75,7 +75,7 @@ Created by Jacob Broughton
 * Add tags in each listing (for search)
 
 # Incomplete
-
+- Adjust components
 - Add search functionality
 - Reflect search bar value instead of category
     - Also make the URL different

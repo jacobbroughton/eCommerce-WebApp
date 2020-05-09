@@ -20,6 +20,7 @@ nav{
     a{
         color: #fff;
     }
+
     
     .homeLink{
         position: absolute;
@@ -33,7 +34,11 @@ nav{
         display: flex;
         align-items: center;
         padding-right: 20px;
-        height: 100%;
+        height: 100%;    
+        
+        .logInBtn{
+        margin-right: 10px;
+    }
     }
     .loggedOut{
             .homeLink{
@@ -41,6 +46,7 @@ nav{
         left: 20px;
         align-self: center;
     }
+    
     }
 
     .loggedIn{

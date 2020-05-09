@@ -7,7 +7,7 @@ import SingleModal from "../SingleModal/SingleModal";
 import ProductListItem from "../ProductList-Item/ProductList-Item";
 import placeholderImg from "../../assets/download.jpg";
 
-const BrowseProductList = ({ searchProp, category, incomingListings }) => {
+const ProductList = ({ searchProp, category, incomingListings }) => {
   const { statusUrl } = useAuth0();
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
@@ -109,7 +109,7 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
     // .then(response => setListings([response.data]))
     // .catch(error => console.log(error))
 
-    // this.props.history.push(`/browse/search/${search}`) // This works for 'enter' and click submit
+    this.props.history.push(`/browse/search/${search}`) // This works for 'enter' and click submit
     e.preventDefault()
   }
 
@@ -149,9 +149,7 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
               className="searchInput"
               placeholder="Search"
             />
-            {/* <Link to={`/browse/search/${search}`}> */}
-              <input type="submit" placeholder="Search" className="searchBtn"/>
-            {/* </Link> */}
+            <input type="submit" placeholder="Search" className="searchBtn"/>
             
           </form>
 
@@ -195,4 +193,4 @@ const BrowseProductList = ({ searchProp, category, incomingListings }) => {
   );
 };
 
-export default withRouter(BrowseProductList);
+export default withRouter(ProductList);

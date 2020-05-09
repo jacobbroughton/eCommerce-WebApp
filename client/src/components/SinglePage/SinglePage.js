@@ -166,7 +166,7 @@ const SinglePage = () => {
                   <p className="genInfoLabel">Listed By</p>
                   <p className="genInfoP">{single.seller_nickname}</p>
                 </div>
-                { !dbUser.saved_posts.includes(single.listing_uid) && single.seller_uid !== dbUser.user_uid && (
+                { dbUser && !dbUser.saved_posts.includes(single.listing_uid) && single.seller_uid !== dbUser.user_uid && (
                   <div className="saveBtnParent">
                     <button className="saveBtn" onClick={() => handleSave()}>Save</button>
                   </div>
@@ -177,7 +177,7 @@ const SinglePage = () => {
                       <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>
                       <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
                     </div>
-                    { dbUser.user_uid === single.seller_uid && (
+                    { dbUser && dbUser.user_uid === single.seller_uid && (
                 <button className="deleteBtn" onClick={(e) => handleDelete(e)}>Delete</button>
                 )}
               </div>

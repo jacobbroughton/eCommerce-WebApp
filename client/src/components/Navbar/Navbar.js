@@ -13,7 +13,7 @@ const Navbar = () => {
       {/* <Link to="/" className="homeLink">Home</Link> */}
         { !user && (
           <div className="loggedOut">
-            <button onClick={loginWithRedirect} className="logInBtn">Log In</button>
+            <button onClick={loginWithRedirect} className="logInBtn">Log In</button> <Link to="/browse/category/All-For-Sale" className="browseLink">Browse</Link>
           </div>
             
         )}
