@@ -294,3 +294,11 @@ exports.search2 = (req, res) => {
     })
   })
 }
+
+exports.getSoldPersonalListings = (req, res) => {
+  let rp = req.params;
+  connection.query(`SELECT * FROM listings WHERE seller_uid = "${rp.selleruid}" AND status = "Sold"`, (err, rows, fields) => {
+    if (err) throw err;
+    res.send(rows)
+  })
+}

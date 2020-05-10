@@ -12,6 +12,7 @@ const ProfileListings = () => {
   const { dbUser, statusUrl } = useAuth0();
   const [savedListings, setSavedListings] = useState([]);
   const [activeListings, setActiveListings] = useState([]);
+  const [soldListings, setSoldListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   let [toggled, setToggled] = useState(false);
 
@@ -20,6 +21,7 @@ const ProfileListings = () => {
   useEffect(() => {
     fetchActiveListings();
     fetchSavedListings();
+    fetchSoldListings();
   }, [dbUser, statusUrl]);
 
 
@@ -39,6 +41,13 @@ const ProfileListings = () => {
       .then((response) => setActiveListings([...response.data].reverse()))
       .catch((err) => console.log(err));
   };
+
+  const fetchSoldListings = () => {
+    axios
+    .get(`${statusUrl}api/personallistings/sold/${dbUser.user_uid}`)
+    .then(res => setSoldListings([...res.data].reverse()))
+    .catch(err => console.log(err))
+  }
 
 
 
@@ -80,7 +89,6 @@ const ProfileListings = () => {
                   </div>
                 ))}
               </div>
-
             </div>
 
             <div className="savedSection">
@@ -92,7 +100,17 @@ const ProfileListings = () => {
                   </div>
                 ))}
               </div>
+            </div>
 
+            <div className="soldSection">
+              <h3>Sold Listings</h3>
+              <div className="soldGrid">
+                {soldListings.length >= 1 && soldListings.slice(0, 4).map((list) => (
+                  <div id="" key={list.listing_uid} onClick={() => handleModalView(list)}>
+                    <ProductListItem item={list} />
+                  </div>
+                ))}
+              </div>
             </div>
 
 

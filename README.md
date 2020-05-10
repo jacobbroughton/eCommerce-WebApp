@@ -76,10 +76,11 @@ Created by Jacob Broughton
 * Add loading for when images are loading on pages
 * Make page load at top when switching categories
 * Add search functionality
+* Adjust profile page style / functionality
+    * Add a sold section
+
 
 # Incomplete
-- Adjust profile page style / functionality
-    - Add a sold section
 - Make separate pages for showing only/all saved or active listings 
 - Adjust components
 - Reflect search bar value instead of category

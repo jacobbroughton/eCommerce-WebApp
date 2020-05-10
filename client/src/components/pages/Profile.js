@@ -24,7 +24,7 @@ const Profile = () => {
     <div className="profileMother">
       <div className="profileMain">
         <ProfileTopSect />
-        <hr/>
+        {/* <hr/> */}
         <div className="profilePrimary">
           <ProfileListings/>
         </div>
