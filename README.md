@@ -73,20 +73,23 @@ Created by Jacob Broughton
 * Hide "Load More" button when there is no more to show
 * Add delete button for each listing
 * Add tags in each listing (for search)
+* Add loading for when images are loading on pages
+* Make page load at top when switching categories
+* Add search functionality
 
 # Incomplete
-- Adjust components
-- Add search functionality
-- Reflect search bar value instead of category
-    - Also make the URL different
-- Limit search results just like in categories
-    - Return to search page
 - Adjust profile page style / functionality
     - Add a sold section
+- Make separate pages for showing only/all saved or active listings 
+- Adjust components
+- Reflect search bar value instead of category
+    - Also make the URL different
+- Clean up CSS files, employ DRY method
+- Limit search results just like in categories
+    - Return to search page
 - Add notifications
     - Use web-sockets
 - Turn scroll events off for listings page when modal is opened
-- Make page load at top when switching categories
 - Let users edit their profile info, and add new info
 - Adjust image resize
 - Add filtering
@@ -94,12 +97,11 @@ Created by Jacob Broughton
     - Sort by price
 - Let sellers create "stores"
 - Make picture full screen on click
-- Condense repeated code in a more sensable / scalable wayß
+- Condense repeated code in a more sensable / scalable way
 - Polish styles
 - Split up components into more consise, smaller, reusable components
 - Make all selling fields required
     - Cannot be the "select" option
-- Add loading for when images are loading on pages
 - Add state / city filters
 - Add "wanted" section
 - Add "As of 3:45pm 3/4/20" next to the sold status on listing

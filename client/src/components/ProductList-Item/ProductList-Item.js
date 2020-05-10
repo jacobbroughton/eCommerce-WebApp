@@ -45,6 +45,22 @@ const ProductListItem = ({ item, toggled }) => {
             alt=""
           />
         )}
+{/* 
+        {item.image !== "null" && item.image !== null ? (
+          <img
+            onLoad={() => handleLoad()}
+            className="itemImage"
+            src={statusUrl + item.image.split(" ")[0]}
+            alt=""
+          />
+        ) : (
+          <img
+            onLoad={() => handleLoad()}
+            className="itemImage"
+            src={placeholderImg}
+            alt=""
+          />
+        )} */}
 
         <div className="itemTextParent">
           {item.title.length > 20 ? (

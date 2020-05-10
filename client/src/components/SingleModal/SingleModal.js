@@ -13,7 +13,7 @@ const SingleModal = ({ item, handleToggle }) => {
   const { statusUrl, dbUser } = useAuth0();
   let imageArr = [];
   const [image, setImage] = useState("");
-  const [status, setStatus] = useState(item.status);  
+  let [status, setStatus] = useState(item.status);  
 
   const handleClose = (e) => {
     document.getElementById("overlay").classList.remove("active");

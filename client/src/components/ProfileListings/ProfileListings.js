@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
+// import ProductListItem from "../ProductListItem/ProductListItem"
 import {Link} from "react-router-dom"; 
 import placeholderImg from "../../assets/download.jpg";
 import SingleModal from "../SingleModal/SingleModal";
-import ProfileListingItem from "../ProfileListingItem/ProfileListingItem";
+import ProductListItem from "../ProductList-Item/ProductList-Item";
 import "./ProfileListings.scss";
 
 const ProfileListings = () => {
@@ -12,6 +13,7 @@ const ProfileListings = () => {
   const [savedListings, setSavedListings] = useState([]);
   const [activeListings, setActiveListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
+  let [toggled, setToggled] = useState(false);
 
 
 
@@ -52,43 +54,55 @@ const ProfileListings = () => {
     overlay.classList.remove("active");
   };
 
+  const handleModalView = (props) => {
+    setCurrentItem(props);
+    setToggled(true);
+    const overlay = document.getElementById("overlay");
+    overlay.classList.add("active");
+  };
 
+  const handleToggle = () => {
+    toggled ? setToggled(false) : setToggled(true);
+  };
   
   return (
     <div className="profileListingsMother">
       <div className="listingsParent">
 
-    {/* Active Listings  */}
         <div className="activeListingsParent">
-          <h2>Your Listings</h2>
-          {activeListings.map((listing) => (
-            // <Link  to={`/browse/single/${listing.listing_uid}`}>
-              <div key={listing.id} onClick={() => setCurrentItem(listing)}>
-                <ProfileListingItem status={"active"} listing={listing}/>
+          <div className="browsePListings">
+            <div className="activeSection">
+              <h3>Your Listings</h3>
+              <div className="activeGrid">
+                {activeListings.length >= 1 && activeListings.slice(0, 4).map((list) => (
+                  <div id="" key={list.listing_uid} onClick={() => handleModalView(list)}>
+                    <ProductListItem item={list} />
+                  </div>
+                ))}
               </div>
-            // </Link>
 
-          ))}
+            </div>
+
+            <div className="savedSection">
+              <h3>Saved Listings</h3>
+              <div className="savedGrid">
+                {savedListings.length >= 1 && savedListings.slice(0, 4).map((list) => (
+                  <div id="" key={list.listing_uid} onClick={() => handleModalView(list)}>
+                    <ProductListItem item={list} />
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+
+          {toggled && (
+            <SingleModal handleToggle={handleToggle} toggled={toggled} item={currentItem}/>
+          )} 
+          <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
-
-    {/* Saved Listings */}
-        <div className="savedListingsParent">
-          <h2>Saved Listings</h2>
-          {savedListings.map((listing) => (
-            // <Link  to={`/browse/single/${listing.listing_uid}`}>
-              <div key={listing.id} onClick={(e) => handleSavedClick(e, listing)}>
-                <ProfileListingItem status={"saved"} listing={listing}/>
-              </div>
-            // </Link>
-   
-          ))}
         </div>
       </div>
-
-      {/* <div id="toggleDiv" className="toggleDiv">
-        <SingleModal item={currentItem} />
-      </div> */}
-      <div onClick={() => overlayClose()} className="" id="overlay"></div>
     </div>
   );
 };

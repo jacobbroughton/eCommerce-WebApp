@@ -8,20 +8,144 @@
 
   .listingsParent {
     display: flex;
+    flex-direction: column;
 
     .savedListingsParent{
       margin-left: 30px;
     }
-
+    
     .activeListingsParent, .savedListingsParent{
-      .listingItem {
-        max-width: 400px;
-        margin-bottom: 20px;
-        background: #ffffff;
+
+      .browsePListings{
+        max-width: 800px;
+
+        .savedSection{
+          margin-top: 20px;
+        }
+        .activeSection, .savedSection{
         display: flex;
-        cursor: pointer;
+        flex-direction: column;
+        width: 800px;
+
+        h3{
+          text-align: start;
+        }
+
+        .activeGrid, .savedGrid{
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          grid-template-rows: 1fr;
+          justify-items: center;
+          row-gap: 20px;
+          column-gap: 20px;
+          height: 100%;
+          // margin-top: 20px;
+
+            .noListingsH{
+            align-self: flex-start;
+        }
+        .listItem{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            border: 1px lightgrey solid;
+            border-radius: 2px;
+            cursor: pointer;
+
+            img, h2, h3, h4, p{
+                margin: 0;
+                padding: 0;
+            }
+            
+            .itemImage{
+                height: 130px;
+                width: 100%;
+                object-fit: cover;
+            }
+            .itemTextParent{
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                max-width: 160px;
+                padding: 8px;
+                
+            }
+            .itemTitle{
+                font-size: 1em;
+                font-weight: bold;
+                white-space: nowrap;
+                max-width: 160px;
+            }
+            .itemCityState{
+                font-size: 0.9rem;
+            }
+            .itemCategory{
+                font-size: 1em;
+            }
+            .itemPrice{
+                position: absolute;
+                top: 55%;
+                left: 10px;
+                padding: 2px;
+                font-size:  0.9em;
+                background: black;
+                opacity: .9;
+                color: white;
+                font-weight: bold;
+                border-radius: 3px;
+            }
+        }
+        .toggleDiv{
+            display: none;
+            // position: absolute;
+        }
+        .toggleDiv.active{
+            display: block;
+        }
+        #overlay {
+            position: fixed;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            transition: 200ms ease-in-out;
+            z-index: 2;
+          }
+
+        }
+        }
+        }
+
+// --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+      .activeListGrid{
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          background: blue;
+          width: 500px;
+          display: grid;
+          justify-items: center;
+          row-gap: 20px;
+          column-gap: 20px;
+          height: 100%;
+          margin-top: 20px;
+  
+        }
+
+      .listingItem {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         position: relative;
-        box-shadow: 3px 3px 15px rgba(58, 58, 58, 0.05);
+        border: 1px lightgrey solid;
+        border-radius: 2px;
+        cursor: pointer;
 
         h1,
         h2,
@@ -39,6 +163,8 @@
           height: 85px;
           object-fit: cover;
         }
+
+
 
         .listingsTextContainer {
           display: flex;
