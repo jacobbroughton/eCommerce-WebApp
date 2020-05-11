@@ -184,6 +184,7 @@ const SingleModal = ({ item, handleToggle }) => {
                     { dbUser && dbUser.user_uid === item.seller_uid && (
                 <button className="deleteBtn" onClick={(e) => deleteListing(e)}>Delete</button>
                 )}
+                <a className="contactBtn" href={`mailto:${item.email}?subject=For Sale Inquiry: ${item.title.slice(0, 25)}`}>Contact</a>
                 </div>
               </div>
             </div>

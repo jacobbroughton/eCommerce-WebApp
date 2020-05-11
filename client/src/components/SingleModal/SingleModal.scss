@@ -165,6 +165,7 @@
             .copiedPrompt.active{
               display: block;
             }
+
           }
           .deleteBtn{
             appearance: none;
@@ -175,7 +176,11 @@
             padding: 0;
             color: red;
           }
-
+            .contactBtn{
+              font-size:1rem;
+              text-align: left;
+              font-weight: bold;
+            }
 
 
         }

@@ -81,6 +81,7 @@ Created by Jacob Broughton
 
 
 # Incomplete
+- Add 'contact' button on each that allows users to email seller
 - Make separate pages for showing only/all saved or active listings 
 - Adjust components
 - Reflect search bar value instead of category
