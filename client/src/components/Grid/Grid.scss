@@ -1,0 +1,41 @@
+.gridMother{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    justify-items: center;
+    row-gap: 20px;
+    column-gap: 20px;
+    // height: 100%;
+    margin-top: 20px; 
+    max-width: 900px;
+    .gridItem{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        border: 1px lightgrey solid;
+        border-radius: 4px;
+        cursor: pointer;
+        img{
+            height: 130px;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    .notAvailableMother{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 20px;
+        .naHead{
+            padding: 0;
+            margin: 0;
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+        .naPara{
+            padding: 0;
+            margin: 0;
+        }
+    }
+}

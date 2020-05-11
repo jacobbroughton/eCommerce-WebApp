@@ -1,6 +1,6 @@
 .browsePMother{
     margin-left: 250px;
-    margin-top: 50px;
+    // margin-top: 50px;
     padding-bottom: 100px;
     width: 100%;
 
@@ -78,59 +78,7 @@
             .noListingsH{
                 align-self: flex-start;
             }
-            .listItem{
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                position: relative;
-                border: 1px lightgrey solid;
-                border-radius: 2px;
-                cursor: pointer;
-
-                img, h2, h3, h4, p{
-                    margin: 0;
-                    padding: 0;
-                }
-                
-                .itemImage{
-                    height: 130px;
-                    width: 100%;
-                    object-fit: cover;
-                }
-                .itemTextParent{
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: flex-start;
-                    flex-direction: column;
-                    max-width: 160px;
-                    padding: 8px;
-                    
-                }
-                .itemTitle{
-                    font-size: 1em;
-                    font-weight: bold;
-                    white-space: nowrap;
-                    max-width: 160px;
-                }
-                .itemCityState{
-                    font-size: 0.9rem;
-                }
-                .itemCategory{
-                    font-size: 1em;
-                }
-                .itemPrice{
-                    position: absolute;
-                    top: 55%;
-                    left: 10px;
-                    padding: 2px;
-                    font-size:  0.9em;
-                    background: black;
-                    opacity: .9;
-                    color: white;
-                    font-weight: bold;
-                    border-radius: 3px;
-                }
-            }
+           
             .toggleDiv{
                 display: none;
                 // position: absolute;

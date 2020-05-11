@@ -78,12 +78,13 @@ Created by Jacob Broughton
 * Add search functionality
 * Adjust profile page style / functionality
     * Add a sold section
-
+* Add 'contact' button on each that allows users to email seller
 
 # Incomplete
-- Add 'contact' button on each that allows users to email seller
+- Make the grid more modular
 - Make separate pages for showing only/all saved or active listings 
 - Adjust components
+    - Work from parent component to child
 - Reflect search bar value instead of category
     - Also make the URL different
 - Clean up CSS files, employ DRY method

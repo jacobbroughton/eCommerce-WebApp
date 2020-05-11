@@ -21,6 +21,7 @@ const BrowseCategoryParent = ({ category, categoryItems, single, searchProp }) =
     "Fashion",
     "Home & Garden",
     "Toys & Games",
+    "Arts & Crafts",
     "Books",
     "Beauty"
   ];

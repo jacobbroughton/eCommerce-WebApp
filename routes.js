@@ -35,7 +35,7 @@ router.post(
   controller.sellImages
 );
 router.get("/personallistings/:selleruid", controller.getPersonalListings);
-router.get("/personallistings/sold/:selleruid", controller.getSoldPersonalListings);
+router.get("/personallistings/:status/:selleruid", controller.getStatusPersonalListings);
 
 router.get("/browse/all/:resultnum", controller.browseAll);
 router.get("/browse/single/:listinguid", controller.browseSingle);

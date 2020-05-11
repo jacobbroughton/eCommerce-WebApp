@@ -88,6 +88,7 @@ const ProfileListings = () => {
                     <ProductListItem item={list} />
                   </div>
                 ))}
+                <Link to={`/profile/allactive`}>View All</Link>
               </div>
             </div>
 
@@ -99,6 +100,7 @@ const ProfileListings = () => {
                     <ProductListItem item={list} />
                   </div>
                 ))}
+                <Link to={`/profile/allsaved`}>View All</Link>
               </div>
             </div>
 
@@ -110,6 +112,7 @@ const ProfileListings = () => {
                     <ProductListItem item={list} />
                   </div>
                 ))}
+                <Link to={`/profile/allsold`}>View All</Link>
               </div>
             </div>
 
