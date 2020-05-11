@@ -59,7 +59,7 @@ const ProfileListings = () => {
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
-    document.getElementById("toggleDiv").style.display = "none";
+    setToggled(false);
     overlay.classList.remove("active");
   };
 
