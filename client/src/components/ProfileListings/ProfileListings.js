@@ -4,6 +4,7 @@ import axios from "axios";
 // import ProductListItem from "../ProductListItem/ProductListItem"
 import {Link} from "react-router-dom"; 
 import placeholderImg from "../../assets/download.jpg";
+import Grid from "../Grid/Grid";
 import SingleModal from "../SingleModal/SingleModal";
 import ProductListItem from "../ProductList-Item/ProductList-Item";
 import "./ProfileListings.scss";
@@ -81,39 +82,33 @@ const ProfileListings = () => {
         <div className="activeListingsParent">
           <div className="browsePListings">
             <div className="activeSection">
-              <h3>Your Listings</h3>
-              <div className="activeGrid">
-                {activeListings.length >= 1 && activeListings.slice(0, 4).map((list) => (
-                  <div id="" key={list.listing_uid} onClick={() => handleModalView(list)}>
-                    <ProductListItem item={list} />
-                  </div>
-                ))}
-                <Link to={`/profile/allactive`}>View All</Link>
-              </div>
+              {activeListings !== [] && (
+                <>
+                  <h3>Your Listings</h3>
+                  <Grid listings={activeListings} gridItemNum={4}/>
+                  <Link to={`/profile/allactive`}>View All</Link>
+                </>
+              )}
             </div>
 
             <div className="savedSection">
-              <h3>Saved Listings</h3>
-              <div className="savedGrid">
-                {savedListings.length >= 1 && savedListings.slice(0, 4).map((list) => (
-                  <div id="" key={list.listing_uid} onClick={() => handleModalView(list)}>
-                    <ProductListItem item={list} />
-                  </div>
-                ))}
-                <Link to={`/profile/allsaved`}>View All</Link>
-              </div>
+            {savedListings !== [] && (
+                <>
+                  <h3>Saved Listings</h3>
+                  <Grid listings={savedListings} gridItemNum={4}/>
+                  <Link to={`/profile/allsaved`}>View All</Link>
+                </>
+              )}
             </div>
 
             <div className="soldSection">
-              <h3>Sold Listings</h3>
-              <div className="soldGrid">
-                {soldListings.length >= 1 && soldListings.slice(0, 4).map((list) => (
-                  <div id="" key={list.listing_uid} onClick={() => handleModalView(list)}>
-                    <ProductListItem item={list} />
-                  </div>
-                ))}
-                <Link to={`/profile/allsold`}>View All</Link>
-              </div>
+            {soldListings !== [] && (
+                <>
+                  <h3>Your Listings</h3>
+                  <Grid listings={soldListings} gridItemNum={4}/>
+                  <Link to={`/profile/allsold`}>View All</Link>
+                </>
+              )}
             </div>
 
 

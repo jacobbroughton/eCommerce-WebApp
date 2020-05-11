@@ -5,7 +5,7 @@ import "./Grid.scss";
 
 const Grid = ({ listings, gridItemNum }) => {
 
-    let [gridCount, setGridCount] = useState();
+    let [gridCount, setGridCount] = useState(4);
 
     useEffect(() => {
     if(!gridItemNum) {
