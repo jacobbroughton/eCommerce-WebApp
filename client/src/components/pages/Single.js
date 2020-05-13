@@ -12,7 +12,7 @@ const Single = props => {
 
     useEffect(() => {
         axios
-        .get(`${statusUrl}api/browse/single/${listingUid}`)
+        .get(`${statusUrl}/api/browse/single/${listingUid}`)
         .then(res => setItem(res.data))
         .catch(err => console.log(err))
     }, [listingUid])

@@ -13,12 +13,12 @@ const CategoryView = props => {
     useEffect(() => {
         category === "All-For-Sale" ? 
         axios
-        .get(`${statusUrl}api/browse/all/20`)
+        .get(`${statusUrl}/api/browse/all/20`)
         .then(res => setItems([...res.data]))
         .catch(err => console.log(err))
         :
         axios
-        .get(`${statusUrl}api/browse/${category}/20`)
+        .get(`${statusUrl}/api/browse/${category}/20`)
         .then(res => setItems([...res.data]))
         .catch(err => console.log(err))
     }, [newCategory])

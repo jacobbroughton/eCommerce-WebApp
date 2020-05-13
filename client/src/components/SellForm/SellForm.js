@@ -113,7 +113,7 @@ const SellForm = () => {
       console.log(formattedTags)
 
       axios
-        .post(`${statusUrl}api/sell/text`, {
+        .post(`${statusUrl}/api/sell/text`, {
           listing_uid: randomNum,
           seller_uid: dbUser.user_uid,
           email: dbUser.email,
@@ -142,7 +142,7 @@ const SellForm = () => {
 
     let sendImageInputValues = () => {
         axios
-        .post(`${statusUrl}api/sell/images/${randomNum}`, formData, config)
+        .post(`${statusUrl}/api/sell/images/${randomNum}`, formData, config)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     };

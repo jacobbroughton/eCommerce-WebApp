@@ -14,7 +14,7 @@ const ActiveAll = () => {
         } else {
             console.log("Yes")
             axios
-            .get(`${statusUrl}api/personallistings/available/${dbUser.user_uid}`)
+            .get(`${statusUrl}/api/personallistings/available/${dbUser.user_uid}`)
             .then(res => setActiveListings([...res.data]))
             .catch(err => console.log(err))
         }

@@ -66,7 +66,7 @@ const ProfileTopSect = () => {
 
 const handleFormSubmit = (e) => {
   axios
-      .post(`${statusUrl}api/updateprofile/${dbUser.user_uid}`, {
+      .post(`${statusUrl}/api/updateprofile/${dbUser.user_uid}`, {
           firstName: firstNameValue,
           lastName: lastNameValue,
           townCity: townCityValue,

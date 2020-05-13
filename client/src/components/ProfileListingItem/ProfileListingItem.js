@@ -11,7 +11,7 @@ const ProfileListingItem = (props) => {
 
     const handleUnsave = (listing) => {
         axios
-        .get(`${statusUrl}api/save/update/${listing.listing_uid}/${dbUser.user_uid}`)
+        .get(`${statusUrl}/api/save/update/${listing.listing_uid}/${dbUser.user_uid}`)
         .then(res => console.log(res))
         .catch(err => console.log(err))
         window.location.reload();

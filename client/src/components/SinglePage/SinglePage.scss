@@ -1,16 +1,10 @@
 .singlePageMother {
-    // position: fixed;
-    // left: 13%;
-    // right: 13%;
-    // top: 10%;
-    height: auto;
+    // height: 800px;
     width: calc(100% - 250px);
     margin-left: 250px;
-    // margin-top: 50px;
     background: #ffffff;
-    // border: #333 solid 2px;
-    // border-radius: 3px;
-    z-index: 3;
+    z-index: 1;
+    
     .singlePageMain {
       padding: 2em;
       h1,

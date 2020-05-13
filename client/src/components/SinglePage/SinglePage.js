@@ -19,7 +19,7 @@ const SinglePage = () => {
 
     useEffect(() => {
         axios
-        .get(`${statusUrl}api/browse/single/${listingUid}`)
+        .get(`${statusUrl}/api/browse/single/${listingUid}`)
         .then(res => setSingle(res.data))
         .catch(err => console.log(err))
     }, [])
@@ -49,7 +49,7 @@ const SinglePage = () => {
         let date_saved = date.replace(/\//g, "-");
     
         axios
-        .get(`${statusUrl}api/save/post/${single.listing_uid}/${dbUser.user_uid}`)
+        .get(`${statusUrl}/api/save/post/${single.listing_uid}/${dbUser.user_uid}`)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     
@@ -60,7 +60,7 @@ const SinglePage = () => {
 
       const handleDelete = () => {
         axios
-        .get(`${statusUrl}api/delete/${single.listing_uid}`)
+        .get(`${statusUrl}/api/delete/${single.listing_uid}`)
         .then(r => console.log(r)).catch(e => console.log(e))
         window.location.reload()
       }

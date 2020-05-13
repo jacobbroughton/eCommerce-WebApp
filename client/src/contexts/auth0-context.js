@@ -12,7 +12,8 @@ export class Auth0Provider extends Component {
     isAuthenticated: null,
     user: null,
     dbUser: null,
-    statusUrl: ""
+    statusUrl: "", 
+    clientStatusUrl: ""
   };
 
   config = {
@@ -21,12 +22,14 @@ export class Auth0Provider extends Component {
     redirect_uri: window.location.origin
   };
 
+  // Finish client status url
+
   componentDidMount() {
 
     if(process.env.NODE_ENV === "development") {
-      this.setState({ statusUrl : "http://localhost:5000/" })
+      this.setState({ statusUrl : "http://localhost:5000", clientStatus : "http://localhost:3000" })
     } else if (process.env.NODE_ENV === "production") {
-      this.setState({ statusUrl: "https://ecommerce-webapp-jb.herokuapp.com/" })
+      this.setState({ statusUrl: "https://ecommerce-webapp-jb.herokuapp.com", clientStatus : "https://ecommerce-webapp-jb.herokuapp.com" })
     }
 
     this.initializeAuth0();
@@ -42,7 +45,7 @@ export class Auth0Provider extends Component {
     console.log("Adding user!");
     if (newUser.given_name) {
       axios
-        .post(`${this.state.statusUrl}api/adduser`, {
+        .post(`${this.state.statusUrl}/api/adduser`, {
           user_uid: randomNum,
           email: newUser.email,
           nickname: newUser.nickname,
@@ -62,7 +65,7 @@ export class Auth0Provider extends Component {
 
     } else if (newUser.email) {
       axios
-        .post(`${this.state.statusUrl}api/adduser`, {
+        .post(`${this.state.statusUrl}/api/adduser`, {
           user_uid: randomNum,
           email: newUser.email,
           nickname: newUser.nickname,
@@ -86,7 +89,7 @@ export class Auth0Provider extends Component {
   findUser = newUser => {
     this.setState({ isLoading: true });
     axios
-      .get(`${this.state.statusUrl}api/finduser/${newUser.email}`)
+      .get(`${this.state.statusUrl}/api/finduser/${newUser.email}`)
       .then(response => {
         console.log("Finduser response is below")
         console.log(response);
@@ -114,7 +117,7 @@ export class Auth0Provider extends Component {
     if (user) {
       console.log("there is a user, finding in database now")
       axios
-        .get(`${this.state.statusUrl}api/finduser/${user.email}`)
+        .get(`${this.state.statusUrl}/api/finduser/${user.email}`)
         .then(response =>
           this.setState({ dbUser: response.data }, () => console.log(this.state))
         )

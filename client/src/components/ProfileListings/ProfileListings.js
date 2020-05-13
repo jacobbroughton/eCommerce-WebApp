@@ -29,7 +29,7 @@ const ProfileListings = () => {
 
   const fetchSavedListings = () => {
     axios
-      .get(`${statusUrl}api/save/get/${dbUser.user_uid}`)
+      .get(`${statusUrl}/api/save/get/${dbUser.user_uid}`)
       .then((response) => setSavedListings([...response.data]))
       .catch((err) => console.log(err));
   };
@@ -38,14 +38,14 @@ const ProfileListings = () => {
 
   const fetchActiveListings = () => {
     axios
-      .get(`${statusUrl}api/personallistings/${dbUser.user_uid}`)
+      .get(`${statusUrl}/api/personallistings/${dbUser.user_uid}`)
       .then((response) => setActiveListings([...response.data].reverse()))
       .catch((err) => console.log(err));
   };
 
   const fetchSoldListings = () => {
     axios
-    .get(`${statusUrl}api/personallistings/sold/${dbUser.user_uid}`)
+    .get(`${statusUrl}/api/personallistings/sold/${dbUser.user_uid}`)
     .then(res => setSoldListings([...res.data].reverse()))
     .catch(err => console.log(err))
   }

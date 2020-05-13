@@ -79,9 +79,11 @@ Created by Jacob Broughton
 * Adjust profile page style / functionality
     * Add a sold section
 * Add 'contact' button on each that allows users to email seller
+* Make the grid more modular
 
 # Incomplete
-- Make the grid more modular
+- Make client-side status URL
+- Improve modularity for the components
 - Make separate pages for showing only/all saved or active listings 
 - Adjust components
     - Work from parent component to child

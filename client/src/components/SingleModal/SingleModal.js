@@ -32,7 +32,7 @@ const SingleModal = ({ item, handleToggle }) => {
     setStatus(e.target.value);
     console.log(status)
     axios
-    .post(`${statusUrl}api/updatestatus/${item.listing_uid}`, { status })
+    .post(`${statusUrl}/api/updatestatus/${item.listing_uid}`, { status })
     .then(r => console.log(r)).catch(err => console.log(err))
   }
 
@@ -55,7 +55,7 @@ const SingleModal = ({ item, handleToggle }) => {
 
   const saveListing = () => {
     axios
-    .get(`${statusUrl}api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
+    .get(`${statusUrl}/api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
@@ -66,7 +66,7 @@ const SingleModal = ({ item, handleToggle }) => {
 
   const deleteListing = () => {
     axios
-    .get(`${statusUrl}api/delete/${item.listing_uid}`)
+    .get(`${statusUrl}/api/delete/${item.listing_uid}`)
     .then(r => console.log(r)).catch(e => console.log(e))
     window.location.reload()
   }

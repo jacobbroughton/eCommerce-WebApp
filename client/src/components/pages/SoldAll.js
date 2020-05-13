@@ -14,7 +14,7 @@ const SoldAll = () => {
         } else {
             console.log("Yes")
             axios
-            .get(`${statusUrl}api/personallistings/sold/${dbUser.user_uid}`)
+            .get(`${statusUrl}/api/personallistings/sold/${dbUser.user_uid}`)
             .then(res => setSoldListings([...res.data]))
             .catch(err => console.log(err))
         }

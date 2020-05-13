@@ -29,6 +29,13 @@
 
         h3{
           text-align: start;
+          margin: 0;
+        }
+        a{
+          text-align: left;
+          background: lightblue;
+          align-self: flex-start;
+          padding: 3px 5px;
         }
 
         .activeGrid, .savedGrid, .soldGrid{

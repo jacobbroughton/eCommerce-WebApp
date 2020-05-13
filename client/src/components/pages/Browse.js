@@ -9,7 +9,7 @@ const Browse = () => {
 
     useEffect(() => {
         axios
-        .get(`${statusUrl}api/browse/all/20`)
+        .get(`${statusUrl}/api/browse/all/20`)
         .then(res => setItems([...res.data]))
         .catch(err => console.log(err))
     }, [])

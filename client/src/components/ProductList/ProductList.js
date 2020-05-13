@@ -27,12 +27,12 @@ const ProductList = ({ searchProp, category, incomingListings }) => {
     let newCategory = category.replace(/ /g, "-");
     if (category === "All For Sale") {
       axios
-        .get(`${statusUrl}api/browsecount/all`)
+        .get(`${statusUrl}/api/browsecount/all`)
         .then((res) => setLimit(res.data.COUNT))
         .catch((err) => console.log(err));
     } else {
       axios
-        .get(`${statusUrl}api/browsecount/${newCategory}`)
+        .get(`${statusUrl}/api/browsecount/${newCategory}`)
         .then((res) => setLimit(res.data.COUNT))
         .catch((err) => console.log(err));
     }
@@ -54,12 +54,12 @@ const ProductList = ({ searchProp, category, incomingListings }) => {
     let newCategory = category.replace(/ /g, "-");
     if (category === "All For Sale") {
       axios
-        .get(`${statusUrl}api/browse/all/${resultNum}`)
+        .get(`${statusUrl}/api/browse/all/${resultNum}`)
         .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err));
     } else {
       axios
-        .get(`${statusUrl}api/browse/${newCategory}/${resultNum}`)
+        .get(`${statusUrl}/api/browse/${newCategory}/${resultNum}`)
         .then((response) => console.log(response.data))
         .catch((err) => console.log(err));
     }
@@ -94,11 +94,11 @@ const ProductList = ({ searchProp, category, incomingListings }) => {
     let formattedSearch = search.replace(/\s/g, "-").toLowerCase();
     console.log(formattedSearch);
     axios
-      .get(`${statusUrl}api/search/${formattedSearch}`)
+      .get(`${statusUrl}/api/search/${formattedSearch}`)
       .then((res) => setListings(res.data))
       .catch((err) => console.log(err));
 
-    // .post(`${statusUrl}api/search`, {
+    // .post(`${statusUrl}/api/search`, {
     //   searchValue : search
     // })
     // .then(response => setListings([response.data]))

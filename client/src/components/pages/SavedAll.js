@@ -14,7 +14,7 @@ const SavedAll = () => {
         } else {
             console.log("Yes")
             axios
-            .get(`${statusUrl}api/save/get/${dbUser.user_uid}`)
+            .get(`${statusUrl}/api/save/get/${dbUser.user_uid}`)
             .then(res => setSavedListings([...res.data]))
             .catch(err => console.log(err))
         }
