@@ -10,7 +10,7 @@ import "./SingleModal.scss";
 
 const SingleModal = ({ item, handleToggle }) => {
   const availArr = ["Available", "Pending", "Sold"];
-  const { statusUrl, dbUser } = useAuth0();
+  const { statusUrl, dbUser, clientStatusUrl } = useAuth0();
   let imageArr = [];
   const [image, setImage] = useState("");
   let [status, setStatus] = useState(item.status);  
@@ -38,7 +38,7 @@ const SingleModal = ({ item, handleToggle }) => {
 
   const shareListing = (str) => {
     let textArea = document.createElement('textarea');
-    textArea.value = `http://localhost:3000/browse/single/${item.listing_uid}`;
+    textArea.value = `${clientStatusUrl}/browse/single/${item.listing_uid}`;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');
@@ -92,7 +92,7 @@ const SingleModal = ({ item, handleToggle }) => {
                 {image === "" && item.image !== "null" ? (
                   <img
                     className="singleImage"
-                    src={statusUrl + imageArr[0]}
+                    src={`${statusUrl}/${imageArr[0]}`}
                     alt=""
                   />
                 ) : (
@@ -175,7 +175,7 @@ const SingleModal = ({ item, handleToggle }) => {
                     </div>
                   )}
                    <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
-                    <textarea type="text" id='copyText' disabled value={`http://localhost:3000/browse/single/${item.listing_uid}`}/>
+                    <textarea type="text" id='copyText' disabled value={`${clientStatusUrl}/browse/single/${item.listing_uid}`}/>
                     
                     <div className="shareDiv">
                       <button className="shareBtn" onClick={(e) => shareListing(e)}>Share</button>
@@ -198,7 +198,7 @@ const SingleModal = ({ item, handleToggle }) => {
               </p>
             </div>
           </div>
-          {/* <input autofocus disabled value={`http://localhost:3000/browse/single/${item.listing_uid}`}/> */}
+          {/* <input autofocus disabled value={`${clientStatusUrl}/browse/single/${item.listing_uid}`}/> */}
         <button className="closeBtn" onClick={(e) => handleClose(e)}>
           Close
         </button>

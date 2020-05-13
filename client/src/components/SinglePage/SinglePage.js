@@ -8,7 +8,7 @@ import "./SinglePage.scss";
 
 const SinglePage = () => {
 
-    const { statusUrl, dbUser } = useAuth0();
+    const { statusUrl, dbUser, clientStatusUrl } = useAuth0();
     let imageArr = [];
     const [single, setSingle] = useState(null);
     const [image, setImage] = useState("");
@@ -88,7 +88,7 @@ const SinglePage = () => {
               {image === "" && single.image !== "null" ? (
                 <img
                   className="singleImage"
-                  src={statusUrl + imageArr[0]}
+                  src={`${statusUrl}/${imageArr[0]}`}
                   alt=""
                 />
               ) : (
@@ -171,7 +171,7 @@ const SinglePage = () => {
                     <button className="saveBtn" onClick={() => handleSave()}>Save</button>
                   </div>
                 )}
-                    <input type="text" id='copyText' onChange={() => {}} value={`http://localhost:3000/browse/single/${single.listing_uid}`}/>
+                    <input type="text" id='copyText' onChange={() => {}} value={`${clientStatusUrl}/browse/single/${single.listing_uid}`}/>
                     
                     <div className="shareDiv">
                       <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>

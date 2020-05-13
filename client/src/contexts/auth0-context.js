@@ -27,9 +27,9 @@ export class Auth0Provider extends Component {
   componentDidMount() {
 
     if(process.env.NODE_ENV === "development") {
-      this.setState({ statusUrl : "http://localhost:5000", clientStatus : "http://localhost:3000" })
+      this.setState({ statusUrl : "http://localhost:5000", clientStatusUrl : "http://localhost:3000" })
     } else if (process.env.NODE_ENV === "production") {
-      this.setState({ statusUrl: "https://ecommerce-webapp-jb.herokuapp.com", clientStatus : "https://ecommerce-webapp-jb.herokuapp.com" })
+      this.setState({ statusUrl: "https://ecommerce-webapp-jb.herokuapp.com", clientStatusUrl : "https://ecommerce-webapp-jb.herokuapp.com" })
     }
 
     this.initializeAuth0();
@@ -168,7 +168,8 @@ export class Auth0Provider extends Component {
       isAuthenticated,
       user,
       dbUser,
-      statusUrl
+      statusUrl,
+      clientStatusUrl
     } = this.state;
 
     const { children } = this.props;
@@ -179,6 +180,7 @@ export class Auth0Provider extends Component {
       user,
       dbUser,
       statusUrl,
+      clientStatusUrl,
       loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
       getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
       getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),

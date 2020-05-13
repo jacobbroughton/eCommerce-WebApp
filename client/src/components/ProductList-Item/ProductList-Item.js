@@ -5,19 +5,9 @@ import placeholderImg from "../../assets/download.jpg";
 import "./ProductList-Item.scss";
 
 const ProductListItem = ({ item, toggled }) => {
-  const [currentItem, setCurrentItem] = useState(null);
-  let [loadCount, setLoadCount] = useState(0);
   let [placeHolder, setPlaceHolder] = useState(true);
-  // const [toggle, setToggle] = useState(0);
-  const { statusUrl } = useAuth0();
+  const { statusUrl, clientStatusUrl } = useAuth0();
 
-  useEffect(() => {
-    console.log(loadCount)
-  }, [loadCount])
-
-  const handleLoad = () => {
-
-  }
   
   setTimeout(() => {
     setPlaceHolder(false);
@@ -28,39 +18,22 @@ const ProductListItem = ({ item, toggled }) => {
   }
 
   return (
-    <>
+    // <>
       <div key={item.id} className="listItem">
         {item.image !== "null" && item.image !== null && !placeHolder ? (
           <img
-            onLoad={() => handleLoad()}
             className="itemImage"
-            src={statusUrl + item.image.split(" ")[0]}
+            src={`${statusUrl}/${item.image.split(" ")[0]}`}
             alt=""
           />
         ) : (
           <img
-            onLoad={() => handleLoad()}
             className="itemImage"
             src={placeholderImg}
             alt=""
           />
         )}
-{/* 
-        {item.image !== "null" && item.image !== null ? (
-          <img
-            onLoad={() => handleLoad()}
-            className="itemImage"
-            src={statusUrl + item.image.split(" ")[0]}
-            alt=""
-          />
-        ) : (
-          <img
-            onLoad={() => handleLoad()}
-            className="itemImage"
-            src={placeholderImg}
-            alt=""
-          />
-        )} */}
+
 
         <div className="itemTextParent">
           {item.title.length > 20 ? (
@@ -75,7 +48,7 @@ const ProductListItem = ({ item, toggled }) => {
 
         <p className="itemPrice">${item.price}</p>
       </div>
-    </>
+    // </>
   );
 };
 
