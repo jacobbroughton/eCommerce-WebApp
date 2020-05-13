@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ProductListItem from "../ProductList-Item/ProductList-Item";
 import "./Grid.scss";
 
-const Grid = ({ listings, gridItemNum }) => {
+const Grid = ({ handleModalView, listings, gridItemNum }) => {
 
     let [gridCount, setGridCount] = useState(4);
 
@@ -21,7 +21,7 @@ const Grid = ({ listings, gridItemNum }) => {
             className="gridItem"
             id=""
             key={list.listing_uid}
-            onClick={() => this.props.handleModalView(list)}
+            onClick={() => handleModalView(list)}
           >
             <ProductListItem item={list} />
           </div>

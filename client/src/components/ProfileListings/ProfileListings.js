@@ -85,7 +85,7 @@ const ProfileListings = () => {
               {activeListings !== [] && (
                 <>
                   <h3>Your Listings</h3>
-                  <Grid listings={activeListings} gridItemNum={4}/>
+                  <Grid handleModalView={handleModalView} listings={activeListings} gridItemNum={4}/>
                   <Link to={`/profile/allactive`}>View All</Link>
                 </>
               )}
@@ -95,7 +95,7 @@ const ProfileListings = () => {
             {savedListings !== [] && (
                 <>
                   <h3>Saved Listings</h3>
-                  <Grid listings={savedListings} gridItemNum={4}/>
+                  <Grid handleModalView={handleModalView} listings={savedListings} gridItemNum={4}/>
                   <Link to={`/profile/allsaved`}>View All</Link>
                 </>
               )}
@@ -104,8 +104,8 @@ const ProfileListings = () => {
             <div className="soldSection">
             {soldListings !== [] && (
                 <>
-                  <h3>Your Listings</h3>
-                  <Grid listings={soldListings} gridItemNum={4}/>
+                  <h3>Sold Listings</h3>
+                  <Grid handleModalView={handleModalView} listings={soldListings} gridItemNum={4}/>
                   <Link to={`/profile/allsold`}>View All</Link>
                 </>
               )}

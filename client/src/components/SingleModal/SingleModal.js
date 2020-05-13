@@ -112,7 +112,7 @@ const SingleModal = ({ item, handleToggle }) => {
                       <img
                         onClick={(e) => setImage(e.target.src)}
                         className="sideImage"
-                        src={statusUrl + image}
+                        src={`${statusUrl}/${image}`}
                         alt=""
                         key={image}
                       />
@@ -184,7 +184,10 @@ const SingleModal = ({ item, handleToggle }) => {
                     { dbUser && dbUser.user_uid === item.seller_uid && (
                 <button className="deleteBtn" onClick={(e) => deleteListing(e)}>Delete</button>
                 )}
-                <a className="contactBtn" href={`mailto:${item.email}?subject=For Sale Inquiry: ${item.title.slice(0, 25)}`}>Contact</a>
+                {dbUser.user_uid !== item.seller_uid && (
+                  <a className="contactBtn" href={`mailto:${item.email}?subject=For Sale Inquiry: ${item.title.slice(0, 25)}`}>Contact</a>
+                )}
+                
                 </div>
               </div>
             </div>
@@ -198,7 +201,6 @@ const SingleModal = ({ item, handleToggle }) => {
               </p>
             </div>
           </div>
-          {/* <input autofocus disabled value={`${clientStatusUrl}/browse/single/${item.listing_uid}`}/> */}
         <button className="closeBtn" onClick={(e) => handleClose(e)}>
           Close
         </button>
