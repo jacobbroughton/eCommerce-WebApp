@@ -17,15 +17,11 @@ const ProfileListings = () => {
   const [currentItem, setCurrentItem] = useState(null);
   let [toggled, setToggled] = useState(false);
 
-
-
   useEffect(() => {
     fetchActiveListings();
     fetchSavedListings();
     fetchSoldListings();
   }, [dbUser, statusUrl]);
-
-
 
   const fetchSavedListings = () => {
     axios
@@ -33,8 +29,6 @@ const ProfileListings = () => {
       .then((response) => setSavedListings([...response.data]))
       .catch((err) => console.log(err));
   };
-
-
 
   const fetchActiveListings = () => {
     axios
@@ -49,14 +43,6 @@ const ProfileListings = () => {
     .then(res => setSoldListings([...res.data].reverse()))
     .catch(err => console.log(err))
   }
-
-
-
-  const handleSavedClick = (e, listing) => {
-    setCurrentItem(listing)
-  }
-
-
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
