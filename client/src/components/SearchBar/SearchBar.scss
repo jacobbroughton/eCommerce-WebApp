@@ -1,0 +1,26 @@
+form {
+    display: flex;
+  .searchInput {
+    align-self: flex-start;
+    margin-left: 250px;
+    width: 400px;
+    padding: 0.3em 0.6em;
+    appearance: none;
+    border: none;
+    border: lightgrey solid 1px;
+    border-radius: 3px;
+    font-size: 1rem;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .searchBtn {
+    padding: 0.3em 0.6em;
+    appearance: none;
+    font-size: 1rem;
+    border: lightgrey solid 1px;
+    border-radius: 3px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: 0px;
+  }
+}

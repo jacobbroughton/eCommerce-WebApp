@@ -2,27 +2,18 @@
     display: flex;
     height: 100%;
 
-    .catParent{
-        position: fixed;
-        padding-left: 30px;
-        padding-right: 30px;
-        // margin-top: 50px;
-        .catHead{
-            text-align: left;
-            font-size: 1.25em;
-        }
-        .catList{
-            margin: 0;
-            padding: 0;
-            .catItem{
-                list-style: none;
-                text-align: left;
-                margin-bottom: 10px;
-                cursor: pointer;
-
-                &:hover{
-                    text-decoration: underline;
-                }
+    .singleWrapper{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        // align-items: center;
+        .searchWrapper{
+            display: flex;
+            align-items: center;
+            h3{
+                margin: 0;
+                margin-left: 20px;
+                align-self: center;
             }
         }
     }

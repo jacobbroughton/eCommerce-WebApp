@@ -3,7 +3,6 @@ import { useAuth0 } from "../../contexts/auth0-context";
 import placeholderImg from "../../assets/download.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import moment from "moment";
 import "./SingleModal.scss";
 
 
@@ -21,11 +20,10 @@ const SingleModal = ({ item, handleToggle }) => {
     handleToggle();
 
     // Window location testing, removes product url
-    console.log(window.location.pathname)
-    let winP = window.location.pathname
-    winP.substr(0, winP.lastIndexOf("/single/") + 1);
+    // console.log(window.location.pathname)
+    // let winP = window.location.pathname
+    // winP.substr(0, winP.lastIndexOf("/single/") + 1);
   };
-
 
 
   const handleAvailability = (e) => {

@@ -10,9 +10,6 @@ const SoldAll = () => {
 
     useEffect(() => {
         if(!dbUser) {
-            console.log("No")
-        } else {
-            console.log("Yes")
             axios
             .get(`${statusUrl}/api/personallistings/sold/${dbUser.user_uid}`)
             .then(res => setSoldListings([...res.data]))
@@ -23,8 +20,8 @@ const SoldAll = () => {
     
     return(
         <>
-        <h3>Your Sold Listings</h3>
-        <Grid listings={soldListings} />
+            <h3>Your Sold Listings</h3>
+            <Grid listings={soldListings} />
         </>
         
     )

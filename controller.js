@@ -297,7 +297,6 @@ exports.search2 = (req, res) => {
 
 exports.getStatusPersonalListings = (req, res) => {
   let rp = req.params;
-  console.log(req.params)
   connection.query(`SELECT * FROM listings WHERE seller_uid = "${rp.selleruid}" AND status = "${rp.status}"`, (err, rows, fields) => {
     if (err) throw err;
     res.send(rows)
