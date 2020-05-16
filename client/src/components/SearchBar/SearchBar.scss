@@ -1,9 +1,11 @@
 form {
     display: flex;
+    width: 100%;
+    max-width: 400px;
   .searchInput {
     align-self: flex-start;
-    margin-left: 250px;
-    width: 400px;
+    width: 100%;
+    
     padding: 0.3em 0.6em;
     appearance: none;
     border: none;
