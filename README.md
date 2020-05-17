@@ -81,11 +81,12 @@ Created by Jacob Broughton
 * Add 'contact' button on each that allows users to email seller
 * Make the grid more modular
 * Make client-side status URL
+* Improve modularity for the components
+- Make separate pages for showing only/all saved or active listings 
 
 # Incomplete
-- Improve modularity for the components
+- Make 'Load more' work correctly from searched results
 - Add 'back to category' when on a single listing view.
-- Make separate pages for showing only/all saved or active listings 
 - Adjust components
     - Work from parent component to child
 - Reflect search bar value instead of category

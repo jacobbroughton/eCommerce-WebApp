@@ -107,21 +107,7 @@ exports.browseAll = (req, res) => {
   });
 };
 
-exports.allNumRows = (req, res) => {
-  connection.query(`SELECT COUNT(*) as "COUNT" FROM listings`, (err, rows, fields) => {
-    if(err) throw err;
-    res.send(rows[0])
-  })
-}
 
-exports.categoryNumRows = (req, res) => {
-  let origCat = req.params.category;
-  let newCategory = origCat.split("-").join(" ");
-  connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE category = "${newCategory}"`, (err, rows, fields) => {
-    if(err) throw err;
-    res.send(rows[0])
-  })
-}
 
 exports.browseCategory = (req, res) => {
   let origCat = req.params.category;
@@ -228,41 +214,6 @@ exports.deleteListing = (req, res) => {
   })
 }
 
-exports.search = (req, res) => {
-  console.log("------")
-  let searchVal = req.body.searchValue;
-  let searchArr = searchVal.split(" ");
-  let uniqSet = new Set([...searchArr]);
-  let uniqArr = Array.from(uniqSet);
-  let uidArr = [];
-  connection.query(`SELECT listing_uid, tags FROM listings`, (err, rows, fields) => {
-    if(err) throw err; 
-    rows.forEach(item => {
-      for(let i = 0; i < uniqArr.length; i++) {
-        if(item.tags.includes(uniqArr[i])) {
-          uidArr.push(item.listing_uid);
-          return uidArr;
-        }
-      }
-    })
-
-    console.log(uidArr)
-    console.log(typeof(uidArr))
-    uidArr === {} ?
-      console.log("uidArr is null")    
-    :
-    connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
-      if(err) console.log(err) ;
-      if(uidArr === null) {
-        console.log("this is null")
-        res.send(null)
-      } else {
-        console.log("Not null")
-        res.send(rows);
-      }
-    })
-  }) 
-}
 
 exports.search2 = (req, res) => {
   let searchVal = (req.params.searchval.replace(/-/g, " "))
@@ -270,25 +221,23 @@ exports.search2 = (req, res) => {
   let uniqSet = new Set([...searchArr]);
   let uniqArr = Array.from(uniqSet);
   let uidArr = [];
-  console.log(uniqArr)
 
   connection.query(`SELECT listing_uid, tags FROM listings`, (err, rows, fields) => {
     if(err) throw err;
+    console.log(rows)
     rows.forEach(item => {
       for(let i = 0; i < uniqArr.length; i++) {
         if(item.tags.includes(uniqArr[i])) {
-          // console.log("Yepp, getting through")
           uidArr.push(item.listing_uid);
           return uidArr;
         }
       }
     })
 
-    console.log(uidArr)
     uidArr === {} ?
     console.log("uidArr is null")
     :
-    connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
+    connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr}) ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
       if(err) console.log(err);
       uidArr === null ? res.send(null) : res.send(rows);
     })
@@ -301,4 +250,53 @@ exports.getStatusPersonalListings = (req, res) => {
     if (err) throw err;
     res.send(rows)
   })
+}
+
+// Count queries
+exports.allNumRows = (req, res) => {
+  connection.query(`SELECT COUNT(*) as "COUNT" FROM listings`, (err, rows, fields) => {
+    if(err) throw err;
+    res.send(rows[0])
+  })
+}
+
+exports.categoryNumRows = (req, res) => {
+  let origCat = req.params.category;
+  let newCategory = origCat.split("-").join(" ");
+  connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE category = "${newCategory}"`, (err, rows, fields) => {
+    if(err) throw err;
+    res.send(rows[0])
+  })
+}
+
+exports.searchNumRows = (req, res) => {
+  let searchVal = (req.params.searchval.replace(/-/g, " "))
+  let searchArr = searchVal.split(" ");
+  let uniqSet = new Set([...searchArr]);
+  let uniqArr = Array.from(uniqSet);
+  let uidArr = [];
+
+  connection.query(`SELECT listing_uid, tags FROM listings`, (err, rows, fields) => {
+    if(err) console.log(err) ;
+    rows.forEach(item => {
+      for(let i = 0; i < uniqArr.length; i++) {
+        if(item.tags.includes(uniqArr[i])) {
+          uidArr.push(item.listing_uid);
+          return uidArr;
+        }
+      }
+    })
+
+    uidArr === {} ?
+    console.log("uidArr is null")
+    :
+    console.log("uidArr is below")
+    console.log(uidArr)
+    connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
+      if(err) console.log(err);
+      uidArr === null || uidArr === undefined ? res.send(null) : res.send(rows[0]);
+    })
+  })
+
+  // connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE `)
 }

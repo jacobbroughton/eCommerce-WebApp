@@ -42,11 +42,12 @@ router.get("/browse/single/:listinguid", controller.browseSingle);
 router.get("/browse/:category/:resultnum", controller.browseCategory);
 router.get("/browsecount/all", controller.allNumRows);
 router.get("/browsecount/:category", controller.categoryNumRows);
+router.get("/browsecount/search/:searchval", controller.searchNumRows);
 router.get("/save/post/:listinguid/:useruid", controller.saveListing);
 router.get("/save/get/:useruid", controller.getSaved);
 router.get("/save/update/:listinguid/:useruid", controller.updateSaved);
 router.get("/delete/:listinguid", controller.deleteListing);
-router.post("/search", controller.search);
-router.get("/search/:searchval", controller.search2);
+// router.post("/search", controller.search);
+router.get("/search/:searchval/:resultnum", controller.search2);
 
 module.exports = router;

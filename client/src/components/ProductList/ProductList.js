@@ -8,15 +8,17 @@ import Grid from "../Grid/Grid";
 import ProductListItem from "../ProductList-Item/ProductList-Item";
 import placeholderImg from "../../assets/download.jpg";
 
-const ProductList = ({ category, searchListings, incomingListings }) => {
+const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category, searchListings, incomingListings }) => {
   const { statusUrl } = useAuth0();
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
-  const [resultNum, setResultNum] = useState(20);
-  const [limit, setLimit] = useState(0);
+  let [searchLimit, setSearchLimit] = useState()
+  let [browseLimit, setBrowseLimit] = useState(0);
   let [loadBtn, setLoadBtn] = useState(false);
   let [toggled, setToggled] = useState(false);
 
+
+  
   useEffect(() => {
     setListings([...incomingListings]);
 
@@ -24,12 +26,12 @@ const ProductList = ({ category, searchListings, incomingListings }) => {
     if (category === "All For Sale") {
       axios
         .get(`${statusUrl}/api/browsecount/all`)
-        .then((res) => setLimit(res.data.COUNT))
+        .then((res) => setBrowseLimit(res.data.COUNT))
         .catch((err) => console.log(err));
     } else {
       axios
         .get(`${statusUrl}/api/browsecount/${newCategory}`)
-        .then((res) => setLimit(res.data.COUNT))
+        .then((res) => setBrowseLimit(res.data.COUNT))
         .catch((err) => console.log(err));
     }
 
@@ -41,25 +43,48 @@ const ProductList = ({ category, searchListings, incomingListings }) => {
   }, [category, incomingListings]);
 
 
+
+  useEffect(() => {
+    axios
+    .get(`${statusUrl}/api/browsecount/search/${searchVal}`)
+    .then(res => setSearchLimit(res.data.COUNT))
+    .catch(err => console.log(err))
+  }, [searchListings])
+
+
+
   useEffect(() => {
     setListings([...searchListings]);
   }, [searchListings]);
 
+
+
   // Runs each time load more is clicked
   useEffect(() => {
     let newCategory = category.replace(/ /g, "-");
-    if (category === "All For Sale") {
+    if(searched) {
+      let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
+      axios
+        .get(`${statusUrl}/api/search/${formattedSearch}/${resultNum}`)
+        .then((res) => setListings([...res.data]))
+        .catch((err) => console.log(err));
+    } else {
+          category === "All For Sale" 
+    ? 
       axios
         .get(`${statusUrl}/api/browse/all/${resultNum}`)
         .then((response) => setListings([...response.data]))
-        .catch((err) => console.log(err));
-    } else {
+        .catch((err) => console.log(err))
+    :
       axios
         .get(`${statusUrl}/api/browse/${newCategory}/${resultNum}`)
         .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err));
     }
+
   }, [resultNum]);
+
+
 
   const handleModalView = (props) => {
     setCurrentItem(props);
@@ -69,7 +94,6 @@ const ProductList = ({ category, searchListings, incomingListings }) => {
   };
 
   const handleToggle = () => (toggled ? setToggled(false) : setToggled(true));
-  const handleLoadMore = () => setResultNum(resultNum + 20);
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
@@ -87,13 +111,16 @@ const ProductList = ({ category, searchListings, incomingListings }) => {
             )}
             <div onClick={() => overlayClose()} className="" id="overlay"></div>
           </div>
-          {console.log("Listings length: " + listings.length)}
-          {console.log("Limit: " + limit)}
-          {listings.length !== limit && loadBtn && (
+          {console.log("Search Listings: " + searchListings.length)}
+          {console.log("Search Limit: " + searchLimit)}
+          {console.log("Browse Listings: " + listings.length)}
+          {console.log(searched)}
+          {listings.length !== searchLimit && listings.length !== browseLimit && loadBtn && (
             <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>
-              Load More
+              Load More : {resultNum}
             </button>
            )}
+
         </div>
       </div>
     );

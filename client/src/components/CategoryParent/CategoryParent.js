@@ -10,11 +10,21 @@ const BrowseCategoryParent = ({ category, categoryItems, single }) => {
   const [cat, setCat] = useState("");
   const [searchVal, setSearchVal] = useState("");
   const [listings, setListings] = useState([]);
+  const [resultNum, setResultNum] = useState(20);
+  let [searched, setSearched] = useState(false);
+
+  const handleSearchedBool = (bool) => setSearched(bool);
 
   const handleCatClick = (category) => {
     setCat(category)
+    handleSearchedBool(false);
+    setResultNum(20);
     setSearchVal("");
   }
+
+  const handleLoadMore = () => setResultNum(resultNum + 20);
+
+  
 
   return (
     <div className="browseViewMother">
@@ -23,11 +33,15 @@ const BrowseCategoryParent = ({ category, categoryItems, single }) => {
       {!single && (
         <div className="singleWrapper">
           <div className="searchWrapper">
-            <SearchBar setListings={setListings} setSearchVal={setSearchVal} searchVal={searchVal} />
+            <SearchBar resultNum={resultNum} handleSearchedBool={handleSearchedBool} setListings={setListings} setSearchVal={setSearchVal} searchVal={searchVal} />
             {searchVal === "" ? <h3>{category}</h3> : <h3>'{searchVal}'</h3>}
           </div>
           
-          <ProductList category={category} searchListings={listings} incomingListings={categoryItems} />
+          <ProductList searched={searched} handleLoadMore={handleLoadMore} searchVal={searchVal} resultNum={resultNum} category={category} searchListings={listings} incomingListings={categoryItems} />
+          
+          {/* <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)} style={{background: "blue", width: '200px', color: 'white', alignSelf: 'center', marginBottom: '30px', padding: '5px'}}>
+              Load More : {resultNum2}
+            </button> */}
         </div>
       )}
       {single && <SinglePage />}
