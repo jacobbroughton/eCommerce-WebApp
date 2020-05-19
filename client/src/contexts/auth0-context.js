@@ -168,8 +168,8 @@ export class Auth0Provider extends Component {
       isAuthenticated,
       user,
       dbUser,
-      statusUrl,
-      clientStatusUrl
+      // statusUrl,
+      // clientStatusUrl
     } = this.state;
 
     const { children } = this.props;
@@ -179,8 +179,8 @@ export class Auth0Provider extends Component {
       isAuthenticated,
       user,
       dbUser,
-      statusUrl,
-      clientStatusUrl,
+      // statusUrl,
+      // clientStatusUrl,
       loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
       getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
       getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),

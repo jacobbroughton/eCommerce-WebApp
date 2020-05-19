@@ -8,11 +8,11 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider>
-      <StatusUrlProvider>
+    <StatusUrlProvider>
+      <Auth0Provider>
         <App />
-      </StatusUrlProvider>
     </Auth0Provider>
+    </StatusUrlProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 
 const SoldAll = () => {
 
-    let { statusUrl, dbUser } = useAuth0();
+    let { dbUser } = useAuth0();
+    const { serverUrl } = useStatusUrl();
     let [soldListings, setSoldListings] = useState([]);
 
     useEffect(() => {
         if(!dbUser) {
             axios
-            .get(`${statusUrl}/api/personallistings/sold/${dbUser.user_uid}`)
+            .get(`${serverUrl}/api/personallistings/sold/${dbUser.user_uid}`)
             .then(res => setSoldListings([...res.data]))
             .catch(err => console.log(err))
         }

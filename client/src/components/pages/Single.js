@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import BrowseWrapper from "../BrowseWrapper/BrowseWrapper"
-import { useAuth0 } from "../../contexts/auth0-context.js";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 
 const Single = props => {
-    const { statusUrl } = useAuth0();
+    const { serverUrl } = useStatusUrl();
     const [item, setItem] = useState({});
     let listingUid = window.location.pathname.replace("/browse/single/", "")
 
@@ -12,7 +12,7 @@ const Single = props => {
 
     useEffect(() => {
         axios
-        .get(`${statusUrl}/api/browse/single/${listingUid}`)
+        .get(`${serverUrl}/api/browse/single/${listingUid}`)
         .then(res => setItem(res.data))
         .catch(err => console.log(err))
     }, [listingUid])

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import Loading from "../Loading/Loading";
 import placeholderImg from "../../assets/download.jpg";
 import moment from "moment";
@@ -8,7 +9,8 @@ import "./SinglePage.scss";
 
 const SinglePage = () => {
 
-    const { statusUrl, dbUser, clientStatusUrl } = useAuth0();
+    const { dbUser } = useAuth0();
+    const { serverUrl, clientUrl } = useStatusUrl()
     let imageArr = [];
     const [single, setSingle] = useState(null);
     const [image, setImage] = useState("");
@@ -19,7 +21,7 @@ const SinglePage = () => {
 
     useEffect(() => {
         axios
-        .get(`${statusUrl}/api/browse/single/${listingUid}`)
+        .get(`${serverUrl}/api/browse/single/${listingUid}`)
         .then(res => setSingle(res.data))
         .catch(err => console.log(err))
     }, [])
@@ -49,7 +51,7 @@ const SinglePage = () => {
         let date_saved = date.replace(/\//g, "-");
     
         axios
-        .get(`${statusUrl}/api/save/post/${single.listing_uid}/${dbUser.user_uid}`)
+        .get(`${serverUrl}/api/save/post/${single.listing_uid}/${dbUser.user_uid}`)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     
@@ -60,7 +62,7 @@ const SinglePage = () => {
 
       const handleDelete = () => {
         axios
-        .get(`${statusUrl}/api/delete/${single.listing_uid}`)
+        .get(`${serverUrl}/api/delete/${single.listing_uid}`)
         .then(r => console.log(r)).catch(e => console.log(e))
         window.location.reload()
       }
@@ -88,7 +90,7 @@ const SinglePage = () => {
               {image === "" && single.image !== "null" ? (
                 <img
                   className="singleImage"
-                  src={`${statusUrl}/${imageArr[0]}`}
+                  src={`${serverUrl}/${imageArr[0]}`}
                   alt=""
                 />
               ) : (
@@ -108,7 +110,7 @@ const SinglePage = () => {
                     <img
                       onClick={(e) => setImage(e.target.src)}
                       className="sideImage"
-                      src={statusUrl + image}
+                      src={serverUrl + image}
                       alt=""
                       key={image}
                     />
@@ -171,7 +173,7 @@ const SinglePage = () => {
                     <button className="saveBtn" onClick={() => handleSave()}>Save</button>
                   </div>
                 )}
-                    <input type="text" id='copyText' onChange={() => {}} value={`${clientStatusUrl}/browse/single/${single.listing_uid}`}/>
+                    <input type="text" id='copyText' onChange={() => {}} value={`${clientUrl}/browse/single/${single.listing_uid}`}/>
                     
                     <div className="shareDiv">
                       <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>

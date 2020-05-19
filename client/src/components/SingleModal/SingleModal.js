@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import placeholderImg from "../../assets/download.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -9,7 +10,8 @@ import "./SingleModal.scss";
 
 const SingleModal = ({ item, handleToggle }) => {
   const availArr = ["Available", "Pending", "Sold"];
-  const { statusUrl, dbUser, clientStatusUrl } = useAuth0();
+  const { dbUser } = useAuth0();
+  const { serverUrl, clientUrl } = useStatusUrl();
   let imageArr = [];
   const [image, setImage] = useState("");
   let [status, setStatus] = useState(item.status);  
@@ -25,13 +27,13 @@ const SingleModal = ({ item, handleToggle }) => {
     setStatus(e.target.value);
     console.log(status)
     axios
-    .post(`${statusUrl}/api/updatestatus/${item.listing_uid}`, { status })
+    .post(`${serverUrl}/api/updatestatus/${item.listing_uid}`, { status })
     .then(r => console.log(r)).catch(err => console.log(err))
   }
 
   const shareListing = (str) => {
     let textArea = document.createElement('textarea');
-    textArea.value = `${clientStatusUrl}/browse/single/${item.listing_uid}`;
+    textArea.value = `${clientUrl}/browse/single/${item.listing_uid}`;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');
@@ -48,7 +50,7 @@ const SingleModal = ({ item, handleToggle }) => {
 
   const saveListing = () => {
     axios
-    .get(`${statusUrl}/api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
+    .get(`${serverUrl}/api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
@@ -59,7 +61,7 @@ const SingleModal = ({ item, handleToggle }) => {
 
   const deleteListing = () => {
     axios
-    .get(`${statusUrl}/api/delete/${item.listing_uid}`)
+    .get(`${serverUrl}/api/delete/${item.listing_uid}`)
     .then(r => console.log(r)).catch(e => console.log(e))
     window.location.reload()
   }
@@ -85,7 +87,7 @@ const SingleModal = ({ item, handleToggle }) => {
                 {image === "" && item.image !== "null" ? (
                   <img
                     className="singleImage"
-                    src={`${statusUrl}/${imageArr[0]}`}
+                    src={`${serverUrl}/${imageArr[0]}`}
                     alt=""
                   />
                 ) : (
@@ -105,7 +107,7 @@ const SingleModal = ({ item, handleToggle }) => {
                       <img
                         onClick={(e) => setImage(e.target.src)}
                         className="sideImage"
-                        src={`${statusUrl}/${image}`}
+                        src={`${serverUrl}/${image}`}
                         alt=""
                         key={image}
                       />
@@ -168,7 +170,7 @@ const SingleModal = ({ item, handleToggle }) => {
                     </div>
                   )}
                    <Link to={`/browse/single/${item.listing_uid}`} className="viewListing">View Listing</Link>
-                    <textarea type="text" id='copyText' disabled value={`${clientStatusUrl}/browse/single/${item.listing_uid}`}/>
+                    <textarea type="text" id='copyText' disabled value={`${clientUrl}/browse/single/${item.listing_uid}`}/>
                     
                     <div className="shareDiv">
                       <button className="shareBtn" onClick={(e) => shareListing(e)}>Share</button>

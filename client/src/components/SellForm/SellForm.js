@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 import moment from "moment";
 import ListedModal from "../ListedModal/ListedModal";
@@ -31,7 +32,8 @@ const SellForm = () => {
   let priceOfferArr = ["Select offer options", "Firm", "Reasonable offers only", "Any offer"];
   let tradeArr = ["Select trade options", "No Trades", "Will consider category related Trades", "Will consider any Trade"]
 
-  const { dbUser, statusUrl } = useAuth0();
+  const { dbUser } = useAuth0();
+  const { serverUrl } = useStatusUrl();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0); // Consider type
   const [condition, setCondition] = useState(conditionArr[0]);
@@ -112,7 +114,7 @@ const SellForm = () => {
       console.log(formattedTags)
 
       axios
-        .post(`${statusUrl}/api/sell/text`, {
+        .post(`${serverUrl}/api/sell/text`, {
           listing_uid: randomNum,
           seller_uid: dbUser.user_uid,
           email: dbUser.email,
@@ -141,7 +143,7 @@ const SellForm = () => {
 
     let sendImageInputValues = () => {
         axios
-        .post(`${statusUrl}/api/sell/images/${randomNum}`, formData, config)
+        .post(`${serverUrl}/api/sell/images/${randomNum}`, formData, config)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     };

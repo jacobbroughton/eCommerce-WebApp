@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 import {Link} from "react-router-dom"; 
 import Grid from "../Grid/Grid";
@@ -7,7 +8,8 @@ import SingleModal from "../SingleModal/SingleModal";
 import "./ProfileListings.scss";
 
 const ProfileListings = () => {
-  const { dbUser, statusUrl } = useAuth0();
+  const { dbUser } = useAuth0();
+  const { serverUrl } = useStatusUrl();
   const [savedListings, setSavedListings] = useState([]);
   const [activeListings, setActiveListings] = useState([]);
   const [soldListings, setSoldListings] = useState([]);
@@ -18,25 +20,25 @@ const ProfileListings = () => {
     fetchActiveListings();
     fetchSavedListings();
     fetchSoldListings();
-  }, [dbUser, statusUrl]);
+  }, [dbUser, serverUrl]);
 
   const fetchSavedListings = () => {
     axios
-      .get(`${statusUrl}/api/save/get/${dbUser.user_uid}`)
+      .get(`${serverUrl}/api/save/get/${dbUser.user_uid}`)
       .then((response) => setSavedListings([...response.data]))
       .catch((err) => console.log(err));
   };
 
   const fetchActiveListings = () => {
     axios
-      .get(`${statusUrl}/api/personallistings/${dbUser.user_uid}`)
+      .get(`${serverUrl}/api/personallistings/${dbUser.user_uid}`)
       .then((response) => setActiveListings([...response.data].reverse()))
       .catch((err) => console.log(err));
   };
 
   const fetchSoldListings = () => {
     axios
-    .get(`${statusUrl}/api/personallistings/sold/${dbUser.user_uid}`)
+    .get(`${serverUrl}/api/personallistings/sold/${dbUser.user_uid}`)
     .then(res => setSoldListings([...res.data].reverse()))
     .catch(err => console.log(err))
   }

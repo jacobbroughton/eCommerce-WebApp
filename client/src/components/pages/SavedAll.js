@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 
 const SavedAll = () => {
 
-    let { statusUrl, dbUser } = useAuth0();
+    let { dbUser } = useAuth0();
+    let { serverUrl } = useStatusUrl();
     let [savedListings, setSavedListings] = useState([]);
 
     useEffect(() => {
-        if(!dbUser) {
-            console.log("No")
-        } else {
-            console.log("Yes")
+        if(dbUser) {
             axios
-            .get(`${statusUrl}/api/save/get/${dbUser.user_uid}`)
+            .get(`${serverUrl}/api/save/get/${dbUser.user_uid}`)
             .then(res => setSavedListings([...res.data]))
             .catch(err => console.log(err))
         }

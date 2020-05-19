@@ -8,8 +8,7 @@ import SingleModal from "../SingleModal/SingleModal";
 import Grid from "../Grid/Grid";
 
 const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category, searchListings, incomingListings }) => {
-  const { statusUrl } = useAuth0();
-  const { serverUrl, clientUrl } = useStatusUrl();
+  const { serverUrl } = useStatusUrl();
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   let [searchLimit, setSearchLimit] = useState()
@@ -26,12 +25,12 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
     let newCategory = category.replace(/ /g, "-");
     if (category === "All For Sale") {
       axios
-        .get(`${statusUrl}/api/browsecount/all`)
+        .get(`${serverUrl}/api/browsecount/all`)
         .then((res) => setBrowseLimit(res.data.COUNT))
         .catch((err) => console.log(err));
     } else {
       axios
-        .get(`${statusUrl}/api/browsecount/${newCategory}`)
+        .get(`${serverUrl}/api/browsecount/${newCategory}`)
         .then((res) => setBrowseLimit(res.data.COUNT))
         .catch((err) => console.log(err));
     }
@@ -47,7 +46,7 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   useEffect(() => {
     axios
-    .get(`${statusUrl}/api/browsecount/search/${searchVal}`)
+    .get(`${serverUrl}/api/browsecount/search/${searchVal}`)
     .then(res => setSearchLimit(res.data.COUNT))
     .catch(err => console.log(err))
   }, [searchListings])
@@ -66,19 +65,19 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
     if(searched) {
       let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
       axios
-        .get(`${statusUrl}/api/search/${formattedSearch}/${resultNum}`)
+        .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
         .then((res) => setListings([...res.data]))
         .catch((err) => console.log(err));
     } else {
           category === "All For Sale" 
     ? 
       axios
-        .get(`${statusUrl}/api/browse/all/${resultNum}`)
+        .get(`${serverUrl}/api/browse/all/${resultNum}`)
         .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err))
     :
       axios
-        .get(`${statusUrl}/api/browse/${newCategory}/${resultNum}`)
+        .get(`${serverUrl}/api/browse/${newCategory}/${resultNum}`)
         .then((response) => setListings([...response.data]))
         .catch((err) => console.log(err));
     }

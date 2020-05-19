@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 import "./ProfileTopSect.scss";
 
 const ProfileTopSect = () => {
-  const { dbUser, statusUrl } = useAuth0();
+  const { dbUser } = useAuth0();
+  const { serverUrl } = useStatusUrl();
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
   const [townCityValue, setTownCityValue] = useState("");
@@ -66,7 +68,7 @@ const ProfileTopSect = () => {
 
 const handleFormSubmit = (e) => {
   axios
-      .post(`${statusUrl}/api/updateprofile/${dbUser.user_uid}`, {
+      .post(`${serverUrl}/api/updateprofile/${dbUser.user_uid}`, {
           firstName: firstNameValue,
           lastName: lastNameValue,
           townCity: townCityValue,

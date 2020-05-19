@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 import "./SearchBar.scss";
 
 const SearchBar = ({ resultNum, handleSearchedBool, setListings, setSearchVal, searchVal }) => {
-    const { statusUrl } = useAuth0();
+    const { serverUrl } = useStatusUrl();
     let [search, setSearch] = useState("");
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const SearchBar = ({ resultNum, handleSearchedBool, setListings, setSearchVal, s
         handleSearchedBool(true);
         let formattedSearch = search.replace(/\s/g, "-").toLowerCase();
         axios
-          .get(`${statusUrl}/api/search/${formattedSearch}/${resultNum}`)
+          .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
           .then((res) => setListings(res.data))
           .catch((err) => console.log(err));
     

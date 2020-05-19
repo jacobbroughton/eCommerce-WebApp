@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
+import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
 
 const ActiveAll = () => {
 
-    let { statusUrl, dbUser } = useAuth0();
+    let { dbUser } = useAuth0();
+    let { serverUrl } = useStatusUrl()
     let [availableListings, setActiveListings] = useState([]);
 
     useEffect(() => {
@@ -14,7 +16,7 @@ const ActiveAll = () => {
         } else {
             console.log("Yes")
             axios
-            .get(`${statusUrl}/api/personallistings/available/${dbUser.user_uid}`)
+            .get(`${serverUrl}/api/personallistings/available/${dbUser.user_uid}`)
             .then(res => setActiveListings([...res.data]))
             .catch(err => console.log(err))
         }
