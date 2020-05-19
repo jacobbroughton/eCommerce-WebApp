@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";

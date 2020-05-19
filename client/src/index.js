@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Auth0Provider } from "./contexts/auth0-context";
+import { StatusUrlProvider } from "./contexts/statusUrl-context";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider>
-      <App />
+      <StatusUrlProvider>
+        <App />
+      </StatusUrlProvider>
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')

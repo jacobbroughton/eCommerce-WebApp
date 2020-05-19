@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useAuth0 } from "../../contexts/auth0-context.js";
 import axios from "axios";
-import CategoryParent from "../CategoryParent/CategoryParent"
+import BrowseWrapper from "../BrowseWrapper/BrowseWrapper"
 
 const Browse = () => {
     const { statusUrl } = useAuth0();
@@ -15,7 +15,7 @@ const Browse = () => {
     }, [])
 
     return (
-       <CategoryParent category={"All For Sale"} categoryItems={items}/>
+       <BrowseWrapper category={"All For Sale"} categoryItems={items}/>
     )
 }
 

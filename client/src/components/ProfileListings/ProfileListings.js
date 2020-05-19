@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import axios from "axios";
-// import ProductListItem from "../ProductListItem/ProductListItem"
 import {Link} from "react-router-dom"; 
-import placeholderImg from "../../assets/download.jpg";
 import Grid from "../Grid/Grid";
 import SingleModal from "../SingleModal/SingleModal";
-import ProductListItem from "../ProductList-Item/ProductList-Item";
 import "./ProfileListings.scss";
 
 const ProfileListings = () => {

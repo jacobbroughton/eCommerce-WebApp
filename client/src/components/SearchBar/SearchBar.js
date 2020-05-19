@@ -42,7 +42,7 @@ const SearchBar = ({ resultNum, handleSearchedBool, setListings, setSearchVal, s
         />
 
         <button type="submit" placeholder="Search" className="searchBtn">
-          Search : {resultNum}
+          Search
         </button>
       </form>
     )

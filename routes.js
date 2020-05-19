@@ -36,7 +36,6 @@ router.post(
 );
 router.get("/personallistings/:selleruid", controller.getPersonalListings);
 router.get("/personallistings/:status/:selleruid", controller.getStatusPersonalListings);
-
 router.get("/browse/all/:resultnum", controller.browseAll);
 router.get("/browse/single/:listinguid", controller.browseSingle);
 router.get("/browse/:category/:resultnum", controller.browseCategory);
@@ -47,7 +46,6 @@ router.get("/save/post/:listinguid/:useruid", controller.saveListing);
 router.get("/save/get/:useruid", controller.getSaved);
 router.get("/save/update/:listinguid/:useruid", controller.updateSaved);
 router.get("/delete/:listinguid", controller.deleteListing);
-// router.post("/search", controller.search);
 router.get("/search/:searchval/:resultnum", controller.search2);
 
 module.exports = router;

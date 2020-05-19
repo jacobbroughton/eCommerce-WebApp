@@ -99,15 +99,12 @@ exports.getPersonalListings = (req, res) => {
   );
 };
 
-
 exports.browseAll = (req, res) => {
   connection.query(`SELECT * FROM listings ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
     if (err) throw err;
     res.send(rows);
   });
 };
-
-
 
 exports.browseCategory = (req, res) => {
   let origCat = req.params.category;
@@ -214,7 +211,6 @@ exports.deleteListing = (req, res) => {
   })
 }
 
-
 exports.search2 = (req, res) => {
   let searchVal = (req.params.searchval.replace(/-/g, " "))
   let searchArr = searchVal.split(" ");
@@ -252,7 +248,6 @@ exports.getStatusPersonalListings = (req, res) => {
   })
 }
 
-// Count queries
 exports.allNumRows = (req, res) => {
   connection.query(`SELECT COUNT(*) as "COUNT" FROM listings`, (err, rows, fields) => {
     if(err) throw err;
@@ -297,6 +292,4 @@ exports.searchNumRows = (req, res) => {
       uidArr === null || uidArr === undefined ? res.send(null) : res.send(rows[0]);
     })
   })
-
-  // connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE `)
 }

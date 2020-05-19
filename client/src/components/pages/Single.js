@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CategoryParent from "../CategoryParent/CategoryParent"
+import BrowseWrapper from "../BrowseWrapper/BrowseWrapper"
 import { useAuth0 } from "../../contexts/auth0-context.js";
 import axios from "axios";
 
@@ -21,7 +21,7 @@ const Single = props => {
 
     return (
         <>
-            <CategoryParent single selectedProduct={item}/>
+            <BrowseWrapper single selectedProduct={item}/>
         </>
     )
 }

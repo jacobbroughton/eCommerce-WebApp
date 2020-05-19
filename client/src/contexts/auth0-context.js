@@ -25,7 +25,6 @@ export class Auth0Provider extends Component {
   // Finish client status url
 
   componentDidMount() {
-
     if(process.env.NODE_ENV === "development") {
       this.setState({ statusUrl : "http://localhost:5000", clientStatusUrl : "http://localhost:3000" })
     } else if (process.env.NODE_ENV === "production") {
@@ -35,6 +34,7 @@ export class Auth0Provider extends Component {
     this.initializeAuth0();
   }
 
+  // Separate
   createRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);

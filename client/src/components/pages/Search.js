@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
-import CategoryParent from "../CategoryParent/CategoryParent";
-import axios from "axios";
+import React from "react";
+import BrowseWrapper from "../BrowseWrapper/BrowseWrapper";
 
 const Search = () => {
 
-    // useEffect(() => {
-    //     axios
-    //     .
-    // }, [])
-
     return (
-        <CategoryParent category={null} categoryItems={null}/>
+        <BrowseWrapper category={null} categoryItems={null}/>
     )
 }
 

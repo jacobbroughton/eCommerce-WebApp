@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import placeholderImg from "../../assets/download.jpg";
 import axios from "axios";
@@ -18,11 +18,6 @@ const SingleModal = ({ item, handleToggle }) => {
     document.getElementById("overlay").classList.remove("active");
     setImage("");
     handleToggle();
-
-    // Window location testing, removes product url
-    // console.log(window.location.pathname)
-    // let winP = window.location.pathname
-    // winP.substr(0, winP.lastIndexOf("/single/") + 1);
   };
 
 
