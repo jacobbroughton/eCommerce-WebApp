@@ -84,12 +84,13 @@ Created by Jacob Broughton
 * Improve modularity for the components
 * Make separate pages for showing only/all saved or active listings 
 * Make 'Load more' work correctly from searched results
+* Change statusUrl to clientUrl and serverUrl
 
 # Incomplete
 - Split up context
     - Hooks
-- Change statusUrl to clientUrl and serverUrl
 - Convert complex state management with useReducer
+    - Auth0 context
     - Anything that deals with an object or array
 - Adjust components
     - Work from parent component to child
