@@ -207,6 +207,9 @@ export const useAuth0 = () => useContext(Auth0Context);
 
   let initialState = {
     isLoading: true,
+    user: null,
+    isAuthenticated: false, 
+    auth0Client: null
   };
 
 
@@ -224,6 +227,21 @@ export const useAuth0 = () => useContext(Auth0Context);
           isLoading: false,
         };
       }
+      case "redirect callback": {
+        console.log(action.payload)
+        return {
+          ...state,
+          isAuthenticated: true,
+          user: action.payload.userLocal
+        }
+      }
+      case "auth0 client": {
+        console.log(action.payload)
+        return {
+          ...state,
+          auth0Client: action.payload
+        }
+      }
       default:
         break;
     }
@@ -234,12 +252,8 @@ export const useAuth0 = () => useContext(Auth0Context);
 
 export const Auth0Provider = (props) => {
 
-  const { serverUrl, clientUrl } = useStatusUrl();
-  const [auth0Client, setAuth0Client] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
-  const [user, setUser] = useState(null);
+  const { serverUrl } = useStatusUrl();
   const [dbUser, setDbUser] = useState(null);
-  // const [serverUrl, setStatusUrl] = useState("");
 
   const [state, dispatch] = useReducer(auth0Reducer, initialState);
 
@@ -249,20 +263,13 @@ export const Auth0Provider = (props) => {
     redirect_uri: window.location.origin,
   };
 
-  // const handleStatusUrl = () => {
-  //   if (process.env.NODE_ENV === "development") {
-  //     setStatusUrl("http://localhost:5000");
-  //   } else if (process.env.NODE_ENV === "production") {
-  //     setStatusUrl("https://ecommerce-webapp-jb.herokuapp.com");
-  //   }
-  // };
 
   const findUserAgain = () => {
     dispatch({ type: "loading" });
-    if (user) {
+    if (state.user) {
       console.log("there is a user, finding in database now");
       axios
-        .get(`${serverUrl}/api/finduser/${user.email}`)
+        .get(`${serverUrl}/api/finduser/${state.user.email}`)
         .then((response) => setDbUser(response.data))
         .catch((err) => console.log(err.toJSON()));
       dispatch({ type: "not loading" });
@@ -356,11 +363,8 @@ export const Auth0Provider = (props) => {
 
   // Initialize the auth0 library
   const initializeAuth0 = async () => {
-    console.log("initialize")
     dispatch({ type: "loading" });
     const auth0ClientLocal = await createAuth0Client(config);
-    
-    setAuth0Client(auth0ClientLocal);
 
     if (window.location.search.includes("code=")) {
       console.log("In here")
@@ -372,43 +376,23 @@ export const Auth0Provider = (props) => {
       }
       
     }
-
-    const isAuthenticatedLocal = await auth0ClientLocal.isAuthenticated();
-    const userLocal = isAuthenticated ? await auth0ClientLocal.getUser() : null;
-
-    setIsAuthenticated(isAuthenticatedLocal);
-    setUser(userLocal);
-
+    dispatch({ type: "auth0 client", payload: auth0ClientLocal })
     findUserAgain();
-    // Check if they have been redirected after login
   };
 
   // Handles the authentication callback
   const handleRedirectCallback = async (auth0Cl) => {
-
-    console.log(auth0Cl)
     await auth0Cl.handleRedirectCallback();
     const userLocal = await auth0Cl.getUser();
-    setUser(userLocal);
-    setIsAuthenticated(true);
     findUser(userLocal);
+    dispatch({ type: "redirect callback" , payload: {userLocal}})
     window.history.replaceState({}, document.title, window.location.pathname);
   };
 
   useEffect(() => {
-    // handleStatusUrl();
     initializeAuth0();
   }, []);
 
-  // useEffect(() => {
-  //   try{
-  //     handleRedirectCallback()
-  //   } catch (error) {
-  //     console.log("Error from useEffect below")
-  //     console.log(error)
-  //   }
-    
-  // }, [auth0Client])
 
   // Separate
   const createRandomInt = (min, max) => {
@@ -418,8 +402,7 @@ export const Auth0Provider = (props) => {
   };
 
   const { children } = props;
-
-  let isLoading = state.isLoading;
+  let { isLoading, user, isAuthenticated, auth0Client } = state;
 
   const configObject = {
     isLoading,
