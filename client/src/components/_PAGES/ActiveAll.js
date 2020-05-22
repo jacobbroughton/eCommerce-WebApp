@@ -12,9 +12,9 @@ const ActiveAll = () => {
 
     useEffect(() => {
         if(!dbUser) {
-            console.log("No")
+            console.log("No dbUser")
         } else {
-            console.log("Yes")
+            console.log("Yes dbUser")
             axios
             .get(`${serverUrl}/api/personallistings/available/${dbUser.user_uid}`)
             .then(res => setActiveListings([...res.data]))

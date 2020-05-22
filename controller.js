@@ -100,7 +100,6 @@ exports.getPersonalListings = (req, res) => {
 };
 
 exports.browseAll = (req, res) => {
-  console.log(req.params.resultnum)
   connection.query(`SELECT * FROM listings ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
     if (err) throw err;
     res.send(rows);
@@ -108,7 +107,6 @@ exports.browseAll = (req, res) => {
 };
 
 exports.browseCategory = (req, res) => {
-  console.log(req.params.category)
   let origCat = req.params.category;
   let newCategory = origCat.split("-").join(" ");
   connection.query(
@@ -166,12 +164,11 @@ exports.getSaved = (req, res) => {
   connection.query(
     `SELECT saved_posts FROM users WHERE user_uid = "${useruid}"`,
     (err, rows, fields) => {
-      // console.log(rows[0].saved_posts)
       if (err) throw err;
       if(rows[0].saved_posts === null || rows[0].saved_posts === "") {
         res.send([]);
       } else {
-        // console.log(rows[0].saved_posts)
+
         connection.query(`SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts})`, (err, rows2, fields) => {
           if(err) throw err;
           res.send(rows2);
@@ -235,7 +232,6 @@ exports.search2 = (req, res) => {
     console.log("uidArr is null")
     :
     connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr}) ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
-      console.log(rows)
       if(err) console.log(err);
       uidArr === null ? res.send(null) : res.send(rows);
     })
@@ -284,7 +280,7 @@ exports.searchNumRows = (req, res) => {
       }
     })
 
-    uidArr === {} ?
+    uidArr.length === 0 ?
     console.log("uidArr is null")
     :
     console.log("uidArr is below")
@@ -293,6 +289,7 @@ exports.searchNumRows = (req, res) => {
     // gives error if ""
     connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
       if(err) console.log(err);
+
       uidArr === null || uidArr === undefined ? res.send(null) : res.send(rows[0]);
     })
   })

@@ -11,7 +11,7 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
   const { serverUrl } = useStatusUrl();
   const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
-  let [searchLimit, setSearchLimit] = useState()
+  let [searchLimit, setSearchLimit] = useState(0)
   let [browseLimit, setBrowseLimit] = useState(0);
   let [loadBtn, setLoadBtn] = useState(false);
   let [toggled, setToggled] = useState(false);
@@ -19,9 +19,6 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   useEffect(() => {
-    console.log(incomingListings)
-    console.log(searchVal)
-
     setListings([...incomingListings]);
 
     let newCategory = category.replace(/ /g, "-");
@@ -47,12 +44,12 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   useEffect(() => {
-    if(searchVal !== undefined) {
+    // if(searchVal !== undefined) {
     axios
     .get(`${serverUrl}/api/browsecount/search/${searchVal}`)
     .then(res => setSearchLimit(res.data.COUNT))
     .catch(err => console.log(err))
-    }
+    // }
 
   }, [searchListings])
   
@@ -67,11 +64,9 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   // Runs each time load more is clicked
   useEffect(() => {
-    console.log("resultNum: " + resultNum)
     let newCategory = category.replace(/ /g, "-");
     if(searched) {
       let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
-      console.log("formattedSearch: " + formattedSearch)
       axios
         .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
         .then((res) => setListings([...res.data]))
@@ -117,6 +112,10 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
             )}
             <div onClick={() => overlayClose()} className="" id="overlay"></div>
           </div>
+          {console.log(`Listings: ${listings.length}`)}
+          {console.log(`Search limit: ${searchLimit}`)}
+          {console.log(`browseLimit: ${browseLimit}`)}
+          {console.log(`loadBtn: ${loadBtn}`)}
           {listings.length !== searchLimit && listings.length !== browseLimit && loadBtn && (
             <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>
               Load More

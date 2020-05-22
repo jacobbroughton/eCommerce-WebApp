@@ -7,18 +7,14 @@ import "./BrowseWrapper.scss";
 
   
 let BrowseWrapperReducer = (state, action) => {
-  // console.log(this.props)
-  console.log(action.payload)
   switch(action.type) {
     case "listings" : {
-      console.log(state)
       return {
         ...state,
         listings: action.payload
       }
     }
     case "category click" : {
-      console.log(action.payload)
       return {
         ...state,
         category: action.payload.category,
@@ -29,6 +25,13 @@ let BrowseWrapperReducer = (state, action) => {
       return { 
         ...state,
         resultNum: state.resultNum + 20
+      }
+    }
+    case "search value" : {
+      console.log(action.payload)
+      return {
+        ...state,
+        searchVal: action.payload
       }
     }
   }
@@ -55,9 +58,12 @@ const BrowseWrapper = ({ category, items, single }) => {
     dispatch({ type: 'listings', payload: list })
   }
 
+  const handleSearchVal = (val) => {
+    dispatch({ type: 'search value', payload: val })
+  }
+
 
   useEffect(() => {
-    console.log(items)
     handleNewListings(items);
   }, [items])
 
@@ -90,6 +96,7 @@ const BrowseWrapper = ({ category, items, single }) => {
               resultNum={state.resultNum}
               handleSearchedBool={handleSearchedBool}
               searchVal={state.searchVal}
+              handleSearchVal={handleSearchVal}
               handleNewListings={handleNewListings}
             />
             {state.searchVal === "" ? <h3>{category}</h3> : <h3>'{state.searchVal}'</h3>}

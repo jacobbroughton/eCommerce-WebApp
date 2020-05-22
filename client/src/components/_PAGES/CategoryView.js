@@ -30,11 +30,6 @@ const CategoryView = props => {
         .catch(err => console.log(err))
     }, [])
 
-    useEffect(() => {
-        // setItems(items)
-        console.log(items)
-    }, [items])
-
 
     return (
         <>
