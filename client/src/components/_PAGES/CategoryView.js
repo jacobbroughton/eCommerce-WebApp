@@ -23,6 +23,17 @@ const CategoryView = props => {
         .catch(err => console.log(err))
     }, [newCategory])
 
+    useEffect(() => {
+        axios
+        .get(`${serverUrl}/api/browse/all/20`)
+        .then(res => setItems([...res.data]))
+        .catch(err => console.log(err))
+    }, [])
+
+    useEffect(() => {
+        setItems(items)
+    }, [items])
+
 
 
     return (

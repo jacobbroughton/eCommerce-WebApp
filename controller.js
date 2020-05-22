@@ -100,6 +100,7 @@ exports.getPersonalListings = (req, res) => {
 };
 
 exports.browseAll = (req, res) => {
+  console.log(req.params.resultnum)
   connection.query(`SELECT * FROM listings ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
     if (err) throw err;
     res.send(rows);
@@ -107,6 +108,7 @@ exports.browseAll = (req, res) => {
 };
 
 exports.browseCategory = (req, res) => {
+  console.log(req.params.category)
   let origCat = req.params.category;
   let newCategory = origCat.split("-").join(" ");
   connection.query(
@@ -287,6 +289,8 @@ exports.searchNumRows = (req, res) => {
     :
     console.log("uidArr is below")
     console.log(uidArr)
+
+    // gives error if ""
     connection.query(`SELECT COUNT(*) as "COUNT" FROM listings WHERE listing_uid IN (${uidArr})`, (err, rows, fields) => {
       if(err) console.log(err);
       uidArr === null || uidArr === undefined ? res.send(null) : res.send(rows[0]);

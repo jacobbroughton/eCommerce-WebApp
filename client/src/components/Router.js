@@ -1,15 +1,15 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Index from "./pages/Index";
-import Profile from "./pages/Profile";
-import SoldAll from "./pages/SoldAll";
-import SavedAll from "./pages/SavedAll";
-import ActiveAll from "./pages/ActiveAll";
-import SellPage from "./pages/SellPage";
-import Browse from "./pages/Browse";
-import Single from "./pages/Single";
-import CategoryView from "./pages/CategoryView";
-import Search from "./pages/Search";
+import Index from "./_PAGES/Index";
+import Profile from "./_PAGES/Profile";
+import SoldAll from "./_PAGES/SoldAll";
+import SavedAll from "./_PAGES/SavedAll";
+import ActiveAll from "./_PAGES/ActiveAll";
+import SellPage from "./_PAGES/SellPage";
+import Browse from "./_PAGES/Browse";
+import Single from "./_PAGES/Single";
+import CategoryView from "./_PAGES/CategoryView";
+import Search from "./_PAGES/Search";
 import { useAuth0 } from "../contexts/auth0-context.js";
 
 

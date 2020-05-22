@@ -89,6 +89,7 @@ Created by Jacob Broughton
 # Incomplete
 - Split up context
     - Hooks
+- Separate api calls to other files if possible
 - Convert complex state management with useReducer
     - Auth0 context
     - Anything that deals with an object or array

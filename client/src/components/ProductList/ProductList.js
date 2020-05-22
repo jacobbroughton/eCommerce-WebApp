@@ -19,6 +19,8 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   useEffect(() => {
+    console.log(incomingListings)
+    console.log(searchVal)
 
     setListings([...incomingListings]);
 
@@ -45,11 +47,16 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   useEffect(() => {
-    axios
+    console.log("searchVal: " + searchVal)
+    if(searchVal !== undefined) {
+          axios
     .get(`${serverUrl}/api/browsecount/search/${searchVal}`)
     .then(res => setSearchLimit(res.data.COUNT))
     .catch(err => console.log(err))
+    }
+
   }, [searchListings])
+  
 
 
 
@@ -61,9 +68,11 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   // Runs each time load more is clicked
   useEffect(() => {
+    console.log("resultNum: " + resultNum)
     let newCategory = category.replace(/ /g, "-");
     if(searched) {
       let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
+      console.log("formattedSearch: " + formattedSearch)
       axios
         .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
         .then((res) => setListings([...res.data]))

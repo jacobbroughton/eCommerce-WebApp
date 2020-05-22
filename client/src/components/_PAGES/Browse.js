@@ -14,6 +14,7 @@ const Browse = () => {
         .catch(err => console.log(err))
     }, [])
 
+
     return (
        <BrowseWrapper category={"All For Sale"} categoryItems={items}/>
     )
