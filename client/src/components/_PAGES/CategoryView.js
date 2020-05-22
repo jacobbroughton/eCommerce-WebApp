@@ -31,14 +31,14 @@ const CategoryView = props => {
     }, [])
 
     useEffect(() => {
-        setItems(items)
+        // setItems(items)
+        console.log(items)
     }, [items])
-
 
 
     return (
         <>
-            <BrowseWrapper category={newCategory} categoryItems={items}/>
+            <BrowseWrapper category={newCategory} items={items}/>
         </>
     )
 }

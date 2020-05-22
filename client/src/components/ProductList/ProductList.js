@@ -47,9 +47,8 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   useEffect(() => {
-    console.log("searchVal: " + searchVal)
     if(searchVal !== undefined) {
-          axios
+    axios
     .get(`${serverUrl}/api/browsecount/search/${searchVal}`)
     .then(res => setSearchLimit(res.data.COUNT))
     .catch(err => console.log(err))

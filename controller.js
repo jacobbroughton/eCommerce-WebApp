@@ -222,7 +222,6 @@ exports.search2 = (req, res) => {
 
   connection.query(`SELECT listing_uid, tags FROM listings`, (err, rows, fields) => {
     if(err) throw err;
-    console.log(rows)
     rows.forEach(item => {
       for(let i = 0; i < uniqArr.length; i++) {
         if(item.tags.includes(uniqArr[i])) {
@@ -236,6 +235,7 @@ exports.search2 = (req, res) => {
     console.log("uidArr is null")
     :
     connection.query(`SELECT * FROM listings WHERE listing_uid IN (${uidArr}) ORDER BY id DESC LIMIT ${req.params.resultnum}`, (err, rows, fields) => {
+      console.log(rows)
       if(err) console.log(err);
       uidArr === null ? res.send(null) : res.send(rows);
     })

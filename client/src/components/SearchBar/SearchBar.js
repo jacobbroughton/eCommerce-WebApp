@@ -4,11 +4,12 @@ import axios from "axios";
 import "./SearchBar.scss";
 
 // resultNum is undefined
-const SearchBar = ({ resultNum, handleSearchedBool, setListings, setSearchVal, searchVal }) => {
+const SearchBar = ({ resultNum, handleSearchedBool, handleNewListings, setSearchVal, searchVal }) => {
     const { serverUrl } = useStatusUrl();
     let [search, setSearch] = useState("");
 
     useEffect(() => {
+      console.log("searchVal: " + searchVal)
         if(searchVal === "") {
             setSearch("")
         }
@@ -20,16 +21,14 @@ const SearchBar = ({ resultNum, handleSearchedBool, setListings, setSearchVal, s
 
 
     const handleSubmit = (e) => {
-      console.log(search)
-      setSearchVal(search);
+      e.preventDefault();
+      // setSearchVal(search);
       handleSearchedBool(true);
       let formattedSearch = search.replace(/\s/g, "-").toLowerCase();
       axios
         .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
-        .then((res) => setListings(res.data))
+        .then((res) => handleNewListings(res.data))
         .catch((err) => console.log(err));
-  
-      e.preventDefault();
     };
 
 
