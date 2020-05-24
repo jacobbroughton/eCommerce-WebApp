@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
 import axios from "axios";
@@ -7,19 +7,41 @@ import "./ProductList.scss";
 import SingleModal from "../SingleModal/SingleModal";
 import Grid from "../Grid/Grid";
 
+const ProductListReducer = (state, action) => {
+  switch(action.type) {
+    case 'listings' : {
+      return {
+        listings: action.payload
+      }
+    }
+  }
+}
+
 const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category, searchListings, incomingListings }) => {
   const { serverUrl } = useStatusUrl();
-  const [listings, setListings] = useState([]);
+  // const [listings, setListings] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   let [searchLimit, setSearchLimit] = useState(0)
   let [browseLimit, setBrowseLimit] = useState(0);
   let [loadBtn, setLoadBtn] = useState(false);
   let [toggled, setToggled] = useState(false);
 
+  let initialState = {
+    listings: [],
+    currentItem: null,
+    searchLimit: 0,
+    browseLimit: 0,
+    loadBtn: false,
+    toggled: false
+  }
+
+  let [state, dispatch] = useReducer(ProductListReducer, initialState);
 
 
   useEffect(() => {
-    setListings([...incomingListings]);
+    console.log(incomingListings)
+    // setListings([...incomingListings]);
+    dispatch({ type: 'listings', payload: [...incomingListings] })
 
     let newCategory = category.replace(/ /g, "-");
     if (category === "All For Sale") {
@@ -51,41 +73,50 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
     .catch(err => console.log(err))
     // }
 
-  }, [searchListings])
+  }, [searchVal])
   
 
 
 
   useEffect(() => {
-    setListings([...searchListings]);
+    // setListings([...searchListings]);
+    dispatch({ type: 'listings', payload: [...searchListings] })
   }, [searchListings]);
 
 
 
   // Runs each time load more is clicked
   useEffect(() => {
+    console.log(resultNum)
     let newCategory = category.replace(/ /g, "-");
     if(searched) {
       let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
       axios
         .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
-        .then((res) => setListings([...res.data]))
+        .then((res) => dispatch({ type: 'listings', payload: [...res.data] }))
         .catch((err) => console.log(err));
     } else {
-          category === "All For Sale" 
+      category === "All For Sale" 
     ? 
       axios
         .get(`${serverUrl}/api/browse/all/${resultNum}`)
-        .then((response) => setListings([...response.data]))
+        .then((res) => dispatch({ type: 'listings', payload: [...res.data] }))
         .catch((err) => console.log(err))
     :
       axios
         .get(`${serverUrl}/api/browse/${newCategory}/${resultNum}`)
-        .then((response) => setListings([...response.data]))
+        .then((res) => dispatch({ type: 'listings', payload: [...res.data] }))
         .catch((err) => console.log(err));
     }
 
   }, [resultNum]);
+
+  useEffect(() => {
+    console.log("Listings changed!")
+    console.log(state.listings)
+  }, [state.listings])
+
+
 
   const handleModalView = (props) => {
     setCurrentItem(props);
@@ -106,17 +137,21 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
       <div className="browsePMother">
         <div className="browsePMain">
           <div className="browsePListings">
-            <Grid handleModalView={handleModalView} listings={listings} gridItemNum={resultNum}/>
+          <Grid handleModalView={handleModalView} listings={state.listings} gridItemNum={resultNum}/>
+            {/* <Grid handleModalView={handleModalView} listings={listings} gridItemNum={resultNum}/> */}
             {toggled && (
               <SingleModal handleToggle={handleToggle} toggled={toggled} item={currentItem} />
             )}
             <div onClick={() => overlayClose()} className="" id="overlay"></div>
           </div>
-          {console.log(`Listings: ${listings.length}`)}
+
+          {console.log("=========================")}
+          {console.log(`Listings: ${state.listings.length}`)}
           {console.log(`Search limit: ${searchLimit}`)}
           {console.log(`browseLimit: ${browseLimit}`)}
           {console.log(`loadBtn: ${loadBtn}`)}
-          {listings.length !== searchLimit && listings.length !== browseLimit && loadBtn && (
+
+          {state.listings.length !== searchLimit && state.listings.length !== browseLimit && loadBtn && (
             <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>
               Load More
             </button>
