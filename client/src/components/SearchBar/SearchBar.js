@@ -4,7 +4,7 @@ import axios from "axios";
 import "./SearchBar.scss";
 
 // resultNum is undefined
-const SearchBar = ({ resultNum, handleSearchVal, handleSearchedBool, handleNewListings, searchVal }) => {
+const SearchBar = ({ resultNum, handleSearchVal, handleSearched, handleNewListings, searchVal }) => {
     const { serverUrl } = useStatusUrl();
     let [search, setSearch] = useState("");
 
@@ -21,7 +21,7 @@ const SearchBar = ({ resultNum, handleSearchVal, handleSearchedBool, handleNewLi
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      handleSearchedBool(true);
+      handleSearched(true);
       handleSearchVal(search)
       let formattedSearch = search.replace(/\s/g, "-").toLowerCase();
       axios

@@ -11,6 +11,7 @@ const CategoryView = props => {
 
 
     useEffect(() => {
+        console.log(newCategory)
         category === "All-For-Sale" ? 
         axios
         .get(`${serverUrl}/api/browse/all/20`)

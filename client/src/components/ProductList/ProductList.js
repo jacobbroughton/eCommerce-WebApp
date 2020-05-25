@@ -14,6 +14,13 @@ const ProductListReducer = (state, action) => {
         listings: action.payload
       }
     }
+
+    case 'modal toggle' : {
+      return {
+        currentItem: action.payload.currentItem,
+        toggled: action.payload.toggled
+      }
+    }
   }
 }
 
@@ -39,26 +46,18 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   useEffect(() => {
-    console.log(incomingListings)
-    // setListings([...incomingListings]);
     dispatch({ type: 'listings', payload: [...incomingListings] })
 
     let newCategory = category.replace(/ /g, "-");
-    if (category === "All For Sale") {
-      axios
-        .get(`${serverUrl}/api/browsecount/all`)
-        .then((res) => setBrowseLimit(res.data.COUNT))
-        .catch((err) => console.log(err));
-    } else {
+    
       axios
         .get(`${serverUrl}/api/browsecount/${newCategory}`)
         .then((res) => setBrowseLimit(res.data.COUNT))
         .catch((err) => console.log(err));
-    }
 
     setTimeout(() => {
       setLoadBtn(true);
-    }, 400);
+    }, 600);
 
     window.scroll(0, 0);
   }, [category, incomingListings]);
@@ -66,22 +65,23 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   useEffect(() => {
-    // if(searchVal !== undefined) {
-    axios
-    .get(`${serverUrl}/api/browsecount/search/${searchVal}`)
-    .then(res => setSearchLimit(res.data.COUNT))
-    .catch(err => console.log(err))
-    // }
+    let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
+    if(formattedSearch !== undefined || formattedSearch !== "") {
+      axios
+      .get(`${serverUrl}/api/browsecount/search/${formattedSearch}`)
+      .then(res => setSearchLimit(res.data.COUNT))
+      .catch(err => console.log(err))
+    }
 
   }, [searchVal])
   
 
 
 
-  useEffect(() => {
-    // setListings([...searchListings]);
-    dispatch({ type: 'listings', payload: [...searchListings] })
-  }, [searchListings]);
+  // useEffect(() => {
+  //   // setListings([...searchListings]);
+  //   dispatch({ type: 'listings', payload: [...searchListings] })
+  // }, [searchListings]);
 
 
 
@@ -89,7 +89,7 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
   useEffect(() => {
     console.log(resultNum)
     let newCategory = category.replace(/ /g, "-");
-    if(searched) {
+    if(searchVal !== "") {
       let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
       axios
         .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
@@ -111,10 +111,10 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   }, [resultNum]);
 
-  useEffect(() => {
-    console.log("Listings changed!")
-    console.log(state.listings)
-  }, [state.listings])
+  // useEffect(() => {
+  //   console.log("Listings changed!")
+  //   console.log(state.listings)
+  // }, [state.listings])
 
 
 
@@ -138,18 +138,11 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
         <div className="browsePMain">
           <div className="browsePListings">
           <Grid handleModalView={handleModalView} listings={state.listings} gridItemNum={resultNum}/>
-            {/* <Grid handleModalView={handleModalView} listings={listings} gridItemNum={resultNum}/> */}
             {toggled && (
               <SingleModal handleToggle={handleToggle} toggled={toggled} item={currentItem} />
             )}
             <div onClick={() => overlayClose()} className="" id="overlay"></div>
           </div>
-
-          {console.log("=========================")}
-          {console.log(`Listings: ${state.listings.length}`)}
-          {console.log(`Search limit: ${searchLimit}`)}
-          {console.log(`browseLimit: ${browseLimit}`)}
-          {console.log(`loadBtn: ${loadBtn}`)}
 
           {state.listings.length !== searchLimit && state.listings.length !== browseLimit && loadBtn && (
             <button className="loadMoreBtn" onClick={(e) => handleLoadMore(e)}>
