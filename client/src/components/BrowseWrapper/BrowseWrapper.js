@@ -58,9 +58,6 @@ const BrowseWrapper = ({ category, items, single }) => {
  const [state, dispatch] = useReducer(BrowseWrapperReducer, initialState);
 
   useEffect(() => handleNewListings(items), [items])
-  // useEffect(() => {
-  //   dispatch({ type: 'category click', payload: { category: category, resultNum: 20, searchVal: "" }})
-  // }, [])
 
   const handleNewListings = (list) => dispatch({ type: 'listings', payload: list })
   const handleSearchVal = (value) => dispatch({ type: 'search value', payload: value});
@@ -69,8 +66,6 @@ const BrowseWrapper = ({ category, items, single }) => {
   const handleCatClick = (category) => {
     dispatch({ type: 'category click', payload: { category: category, resultNum: 20, searchVal: "" }})
   };
-
-useEffect(() => {}, [])
 
   return (
     <div className="browseViewMother">

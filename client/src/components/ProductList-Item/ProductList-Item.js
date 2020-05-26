@@ -12,14 +12,13 @@ const ProductListItem = ({ item, toggled }) => {
   
   setTimeout(() => {
     setPlaceHolder(false);
-  }, 1000)
+  }, 500)
 
   if (item === null || item === undefined) {
     return <Loading />;
   }
 
   return (
-    // <>
       <div key={item.id} className="listItem">
         {item.image !== "null" && item.image !== null && !placeHolder ? (
           <img
@@ -49,7 +48,6 @@ const ProductListItem = ({ item, toggled }) => {
 
         <p className="itemPrice">${item.price}</p>
       </div>
-    // </>
   );
 };
 

@@ -13,7 +13,7 @@ const SavedAll = () => {
     useEffect(() => {
         if(dbUser) {
             axios
-            .get(`${serverUrl}/api/save/get/${dbUser.user_uid}`)
+            .get(`${serverUrl}/api/save/get/n/${dbUser.user_uid}`)
             .then(res => setSavedListings([...res.data]))
             .catch(err => console.log(err))
         }

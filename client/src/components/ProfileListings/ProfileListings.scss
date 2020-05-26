@@ -22,6 +22,10 @@
         .savedSection, .soldSection{
           margin-top: 20px;
         }
+
+        .activeSection{
+          background: "#F5F5F5"
+        }
         .activeSection, .savedSection, .soldSection{
         display: flex;
         flex-direction: column;
@@ -36,17 +40,10 @@
           background: lightblue;
           align-self: flex-start;
           padding: 3px 5px;
+          margin-top: 5px;
         }
 
         .activeGrid, .savedGrid, .soldGrid{
-          // display: grid;
-          // grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-          // grid-template-rows: 1fr;
-          // justify-items: center;
-          // row-gap: 20px;
-          // column-gap: 20px;
-          // height: 100%;
-          // // margin-top: 20px;
           display: flex;
           flex-direction: column;
 

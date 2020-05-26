@@ -24,21 +24,21 @@ const ProfileListings = () => {
 
   const fetchSavedListings = () => {
     axios
-      .get(`${serverUrl}/api/save/get/${dbUser.user_uid}`)
-      .then((response) => setSavedListings([...response.data]))
+      .get(`${serverUrl}/api/save/get/y/${dbUser.user_uid}`)
+      .then((response) => setSavedListings([...response.data].reverse()))
       .catch((err) => console.log(err));
   };
 
   const fetchActiveListings = () => {
     axios
-      .get(`${serverUrl}/api/personallistings/${dbUser.user_uid}`)
+      .get(`${serverUrl}/api/personallistings/y/${dbUser.user_uid}`)
       .then((response) => setActiveListings([...response.data].reverse()))
       .catch((err) => console.log(err));
   };
 
   const fetchSoldListings = () => {
     axios
-    .get(`${serverUrl}/api/personallistings/sold/${dbUser.user_uid}`)
+    .get(`${serverUrl}/api/personallistings/sold/y/${dbUser.user_uid}`)
     .then(res => setSoldListings([...res.data].reverse()))
     .catch(err => console.log(err))
   }
@@ -47,6 +47,7 @@ const ProfileListings = () => {
     const overlay = document.getElementById("overlay");
     setToggled(false);
     overlay.classList.remove("active");
+    document.body.style.overflow = "initial";
   };
 
   const handleModalView = (props) => {
@@ -54,6 +55,7 @@ const ProfileListings = () => {
     setToggled(true);
     const overlay = document.getElementById("overlay");
     overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
   };
 
   const handleToggle = () => {
@@ -71,7 +73,7 @@ const ProfileListings = () => {
                 <>
                   <h3>Your Listings</h3>
                   <Grid handleModalView={handleModalView} listings={activeListings} gridItemNum={4}/>
-                  <Link to={`/profile/allactive`}>View All</Link>
+                  { activeListings.length > 4 && <Link to={`/profile/allactive`}>View All</Link> }
                 </>
               )}
             </div>
@@ -81,7 +83,8 @@ const ProfileListings = () => {
                 <>
                   <h3>Saved Listings</h3>
                   <Grid handleModalView={handleModalView} listings={savedListings} gridItemNum={4}/>
-                  <Link to={`/profile/allsaved`}>View All</Link>
+                  
+                  { savedListings.length > 4 && <Link to={`/profile/allsaved`}>View All</Link> }
                 </>
               )}
             </div>
@@ -91,7 +94,8 @@ const ProfileListings = () => {
                 <>
                   <h3>Sold Listings</h3>
                   <Grid handleModalView={handleModalView} listings={soldListings} gridItemNum={4}/>
-                  <Link to={`/profile/allsold`}>View All</Link>
+                  {console.log(soldListings)}
+                  { soldListings.length > 4 && <Link to={`/profile/allsold`}>View All</Link> }
                 </>
               )}
             </div>

@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <StatusUrlProvider>
       <Auth0Provider>
-        <App />
+        <App/>
     </Auth0Provider>
     </StatusUrlProvider>
   </React.StrictMode>,

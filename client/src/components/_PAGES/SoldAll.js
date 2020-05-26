@@ -13,7 +13,7 @@ const SoldAll = () => {
     useEffect(() => {
         if(!dbUser) {
             axios
-            .get(`${serverUrl}/api/personallistings/sold/${dbUser.user_uid}`)
+            .get(`${serverUrl}/api/personallistings/sold/n/${dbUser.user_uid}`)
             .then(res => setSoldListings([...res.data]))
             .catch(err => console.log(err))
         }

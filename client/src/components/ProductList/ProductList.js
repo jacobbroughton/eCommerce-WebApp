@@ -77,14 +77,6 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
   
 
 
-
-  // useEffect(() => {
-  //   // setListings([...searchListings]);
-  //   dispatch({ type: 'listings', payload: [...searchListings] })
-  // }, [searchListings]);
-
-
-
   // Runs each time load more is clicked
   useEffect(() => {
     console.log(resultNum)
@@ -111,18 +103,21 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   }, [resultNum]);
 
-  // useEffect(() => {
-  //   console.log("Listings changed!")
-  //   console.log(state.listings)
-  // }, [state.listings])
+  const disableScroll = () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
 
-
+    window.onScroll = function () {
+      window.scrollTo(scrollLeft, scrollTop)
+    }
+  }
 
   const handleModalView = (props) => {
     setCurrentItem(props);
     setToggled(true);
     const overlay = document.getElementById("overlay");
     overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
   };
 
   const handleToggle = () => (toggled ? setToggled(false) : setToggled(true));
@@ -131,6 +126,7 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
     const overlay = document.getElementById("overlay");
     setToggled(false);
     overlay.classList.remove("active");
+    document.body.style.overflow = "initial";
   };
 
     return (
