@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import Loading from "../Loading/Loading";
 import placeholderImg from "../../assets/download.jpg";
 import "./ProductList-Item.scss";
 
@@ -15,7 +14,7 @@ const ProductListItem = ({ item, toggled }) => {
   }, 500)
 
   if (item === null || item === undefined) {
-    return <Loading />;
+    return <span></span>;
   }
 
   return (

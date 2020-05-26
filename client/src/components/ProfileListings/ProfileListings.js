@@ -72,7 +72,7 @@ const ProfileListings = () => {
               {activeListings !== [] && (
                 <>
                   <h3>Your Listings</h3>
-                  <Grid handleModalView={handleModalView} listings={activeListings} gridItemNum={4}/>
+                  <Grid limited handleModalView={handleModalView} listings={activeListings} gridItemNum={4}/>
                   { activeListings.length > 4 && <Link to={`/profile/allactive`}>View All</Link> }
                 </>
               )}
@@ -82,7 +82,7 @@ const ProfileListings = () => {
             {savedListings !== [] && (
                 <>
                   <h3>Saved Listings</h3>
-                  <Grid handleModalView={handleModalView} listings={savedListings} gridItemNum={4}/>
+                  <Grid limited handleModalView={handleModalView} listings={savedListings} gridItemNum={4}/>
                   
                   { savedListings.length > 4 && <Link to={`/profile/allsaved`}>View All</Link> }
                 </>
@@ -93,7 +93,7 @@ const ProfileListings = () => {
             {soldListings !== [] && (
                 <>
                   <h3>Sold Listings</h3>
-                  <Grid handleModalView={handleModalView} listings={soldListings} gridItemNum={4}/>
+                  <Grid limited handleModalView={handleModalView} listings={soldListings} gridItemNum={4}/>
                   {console.log(soldListings)}
                   { soldListings.length > 4 && <Link to={`/profile/allsold`}>View All</Link> }
                 </>

@@ -1,11 +1,20 @@
 .loadingMother{
-    height: 100vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    display: none;
     background: #ffffff;
-    .loadingMain, .loadingMainPartial{
+    .loadingMainFull, .loadingMainPartial{
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        h1{
+            background: blue;
+            padding: 15px;
+        }
     }
     .loadingMainPartial{
         margin-left: 250px;

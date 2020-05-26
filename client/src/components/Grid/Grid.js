@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ProductListItem from "../ProductList-Item/ProductList-Item";
 import "./Grid.scss";
 
-const Grid = ({ handleModalView, listings, gridItemNum }) => {
+const Grid = ({ limited, handleModalView, listings, gridItemNum }) => {
   let [gridCount, setGridCount] = useState(gridItemNum);
 
   useEffect(() => {
@@ -35,6 +35,9 @@ const Grid = ({ handleModalView, listings, gridItemNum }) => {
           )
         )
       ) : (
+        limited ? 
+        <></>
+        :
         <div className="notAvailableMother">
           <h2 className="naHead">No listings available...</h2>
           <p className="naPara">Please try different search terms</p>

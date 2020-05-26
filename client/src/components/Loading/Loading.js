@@ -7,7 +7,7 @@ const Loading = ({ full, partial }) => {
         <div className="loadingMother">
             { full && (
                 <div className="loadingMainFull">
-                    <h1>Loading...</h1>
+                    <h1>...</h1>
                 </div>
             )}
             { partial && (

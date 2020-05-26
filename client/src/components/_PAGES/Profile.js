@@ -17,7 +17,7 @@ const Profile = () => {
 
 
   if (isLoading || loading) {
-    return <Loading />;
+    return <Loading full />;
   }
 
   return (

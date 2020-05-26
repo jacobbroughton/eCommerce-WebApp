@@ -21,14 +21,14 @@ Created by Jacob Broughton
 * Add listing functionality
     * Use same values as on listings DB table
 * Make profile edit mandatory before creating a listing
-    - Make it USA only and convert state input to a selection menu
+    * Make it USA only and convert state input to a selection menu
 * Design site mockup on affinity designer... Pages: 
-    - Logged-Out Home
-    - Logged-In Home
-    - Profile
-    - Categories List 
-    - { Category }
-    - Listing
+    * Logged-Out Home
+    * Logged-In Home
+    * Profile
+    * Categories List 
+    * { Category }
+    * Listing
 * Get image preview working (client side)
 * Upload image to database 
 * Include and load images in listings
@@ -85,25 +85,23 @@ Created by Jacob Broughton
 * Make separate pages for showing only/all saved or active listings 
 * Make 'Load more' work correctly from searched results
 * Change statusUrl to clientUrl and serverUrl
+* Turn scroll events off for listings page when modal is opened
+* Limit search results just like in categories
+    * Return to search page
+* Reflect search bar value instead of category
+* Convert complex state management with useReducer
+    * Auth0 context
+    * Anything that deals with an object or array
 
 # Incomplete
 - Split up context
     - Hooks
-- Separate api calls to other files if possible
-- Convert complex state management with useReducer
-    - Auth0 context
-    - Anything that deals with an object or array
 - Adjust components
     - Work from parent component to child
 - Add 'view all in category' when on a single listing view.
-- Reflect search bar value instead of category
-    - Also make the URL different
 - Clean up CSS files, employ DRY method
-- Limit search results just like in categories
-    - Return to search page
 - Add notifications
     - Use web-sockets
-- Turn scroll events off for listings page when modal is opened
 - Let users edit their profile info, and add new info
 - Adjust image resize
 - Add filtering
