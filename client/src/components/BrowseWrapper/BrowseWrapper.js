@@ -47,6 +47,7 @@ let BrowseWrapperReducer = (state, action) => {
 
 const BrowseWrapper = ({ category, items, single }) => {
 
+
   let initialState = {
     category: "",
     listings: [], 
@@ -57,7 +58,11 @@ const BrowseWrapper = ({ category, items, single }) => {
 
  const [state, dispatch] = useReducer(BrowseWrapperReducer, initialState);
 
-  useEffect(() => handleNewListings(items), [items])
+ 
+ useEffect(() => {
+   console.log(items);
+   handleNewListings(items)
+ }, [items])
 
   const handleNewListings = (list) => dispatch({ type: 'listings', payload: list })
   const handleSearchVal = (value) => dispatch({ type: 'search value', payload: value});
@@ -82,8 +87,11 @@ const BrowseWrapper = ({ category, items, single }) => {
               searchVal={state.searchVal}
               handleSearchVal={handleSearchVal}
               handleNewListings={handleNewListings}
+              category={category}
             />
-            {state.searchVal === "" ? <h3>{category}</h3> : <h3>'{state.searchVal}'</h3>}
+            {console.log(state.searchVal)}
+            {console.log(category)}
+            {state.searchVal === "" || state.searchVal === category ? <h3>{category}</h3> : <h3>'{state.searchVal}'</h3>}
           </div>
 
           <ProductList

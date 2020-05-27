@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useReducer } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 import "./ProductList.scss";
 import SingleModal from "../SingleModal/SingleModal";
 import Grid from "../Grid/Grid";
+let API = require("../../api-calls");
 
 const ProductListReducer = (state, action) => {
   switch(action.type) {
@@ -44,16 +44,38 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   let [state, dispatch] = useReducer(ProductListReducer, initialState);
 
+  const getCategoryBrowseCount = async (newCategoryArg) => {
+    let res = await API.getCategoryBrowseCount(serverUrl, newCategoryArg)
+    console.log(res)
+    setBrowseLimit(res.data.COUNT)
+  }
+
+  const getSearchBrowseCount = async (formattedSearchArg) => {
+    let res = await API.getSearchBrowseCount(serverUrl, formattedSearchArg)
+    setSearchLimit(res.data.COUNT)
+  } 
+
+  const getSearchListings = async (formattedSearchArg) => {
+    let res = await API.getSearchListings(serverUrl, formattedSearchArg, resultNum)
+    dispatch({ type: 'listings', payload: res.data })
+  }
+
+  const getAllListings = async () => {
+    let res = await API.getAll(serverUrl, resultNum);
+    console.log(res)
+    dispatch({ type: 'listings', payload: res.data })
+  }
+
+  const getCategoryListings = async (newCategory) => {
+    let res = await API.getCategory(serverUrl, newCategory, resultNum);
+    dispatch({ type: 'listings', payload: res.data })
+  }
 
   useEffect(() => {
     dispatch({ type: 'listings', payload: [...incomingListings] })
 
     let newCategory = category.replace(/ /g, "-");
-    
-      axios
-        .get(`${serverUrl}/api/browsecount/${newCategory}`)
-        .then((res) => setBrowseLimit(res.data.COUNT))
-        .catch((err) => console.log(err));
+      getCategoryBrowseCount(newCategory);
 
     setTimeout(() => {
       setLoadBtn(true);
@@ -67,10 +89,7 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
   useEffect(() => {
     let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
     if(formattedSearch !== undefined || formattedSearch !== "") {
-      axios
-      .get(`${serverUrl}/api/browsecount/search/${formattedSearch}`)
-      .then(res => setSearchLimit(res.data.COUNT))
-      .catch(err => console.log(err))
+      getSearchBrowseCount(formattedSearch);
     }
 
   }, [searchVal])
@@ -83,34 +102,17 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
     let newCategory = category.replace(/ /g, "-");
     if(searchVal !== "") {
       let formattedSearch = searchVal.replace(/\s/g, "-").toLowerCase();
-      axios
-        .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
-        .then((res) => dispatch({ type: 'listings', payload: [...res.data] }))
-        .catch((err) => console.log(err));
+      getSearchListings(formattedSearch);
     } else {
       category === "All For Sale" 
     ? 
-      axios
-        .get(`${serverUrl}/api/browse/all/${resultNum}`)
-        .then((res) => dispatch({ type: 'listings', payload: [...res.data] }))
-        .catch((err) => console.log(err))
+      getAllListings()
     :
-      axios
-        .get(`${serverUrl}/api/browse/${newCategory}/${resultNum}`)
-        .then((res) => dispatch({ type: 'listings', payload: [...res.data] }))
-        .catch((err) => console.log(err));
+      getCategoryListings(newCategory)
     }
 
   }, [resultNum]);
 
-  const disableScroll = () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop
-    let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
-
-    window.onScroll = function () {
-      window.scrollTo(scrollLeft, scrollTop)
-    }
-  }
 
   const handleModalView = (props) => {
     setCurrentItem(props);

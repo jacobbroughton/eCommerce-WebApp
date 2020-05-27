@@ -5,6 +5,7 @@ import axios from "axios";
 import moment from "moment";
 import ListedModal from "../ListedModal/ListedModal";
 import "./SellForm.scss";
+let API = require("../../api-calls");
 
 const SellForm = () => {
   let categoryArr = [
@@ -44,11 +45,9 @@ const SellForm = () => {
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [file, setFile] = useState(null);
-  const [files, setFiles] = useState();
+  const [files, setFiles] = useState([]);
   const [num, setNum] = useState("");
   const imagePrevNum = ["", "", "", ""];
-
-  useEffect(() => {}, [num])
 
   const createRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -56,9 +55,19 @@ const SellForm = () => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
-  
+  useEffect(() => {
+    let randomNum = createRandomInt(1000000000, 10000000000).toString();
+    setNum(randomNum);
+  }, [])
 
-  const handleImgChange = e => {
+  useEffect(() => {
+    console.log("Updated files below")
+    console.log(files)
+  }, [files])
+
+  const handleImgChange = async e => {
+    console.log(file)
+    console.log(files)
     let previewTextArr = [].slice.call(document.getElementsByClassName("defaultPreviewText"))
     let previewArr = [].slice.call(document.getElementsByClassName("imgPreview"));
     let selectedFile = e.target.files[0]; // Only allows one file, shows undefined if window is closed
@@ -86,10 +95,14 @@ const SellForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const formData = new FormData();
+    console.log(num)
+
+    files.length !== 0 &&
     formData.append("myFile", files[0]);
     if(files[1]){ formData.append("myFile", files[1]); }
     if(files[2]){ formData.append("myFile", files[2]); }
     if(files[3]){ formData.append("myFile", files[3]); }
+
 
     const config = {
       headers: {
@@ -103,19 +116,17 @@ const SellForm = () => {
     let date = moment().format("L");
     let time_created = time.replace(/\s/g, "");
     let date_created = date.replace(/\//g, "-");
-    let randomNum = createRandomInt(1000000000, 10000000000).toString();
-    setNum(randomNum);
 
 
 
-    let sendTextInputValues = () => {
+
+    let sendTextInputValues = async () => {
 
       let formattedTags = tags.replace(/\s/g, ",").split(",").toString();
       console.log(formattedTags)
 
-      axios
-        .post(`${serverUrl}/api/sell/text`, {
-          listing_uid: randomNum,
+      let obj = {
+          listing_uid: num,
           seller_uid: dbUser.user_uid,
           email: dbUser.email,
           seller_nickname: dbUser.nickname,
@@ -134,25 +145,33 @@ const SellForm = () => {
           sold_status : "Available",
           date_created,
           time_created
-        })
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
+        }
+
+      // await axios
+      //   .post(`${serverUrl}/api/sell/text`, obj)
+      //   .then(response => console.log(response))
+      //   .catch(err => console.log(err));
+      await API.handleSellFormMedia(serverUrl, obj)
     };
 
 
 
-    let sendImageInputValues = () => {
-        axios
-        .post(`${serverUrl}/api/sell/images/${randomNum}`, formData, config)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+    let sendImageInputValues = async () => {
+        // await axios
+        // .post(`${serverUrl}/api/sell/images/${num}`, formData, config)
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err))
+        await API.handleSellFormMedia(serverUrl, formData, num, config)
+
     };
 
 
 
     Promise.all([ sendTextInputValues(), sendImageInputValues() ])
-    .then(([one, two]) =>  console.log(one, two))
+    .then(([value]) =>  console.log(value))
     .catch(error => console.log(error));
+
+
     document.getElementById("sellModalParent").style.display = "block";
     document.getElementById("sellOverlay").classList.add("active");
   };

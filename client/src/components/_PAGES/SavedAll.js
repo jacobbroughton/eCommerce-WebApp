@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import axios from "axios";
+let API = require("../../api-calls");
 
 const SavedAll = () => {
 
@@ -10,13 +10,13 @@ const SavedAll = () => {
     let { serverUrl } = useStatusUrl();
     let [savedListings, setSavedListings] = useState([]);
 
+    const getSavedListings = async () => {
+        let res = await API.getSaved(serverUrl, dbUser, "n")
+        setSavedListings(res.data)
+    }
+
     useEffect(() => {
-        if(dbUser) {
-            axios
-            .get(`${serverUrl}/api/save/get/n/${dbUser.user_uid}`)
-            .then(res => setSavedListings([...res.data]))
-            .catch(err => console.log(err))
-        }
+        if(dbUser) { getSavedListings(); }
     }, [dbUser])
     
     return(

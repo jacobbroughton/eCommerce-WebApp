@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import axios from "axios";
 import "./SearchBar.scss";
+let API = require("../../api-calls");
 
 // resultNum is undefined
-const SearchBar = ({ resultNum, handleSearchVal, handleSearched, handleNewListings, searchVal }) => {
+const SearchBar = ({ resultNum, handleSearchVal, handleSearched, handleNewListings, searchVal, category }) => {
     const { serverUrl } = useStatusUrl();
     let [search, setSearch] = useState("");
 
@@ -15,19 +15,24 @@ const SearchBar = ({ resultNum, handleSearchVal, handleSearched, handleNewListin
     }, [searchVal])
 
     const handleSearch = (e) => {
-        setSearch(e.target.value);
+      setSearch(e.target.value);
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      handleSearched(true);
-      handleSearchVal(search)
-      let formattedSearch = search.replace(/\s/g, "-").toLowerCase();
-      axios
-        .get(`${serverUrl}/api/search/${formattedSearch}/${resultNum}`)
-        .then((res) => handleNewListings(res.data))
-        .catch((err) => console.log(err));
+      if(search === "") {
+        let res = await API.getAll(serverUrl, resultNum)
+        handleSearchVal(category)
+        handleNewListings(res.data)
+      } else {
+        handleSearched(true);
+        handleSearchVal(search)
+        let formattedSearch = search.replace(/\s/g, "-").toLowerCase()
+        let res = await API.getSearchListings(serverUrl, formattedSearch, resultNum)
+        handleNewListings(res.data)
+
+      }
     };
 
 

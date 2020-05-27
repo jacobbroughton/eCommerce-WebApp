@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import axios from "axios";
 import {Link} from "react-router-dom"; 
 import Grid from "../Grid/Grid";
 import SingleModal from "../SingleModal/SingleModal";
 import "./ProfileListings.scss";
+let API = require("../../api-calls");
 
 const ProfileListings = () => {
   const { dbUser } = useAuth0();
@@ -22,25 +22,21 @@ const ProfileListings = () => {
     fetchSoldListings();
   }, [dbUser, serverUrl]);
 
-  const fetchSavedListings = () => {
-    axios
-      .get(`${serverUrl}/api/save/get/y/${dbUser.user_uid}`)
-      .then((response) => setSavedListings([...response.data].reverse()))
-      .catch((err) => console.log(err));
+
+
+  const fetchSavedListings = async () => {
+    let res = await API.getSaved(serverUrl, dbUser, "y")
+    setSavedListings(res.data)
   };
 
-  const fetchActiveListings = () => {
-    axios
-      .get(`${serverUrl}/api/personallistings/y/${dbUser.user_uid}`)
-      .then((response) => setActiveListings([...response.data].reverse()))
-      .catch((err) => console.log(err));
+  const fetchActiveListings = async () => {
+    let res = await API.getActiveListings(serverUrl, dbUser, "y")
+    setActiveListings(res.data)
   };
 
-  const fetchSoldListings = () => {
-    axios
-    .get(`${serverUrl}/api/personallistings/sold/y/${dbUser.user_uid}`)
-    .then(res => setSoldListings([...res.data].reverse()))
-    .catch(err => console.log(err))
+  const fetchSoldListings = async () => {
+    let res = await API.getSold(serverUrl, dbUser, "y")
+    setSoldListings(res.data)
   }
 
   const overlayClose = (e) => {

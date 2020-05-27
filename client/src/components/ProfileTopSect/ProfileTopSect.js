@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import axios from "axios";
 import "./ProfileTopSect.scss";
+let API = require("../../api-calls");
 
 const ProfileTopSect = () => {
   const { dbUser } = useAuth0();
@@ -64,18 +64,16 @@ const ProfileTopSect = () => {
     'WY'
 ]
 
+const handleFormSubmit = async (e) => {
+  let obj = {
+    firstName: firstNameValue,
+    lastName: lastNameValue,
+    townCity: townCityValue,
+    state: stateValue
+  }
 
+  await API.handleFormSubmit(serverUrl, dbUser, obj)
 
-const handleFormSubmit = (e) => {
-  axios
-      .post(`${serverUrl}/api/updateprofile/${dbUser.user_uid}`, {
-          firstName: firstNameValue,
-          lastName: lastNameValue,
-          townCity: townCityValue,
-          state: stateValue
-      })
-      .then(response => console.log(response))
-      .catch(err => console.log(err))
 }
 
 

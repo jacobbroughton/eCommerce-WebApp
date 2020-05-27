@@ -17,7 +17,7 @@ import { useAuth0 } from "../contexts/auth0-context.js";
 const AppRouter = () => (
     <Switch>
         <Route exact path="/" component={Index}/>
-        <Route exact path="/browse" component={Browse}/>
+        {/* <Route exact path="/browse" component={Browse}/> */}
         <Route path="/browse/single/:listinguid" component={Single}/>
         <Route path="/browse/category/:category" component={CategoryView}/>
         <Route path="/browse/search/:searchvalue" component={Search}/>

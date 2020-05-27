@@ -94,8 +94,8 @@ Created by Jacob Broughton
     * Anything that deals with an object or array
 
 # Incomplete
-- Split up context
-    - Hooks
+- Move axios calls to separate page 
+- Move commonly used functions / state to context files
 - Adjust components
     - Work from parent component to child
 - Add 'view all in category' when on a single listing view.

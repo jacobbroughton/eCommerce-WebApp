@@ -7,7 +7,7 @@ const ListedModal = () => {
     <div className="listedModalMother">
       <h3 className="postedP">Your listing has been posted!</h3>
       <p className="browseP">
-        <Link to="/browse">Return to Browse</Link>
+        <Link to="/browse/category/All-For-Sale">Return to Browse</Link>
       </p>
       <p className="profileP">
         <Link to="/profile">View listing on profile</Link>

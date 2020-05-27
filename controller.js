@@ -55,6 +55,7 @@ exports.sellImages = (req, res) => {
       let uploadStr = "";
       let width = 1000;
       let height = 1000;
+      console.log(req.files)
       for (let i = 0; i < req.files.length; i++) {
         switch (req.files[i].mimetype) {
           case "image/jpeg":
@@ -234,6 +235,9 @@ exports.search2 = (req, res) => {
   let uniqSet = new Set([...searchArr]);
   let uniqArr = Array.from(uniqSet);
   let uidArr = [];
+
+  console.log(searchVal)
+  console.log(typeof(searchVal))
 
   connection.query(
     `SELECT listing_uid, tags FROM listings`,

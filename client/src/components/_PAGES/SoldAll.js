@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import axios from "axios";
+let API = require("../../api-calls");
 
 const SoldAll = () => {
 
@@ -10,13 +10,13 @@ const SoldAll = () => {
     const { serverUrl } = useStatusUrl();
     let [soldListings, setSoldListings] = useState([]);
 
+    const getSoldListings = async () => {
+        let res = await API.getSold(serverUrl, dbUser, "n")
+        setSoldListings(res.data)
+    }
+
     useEffect(() => {
-        if(!dbUser) {
-            axios
-            .get(`${serverUrl}/api/personallistings/sold/n/${dbUser.user_uid}`)
-            .then(res => setSoldListings([...res.data]))
-            .catch(err => console.log(err))
-        }
+            dbUser ? getSoldListings() : setSoldListings([])
     }, [dbUser])
     
     
