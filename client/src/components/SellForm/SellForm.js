@@ -45,7 +45,7 @@ const SellForm = () => {
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [file, setFile] = useState(null);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState();
   const [num, setNum] = useState("");
   const imagePrevNum = ["", "", "", ""];
 
@@ -55,15 +55,11 @@ const SellForm = () => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
-  useEffect(() => {
-    let randomNum = createRandomInt(1000000000, 10000000000).toString();
-    setNum(randomNum);
-  }, [])
+  // useEffect(() => {
+  //   let randomNum = createRandomInt(1000000000, 10000000000).toString();
+  //   setNum(randomNum);
+  // }, [])
 
-  useEffect(() => {
-    console.log("Updated files below")
-    console.log(files)
-  }, [files])
 
   const handleImgChange = async e => {
     console.log(file)
@@ -95,9 +91,11 @@ const SellForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const formData = new FormData();
+    let randomNum = createRandomInt(1000000000, 10000000000).toString();
+    // setNum(randomNum);
     console.log(num)
 
-    files.length !== 0 &&
+    // files.length !== 0 &&
     formData.append("myFile", files[0]);
     if(files[1]){ formData.append("myFile", files[1]); }
     if(files[2]){ formData.append("myFile", files[2]); }
@@ -120,13 +118,13 @@ const SellForm = () => {
 
 
 
-    let sendTextInputValues = async () => {
+    const sendTextInputValues = async () => {
 
       let formattedTags = tags.replace(/\s/g, ",").split(",").toString();
       console.log(formattedTags)
 
       let obj = {
-          listing_uid: num,
+          listing_uid: randomNum,
           seller_uid: dbUser.user_uid,
           email: dbUser.email,
           seller_nickname: dbUser.nickname,
@@ -147,21 +145,14 @@ const SellForm = () => {
           time_created
         }
 
-      // await axios
-      //   .post(`${serverUrl}/api/sell/text`, obj)
-      //   .then(response => console.log(response))
-      //   .catch(err => console.log(err));
-      await API.handleSellFormMedia(serverUrl, obj)
+      await API.handleSellFormText(serverUrl, obj)
     };
 
 
 
     let sendImageInputValues = async () => {
-        // await axios
-        // .post(`${serverUrl}/api/sell/images/${num}`, formData, config)
-        // .then(res => console.log(res))
-        // .catch(err => console.log(err))
-        await API.handleSellFormMedia(serverUrl, formData, num, config)
+        console.log(randomNum)
+        await API.handleSellFormMedia(serverUrl, formData, randomNum, config)
 
     };
 

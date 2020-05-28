@@ -84,16 +84,16 @@ export const handleSellFormText = async (serverUrl, obj) => {
     return (
         await axios
         .post(`${serverUrl}/api/sell/text`, obj)
+        .then(res => console.log(res))
         .catch(err => console.log(err))
     )
 }  
 
-export const handleSellFormMedia = async (serverUrl, formData, num, config) => {
-    console.log(formData)
-    console.log(num)
+export const handleSellFormMedia = async (serverUrl, formData, randomNum, config) => {
     return (
         await axios
-        .post(`${serverUrl}/api/sell/images/${num}`, formData, config)
+        .post(`${serverUrl}/api/sell/images/${randomNum}`, formData, config)
+        .then(res => console.log(res))
         .catch(err => console.log(err))
     )
 }
