@@ -24,10 +24,6 @@ const SinglePage = () => {
     }
 
     useEffect(() => {
-        // axios
-        // .get(`${serverUrl}/api/browse/single/${listingUid}`)
-        // .then(res => setSingle(res.data))
-        // .catch(err => console.log(err))
         handleOnLoad()
     }, [])
 
@@ -56,11 +52,6 @@ const SinglePage = () => {
         let date = moment().format("L");
         let time_saved = time.replace(/\s/g, "");
         let date_saved = date.replace(/\//g, "-");
-    
-        // axios
-        // .get(`${serverUrl}/api/save/post/${single.listing_uid}/${dbUser.user_uid}`)
-        // .then(res => console.log(res))
-        // .catch(err => console.log(err))
 
         await API.saveListing(serverUrl, single, dbUser);
         window.location.reload();
@@ -69,9 +60,6 @@ const SinglePage = () => {
 
 
       const handleDelete = async () => {
-        // axios
-        // .get(`${serverUrl}/api/delete/${single.listing_uid}`)
-        // .then(r => console.log(r)).catch(e => console.log(e))
 
         await API.deleteListing(serverUrl, single);
         window.location.reload()

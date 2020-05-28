@@ -1,9 +1,9 @@
 import React, { Component, createContext, useContext } from "react";
 import createAuth0Client from "@auth0/auth0-spa-js";
-import axios from "axios";
 import moment from "moment";
 export const Auth0Context = createContext();
 export const useAuth0 = () => useContext(Auth0Context);
+let API = require("../api-calls");
 
 export class Auth0Provider extends Component {
   state = {
@@ -41,11 +41,10 @@ export class Auth0Provider extends Component {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  addUser = (newUser, randomNum, date, time) => {
+
+  addUser = async (newUser, randomNum, date, time) => {
     console.log("Adding user!");
-    if (newUser.given_name) {
-      axios
-        .post(`${this.state.statusUrl}/api/adduser`, {
+    let objWithName = {
           user_uid: randomNum,
           email: newUser.email,
           nickname: newUser.nickname,
@@ -56,16 +55,13 @@ export class Auth0Provider extends Component {
           date_created: date,
           time_created: time,
           saved_posts: ""
-        }, { timeout: 200 })
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
-        console.log("Added user!")
+        }
 
+    if (newUser.given_name) {
+        await API.addUser(this.state.statusUrl, objWithName);
         this.findUserAgain();
-
     } else if (newUser.email) {
-      axios
-        .post(`${this.state.statusUrl}/api/adduser`, {
+      let objWithEmail = {
           user_uid: randomNum,
           email: newUser.email,
           nickname: newUser.nickname,
@@ -76,58 +72,53 @@ export class Auth0Provider extends Component {
           date_created: date,
           time_created: time,
           saved_posts: ""
-        }, { timeout: 200 })
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
-        console.log("Added user!")
+        }
 
-        this.findUserAgain();
+      await API.addUser(this.state.statusUrl, objWithEmail)
+      this.findUserAgain();
     }
   };
 
+
+
   // Add user to database || Find user
-  findUser = newUser => {
+  
+  findUser = async newUser => {
     this.setState({ isLoading: true });
-    axios
-      .get(`${this.state.statusUrl}/api/finduser/${newUser.email}`)
-      .then(response => {
-        console.log("Finduser response is below")
-        console.log(response);
-        if (response.data === "") {
-          console.log("response.data is empty!");
-          let uid = this.createRandomInt(1000000000, 10000000000);
-          let time = moment().format("LT");
-          let date = moment().format("L");
-          let time_created = time.replace(/\s/g, "");
-          let date_created = date.replace(/\//g, "-");
-          this.addUser(newUser, uid, time_created, date_created);
-          this.findUserAgain();
-          // this.setState({ isLoading: false });
-        } else {
-          console.log("User exists!");
-          this.setState({ dbUser: response.data, isLoading: false });
-        }
-      })
-      .catch(err => console.log(err.toJSON()));
+
+      const res = await API.findUser(this.state.statusUrl, newUser);
+      if (res.data === "") {
+        console.log("res.data is empty!");
+        let uid = this.createRandomInt(1000000000, 10000000000);
+        let time = moment().format("LT");
+        let date = moment().format("L");
+        let time_created = time.replace(/\s/g, "");
+        let date_created = date.replace(/\//g, "-");
+        this.addUser(newUser, uid, time_created, date_created);
+        this.findUserAgain();
+      } else {
+        console.log("User exists!");
+        this.setState({ dbUser: res.data, isLoading: false });
+      }
+
   };
 
-  findUserAgain = () => {
-    // this.setState({ isLoading: true });
+
+  findUserAgain = async () => {
     const user = this.state.user;
     if (user) {
       console.log("there is a user, finding in database now")
-      axios
-        .get(`${this.state.statusUrl}/api/finduser/${user.email}`)
-        .then(response =>
-          this.setState({ dbUser: response.data }, () => console.log(this.state))
-        )
-        .catch(err => console.log(err.toJSON()));
-      this.setState({ isLoading: false });
+      const res = await API.findUser(this.state.statusUrl, user);
+      this.setState({ dbUser: res.data, isLoading: false });
     } else {
       console.log("No user, cant do it.");
       this.setState({ isLoading: false });
     }
   };
+
+
+
+
   // Initialize the auth0 library
   initializeAuth0 = async () => {
     const auth0Client = await createAuth0Client(this.config);

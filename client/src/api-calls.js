@@ -121,3 +121,19 @@ export const changeAvailability = async (serverUrl, item, status) => {
         .catch(err => console.log(err))
     )
 }
+
+export const addUser = async (statusUrl, obj) => {
+    return (
+        await axios
+        .post(`${statusUrl}/api/adduser`, obj, { timeout: 200 })
+        .catch(err => console.log(err))
+    )
+}
+
+export const findUser = async (statusUrl, newUser) => {
+    return (
+        await axios
+      .get(`${statusUrl}/api/finduser/${newUser.email}`)
+      .catch(err => console.log(err)
+    ))
+}
