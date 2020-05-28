@@ -6,7 +6,10 @@
         margin: 0 auto;
         column-gap: .5em;
         row-gap: .4em;
-        // margin-top: 50px;
+        margin-top: 25px;
+        background: lightgrey;
+        padding: 20px;
+        border-radius: 2px;
 
 
         .titleInput{
@@ -27,14 +30,17 @@
             .imgPreviewContainer{
                 // grid-column: 1/5;
                 width: 100%;
-                border: 2px solid lightgrey;    
+                // border: 2px solid lightgrey; 
+                border: 2px solid grey;   
                 
                 // Default 
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-weight: bold;
-                color: #cccccc;
+                // color: #cccccc;
+                color: grey;
+                border-radius: 2px;
 
                 .imgPreview{
                     display: none;

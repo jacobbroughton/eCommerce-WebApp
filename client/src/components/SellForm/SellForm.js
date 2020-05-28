@@ -170,7 +170,6 @@ const SellForm = () => {
 
   return (
     <div className="sellFormMother">
-      <h3>Selling Something?</h3>
       <form
         onSubmit={e => handleSubmit(e)}
         className="sellForm"
