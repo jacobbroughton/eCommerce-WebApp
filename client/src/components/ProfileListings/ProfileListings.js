@@ -43,7 +43,7 @@ const ProfileListings = () => {
     const overlay = document.getElementById("overlay");
     setToggled(false);
     overlay.classList.remove("active");
-    document.body.style.overflow = "initial";
+    document.body.style.overflow = "scroll";
   };
 
   const handleModalView = (props) => {

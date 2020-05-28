@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
-import axios from "axios";
 import moment from "moment";
 import ListedModal from "../ListedModal/ListedModal";
 import "./SellForm.scss";

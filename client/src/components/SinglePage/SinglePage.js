@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
 import Loading from "../Loading/Loading";
+import axios from "axios"
 import placeholderImg from "../../assets/download.jpg";
 import moment from "moment";
 import "./SinglePage.scss";
+const API = require("../../api-calls")
 
 const SinglePage = () => {
 
@@ -17,14 +18,20 @@ const SinglePage = () => {
     // const [status, setStatus] = useState(single.status);
     let listingUid = window.location.pathname.replace("/browse/single/", "");
 
-
+    const handleOnLoad = async () => {
+      let res = await API.getSingle(serverUrl, listingUid);
+      setSingle(res.data)
+    }
 
     useEffect(() => {
-        axios
-        .get(`${serverUrl}/api/browse/single/${listingUid}`)
-        .then(res => setSingle(res.data))
-        .catch(err => console.log(err))
+        // axios
+        // .get(`${serverUrl}/api/browse/single/${listingUid}`)
+        // .then(res => setSingle(res.data))
+        // .catch(err => console.log(err))
+        handleOnLoad()
     }, [])
+
+
 
 
 
@@ -44,26 +51,29 @@ const SinglePage = () => {
 
 
 
-      const handleSave = () => {
+      const handleSave = async () => {
         let time = moment().format("LT");
         let date = moment().format("L");
         let time_saved = time.replace(/\s/g, "");
         let date_saved = date.replace(/\//g, "-");
     
-        axios
-        .get(`${serverUrl}/api/save/post/${single.listing_uid}/${dbUser.user_uid}`)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    
+        // axios
+        // .get(`${serverUrl}/api/save/post/${single.listing_uid}/${dbUser.user_uid}`)
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err))
+
+        await API.saveListing(serverUrl, single, dbUser);
         window.location.reload();
       }
 
 
 
-      const handleDelete = () => {
-        axios
-        .get(`${serverUrl}/api/delete/${single.listing_uid}`)
-        .then(r => console.log(r)).catch(e => console.log(e))
+      const handleDelete = async () => {
+        // axios
+        // .get(`${serverUrl}/api/delete/${single.listing_uid}`)
+        // .then(r => console.log(r)).catch(e => console.log(e))
+
+        await API.deleteListing(serverUrl, single);
         window.location.reload()
       }
 

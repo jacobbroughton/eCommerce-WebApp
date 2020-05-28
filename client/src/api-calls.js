@@ -97,3 +97,27 @@ export const handleSellFormMedia = async (serverUrl, formData, randomNum, config
         .catch(err => console.log(err))
     )
 }
+
+export const saveListing = async (serverUrl, item, dbUser) => {
+    return (
+        await axios
+        .get(`${serverUrl}/api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
+        .catch(err => console.log(err))
+    )
+}
+
+export const deleteListing = async (serverUrl, item) => {
+    return (
+        await axios 
+        .get(`${serverUrl}/api/delete/${item.listing_uid}`)
+        .catch(e => console.log(e))
+    )
+}
+
+export const changeAvailability = async (serverUrl, item, status) => {
+    return (
+        await axios
+        .post(`${serverUrl}/api/updatestatus/${item.listing_uid}`, { status })
+        .catch(err => console.log(err))
+    )
+}

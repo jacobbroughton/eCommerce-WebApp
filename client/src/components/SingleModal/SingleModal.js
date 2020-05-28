@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
 import placeholderImg from "../../assets/download.jpg";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import "./SingleModal.scss";
+const API = require("../../api-calls")
 
 
-
-const SingleModal = ({ item, handleToggle }) => {
+const SingleModal = ({ handleModalView, item, handleToggle }) => {
   const availArr = ["Available", "Pending", "Sold"];
   const { dbUser } = useAuth0();
   const { serverUrl, clientUrl } = useStatusUrl();
@@ -16,19 +15,14 @@ const SingleModal = ({ item, handleToggle }) => {
   const [image, setImage] = useState("");
   let [status, setStatus] = useState(item.status);  
 
+
   const handleClose = (e) => {
-    document.getElementById("overlay").classList.remove("active");
-    setImage("");
-    handleToggle();
+    handleModalView()
   };
 
-
-  const handleAvailability = (e) => {
+  const handleAvailability = async (e) => {
     setStatus(e.target.value);
-    console.log(status)
-    axios
-    .post(`${serverUrl}/api/updatestatus/${item.listing_uid}`, { status })
-    .then(r => console.log(r)).catch(err => console.log(err))
+    await API.changeAvailability(serverUrl, item, status)
   }
 
   const shareListing = (str) => {
@@ -48,21 +42,15 @@ const SingleModal = ({ item, handleToggle }) => {
 
 
 
-  const saveListing = () => {
-    axios
-    .get(`${serverUrl}/api/save/post/${item.listing_uid}/${dbUser.user_uid}`)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-
+  const saveListing = async () => {
+    await API.saveListing(serverUrl, item, dbUser)
     window.location.reload();
   }
 
 
 
   const deleteListing = () => {
-    axios
-    .get(`${serverUrl}/api/delete/${item.listing_uid}`)
-    .then(r => console.log(r)).catch(e => console.log(e))
+    API.deleteListing(serverUrl, item)
     window.location.reload()
   }
 

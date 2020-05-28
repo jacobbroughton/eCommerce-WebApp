@@ -115,11 +115,21 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
 
   const handleModalView = (props) => {
-    setCurrentItem(props);
-    setToggled(true);
-    const overlay = document.getElementById("overlay");
-    overlay.classList.add("active");
-    document.body.style.overflow = "hidden";
+    const overlay = document.getElementById("overlay")
+    if(toggled) {
+      setCurrentItem(null)
+      setToggled(false)
+      overlay.classList.remove("active")
+      document.body.style.overflow = "initial"
+    } else {
+      setCurrentItem(props)
+      setToggled(true)
+      overlay.classList.add("active")
+      document.body.style.overflow = "hidden"
+    }
+
+
+
   };
 
   const handleToggle = () => (toggled ? setToggled(false) : setToggled(true));
@@ -137,7 +147,7 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
           <div className="browsePListings">
           <Grid handleModalView={handleModalView} listings={state.listings} gridItemNum={resultNum}/>
             {toggled && (
-              <SingleModal handleToggle={handleToggle} toggled={toggled} item={currentItem} />
+              <SingleModal handleModalView={handleModalView} handleToggle={handleToggle} toggled={toggled} item={currentItem} />
             )}
             <div onClick={() => overlayClose()} className="" id="overlay"></div>
           </div>
