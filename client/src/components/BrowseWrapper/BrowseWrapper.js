@@ -89,8 +89,6 @@ const BrowseWrapper = ({ category, items, single }) => {
               handleNewListings={handleNewListings}
               category={category}
             />
-            {console.log(state.searchVal)}
-            {console.log(category)}
             {state.searchVal === "" || state.searchVal === category ? <h3>{category}</h3> : <h3>'{state.searchVal}'</h3>}
           </div>
 

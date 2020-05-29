@@ -46,7 +46,6 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   const getCategoryBrowseCount = async (newCategoryArg) => {
     let res = await API.getCategoryBrowseCount(serverUrl, newCategoryArg)
-    console.log(res)
     setBrowseLimit(res.data.COUNT)
   }
 
@@ -82,7 +81,8 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
     }, 600);
 
     window.scroll(0, 0);
-  }, [category, incomingListings]);
+  // }, [category, incomingListings]);
+}, [incomingListings]);
 
 
 
@@ -91,7 +91,6 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
     if(formattedSearch !== undefined || formattedSearch !== "") {
       getSearchBrowseCount(formattedSearch);
     }
-
   }, [searchVal])
   
 
