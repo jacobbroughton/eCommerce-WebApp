@@ -1,8 +1,4 @@
-.profileTopSectMother {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  .userParent {
+.userParent {
     // display: flex;
     // flex-direction: column;
     border: 1px lightgrey solid;
@@ -20,5 +16,3 @@
     margin: 0;
     text-align: left;
   }
-
-}

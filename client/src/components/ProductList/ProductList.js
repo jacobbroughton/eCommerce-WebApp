@@ -131,7 +131,7 @@ const ProductList = ({ searched, handleLoadMore, searchVal, resultNum, category,
 
   };
 
-  const handleToggle = () => (toggled ? setToggled(false) : setToggled(true));
+  const handleToggle = () => toggled ? setToggled(false) : setToggled(true)
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");

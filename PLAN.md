@@ -91,25 +91,26 @@
 * Move axios calls to separate page 
 * Fix repeated refreshes on home and profile page
 * Adjust components
-    - Work from parent component to child
-
+    * Work from parent component to child
+* Split up components into more consise, smaller, reusable components
 
 
 
 # Incomplete
+- Improve folder / component structure (separate by route, etc.)
+- Make 'overlay' it's own component
+- Add sorting (state / town / price / etc)
 - Move commonly used functions / state to context files
+- Let users add more info about themselves (bio, images, etc)
 - Add 'view all in category' when on a single listing view.
 - Clean up CSS files, employ DRY method
 - Add notifications
 - Let users edit their profile info, and add new info
 - Adjust image resize
 - Let users choose their grid layout
-- Add sorting (state / town / price / etc)
 - Add filtering
 - Let sellers create "stores"
 - Make picture full screen on click
-- Condense repeated code in a more sensable / scalable way
-- Split up components into more consise, smaller, reusable components
 - Make all selling fields required.
 - Add "wanted" section.
 - Add "As of 3:45pm 3/4/20" next to the sold status on listing
@@ -117,7 +118,6 @@
 - Add dark mode (context).
 - Consider utilizing cookies for temporary buyers accounts, or something else.
 - Add menu/options on rightclick of mouse (ex. Spotify).
-- Change all instances of statusUrl so it includes '/api' from context.
 - Add basic "Report Listing" functionality.
 - Add "similar" section for each listing, maybe 3 or 4..
 - Add admin panel.

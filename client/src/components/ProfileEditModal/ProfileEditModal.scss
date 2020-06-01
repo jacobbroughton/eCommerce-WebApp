@@ -1,0 +1,42 @@
+.profEditMother{
+    top: 20%;
+    bottom: 20%;
+    left: 20%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+
+    .formParent{
+        width: 600px;
+        form{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border: 1px lightgrey solid;
+            flex-direction: column;
+            grid-gap: 1em ;
+            width: 100%;
+            background: #ffffff;
+            padding: 1em;
+            border-radius: 3px;
+            .formItem, textarea{
+                appearance: none;
+                font-size: .9rem;
+                padding: .2em .4em;
+                border: none;
+                text-align: left;
+                border-bottom: 1px solid #d6d6d6;
+                border-radius: 1px;
+                background: #fff;
+            }
+            .select{
+                border-right: 1px solid #d6d6d6;
+            }
+            textarea{
+                grid-column: 1/3;
+            }
+            .submit{
+
+            }
+        }
+    }
+}

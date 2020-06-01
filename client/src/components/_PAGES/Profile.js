@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ProfileTopSect from "../ProfileTopSect/ProfileTopSect";
 import ProfileListings from "../ProfileListings/ProfileListings";
+import ProfileEditModal from "../ProfileEditModal/ProfileEditModal";
 import Loading from "../Loading/Loading";
 import { useAuth0 } from "../../contexts/auth0-context";
 import "./styles/Profile.scss";
@@ -8,6 +9,7 @@ import "./styles/Profile.scss";
 const Profile = () => {
   const { dbUser, isLoading } = useAuth0();
   const [loading, setLoading] = useState(true);
+  // const [toggled, setToggled] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,7 +26,8 @@ const Profile = () => {
     <div className="profileMother">
       <div className="profileMain">
         <ProfileTopSect />
-        {/* <hr/> */}
+
+        {/* <ProfileEditModal toggled={toggled} handleToggled={() => setToggled(!toggled)}/> */}
         <div className="profilePrimary">
           <ProfileListings/>
         </div>

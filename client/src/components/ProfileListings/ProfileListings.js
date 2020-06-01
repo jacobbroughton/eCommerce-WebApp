@@ -23,21 +23,31 @@ const ProfileListings = () => {
   }, [dbUser, serverUrl]);
 
 
+  // useEffect(() => {
+  //   console.log("ProfileListings' toggle: " + toggled)
+  // }, [toggled])
+
 
   const fetchSavedListings = async () => {
     let res = await API.getSaved(serverUrl, dbUser, "y")
     setSavedListings(res.data)
   };
 
+
+
   const fetchActiveListings = async () => {
     let res = await API.getActiveListings(serverUrl, dbUser, "y")
     setActiveListings(res.data)
   };
 
+
+
   const fetchSoldListings = async () => {
     let res = await API.getSold(serverUrl, dbUser, "y")
     setSoldListings(res.data)
   }
+
+
 
   const overlayClose = (e) => {
     const overlay = document.getElementById("overlay");
@@ -45,6 +55,8 @@ const ProfileListings = () => {
     overlay.classList.remove("active");
     document.body.style.overflow = "scroll";
   };
+
+
 
   const handleModalView = (props) => {
     setCurrentItem(props);
@@ -57,6 +69,8 @@ const ProfileListings = () => {
   const handleToggle = () => {
     toggled ? setToggled(false) : setToggled(true);
   };
+
+  
   
   return (
     <div className="profileListingsMother">
@@ -90,7 +104,6 @@ const ProfileListings = () => {
                 <>
                   <h3>Sold Listings</h3>
                   <Grid limited handleModalView={handleModalView} listings={soldListings} gridItemNum={4}/>
-                  {console.log(soldListings)}
                   { soldListings.length > 4 && <Link to={`/profile/allsold`}>View All</Link> }
                 </>
               )}
