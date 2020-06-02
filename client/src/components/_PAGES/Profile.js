@@ -9,7 +9,6 @@ import "./styles/Profile.scss";
 const Profile = () => {
   const { dbUser, isLoading } = useAuth0();
   const [loading, setLoading] = useState(true);
-  // const [toggled, setToggled] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -27,7 +26,6 @@ const Profile = () => {
       <div className="profileMain">
         <ProfileTopSect />
 
-        {/* <ProfileEditModal toggled={toggled} handleToggled={() => setToggled(!toggled)}/> */}
         <div className="profilePrimary">
           <ProfileListings/>
         </div>

@@ -15,8 +15,8 @@ const ProfileTopSect = () => {
     <div className="profileTopSectMother">
       {dbUser && (
         <>
-        <ProfileInfo dbUser={dbUser}/>
-        <ProfileEditModal toggled={toggled} handleToggled={() => setToggled(!toggled)}/>
+          <ProfileInfo dbUser={dbUser}/>
+          <ProfileEditModal toggled={toggled} handleToggled={() => setToggled(!toggled)}/>
         </>
 
       )}
