@@ -79,32 +79,44 @@ const ProfileListings = () => {
         <div className="activeListingsParent">
           <div className="browsePListings">
             <div className="activeSection">
-              {activeListings !== [] && (
+              {activeListings.length >= 1 && (
                 <>
+                <div className="headParent">
                   <h3>Your Listings</h3>
-                  <Grid limited handleModalView={handleModalView} listings={activeListings} gridItemNum={4}/>
                   { activeListings.length > 4 && <Link to={`/profile/allactive`}>View All</Link> }
+                </div>
+                  
+                  <Grid limited handleModalView={handleModalView} listings={activeListings} gridItemNum={2}/>
+                  
                 </>
               )}
             </div>
 
             <div className="savedSection">
-            {savedListings !== [] && (
+            {savedListings.length >= 1 && (
                 <>
+                <div className="headParent">
                   <h3>Saved Listings</h3>
-                  <Grid limited handleModalView={handleModalView} listings={savedListings} gridItemNum={4}/>
-                  
                   { savedListings.length > 4 && <Link to={`/profile/allsaved`}>View All</Link> }
+                </div>
+                  
+                  <Grid limited handleModalView={handleModalView} listings={savedListings} gridItemNum={2}/>
+                  
+                 
                 </>
               )}
             </div>
 
             <div className="soldSection">
-            {soldListings !== [] && (
+            {soldListings.length >= 1 && (
                 <>
+                <div className="headParent">
                   <h3>Sold Listings</h3>
-                  <Grid limited handleModalView={handleModalView} listings={soldListings} gridItemNum={4}/>
                   { soldListings.length > 4 && <Link to={`/profile/allsold`}>View All</Link> }
+                </div>
+                  
+                  <Grid limited handleModalView={handleModalView} listings={soldListings} gridItemNum={2}/>
+                  
                 </>
               )}
             </div>

@@ -1,10 +1,10 @@
 .gridMother{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, 210px);
     justify-items: left;
     row-gap: 20px;
     column-gap: 20px;
-    margin-top: 20px; 
+    // margin-top: 20px; 
     width: 100%;
     max-width: 900px;
     .gridItem{

@@ -25,10 +25,7 @@ const Profile = () => {
     <div className="profileMother">
       <div className="profileMain">
         <ProfileTopSect />
-
-        <div className="profilePrimary">
-          <ProfileListings/>
-        </div>
+        <ProfileListings/>
       </div>
     </div>
   );

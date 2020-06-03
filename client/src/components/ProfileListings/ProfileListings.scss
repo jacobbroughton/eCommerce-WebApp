@@ -1,7 +1,8 @@
 .profileListingsMother {
   padding-left: 20px;
-  padding-top: 20px;
+  // padding-top: 20px;
   padding-bottom: 50px;
+  min-width: 460px;
 
   h2 {
     text-align: left;
@@ -11,139 +12,146 @@
     display: flex;
     flex-direction: column;
 
-    .savedListingsParent{
+    .savedListingsParent {
       margin-left: 30px;
     }
-    
-    .activeListingsParent, .savedListingsParent, .soldListingsParent{
 
-      .browsePListings{
+    .activeListingsParent,
+    .savedListingsParent,
+    .soldListingsParent {
+      .browsePListings {
         max-width: 800px;
 
-        .savedSection, .soldSection{
-          margin-top: 20px;
+        .savedSection,
+        .soldSection{
+          margin-top: 30px;
         }
 
-        .activeSection{
-          background: "#F5F5F5"
-        }
-        .activeSection, .savedSection, .soldSection{
-        display: flex;
-        flex-direction: column;
-        width: 800px;
-
-        h3{
-          text-align: start;
-          margin: 0;
-        }
-        a{
-          text-align: left;
-          background: lightblue;
-          align-self: flex-start;
-          padding: 3px 5px;
-          margin-top: 5px;
-        }
-
-        .activeGrid, .savedGrid, .soldGrid{
+        .activeSection,
+        .savedSection,
+        .soldSection {
           display: flex;
           flex-direction: column;
-
-            .noListingsH{
-            align-self: flex-start;
-        }
-        .listItem{
+          .headParent{
             display: flex;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-            border: 1px lightgrey solid;
-            border-radius: 2px;
-            cursor: pointer;
+            align-items: center;
+            margin-bottom: 10px;
+          }
+          h3 {
+            text-align: start;
+            margin: 0;
+            text-decoration: underline;
+          }
+          a {
+            text-align: left;
+            background: lightblue;
+            align-self: flex-start;
+            padding: 3px 5px;
+            margin-left: 20px;
+          }
 
-            img, h2, h3, h4, p{
+          .activeGrid,
+          .savedGrid,
+          .soldGrid {
+            display: flex;
+            flex-direction: column;
+
+            .noListingsH {
+              align-self: flex-start;
+            }
+            .listItem {
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              position: relative;
+              border: 1px lightgrey solid;
+              border-radius: 2px;
+              cursor: pointer;
+
+              img,
+              h2,
+              h3,
+              h4,
+              p {
                 margin: 0;
                 padding: 0;
-            }
-            
-            .itemImage{
+              }
+
+              .itemImage {
                 height: 130px;
                 width: 100%;
                 object-fit: cover;
-            }
-            .itemTextParent{
+              }
+              .itemTextParent {
                 display: flex;
                 justify-content: flex-start;
                 align-items: flex-start;
                 flex-direction: column;
                 max-width: 160px;
                 padding: 8px;
-                
-            }
-            .itemTitle{
+              }
+              .itemTitle {
                 font-size: 1em;
                 font-weight: bold;
                 white-space: nowrap;
                 max-width: 160px;
-            }
-            .itemCityState{
+              }
+              .itemCityState {
                 font-size: 0.9rem;
-            }
-            .itemCategory{
+              }
+              .itemCategory {
                 font-size: 1em;
-            }
-            .itemPrice{
+              }
+              .itemPrice {
                 position: absolute;
                 top: 55%;
                 left: 10px;
                 padding: 2px;
-                font-size:  0.9em;
+                font-size: 0.9em;
                 background: black;
-                opacity: .9;
+                opacity: 0.9;
                 color: white;
                 font-weight: bold;
                 border-radius: 3px;
+              }
             }
-        }
-        .toggleDiv{
-            display: none;
-            // position: absolute;
-        }
-        .toggleDiv.active{
-            display: block;
-        }
-        #overlay {
-            position: fixed;
-            opacity: 0;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            pointer-events: none;
-            transition: 200ms ease-in-out;
-            z-index: 2;
+            .toggleDiv {
+              display: none;
+              // position: absolute;
+            }
+            .toggleDiv.active {
+              display: block;
+            }
+            #overlay {
+              position: fixed;
+              opacity: 0;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+              background-color: rgba(0, 0, 0, 0.5);
+              pointer-events: none;
+              transition: 200ms ease-in-out;
+              z-index: 2;
+            }
           }
-
         }
-        }
-        }
+      }
 
-// --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+      // --=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-
-      .activeListGrid{
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-          background: blue;
-          width: 500px;
-          display: grid;
-          justify-items: center;
-          row-gap: 20px;
-          column-gap: 20px;
-          height: 100%;
-          margin-top: 20px;
-  
-        }
+      .activeListGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        background: blue;
+        width: 500px;
+        display: grid;
+        justify-items: center;
+        row-gap: 20px;
+        column-gap: 20px;
+        height: 100%;
+        margin-top: 20px;
+      }
 
       .listingItem {
         display: flex;
@@ -171,8 +179,6 @@
           object-fit: cover;
         }
 
-
-
         .listingsTextContainer {
           display: flex;
           flex-direction: column;
@@ -189,28 +195,26 @@
           padding: 5px;
         }
       }
-
     }
-
-  }    
+  }
   .toggleDiv {
-      display: none;
-      // position: absolute;
-    }
-    #overlay {
-      position: fixed;
-      opacity: 0;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      pointer-events: none;
-      transition: 200ms ease-in-out;
-      z-index: 2;
-    }
-    #overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
+    display: none;
+    // position: absolute;
+  }
+  #overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+    z-index: 2;
+  }
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
 }

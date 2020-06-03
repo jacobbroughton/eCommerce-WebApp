@@ -2,9 +2,12 @@
     background: #fbfbfb;
      height: calc(100% - 50px);
     //  margin-top: 50px;
+    padding-left: 30px;
+    padding-top: 30px;
     .profileMain{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
         max-width: 1200px;
-        margin: 0 auto;
 
 
         hr {
