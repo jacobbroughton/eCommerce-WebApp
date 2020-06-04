@@ -119,10 +119,10 @@ const SinglePage = () => {
 
             <div className="listingGenInfoParent">
               <h1 className="title">{single.title}</h1>
-              {/* <p className={`${single.status} soldStatus`} >{single.status}</p>
-              <div className="availabilityDiv">
-                <p>Change availability?</p>
-                { single.status !== "Available" && (
+              {/* <p className={`${single.status} soldStatus`} >{single.status}</p> */}
+              {/* <div className="availabilityDiv"> */}
+                {/* <p>Change availability?</p> */}
+                {/* { single.status !== "Available" && (
                   <button className="availableBtn" value="Available" onClick={(e) => setStatus(e.target.value)}>Available</button>
                 )}
 
@@ -132,8 +132,8 @@ const SinglePage = () => {
 
                 { single.status !== "Sold" && (
                   <button className="soldBtn" value="Sold" onClick={(e) => setStatus(e.target.value)}>Sold</button>
-                )}
-              </div> */}
+                )} */}
+              {/* </div> */}
               
 
               

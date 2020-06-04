@@ -1,13 +1,20 @@
 .modalMother {
   position: fixed;
-  left: 13%;
-  right: 13%;
+  // left: 15vw;
+  // right: 15vw;
+  // position: relative;
+  // top: 60px;
   top: 10%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  
+  // top: 10%;
   height: auto;
   background: #ffffff;
   border: #333 solid 2px;
   border-radius: 3px;
-  z-index: 3;
+  z-index: 4;
   max-width: 800px;
   .modalMain {
     padding: 2em;
