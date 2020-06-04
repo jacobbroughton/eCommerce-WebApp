@@ -8,10 +8,12 @@ let API = require("../../api-calls");
 
 const SellForm = () => {
   let categoryArr = [
-    "Select Category",
+    "Select Category",    
     "Computers & Accessories",
     "Video Games",
     "Outdoors & Sports",
+    "Automotive Parts",
+    "Tools & Hardware", 
     "Cameras & Equipment",
     "Musical Instruments",
     "Office Supplies",
@@ -19,6 +21,7 @@ const SellForm = () => {
     "Fashion & Jewelry",
     "Home & Garden",
     "Toys & Games",
+    "Arts & Crafts",
     "Books",
     "Beauty"
   ];

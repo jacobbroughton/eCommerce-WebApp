@@ -85,7 +85,7 @@ const SinglePage = () => {
         <div className="singlePageMain">
           <div className="imagesGenInfoDiv">
             <div className="imagesParent">
-              {image === "" && single.image !== "null" ? (
+              {/* {image === "" && single.image !== "null" ? (
                 <img
                   className="singleImage"
                   src={`${serverUrl}/${imageArr[0]}`}
@@ -96,10 +96,15 @@ const SinglePage = () => {
               (
                 <img className="singleImage" src={image} alt="" />
               )              
-              )} 
-              {single.image === "null" && (
+              )}  */}
+              {/* {single.image === "null" && (
                 <img className="singleImage" src={placeholderImg} alt=""/>
-              )}
+              )} */}
+              {console.log(image)}
+              {single.image === 'null' 
+              ? <img className="singleImage" src={placeholderImg} alt=""/>
+              : <img className="singleImage" src={image} alt="" />
+            }
 
               {/* Side Images */}
               {imageArr.length > 1 && (
@@ -108,7 +113,7 @@ const SinglePage = () => {
                     <img
                       onClick={(e) => setImage(e.target.src)}
                       className="sideImage"
-                      src={serverUrl + image}
+                      src={serverUrl + "/" + image}
                       alt=""
                       key={image}
                     />
@@ -118,7 +123,9 @@ const SinglePage = () => {
             </div>
 
             <div className="listingGenInfoParent">
+            
               <h1 className="title">{single.title}</h1>
+              <p className={`${single.status} soldStatus`} >{single.status}</p>
               {/* <p className={`${single.status} soldStatus`} >{single.status}</p> */}
               {/* <div className="availabilityDiv"> */}
                 {/* <p>Change availability?</p> */}

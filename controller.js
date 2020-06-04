@@ -95,7 +95,7 @@ exports.getPersonalListings = (req, res) => {
   let limitedNum = req.params.limited === "y" ? 5 : 9999999;
 
   connection.query(
-    `SELECT * FROM listings WHERE seller_uid = "${req.params.selleruid}" LIMIT ${limitedNum}`,
+    `SELECT * FROM listings WHERE seller_uid = "${req.params.selleruid}" ORDER BY id DESC LIMIT ${limitedNum}`,
     (err, rows, fields) => {
       if (err) throw err;
       res.send(rows);
@@ -174,7 +174,7 @@ exports.getSaved = (req, res) => {
       let limitedNum = req.params.limited === "y" ? 5 : 9999999;
 
         connection.query(
-          `SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts}) LIMIT ${limitedNum}`,
+          `SELECT * FROM listings WHERE listing_uid IN (${rows[0].saved_posts}) ORDER BY id DESC LIMIT ${limitedNum}`,
           (err, rows2, fields) => {
             if (err) throw err;
             res.send(rows2);
@@ -313,7 +313,7 @@ exports.getStatusPersonalListings = (req, res) => {
   let rp = req.params;
   let limitedNum = rp.limited === "y" ? 5 : 9999999;
   connection.query(
-    `SELECT * FROM listings WHERE seller_uid = "${rp.selleruid}" AND status = "${rp.status}" LIMIT ${limitedNum}`,
+    `SELECT * FROM listings WHERE seller_uid = "${rp.selleruid}" AND status = "${rp.status}" ORDER BY id DESC LIMIT ${limitedNum}`,
     (err, rows, fields) => {
       if (err) throw err;
       res.send(rows);
