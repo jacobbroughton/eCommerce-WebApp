@@ -97,6 +97,9 @@
 
 
 # Incomplete
+- Add watchlist area
+    - Able to add and remove items EASILY
+    - 'Notify' / Show users that the status of the item has changed
 - Improve folder / component structure (separate by route, etc.)
 - Make 'overlay' it's own component
 - Add sorting (state / town / price / etc)

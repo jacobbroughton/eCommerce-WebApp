@@ -17,8 +17,9 @@ const ProductListItem = ({ item, toggled }) => {
     return <span></span>;
   }
 
+
   return (
-      <div key={item.id} className="listItem">
+      <div key={item.id} id="listItem" className="listItem">
         {item.image !== "null" && item.image !== null && !placeHolder ? (
           <img
             className="itemImage"

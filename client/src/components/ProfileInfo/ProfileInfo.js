@@ -7,6 +7,11 @@ const ProfileInfo = ({ dbUser }) => {
         <span className="nameParent">        
           <h1>{dbUser.first_name ? dbUser.first_name : '---'} &nbsp;</h1>
           <h1>{dbUser.last_name ? dbUser.last_name : '---'}</h1>
+          {
+              !dbUser.first_name && !dbUser.last_name && (
+              <h1>{dbUser.nickname}</h1>
+              )
+          }
         </span>
         <h4>@{dbUser.nickname ? dbUser.nickname : '---'}</h4>
         <span className="townStateParent">

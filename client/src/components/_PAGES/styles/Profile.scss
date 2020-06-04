@@ -1,9 +1,12 @@
 .profileMother{        
     background: #fbfbfb;
-     height: calc(100% - 50px);
-    //  margin-top: 50px;
-    padding-left: 30px;
-    padding-top: 30px;
+     height: calc(100% - 30px);
+    width: 920px;
+    display: flex;
+    margin: 0 auto;
+    border-left: lightgrey solid 1px;
+    border-right: lightgrey solid 1px;
+    padding: 30px 20px 0px 20px;
     .profileMain{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));

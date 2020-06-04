@@ -4,10 +4,10 @@
         grid-template-columns: repeat(4, 1fr);
         max-width: 500px;
         margin: 0 auto;
-        column-gap: .5em;
-        row-gap: .4em;
+        column-gap: .6em;
+        row-gap: .6em;
         margin-top: 25px;
-        background: lightgrey;
+        // background: lightgrey;
         padding: 20px;
         border-radius: 2px;
 
@@ -31,7 +31,7 @@
                 // grid-column: 1/5;
                 width: 100%;
                 // border: 2px solid lightgrey; 
-                border: 2px solid grey;   
+                border: 2px solid lightgrey;   
                 
                 // Default 
                 display: flex;
@@ -39,7 +39,7 @@
                 justify-content: center;
                 font-weight: bold;
                 // color: #cccccc;
-                color: grey;
+                color: lightgrey;
                 border-radius: 2px;
 
                 .imgPreview{
@@ -51,7 +51,11 @@
             }
 
         }
-
+        input, textarea, select{
+            border-radius: 2px;
+            appearance: none;
+            border: grey solid 1px;
+        }
         .priceInput{
             grid-column: 1/3;
         }

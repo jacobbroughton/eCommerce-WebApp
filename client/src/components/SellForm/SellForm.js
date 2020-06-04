@@ -29,8 +29,8 @@ const SellForm = () => {
     "Local Only (Meet up)",
     "Local Only (Pickup)"
   ];
-  let priceOfferArr = ["Select offer options", "Firm", "Reasonable offers only", "Any offer"];
-  let tradeArr = ["Select trade options", "No Trades", "Will consider category related Trades", "Will consider any Trade"]
+  let priceOfferArr = ["Select Offer Options", "Firm", "Reasonable offers only", "Any offer"];
+  let tradeArr = ["Select Trade Options", "No Trades", "Will consider category related Trades", "Will consider any Trade"]
 
   const { dbUser } = useAuth0();
   const { serverUrl } = useStatusUrl();

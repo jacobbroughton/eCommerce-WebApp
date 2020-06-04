@@ -1,11 +1,20 @@
 .browseViewMother{
     display: flex;
+    justify-content: center; // 
     height: 100%;
+    
+    .catsAndListParent{
+        border-left: lightgrey solid 1px; //
+        border-right: lightgrey solid 1px; // 
+        padding: 30px 20px 0px 20px; //
+        margin: 0 auto;
+    }
 
     .singleWrapper{
         display: flex;
         flex-direction: column;
         margin-top: 20px;
+        margin-left: 250px;
         
         .searchWrapper{
             position: fixed;
@@ -15,7 +24,7 @@
             width: 100%;
             background: white;
             padding: 20px 0;
-            margin-left: 250px;
+            // margin-left: 250px;
             z-index: 2;
             
             h3{

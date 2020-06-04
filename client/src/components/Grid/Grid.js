@@ -11,17 +11,22 @@ const Grid = ({ limited, handleModalView, listings, gridItemNum }) => {
   }, [gridItemNum]);
 
   return (
-    <div className="gridMother">
-      {listings.length >= 1 ? (
-        listings.slice(0, gridCount).map((list) =>
+    <>
+    {listings.length >= 1 ? (
+          //  {!listings ? ( 
+      <div className="gridMother">
+        {listings.slice(0, gridCount).map((list) =>
           handleModalView ? (
             <div
               className="gridItem"
-              id=""
+              id="gridItem"
               key={list.listing_uid}
               onClick={() => handleModalView(list)}
             >
-              <ProductListItem item={list} />
+              {
+                limited ? <ProductListItem item={list} /> : <ProductListItem item={list} />
+              }
+              
             </div>
           ) : (
             <Link
@@ -33,17 +38,19 @@ const Grid = ({ limited, handleModalView, listings, gridItemNum }) => {
               <ProductListItem item={list} />
             </Link>
           )
-        )
-      ) : (
-        limited ? 
-        <></>
-        :
+        )}
+
+    </div>      
+    ) : (
+   
         <div className="notAvailableMother">
           <h2 className="naHead">No listings available...</h2>
-          <p className="naPara">Please try different search terms</p>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
