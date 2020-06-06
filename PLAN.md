@@ -97,13 +97,12 @@
 
 
 # Incomplete
+- Focus on security & make trust factors paramount
 - Add watchlist area
     - Able to add and remove items EASILY
     - 'Notify' / Show users that the status of the item has changed
-- Improve folder / component structure (separate by route, etc.)
 - Make 'overlay' it's own component
-- Add sorting (state / town / price / etc)
-- Move commonly used functions / state to context files
+- Add sorting + filtering (state / town / price / etc)
 - Let users add more info about themselves (bio, images, etc)
 - Add 'view all in category' when on a single listing view.
 - Clean up CSS files, employ DRY method
@@ -111,21 +110,20 @@
 - Let users edit their profile info, and add new info
 - Adjust image resize
 - Let users choose their grid layout
-- Add filtering
 - Let sellers create "stores"
 - Make picture full screen on click
 - Make all selling fields required.
-- Add "wanted" section.
+- Add services section.
+- Bidding system for promoted adverts
 - Add "As of 3:45pm 3/4/20" next to the sold status on listing
     - Update whenever the user has checked the site again
 - Add dark mode (context).
 - Consider utilizing cookies for temporary buyers accounts, or something else.
 - Add menu/options on rightclick of mouse (ex. Spotify).
-- Add basic "Report Listing" functionality.
+- Add reporting system
 - Add "similar" section for each listing, maybe 3 or 4..
-- Add admin panel.
-- Come up with a name.
 - Add trust factors (ex. eBay, pinkbike)
+- Add disabled but visible signed in buttons
 
 
 

@@ -16,7 +16,7 @@ import { useAuth0 } from "../contexts/auth0-context.js";
 
 const AppRouter = () => (
     <Switch>
-        <Route exact path="/" component={Index}/>
+        <HomeRoute exact path="/" component={Index}/>
         {/* <Route exact path="/browse" component={Browse}/> */}
         <Route path="/browse/single/:listinguid" component={Single}/>
         <Route path="/browse/category/:category" component={CategoryView}/>
@@ -25,10 +25,20 @@ const AppRouter = () => (
         <PrivateRoute path="/profile/allsold" component={SoldAll}/>
         <PrivateRoute path="/profile/allsaved" component={SavedAll}/>
         <PrivateRoute path="/profile/allactive" component={ActiveAll}/>
-        <PrivateRoute path="/sell" component={SellPage}/>
+        <SellRoute path="/sell" component={SellPage}/>
     </Switch>
 );
 
+const HomeRoute = ({ component: Component, ...rest }) => {
+    return (
+        <Route
+            {...rest}
+            render={() => 
+                ( <Redirect to={{ pathname: "/browse/category/All-For-Sale" }}/>)
+            }
+        />
+    )
+}
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -43,6 +53,22 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                 :
                 ( <Redirect to={{ pathname: "/" }}/> )
             }
+        />
+    )
+}
+
+const SellRoute = ({ component: Component, ...rest }) => {
+    const { dbUser } = useAuth0();
+
+    return (
+        <Route
+        {...rest}
+        render={props => 
+            dbUser.firstName && dbUser.lastName ? 
+            ( <Component {...props}/> )
+            :
+            ( <Redirect to={{ pathname: "/" }}/> )
+        }
         />
     )
 }

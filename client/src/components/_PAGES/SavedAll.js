@@ -16,7 +16,7 @@ const SavedAll = () => {
     }
 
     useEffect(() => {
-        if(dbUser) { getSavedListings(); }
+        dbUser && getSavedListings();
     }, [dbUser])
     
     return(

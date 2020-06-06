@@ -17,12 +17,9 @@ const ActiveAll = () => {
 
 
     useEffect(() => {
-        if(!dbUser) {
-            console.log("No dbUser")
-        } else {
-            console.log("Yes dbUser")
-            getActives()
-        }
+
+        dbUser && getActives();
+
     }, [dbUser])
     
     return(

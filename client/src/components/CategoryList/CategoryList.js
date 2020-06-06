@@ -15,7 +15,7 @@ const CategoryList = ({ handleCatClick }) => {
         "Musical Instruments",
         "Office Supplies",
         "Cell Phones",
-        "Fashion & Jewel ry",
+        "Fashion & Jewelry",
         "Home & Garden",
         "Toys & Games",
         "Arts & Crafts",

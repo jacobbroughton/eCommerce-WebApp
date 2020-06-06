@@ -100,10 +100,10 @@ const SinglePage = () => {
               {/* {single.image === "null" && (
                 <img className="singleImage" src={placeholderImg} alt=""/>
               )} */}
-              {console.log(image)}
+              {console.log(imageArr)}
               {single.image === 'null' 
               ? <img className="singleImage" src={placeholderImg} alt=""/>
-              : <img className="singleImage" src={image} alt="" />
+              : <img className="singleImage" src={serverUrl + "/" + imageArr[0]} alt="" />
             }
 
               {/* Side Images */}
