@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="loggedIn">
           <button onClick={logout} className="logOutBtn">Logout</button>
           <Link to="/browse/category/All-For-Sale" className="browseLink">Browse</Link>
-          { dbUser && dbUser.first_name && (
+          { dbUser && dbUser.first_name && dbUser.last_name && (
             <Link to="/sell" className="sellLink">Sell</Link>
           )}
           <Link to="/profile" className="profileLink">Profile</Link>

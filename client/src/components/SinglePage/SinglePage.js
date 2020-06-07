@@ -24,6 +24,7 @@ const SinglePage = () => {
     }
 
     useEffect(() => {
+      document.body.style.overflow = "scroll";
         handleOnLoad()
     }, [])
 

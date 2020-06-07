@@ -5,8 +5,8 @@ const ProfileInfo = ({ dbUser }) => {
     return (
         <div className="userParent">
         <span className="nameParent">        
-          <h1>{dbUser.first_name ? dbUser.first_name : '---'} &nbsp;</h1>
-          <h1>{dbUser.last_name ? dbUser.last_name : '---'}</h1>
+          <h1>{dbUser.first_name && dbUser.first_name} &nbsp;</h1>
+          <h1>{dbUser.last_name && dbUser.last_name}</h1>
           {
               !dbUser.first_name && !dbUser.last_name && (
               <h1>{dbUser.nickname}</h1>
