@@ -1,0 +1,11 @@
+.errorPageMother{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 50px);
+
+    .errorPageChild{
+        max-width: 300px;
+    }
+}

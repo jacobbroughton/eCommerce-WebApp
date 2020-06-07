@@ -9,6 +9,7 @@ import SellPage from "./_PAGES/SellPage";
 import Browse from "./_PAGES/Browse";
 import Single from "./_PAGES/Single";
 import CategoryView from "./_PAGES/CategoryView";
+import ErrorPage from "./_PAGES/ErrorPage";
 import Search from "./_PAGES/Search";
 import { useAuth0 } from "../contexts/auth0-context.js";
 
@@ -26,6 +27,7 @@ const AppRouter = () => (
         <PrivateRoute path="/profile/allsaved" component={SavedAll}/>
         <PrivateRoute path="/profile/allactive" component={ActiveAll}/>
         <SellRoute path="/sell" component={SellPage}/>
+        <Route component={ErrorPage}/>
     </Switch>
 );
 
@@ -59,12 +61,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const SellRoute = ({ component: Component, ...rest }) => {
     const { dbUser } = useAuth0();
+    console.log(dbUser)
 
     return (
         <Route
         {...rest}
         render={props => 
-            dbUser.firstName && dbUser.lastName ? 
+            dbUser.first_name && dbUser.last_name ? 
             ( <Component {...props}/> )
             :
             ( <Redirect to={{ pathname: "/" }}/> )
