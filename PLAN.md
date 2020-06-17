@@ -94,6 +94,9 @@
     * Work from parent component to child
 * Split up components into more consise, smaller, reusable components
 
+# Feature Ideas
+- Dark Mode
+- Trust factors (ex. eBay, pinkbike)
 
 
 # Incomplete
@@ -117,15 +120,8 @@
 - Bidding system for promoted adverts
 - Add "As of 3:45pm 3/4/20" next to the sold status on listing
     - Update whenever the user has checked the site again
-- Add dark mode (context).
+<!-- - Add dark mode (context). -->
 - Consider utilizing cookies for temporary buyers accounts, or something else.
 - Add menu/options on rightclick of mouse (ex. Spotify).
 - Add reporting system
 - Add "similar" section for each listing, maybe 3 or 4..
-- Add trust factors (ex. eBay, pinkbike)
-- Add disabled but visible signed in buttons
-
-
-
-
-# Profile page ideas

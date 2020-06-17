@@ -4,6 +4,12 @@ let multer = require("multer");
 let upload = multer().array("myFile", 4);
 const sharp = require("sharp"); // image manipulation
 const connection = mysql.createConnection(process.env.CONN_STRING);
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
+});
 connection.connect();
 
 exports.findUser = (req, res) => {
