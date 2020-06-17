@@ -41,8 +41,6 @@ const ProductList = ({
   let [loadBtn, setLoadBtn] = useState(false);
   let [toggled, setToggled] = useState(false);
 
-
-  
   let initialState = {
     listings: [],
     currentItem: null,
@@ -52,25 +50,17 @@ const ProductList = ({
     toggled: false,
   };
 
-
-
   let [state, dispatch] = useReducer(ProductListReducer, initialState);
-
-
 
   const getCategoryBrowseCount = async (newCategoryArg) => {
     let res = await API.getCategoryBrowseCount(serverUrl, newCategoryArg);
     setBrowseLimit(res.data.COUNT);
   };
 
-
-
   const getSearchBrowseCount = async (formattedSearchArg) => {
     let res = await API.getSearchBrowseCount(serverUrl, formattedSearchArg);
     setSearchLimit(res.data.COUNT);
   };
-
-
 
   const getSearchListings = async (formattedSearchArg) => {
     let res = await API.getSearchListings(
@@ -81,23 +71,17 @@ const ProductList = ({
     dispatch({ type: "listings", payload: res.data });
   };
 
-
-
   const getAllListings = async () => {
     let res = await API.getAll(serverUrl, resultNum);
     console.log(res);
     dispatch({ type: "listings", payload: res.data });
   };
 
-
-
   const getCategoryListings = async (newCategory) => {
     let res = await API.getCategory(serverUrl, newCategory, resultNum);
     dispatch({ type: "listings", payload: res.data });
   };
 
-
-  
   useEffect(() => {
     dispatch({ type: "listings", payload: [...incomingListings] });
 
@@ -167,17 +151,6 @@ const ProductList = ({
             listings={state.listings}
             gridItemNum={resultNum}
           />
-          {toggled && (
-            <div className="singleModalParent">
-              <SingleModal
-                handleModalView={handleModalView}
-                handleToggle={handleToggle}
-                toggled={toggled}
-                item={currentItem}
-              />
-            </div>
-          )}
-          <div onClick={() => overlayClose()} className="" id="overlay"></div>
         </div>
 
         {state.listings.length !== searchLimit &&
@@ -188,9 +161,19 @@ const ProductList = ({
             </button>
           )}
       </div>
+      {toggled && (
+        <div className="singleModalParent">
+          <SingleModal
+            handleModalView={handleModalView}
+            handleToggle={handleToggle}
+            toggled={toggled}
+            item={currentItem}
+          />
+        </div>
+      )}
+      <div onClick={() => overlayClose()} className="" id="overlay"></div>
     </div>
   );
-  // }
 };
 
 export default withRouter(ProductList);

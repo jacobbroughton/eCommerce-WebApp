@@ -1,15 +1,12 @@
 .modalMother {
-  position: fixed;
-  // left: 15vw;
-  // right: 15vw;
+  // position: fixed;
+  position: absolute;
+  
   // position: relative;
-  // top: 60px;
   top: 10%;
   left: 0;
   right: 0;
   margin: 0 auto;
-  
-  // top: 10%;
   height: auto;
   background: #ffffff;
   border: #333 solid 2px;
@@ -121,8 +118,8 @@
             align-items: flex-start;
             .genInfoLabel {
               color: #333;
-              opacity: 0.9;
-              font-size: 0.95rem;
+              opacity: 1;
+              font-size: 0.9rem;
             }
             .genInfoP {
               font-size: 1.1rem;
@@ -136,6 +133,7 @@
               appearance: none;
               background: lightblue;
               color: black;
+              border: none;
               font-weight: bold;
               border-radius: 3px;
               cursor: pointer;

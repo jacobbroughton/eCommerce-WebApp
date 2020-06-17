@@ -266,32 +266,6 @@ exports.search2 = (req, res) => {
         return uidArr;
       })
 
-      // let uidArr = rows.filter((item) => item.tags.includes(uniqArr));
-
-
-      // console.log(uidArr)
-
-
-      
-      // rows.filter(async (item) => {
-      //   try {
-      //     // await item.tags.includes(uniqArr.forEach((i) => {
-      //     //   uidArr.push(item.listing_uid)
-      //     //   return uidArr
-      //     // }))
-      //     forEach(item.tags.includes(uniqArr.forEach(() => console.log("boop")))) {
-      //       console.log("YEPP")
-      //       uidArr.push(item.listing_uid)
-      //       return uidArr
-      //     }
-      //     // return uidArr
-
-    
-      //   } catch (err) {
-      //     console.log("Error here")
-      //     console.log(err)
-      //   }
-      // })
 
 
       uidArr.length === 0

@@ -39,6 +39,7 @@ nav{
         
         .logInBtn{
         margin-right: 10px;
+        border: none;
     }
     }
     .loggedOut{
@@ -51,7 +52,9 @@ nav{
     }
 
     .loggedIn{
-        .logOutBtn{}
+        .logOutBtn{
+           border: none;
+        }
         .profileLink, .sellLink, .browseLink{
             margin-left: 10px;
         }

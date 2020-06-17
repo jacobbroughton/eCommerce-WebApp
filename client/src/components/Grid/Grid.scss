@@ -1,6 +1,6 @@
 .gridMother{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 210px);
+    grid-template-columns: repeat(4, 210px);
     justify-items: left;
     row-gap: 20px;
     column-gap: 20px;
@@ -20,6 +20,10 @@
             width: 100%;
             object-fit: cover;
         }
+    }
+
+    @media(max-width: 750px) {
+        grid-template-columns: repeat(2, 210px);
     }
 
 }    
@@ -44,3 +48,4 @@
             width: 100%;
         }
     }
+    

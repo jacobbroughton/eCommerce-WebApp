@@ -136,7 +136,7 @@ const ProfileEditModal = ({ toggled, handleToggled }) => {
         </div>
       )}
       <div onClick={() => overlayClose()} className="" id="overlay"></div>
-      <button onClick={() => handleToggled()}>Edit Profile</button>
+      <button onClick={() => handleToggled()}>Verify your profile</button>
     </>
   );
 };
