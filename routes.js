@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const controller = require("./controller.js");
 const multer = require("multer"); // image upload
-const sharp = require("sharp"); // image manipulation
 const upload = multer({
   dest: "./uploads/",
   limits: {
