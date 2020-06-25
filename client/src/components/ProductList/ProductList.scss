@@ -26,12 +26,12 @@
         background-color: rgba(0, 0, 0, 0.5);
         pointer-events: none;
         transition: 200ms ease-in-out;
-        z-index: 4;
+        z-index: 2;
       }
       #overlay.active {
-        // opacity: 1;
-        // pointer-events: all;
-        // overflow-y: hidden;
+        opacity: 1;
+        pointer-events: all;
+        overflow-y: hidden;
       }
 
     .browsePMain{

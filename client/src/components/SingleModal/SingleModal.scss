@@ -1,6 +1,6 @@
 .modalMother {
-  // position: fixed;
-  position: absolute;
+  position: fixed;
+  // position: absolute;
   
   // position: relative;
   top: 10%;
@@ -157,6 +157,7 @@
             flex-direction: column;
             justify-content: flex-start;
             .shareBtn{
+              background: none;
               font-size: 1rem;
               appearance: none;
               border: none;

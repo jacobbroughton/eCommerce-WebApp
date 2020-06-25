@@ -120,8 +120,11 @@
 - Bidding system for promoted adverts
 - Add "As of 3:45pm 3/4/20" next to the sold status on listing
     - Update whenever the user has checked the site again
-<!-- - Add dark mode (context). -->
 - Consider utilizing cookies for temporary buyers accounts, or something else.
 - Add menu/options on rightclick of mouse (ex. Spotify).
 - Add reporting system
 - Add "similar" section for each listing, maybe 3 or 4..
+- Change how search parameters work (include title + filters + tags)
+- Add pages indicator (shows the page that you're on)
+    - Put it on top and bottom
+- Add "2 Items for Sale / 4 Items Sold" indicator for users
