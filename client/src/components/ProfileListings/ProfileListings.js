@@ -106,7 +106,7 @@ const ProfileListings = () => {
             </div>
 
             <div className="soldSection">
-              {soldListings.length >= 1 && (
+              {soldListings.length >= 1 ?
                 <>
                   <div className="headParent">
                     <h3>Sold Listings</h3>
@@ -122,8 +122,13 @@ const ProfileListings = () => {
                     gridItemNum={2}
                   />
                 </>
-              )}
+                :
+                <>
+                  <h3>You've sold no listings!</h3>
+                </>
+              }
             </div>
+            
 
             {toggled && (
               <SingleModal

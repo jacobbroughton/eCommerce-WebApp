@@ -4,7 +4,7 @@ import { useStatusUrl } from "../../contexts/statusUrl-context";
 import placeholderImg from "../../assets/download.jpg";
 import "./ProductList-Item.scss";
 
-const ProductListItem = ({ item, toggled }) => {
+const ProductListItem = ({ item, small }) => {
   let [placeHolder, setPlaceHolder] = useState(true);
   const { serverUrl } = useStatusUrl();
 
@@ -19,6 +19,43 @@ const ProductListItem = ({ item, toggled }) => {
 
 
   return (
+    small ?  
+
+      // SMALL
+      <div key={item.id} id="smallListItem" className="smallListItem">
+      {item.image !== "null" && item.image !== null && !placeHolder ? (
+        <img
+          className="itemImage"
+          src={`${serverUrl}/${item.image.split(" ")[0]}`}
+          alt=""
+        />
+      ) : (
+        <img
+          className="itemImage"
+          src={placeholderImg}
+          alt=""
+        />
+      )}
+
+
+      <div className="itemTextParent">
+        {item.title.length > 20 ? (
+          <p className="itemTitle">{item.title.slice(0, 20)}...</p>
+        ) : (
+          <p className="itemTitle">{item.title}</p>
+        )}
+        <p className="itemCityState">
+          {item.city}, {item.state}
+        </p>
+        <p className="itemPrice">${item.price}</p>
+      </div>
+
+      
+    </div>
+
+    :
+
+
       <div key={item.id} id="listItem" className="listItem">
         {item.image !== "null" && item.image !== null && !placeHolder ? (
           <img
@@ -48,6 +85,10 @@ const ProductListItem = ({ item, toggled }) => {
 
         <p className="itemPrice">${item.price}</p>
       </div>
+
+
+
+      
   );
 };
 

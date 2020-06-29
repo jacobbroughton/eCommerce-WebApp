@@ -24,7 +24,7 @@ const Grid = ({ limited, handleModalView, listings, gridItemNum }) => {
               onClick={() => handleModalView(list)}
             >
               {
-                limited ? <ProductListItem item={list} /> : <ProductListItem item={list} />
+                limited ? <ProductListItem item={list} small={true} /> : <ProductListItem item={list} small={false}/>
               }
               
             </div>
@@ -35,7 +35,7 @@ const Grid = ({ limited, handleModalView, listings, gridItemNum }) => {
               id=""
               key={list.listing_uid}
             >
-              <ProductListItem item={list} />
+              <ProductListItem item={list} small={false}/>
             </Link>
           )
         )}

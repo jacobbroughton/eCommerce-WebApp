@@ -3,7 +3,8 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    // border: 1px lightgrey solid;
+    border: 1px lightgrey solid;
+    background: #ffffff;
     border-radius: 4px;
     cursor: pointer;
     max-width: 208px;
@@ -45,6 +46,67 @@
         left: 10px;
         padding: 2px;
         font-size:  0.9em;
+        background: black;
+        opacity: .9;
+        color: white;
+        font-weight: bold;
+        border-radius: 3px;
+    }
+}
+
+.smallListItem{
+    display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+    background: #ffffff;
+    position: relative;
+    border: 1px lightgrey solid;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 208px;
+
+    img, h2, h3, h4, p{
+        margin: 0;
+        padding: 0;
+    }
+    
+    .itemImage{
+        height: 69px;
+        width: 65px;
+        object-fit: cover;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+    .itemTextParent{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        max-width: 160px;
+        // padding: 8px;
+        padding: 5px 8px 5px 8px;
+        
+    }
+    .itemTitle{
+        font-size: 1em;
+        font-weight: 700;
+        white-space: nowrap;
+        max-width: 160px;
+        margin-bottom: 2px;
+    }
+    .itemCityState{
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+    }
+    .itemCategory{
+        font-size: 1em;
+    }
+    .itemPrice{
+        // position: absolute;
+        // top: 55%;
+        // left: 60px;
+        padding: 1px 2px;
+        font-size:  0.85em;
         background: black;
         opacity: .9;
         color: white;
