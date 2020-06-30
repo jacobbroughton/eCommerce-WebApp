@@ -31,7 +31,7 @@
       #overlay.active {
         opacity: 1;
         pointer-events: all;
-        overflow-y: hidden;
+        // overflow-y: hidden;
       }
 
     .browsePMain{
@@ -98,7 +98,7 @@
             height: 100%;
             margin-top: 50px;
             position: relative;
-            overflow-x: hidden;
+            // overflow-x: hidden;
 
 
 
@@ -137,8 +137,10 @@
             font-size: 1rem;
             margin-top: 20px;
             border-radius: 3px;
+            padding: 3px 8px;
             background: lightblue;
             font-weight: 700;
+            border: 1px solid black;
         }
     }
 }

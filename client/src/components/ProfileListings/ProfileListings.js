@@ -66,7 +66,7 @@ const ProfileListings = () => {
         <div className="activeListingsParent">
           <div className="browsePListings">
             <div className="activeSection">
-              {activeListings.length >= 1 && (
+              {activeListings.length >= 1 ?
                 <>
                   <div className="headParent">
                     <h3>Your Listings</h3>
@@ -82,11 +82,16 @@ const ProfileListings = () => {
                     gridItemNum={2}
                   />
                 </>
-              )}
+                :
+                <>
+                  <h3>You've created no listings!</h3>
+                </>
+              }
             </div>
 
             <div className="savedSection">
-              {savedListings.length >= 1 && (
+              {console.log(savedListings.length)}
+              {savedListings.length >= 1 ? 
                 <>
                   <div className="headParent">
                     <h3>Saved Listings</h3>
@@ -102,7 +107,11 @@ const ProfileListings = () => {
                     gridItemNum={2}
                   />
                 </>
-              )}
+                :
+                <>
+                  <h3>You've saved no listings!</h3>
+                </>
+              }
             </div>
 
             <div className="soldSection">

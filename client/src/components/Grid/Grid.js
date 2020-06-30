@@ -7,6 +7,7 @@ const Grid = ({ limited, handleModalView, listings, gridItemNum }) => {
   let [gridCount, setGridCount] = useState(gridItemNum);
 
   useEffect(() => {
+    console.log(listings)
     !gridItemNum ? setGridCount(8) : setGridCount(gridItemNum)
   }, [gridItemNum]);
 
