@@ -25,7 +25,7 @@ exports.findUser = (req, res) => {
 exports.addUser = (req, res) => {
   let r = req.body;
   connection.query(
-    `INSERT INTO users (user_uid, email, nickname, first_name, last_name, town, state, date_created, time_created) VALUES ("${r.user_uid}", "${r.email}", "${r.nickname}", ${r.first_name}, ${r.last_name}, ${r.town}, ${r.state}, "${r.date_created}", "${r.time_created}")`,
+    `INSERT INTO users (user_uid, email, nickname, first_name, last_name, town, state, date_created, time_created, verified, bio) VALUES ("${r.user_uid}", "${r.email}", "${r.nickname}", ${r.first_name}, ${r.last_name}, ${r.town}, ${r.state}, "${r.date_created}", "${r.time_created}", "${r.verified}", "${r.bio}")`,
     (err, rows, fields) => {
       if (err) throw err;
     }
@@ -35,7 +35,7 @@ exports.addUser = (req, res) => {
 exports.updateProfile = (req, res) => {
   let r = req.body;
   connection.query(
-    `UPDATE users SET first_name = "${r.firstName}", last_name = "${r.lastName}", town = "${r.townCity}", state = "${r.state}" WHERE user_uid = "${req.params.useruid}" `,
+    `UPDATE users SET first_name = "${r.firstName}", last_name = "${r.lastName}", town = "${r.townCity}", state = "${r.state}", verified = ${r.verified} WHERE user_uid = "${req.params.useruid}" `,
     (err, rows, fields) => {
       if (err) throw err;
     }

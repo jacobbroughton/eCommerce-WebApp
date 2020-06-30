@@ -54,7 +54,9 @@ export class Auth0Provider extends Component {
           state: null,
           date_created: date,
           time_created: time,
-          saved_posts: ""
+          saved_posts: "",
+          verified: false,
+          bio: ""
         }
 
     if (newUser.given_name) {

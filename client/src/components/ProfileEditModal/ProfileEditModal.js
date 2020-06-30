@@ -86,14 +86,17 @@ const ProfileEditModal = ({ toggled, handleToggled }) => {
       lastName: lastNameValue,
       townCity: townCityValue,
       state: stateValue,
+      verified: true
     };
 
     await API.handleFormSubmit(serverUrl, dbUser, obj);
+
+    window.location.reload();
   };
 
   return (
     <>
-      {toggled && (
+      {!dbUser.verified && toggled && (
         <div className="profEditMother">
           <div className="formParent">
             <form className="editForm" onSubmit={(e) => handleFormSubmit(e)}>
@@ -129,14 +132,18 @@ const ProfileEditModal = ({ toggled, handleToggled }) => {
                   </option>
                 ))}
               </select>
-            <textarea placeholder="Bio"></textarea>
-              <input type="submit" className="formItem submit" placeholder="Submit" />
+            {/* <textarea placeholder="Bio"></textarea>
+              <input type="submit" className="formItem submit" placeholder="Submit" /> */}
             </form>
           </div>
         </div>
       )}
       <div onClick={() => overlayClose()} className="" id="overlay"></div>
-      <button onClick={() => handleToggled()}>Verify your profile</button>
+      {!dbUser.verified && (
+        <button onClick={() => handleToggled()} className="verifyProfButton">Verify your profile</button>
+      )}
+      
+      
     </>
   );
 };
