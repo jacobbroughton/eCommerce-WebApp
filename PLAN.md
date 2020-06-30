@@ -128,3 +128,5 @@
 - Add pages indicator (shows the page that you're on)
     - Put it on top and bottom
 - Add "2 Items for Sale / 4 Items Sold" indicator for users
+- Require entire address in order to be verified
+    - Optional: Verify that address is correct via api
