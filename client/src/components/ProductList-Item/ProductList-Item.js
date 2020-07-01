@@ -28,6 +28,7 @@ const ProductListItem = ({ item, small }) => {
           className="itemImage"
           src={`${serverUrl}/${item.image.split(" ")[0]}`}
           alt=""
+          onError={(e) => console.log(e)}
         />
       ) : (
         <img

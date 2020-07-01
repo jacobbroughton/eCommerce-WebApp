@@ -1,9 +1,9 @@
 .loadingMother{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    left: 0;
+    // position: absolute;
+    // left: 0;
+    // right: 0;
+    // top: 0;
+    // left: 0;
     display: none;
     background: #ffffff;
     .loadingMainFull, .loadingMainPartial{
@@ -18,5 +18,12 @@
     }
     .loadingMainPartial{
         margin-left: 250px;
+    }
+    .loadingSinglePage{
+        width: 784px;
+        background: #ffffff;
+        border: lightgrey solid 1px;
+        border-radius: 3px;
+        height: 500px;
     }
 }

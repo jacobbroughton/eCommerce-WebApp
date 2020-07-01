@@ -15,6 +15,213 @@
   max-width: 800px;
   .modalMain {
     padding: 2em;
+    // h1,
+    // h2,
+    // h3,
+    // h4,
+    // h5,
+    // h6,
+    // p {
+    //   margin: 0;
+    //   padding: 0;
+    // }
+
+    // .imagesGenInfoDiv {
+    //   display: flex;
+    //   .imagesParent {
+    //     display: flex;
+    //     .singleImage {
+    //       height: 100%;
+    //       width: 300px;
+    //       object-fit: cover;
+    //       // box-shadow: 4px 4px 7px rgba(58, 58, 58, 0.2);
+    //       box-shadow: 0px 3px 6px rgba(58, 58, 58, 0.1);
+    //       border-radius: 3px;
+          
+    //     }
+    //     .sideImagesParent{
+    //       display: flex;
+    //       flex-direction: column;
+    //       height: 55px;
+    //       width: 55px;
+    //       margin-left: 10px;
+    //       .sideImage{
+    //         height: 100%;
+    //         width: 100%;
+    //         margin-bottom: 5px;
+    //         cursor: pointer;
+    //         object-fit: cover;
+    //       }
+    //     }
+    //   }
+    //   .listingGenInfoParent {
+    //     display: flex;
+    //     flex-direction: column;
+    //     margin-left: 20px;
+    //     .title{
+    //         text-align: left;
+    //         color: #333;
+    //         opacity: 0.9;
+    //         margin-bottom: 20px;
+    //     }          
+    //     .soldStatus{
+    //       font-weight: 600;
+    //       text-align: left;
+    //       padding: 5px 8px;
+    //       margin-bottom: 1em; 
+    //       border: 1px solid #333;
+    //       border-radius: 3px;
+    //     }
+
+    //     .Sold{
+    //         background: red;
+    //         // color: white;
+    //       }
+    //       .Pending{
+    //         background: yellow;
+           
+    //       }
+    //       .Available{
+    //         background: green;
+    //         color: white;
+    //       }
+    //     .availabilityDiv{
+    //       display: flex;
+          
+
+
+    //       .availableBtn{
+    //         background: lightgreen;
+    //         color: black;
+    //         font-weight: 500;
+    //       }
+    //       .pendingBtn{
+    //         background: yellow;
+    //         color: black;
+    //         font-weight: 500;
+    //       }
+    //       .soldBtn{
+    //         background: rgb(237, 97, 97);
+    //         color: black;
+    //         font-weight: 500;
+    //       }
+    //     }
+
+    //     .listingGenInfo {
+    //       display: grid;
+    //       grid-template-columns: repeat(2, 1fr);
+    //       row-gap: 1em;
+    //       column-gap: 1.5em;
+    //       .listingGenItem {
+    //         display: flex;
+    //         flex-direction: column;
+    //         align-items: flex-start;
+    //         .genInfoLabel {
+    //           color: #333;
+    //           opacity: 1;
+    //           font-size: 0.9rem;
+    //           font-weight: bolder;
+    //         }
+    //         .genInfoP {
+    //           font-size: 1.1rem;
+    //         }
+    //       }
+    //       .saveBtnParent{
+    //         display: flex;
+    //         justify-content: flex-start;
+    //         .saveBtn{
+    //           font-size: 1rem;
+    //           appearance: none;
+    //           background: lightblue;
+    //           color: black;
+    //           border: none;
+    //           font-weight: bold;
+    //           border-radius: 3px;
+    //           cursor: pointer;
+    //         }
+    //       }
+    //       .viewListing{
+    //         display: flex;
+    //         justify-content: flex-start;
+    //         font-size: 1em;
+    //         font-weight: bold;
+    //       }
+
+    //       #copyText{
+    //         position: absolute;
+    //         top: 0;
+    //         opacity: 0;
+    //         cursor: default;
+    //       }
+    //       .shareDiv{
+    //         display: flex;
+    //         flex-direction: column;
+    //         justify-content: flex-start;
+    //         .shareBtn{
+    //           background: none;
+    //           font-size: 1rem;
+    //           appearance: none;
+    //           border: none;
+    //           font-weight: bold;
+    //           text-align: left;
+    //           padding: 0;
+    //         }
+    //         .copiedPrompt{
+    //           display: none;
+    //           position: absolute;
+    //           margin-top: 20px;
+    //           text-align: left;
+    //           font-size: 0.85rem;
+    //           // position: absolute;
+    //         }
+    //         .copiedPrompt.active{
+    //           display: block;
+    //         }
+
+    //       }
+    //       .deleteBtn{
+    //         appearance: none;
+    //         background: none;
+    //         border: none;
+    //         text-align: left;
+    //         font-size: 1rem;
+    //         font-weight: bold;
+    //         padding: 0;
+    //         color: red;
+    //       }
+    //         .contactBtn{
+    //           font-size:1rem;
+    //           text-align: left;
+    //           font-weight: bold;
+    //         }
+
+
+    //     }
+
+    //   }        
+
+    // }      
+    // hr{
+    //     margin-top: 20px !important;
+    //     margin-bottom: 20px;
+    // }
+    // .listingDescInfo{
+    //         display: flex;
+    //         flex-direction: column;
+    //         margin-top: 20px;
+    //         .description{
+    //             text-align: left;
+    //             margin-bottom: 20px;
+    //             white-space: pre-wrap;
+    //         }
+    //         .dateTime{
+    //             text-align: left;
+    //             background: #cccccc;
+    //             align-self: flex-start;
+    //             padding: 5px;
+
+    //         }
+    //     }
     h1,
     h2,
     h3,
@@ -26,26 +233,28 @@
       padding: 0;
     }
 
+    .title {
+      margin-bottom: 0.5em;
+    }
+
     .imagesGenInfoDiv {
       display: flex;
       .imagesParent {
         display: flex;
         .singleImage {
-          height: 100%;
+          height: 234px;
           width: 300px;
           object-fit: cover;
-          // box-shadow: 4px 4px 7px rgba(58, 58, 58, 0.2);
           box-shadow: 0px 3px 6px rgba(58, 58, 58, 0.1);
           border-radius: 3px;
-          
         }
-        .sideImagesParent{
+        .sideImagesParent {
           display: flex;
           flex-direction: column;
           height: 55px;
           width: 55px;
           margin-left: 10px;
-          .sideImage{
+          .sideImage {
             height: 100%;
             width: 100%;
             margin-bottom: 5px;
@@ -58,170 +267,158 @@
         display: flex;
         flex-direction: column;
         margin-left: 20px;
-        .title{
-            text-align: left;
-            color: #333;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }          
-        .soldStatus{
+        // .title {
+        //   text-align: left;
+        //   color: #333;
+        //   opacity: 0.9;
+        //   margin-bottom: .5em;
+        // }
+        .soldStatus {
+          display: flex;
+          align-self: flex-start;
+          font-size: 1rem;
           font-weight: 600;
           text-align: left;
-          padding: 5px 8px;
-          margin-bottom: 1em; 
+          // padding: 5px 8px;
+          padding: 2px 4px;
+          margin-bottom: 0.5em;
           border: 1px solid #333;
           border-radius: 3px;
         }
 
-        .Sold{
-            background: red;
-            // color: white;
-          }
-          .Pending{
-            background: yellow;
-           
-          }
-          .Available{
-            background: green;
-            color: white;
-          }
-        .availabilityDiv{
-          display: flex;
-          
-
-
-          .availableBtn{
-            background: lightgreen;
-            color: black;
-            font-weight: 500;
-          }
-          .pendingBtn{
-            background: yellow;
-            color: black;
-            font-weight: 500;
-          }
-          .soldBtn{
-            background: rgb(237, 97, 97);
-            color: black;
-            font-weight: 500;
-          }
+        .Sold {
+          background: red;
+          // color: white;
+        }
+        .Pending {
+          background: yellow;
+        }
+        .Available {
+          background: green;
+          color: white;
         }
 
         .listingGenInfo {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          row-gap: 1em;
-          column-gap: 1.5em;
+          // grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(1, 1fr);
+          row-gap: 0.5em;
+          // column-gap: 1.5em;
           .listingGenItem {
             display: flex;
-            flex-direction: column;
+            // flex-direction: column;
+            flex-direction: row;
             align-items: flex-start;
             .genInfoLabel {
               color: #333;
-              opacity: 1;
-              font-size: 0.9rem;
-              font-weight: bolder;
+              text-decoration: underline;
+              opacity: 0.9;
+              // font-size: 0.95rem;
+              font-size: 1.1rem;
             }
             .genInfoP {
+              font-size: 1rem;
               font-size: 1.1rem;
             }
           }
-          .saveBtnParent{
-            display: flex;
-            justify-content: flex-start;
-            .saveBtn{
-              font-size: 1rem;
-              appearance: none;
-              background: lightblue;
-              color: black;
-              border: none;
-              font-weight: bold;
-              border-radius: 3px;
-              cursor: pointer;
-            }
-          }
-          .viewListing{
-            display: flex;
-            justify-content: flex-start;
-            font-size: 1em;
-            font-weight: bold;
-          }
+          .buttonsParent {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 0.5em;
+            max-width: 220px;
 
-          #copyText{
-            position: absolute;
-            top: 0;
-            opacity: 0;
-            cursor: default;
-          }
-          .shareDiv{
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            .shareBtn{
-              background: none;
-              font-size: 1rem;
-              appearance: none;
-              border: none;
+            // .saveBtnParent {
+            //   // display: flex;
+            //   // justify-content: flex-start;
+              .saveBtn {
+                font-size: 1rem;
+                appearance: none;
+                background: lightblue;
+                color: black;
+                font-weight: bold;
+                border-radius: 3px;
+                border: black solid 1px;
+                cursor: pointer;
+              }
+            // }
+
+            .viewListing {
+              display: flex;
+              justify-content: flex-start;
+              font-size: 1em;
               font-weight: bold;
-              text-align: left;
-              padding: 0;
             }
-            .copiedPrompt{
-              display: none;
+
+            #copyText {
               position: absolute;
-              margin-top: 20px;
-              text-align: left;
-              font-size: 0.85rem;
-              // position: absolute;
+              top: 0;
+              opacity: 0;
+              cursor: default;
             }
-            .copiedPrompt.active{
-              display: block;
+            .shareDiv {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              .shareBtn {
+                font-size: 1rem;
+                appearance: none;
+                background: #a0d080;
+                color: black;
+                font-weight: bold;
+                border-radius: 3px;
+                border: black solid 1px;
+                cursor: pointer;
+                padding: 1px 6px;
+                // margin-left: 10px;
+              }
+              .copiedPrompt {
+                display: none;
+                position: absolute;
+                margin-top: 20px;
+                text-align: left;
+                font-size: 0.85rem;
+                // position: absolute;
+              }
+              .copiedPrompt.active {
+                display: block;
+              }
             }
-
-          }
-          .deleteBtn{
-            appearance: none;
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: 1rem;
-            font-weight: bold;
-            padding: 0;
-            color: red;
-          }
-            .contactBtn{
-              font-size:1rem;
-              text-align: left;
+            .deleteBtn {
+              appearance: none;
+              border: none;
+              font-size: 1rem;
               font-weight: bold;
+              color: black;
+              background: rgb(252, 77, 77);
+              padding: 1px 6px;
+              border-radius: 3px;
+              border: black solid 1px;
+              margin-left: 10px;
             }
-
-
+          }
         }
-
-      }        
-
-    }      
-    hr{
-        margin-top: 20px !important;
-        margin-bottom: 20px;
+      }
     }
-    .listingDescInfo{
-            display: flex;
-            flex-direction: column;
-            margin-top: 20px;
-            .description{
-                text-align: left;
-                margin-bottom: 20px;
-                white-space: pre-wrap;
-            }
-            .dateTime{
-                text-align: left;
-                background: #cccccc;
-                align-self: flex-start;
-                padding: 5px;
-
-            }
-        }
+    hr {
+      margin-top: 20px !important;
+      margin-bottom: 20px;
+    }
+    .listingDescInfo {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      .description {
+        text-align: left;
+        margin-bottom: 20px;
+        white-space: pre-wrap;
+      }
+      .dateTime {
+        text-align: left;
+        background: #cccccc;
+        align-self: flex-start;
+        padding: 5px;
+      }
+    }
   }
   .closeBtn{
       position: absolute;

@@ -130,3 +130,7 @@
 - Add "2 Items for Sale / 4 Items Sold" indicator for users
 - Require entire address in order to be verified
     - Optional: Verify that address is correct via api
+- Photos added on mobile do not show on desktop
+    - ONLY IF ON LOCALHOST
+    - Image does not get added to local folder (of course), need to host elsewhere
+- Consider making it mtb related only, or hobby related rather than general

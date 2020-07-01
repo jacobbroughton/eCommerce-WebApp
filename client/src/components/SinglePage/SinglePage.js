@@ -78,30 +78,15 @@ const SinglePage = () => {
       }
     
     
-
-    if(single === null) return <Loading partial/>
+    {console.log(single)}
+    if(single === null) return <Loading singlePage/>
     else {
     return (
         <div id="singlePageMother" className={`singlePageMother`}>
         <div className="singlePageMain">
+        <h1 className="title">{single.title}</h1>
           <div className="imagesGenInfoDiv">
             <div className="imagesParent">
-              {/* {image === "" && single.image !== "null" ? (
-                <img
-                  className="singleImage"
-                  src={`${serverUrl}/${imageArr[0]}`}
-                  alt=""
-                />
-              ) : (
-                single.image !== "null" &&
-              (
-                <img className="singleImage" src={image} alt="" />
-              )              
-              )}  */}
-              {/* {single.image === "null" && (
-                <img className="singleImage" src={placeholderImg} alt=""/>
-              )} */}
-              {console.log(imageArr)}
               {single.image === 'null' 
               ? <img className="singleImage" src={placeholderImg} alt=""/>
               : <img className="singleImage" src={serverUrl + "/" + imageArr[0]} alt="" />
@@ -124,10 +109,9 @@ const SinglePage = () => {
             </div>
 
             <div className="listingGenInfoParent">
-            
-              <h1 className="title">{single.title}</h1>
-              <p className={`${single.status} soldStatus`} >{single.status}</p>
-              {/* <p className={`${single.status} soldStatus`} >{single.status}</p> */}
+            <p className={`${single.status} soldStatus`} >{single.status}</p>
+              {/* <h1 className="title">{single.title}</h1> */}
+              
               {/* <div className="availabilityDiv"> */}
                 {/* <p>Change availability?</p> */}
                 {/* { single.status !== "Available" && (
@@ -149,45 +133,50 @@ const SinglePage = () => {
               
               <div className="listingGenInfo">
                 <div className="listingGenItem">
-                  <p className="genInfoLabel">Price</p>
-                  <p className="genInfoP">${single.price}</p>
+                  <p className="genInfoLabel">Price:</p>
+                  <p className="genInfoP">&nbsp; ${single.price}</p>
                 </div>
                 <div className="listingGenItem">
-                  <p className="genInfoLabel">Condition</p>
-                  <p className="genInfoP">{single.item_condition}</p>
+                  <p className="genInfoLabel">Condition: </p>
+                  <p className="genInfoP">&nbsp; {single.item_condition}</p>
                 </div>
                 <div className="listingGenItem">
-                  <p className="genInfoLabel">Shipping</p>
-                  <p className="genInfoP">{single.ship_status}</p>
+                  <p className="genInfoLabel">Shipping:</p>
+                  <p className="genInfoP">&nbsp; {single.ship_status}</p>
                 </div>
                 <div className="listingGenItem">
-                  <p className="genInfoLabel">Category</p>
-                  <p className="genInfoP">{single.category}</p>
+                  <p className="genInfoLabel">Category:</p>
+                  <p className="genInfoP">&nbsp; {single.category}</p>
                 </div>
                 <div className="listingGenItem">
-                  <p className="genInfoLabel">Located In</p>
+                  <p className="genInfoLabel">Located In:</p>
                   <p className="genInfoP">
-                    {single.city}, {single.state}
+                  &nbsp; {single.city}, {single.state}
                   </p>
                 </div>
                 <div className="listingGenItem">
-                  <p className="genInfoLabel">Listed By</p>
-                  <p className="genInfoP">{single.seller_nickname}</p>
+                  <p className="genInfoLabel">Listed By:</p>
+                  <p className="genInfoP">&nbsp;@{single.seller_nickname}</p>
                 </div>
-                { dbUser && !dbUser.saved_posts.includes(single.listing_uid) && single.seller_uid !== dbUser.user_uid && (
-                  <div className="saveBtnParent">
+                <div className="buttonsParent">
+                  
+                  { dbUser && !dbUser.saved_posts.includes(single.listing_uid) && single.seller_uid !== dbUser.user_uid && (
+                    // <div className="saveBtnParent">
                     <button className="saveBtn" onClick={() => handleSave()}>Save</button>
+                    // </div>
+                  )}
+                  <input type="text" id='copyText' onChange={() => {}} value={`${clientUrl}/browse/single/${single.listing_uid}`}/>
+
+                  <div className="shareDiv">
+                    <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>
+                    <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
                   </div>
-                )}
-                    <input type="text" id='copyText' onChange={() => {}} value={`${clientUrl}/browse/single/${single.listing_uid}`}/>
-                    
-                    <div className="shareDiv">
-                      <button className="shareBtn" onClick={(e) => handleShare(e)}>Share</button>
-                      <p className="copiedPrompt" id="copiedPrompt">Copied to clipboard</p>
-                    </div>
-                    { dbUser && dbUser.user_uid === single.seller_uid && (
-                <button className="deleteBtn" onClick={(e) => handleDelete(e)}>Delete</button>
-                )}
+
+                  { dbUser && dbUser.user_uid === single.seller_uid && (
+                    <button className="deleteBtn" onClick={(e) => handleDelete(e)}>Delete</button>
+                  )}
+                </div>
+
               </div>
             </div>
           </div>
@@ -201,9 +190,6 @@ const SinglePage = () => {
             </p>
           </div>
         </div>
-      {/* <button className="closeBtn" onClick={(e) => handleClose(e)}>
-        Close
-      </button> */}
     </div>
     )
     }
