@@ -3,7 +3,7 @@
   // position: absolute;
   
   // position: relative;
-  top: 10%;
+  top: 5%;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -13,6 +13,8 @@
   border-radius: 3px;
   z-index: 4;
   max-width: 800px;
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
   .modalMain {
     padding: 2em;
     // h1,
@@ -401,7 +403,7 @@
     }
     hr {
       margin-top: 20px !important;
-      margin-bottom: 20px;
+      margin-bottom: 0.5em;
     }
     .listingDescInfo {
       display: flex;
@@ -416,20 +418,25 @@
         text-align: left;
         background: #cccccc;
         align-self: flex-start;
-        padding: 5px;
+        padding: 5px 10px;
+        border-radius: 3px; 
       }
     }
   }
   .closeBtn{
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 10px;
+      right: 10px;
       background: red;
       font-weight: bold;
       font-size: 1rem;
       color: #ffffff;
       margin: 0;
       border: none;
+      border-radius: 3px;
+      // border-left: black solid 1px;
+      // border-bottom: 1px solid black;
+      border: 1px solid black;
       cursor: pointer;
   }
 }
