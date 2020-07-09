@@ -14,6 +14,7 @@ const SingleModal = ({ handleModalView, item, handleToggle }) => {
   let imageArr = [];
   const [image, setImage] = useState("");
   let [status, setStatus] = useState(item.status);  
+  
 
 
   const handleClose = (e) => {

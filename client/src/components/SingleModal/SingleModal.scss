@@ -313,7 +313,8 @@
             align-items: flex-start;
             .genInfoLabel {
               color: #333;
-              text-decoration: underline;
+              text-decoration: italic;
+              font-weight: 700;
               opacity: 0.9;
               // font-size: 0.95rem;
               font-size: 1.1rem;
@@ -364,7 +365,7 @@
               .shareBtn {
                 font-size: 1rem;
                 appearance: none;
-                background: #a0d080;
+                background: lightblue;
                 color: black;
                 font-weight: bold;
                 border-radius: 3px;

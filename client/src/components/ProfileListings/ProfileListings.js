@@ -90,7 +90,6 @@ const ProfileListings = () => {
             </div>
 
             <div className="savedSection">
-              {console.log(savedListings.length)}
               {savedListings.length >= 1 ? 
                 <>
                   <div className="headParent">
@@ -141,6 +140,7 @@ const ProfileListings = () => {
 
             {toggled && (
               <SingleModal
+                handleModalView={handleModalView}
                 handleToggle={handleToggle}
                 toggled={toggled}
                 item={currentItem}

@@ -18,6 +18,8 @@
         height: 130px;
         width: 100%;
         object-fit: cover;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;;
     }
     .itemTextParent{
         display: flex;

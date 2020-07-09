@@ -134,3 +134,5 @@
     - ONLY IF ON LOCALHOST
     - Image does not get added to local folder (of course), need to host elsewhere
 - Consider making it mtb related only, or hobby related rather than general
+- Make modal much smaller and draggable, like Trailforks
+    - Maybe multiple at once, still able to scroll

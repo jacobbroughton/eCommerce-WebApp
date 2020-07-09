@@ -204,7 +204,7 @@ const SellForm = () => {
         {/* Preview Grid */}
         <div className="previewGrid">
           { imagePrevNum.map(() => 
-            <div className="imgPreviewContainer" key="" id="imgPreviewContainer">
+            <div className="imgPreviewContainer" key="imagePrevNum" id="imgPreviewContainer">
             <img
               src=""
               alt=""
