@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
+import "./styles/SavedAll.scss";
 let API = require("../../api-calls");
 
 const SavedAll = () => {
@@ -20,10 +21,10 @@ const SavedAll = () => {
     }, [dbUser])
     
     return(
-        <>
-        <h3>Your Saved Listings</h3>
-        <Grid listings={savedListings} />
-        </>
+        <div className="savedAllMother">
+            <h3>Your Saved Listings</h3>
+            <Grid listings={savedListings} />
+        </div>
         
     )
 }

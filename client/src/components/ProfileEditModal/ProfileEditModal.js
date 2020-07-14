@@ -132,8 +132,8 @@ const ProfileEditModal = ({ toggled, handleToggled }) => {
                   </option>
                 ))}
               </select>
-            {/* <textarea placeholder="Bio"></textarea>
-              <input type="submit" className="formItem submit" placeholder="Submit" /> */}
+            {/* <textarea placeholder="Bio"></textarea>*/}
+              <input type="submit" className="formItem submit" placeholder="Submit" /> 
             </form>
           </div>
         </div>

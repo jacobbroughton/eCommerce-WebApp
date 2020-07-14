@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
+import "./styles/ActiveAll.scss";
 let API = require("../../api-calls");
 
 const ActiveAll = () => {
@@ -23,7 +24,11 @@ const ActiveAll = () => {
     }, [dbUser])
     
     return(
-        <Grid listings={availableListings} />
+        <div className="activeAllMother">
+            <h3>Your Active Listings</h3>
+             <Grid listings={availableListings} />
+        </div>
+       
         
     )
 }

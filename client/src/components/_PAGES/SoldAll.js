@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "../Grid/Grid";
 import { useAuth0 } from "../../contexts/auth0-context";
 import { useStatusUrl } from "../../contexts/statusUrl-context";
+import "./styles/SoldAll.scss"
 let API = require("../../api-calls");
 
 const SoldAll = () => {
@@ -21,10 +22,10 @@ const SoldAll = () => {
     
     
     return(
-        <>
+        <div className="soldAllMother">
             <h3>Your Sold Listings</h3>
             <Grid listings={soldListings} />
-        </>
+        </div>
         
     )
 }
