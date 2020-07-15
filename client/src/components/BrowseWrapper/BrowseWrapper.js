@@ -76,8 +76,10 @@ const BrowseWrapper = ({ category, items, single }) => {
     <div className="browseViewMother">
       <div className="catsAndListParent">
 
+      <div className="catParent">
+        <CategoryList handleCatClick={handleCatClick} />
+      </div>
       
-      <CategoryList handleCatClick={handleCatClick} />
 
       {single ? (
         <SinglePage />

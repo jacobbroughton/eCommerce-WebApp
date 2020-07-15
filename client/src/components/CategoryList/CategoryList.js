@@ -24,7 +24,7 @@ const CategoryList = ({ handleCatClick }) => {
       ];
 
     return (
-        <div className="catParent">
+        <div className="catMother">
         <h3 className="catHead">Categories</h3>
         <ul className="catList">
           {categoryArr.map((cate) =>

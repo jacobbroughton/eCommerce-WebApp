@@ -8,7 +8,11 @@
     width: 100%;
     max-width: 900px;
 
-    @media(max-width: 750px) {
+    @media(max-width: 720px) {
+        grid-template-columns: repeat(3, 210px);
+    }
+
+    @media(max-width: 540px) {
         grid-template-columns: repeat(2, 210px);
     }
 

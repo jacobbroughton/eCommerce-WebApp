@@ -26,4 +26,8 @@ form {
     border-bottom-left-radius: 0px;
     border-left: 0px;
   }
+
+  @media (max-width: 500px) {
+    width: auto;
+  }
 }
