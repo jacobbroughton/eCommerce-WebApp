@@ -28,6 +28,6 @@ form {
   }
 
   @media (max-width: 500px) {
-    width: auto;
+    width: calc(100% - 60px);
   }
 }

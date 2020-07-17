@@ -13,7 +13,9 @@
     }
 
     @media(max-width: 540px) {
-        grid-template-columns: repeat(2, 210px);
+        grid-template-columns: repeat(2, 50%);
+        justify-content: center;;
+
     }
 
 }    

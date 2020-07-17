@@ -54,6 +54,13 @@
         font-weight: bold;
         border-radius: 3px;
     }
+
+    @media(max-width: 540px) {
+        width: 100%;
+        .itemImage{
+            height: 110px;
+        }
+    }
 }
 
 .smallListItem{
