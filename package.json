@@ -26,7 +26,7 @@
   "homepage": "https://github.com/jlbroughton88/eCommerce-WebApp#readme",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
